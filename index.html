@@ -351,17 +351,17 @@ const PLAN = {
       kcal: "2790 → 3150 → 3500 kcal", protein: "~250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       desc: "Deload + Kalorien-Ramp: Topf mit 2 Tassen Reis, Shake 40/100, ab Do Snack S. +1–1.5 kg = Glykogen und Wasser, kein Fett." },
     { id: "bulk", name: "Aufbau", short: "Aufbau", from: "2026-09-28", to: "2027-05-09",
-      kcal: "~3500 kcal Trainingstag", protein: "~260 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
-      rate: [0.25, 0.35], targetW: [97, 99],
-      desc: "32 Wochen, +0.25–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
-      rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.2 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
+      kcal: "~3420 kcal pro Tag", protein: "~250–290 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
+      rate: [0.3, 0.35], targetW: [97, 99],
+      desc: "32 Wochen, +0.3–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
+      rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.25 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
     { id: "cut2", name: "Polish-Cut", short: "Polish-Cut", from: "2027-05-10", to: "2027-06-27",
       kcal: "~2790 kcal Trainingstag · ~2500 Ruhetag", protein: "~240 g Protein", mods: ["Q", "PW", "T1", "T2"], nut: "cut",
       rate: [-0.6, -0.5], targetW: [94, 96],
       desc: "7 Wochen, −0.55 kg/Wo → 94–96 kg @ ~15–16 %. Zurück auf 1.5 Tassen Reis und Shake 30/75. Hart und konsequent.",
       rule: "Anpassung analog Mini-Cut. Entscheidungen immer auf 7-Tage-Durchschnitten." },
     { id: "summer", name: "Sommer", short: "Sommer", from: "2027-06-28", to: "2027-12-31",
-      kcal: "~3150 kcal (Erhalt)", protein: "~250 g Protein", mods: ["Q", "PW", "T1", "T2"], nut: "bulk",
+      kcal: "~3060 kcal (Erhalt)", protein: "~250 g Protein", mods: ["Q", "PW", "T1", "T2"], nut: "bulk",
       desc: "Halten & geniessen: Aufbau Stufe 1 ohne S. Viel Velo heisst mehr essen, sonst rutschst du ins Defizit." }
   ],
   // Montag der jeweiligen Deload-Woche
@@ -381,8 +381,8 @@ const PLAN = {
   steps: "8000–10000 Schritte/Tag",
   water: "3–3.5 L Wasser/Tag",
   supps: [
-    ["Kreatin-Monohydrat", "6 g täglich, auch an Ruhetagen — Uhrzeit egal"],
-    ["Whey", "fix im PW-Shake (Aufbau 40 g)"],
+    ["Kreatin-Monohydrat", "täglich im Frühstücks-Shake, auch am Ruhetag. 3–5 g pro Tag reichen."],
+    ["Whey (nu3)", "30 g im Frühstücks-Shake · ab Stufe 2 nochmals 30 g im Abend-Shake"],
     ["Omega-3", "EPA/DHA ~2 g/Tag — Pflicht, weil kein Fisch in der Routine"],
     ["Vitamin D", "1000–2000 IE/Tag Okt–Apr (ideal: erst Blutwert messen)"]
   ]
@@ -397,8 +397,8 @@ const RECOVERY = {
     ["Mi", "Unterkörper A · 07:15", "Velo-Fenster 17–20 Uhr, nur halbe Runde (bis 25.10.) · NSDR"],
     ["Do", "Oberkörper B · 07:15", "Mittags-Spaziergang · NSDR"],
     ["Fr", "Unterkörper B · 07:15", "Abend frei: Wochen-Abschaltritual"],
-    ["Sa", "frei · optional Pump 40′", "Velo lange Runde oder Schwimmen · Sauna 2–3 Gänge"],
-    ["So", "frei · optional Pump 40′", "Sonntag-System: Doppel-Topf, Review, Check-in 17:00 · Spaziergang oder Velo"]
+    ["Sa", "Pump-Session 45′ (Sa oder So)", "Velo lange Runde oder Schwimmen · Sauna 2–3 Gänge"],
+    ["So", "Pump-Session 45′, falls nicht am Sa", "Sonntag-System: Doppel-Topf, Review, Check-in 17:00 · Spaziergang oder Velo"]
   ],
   weekOld: [
     ["Mo", "Oberkörper schwer (~70′)", "Abends Brain-Dump + 22:45 Licht aus"],
@@ -491,7 +491,7 @@ const SUNDAY = {
   items: [
     "Doppel-Topf kochen (6 Portionen für Mo–Mi) — am Mi folgt der zweite für Do–Sa",
     "Wochen-Review in der App (15 Min): Ø-Gewicht vs. Ziel, Adhärenz, Anpassungsregel prüfen",
-    "Woche planen: 4 Trainings (Di–Fr 07:15) + optional Pump-Session (Sa oder So) + 3× NSDR + Velo/Schwimmen + Sonntag-System in den Kalender",
+    "Woche planen: 5 Trainings (Di–Fr 07:15 + Pump-Session Sa oder So) + 3× NSDR + Velo/Schwimmen + Sonntag-System in den Kalender",
     "Taille messen (Nabel) und eintragen",
     "17:00 Check-in mit Coach Claude: Wochen-Export senden"
   ]
@@ -683,6 +683,20 @@ const EXERCISES = {
     mistakes: "Zu kurzer Stand · Abstossen mit dem hinteren Bein · Schrittlänge jede Session anders",
     check: "Gleiche Schrittlänge wie letztes Mal (Notiz!).",
     videos: [["Korrekt ausgeführt", "https://www.youtube.com/watch?v=VPhhE6bBzZE"]] },
+  inclinemach: { name: "Schrägbank-Presse Maschine", muscles: "obere Brust · vordere Schulter · Trizeps",
+    setup: "Sitz so, dass die Griffe auf Höhe der oberen Brust bzw. knapp unter dem Schlüsselbein starten (200 cm: Sitz meist ganz runter). Schulterblätter zusammen und nach unten ins Polster, Füsse fest am Boden. Setup notieren.",
+    exec: "Ellbogen ~45–60° vom Körper, kontrolliert nach oben-vorn drücken, oben nicht einrasten. Zurück bis zur deutlichen Brust-Dehnung und dort 1 s halten, dann ohne Schwung wieder drücken.",
+    feel: "obere Brust, vordere Schulter", notFeel: "Stechen vorn im Schultergelenk, Nacken",
+    mistakes: "Sitz zu hoch (wird Schulterdrücken) · Schultern lösen sich vom Polster · halbe Wiederholungen ohne Dehnung",
+    check: "Unten 1 s halten möglich, Schulterblätter bleiben im Polster.",
+    videos: [["Form-Anleitung", "https://liftosaur.com/exercises/leverage-machine-incline-chest-press"]] },
+  inclinecurl: { name: "Schrägbank-Curls", muscles: "Bizeps (langer Kopf)",
+    setup: "Schrägbank auf 45–60°, Rücken und Hinterkopf an der Lehne. Arme hängen senkrecht nach unten, leicht hinter dem Körper.",
+    exec: "Ellbogen bleiben hinten und ruhig, nur der Unterarm bewegt sich. Hoch ohne Schwung, 2–3 s absenken bis die Arme ganz lang sind: die Dehnung unten ist der Wachstumsreiz.",
+    feel: "Bizeps inkl. starker Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandern nach vorn), Handgelenk",
+    mistakes: "Ellbogen kommen nach vorn · Schultern rollen von der Lehne · oben ohne Spannung «zuklappen»",
+    check: "Ellbogen bleiben während des ganzen Satzes hinter dem Körper.",
+    videos: [["Form-Anleitung", "https://liftosaur.com/exercises/dumbbell-incline-curl"]] },
   calf_seat: { name: "Wadenheben sitzend", muscles: "tiefe Wade (Soleus)",
     setup: "Polster auf den Oberschenkeln, Fussballen auf der Kante.",
     exec: "Volle Dehnung unten (1 s), Pause oben (1 s). Wie stehend, nur sitzend für den Soleus.",
@@ -749,7 +763,7 @@ const SESSIONS = {
   /* ---- Ab 10.10.2026: 4 Morgen-Sessions Di–Fr, 07:15–08:15. Die fünf Sessions oben bleiben für das Log. ---- */
   ua: { key: "ua", name: "Oberkörper A · schwer", day: "Dienstag", dur: "60 Min", time: "07:15",
     pauses: "Wechselsatz 60–75 s · Superset ohne Pause",
-    warmup: "5 Min Rad/Rudergerät + Band Pull-aparts 2×15 + Aussenrotation Kabel 2×12 leicht — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze (~50 %×10, ~70 %×5).",
+    warmup: "5 Min Rad/Rudergerät + Face Pulls 2×15 leicht + Aussenrotation Kabel 2×12 — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze (~50 %×10, ~70 %×5).",
     after: "Letzter Dienstag im Monat: nach dem Warm-up 1 Klimmzug-Testversuch, strikt aus dem Hang.", afterIcon: "🧗",
     slots: [
       { ex: "bench", sets: 4, reps: "6–8", start: "2×24 kg", alts: ["Brustpresse Maschine", "Smith-Bank"], pair: 2 },
@@ -758,19 +772,18 @@ const SESSIONS = {
       { ex: "ohp", sets: 3, reps: "8–10", start: "2×16 kg", alts: ["Schulterpresse Maschine (neutral)", "Landmine-Press"], pair: 5 },
       { ex: "latwide", sets: 3, reps: "8–10", start: "60 kg", alts: ["Assisted Pull-up Maschine", "Einarm-Latzug Kabel"], pair: 4 },
       { ex: "latraise_c", sets: 4, reps: "12–15", start: "EW (~5–10 kg)", alts: ["KH-Seitheben", "Seitheben-Maschine"], ss: 7 },
-      { ex: "facepull", sets: 3, reps: "15–20", start: "EW leicht", alts: ["Reverse Fly Maschine", "Band Pull-aparts schwer"], ss: 6 }
+      { ex: "cablefly", sets: 3, reps: "12–15", start: "EW", alts: ["Pec Deck", "Kabel-Fliegende tief → hoch"], ss: 6, note: "Neu in v4: mehr Brust. Hinten tief in die Dehnung, so weit es schmerzfrei geht. Face Pulls sind ins Warm-up gewandert." }
     ] },
   la: { key: "la", name: "Unterkörper A + Arme", day: "Mittwoch", dur: "60 Min", time: "07:15",
     pauses: "Verbund 2–2½ Min · Superset ohne Pause",
     warmup: "5 Min Rad/Rudergerät + 2 leichte Beinpresse-Sätze — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze.",
     slots: [
-      { ex: "legpress", sets: 4, reps: "8–10", start: "EW (konservativ)", alts: ["Hack Squat", "Pendulum", "Smith-Kniebeuge fersenerhöht"] },
+      { ex: "legpress", sets: 3, reps: "8–10", start: "EW (konservativ)", alts: ["Hack Squat", "Pendulum", "Smith-Kniebeuge fersenerhöht"], note: "v4: 3 statt 4 Sätze. Nah ans Versagen (RIR 1), dann halten die Beine ihre Masse." },
       { ex: "rdl", sets: 3, reps: "8–10", start: "2×22 kg", alts: ["45°-Rückenstrecker (gewichtet)", "Kabel-RDL"], note: "Morgens ist der Rücken steifer: 1 Vorsatz mit halber Last, dann die Arbeitssätze. Bleibt bei RIR 2+." },
-      { ex: "curls", sets: 3, reps: "10–12", start: "2×12 kg", alts: ["SZ-Stange", "Kabel-Curls"], ss: 4, note: "Arme hier, solange sie frisch sind. Kabel-Curls am gleichen Turm wie die Pushdowns sparen Wege." },
-      { ex: "pushdown", sets: 3, reps: "12–15", start: "EW", alts: ["Dip-Maschine"], ss: 3 },
-      { ex: "legext", sets: 2, reps: "10–12", start: "EW", alts: ["Sissy-Squat-Maschine"] },
-      { ex: "calf_stand", sets: 3, reps: "10–12", start: "EW", alts: ["Wadenpresse an der Beinpresse"], ss: 7 },
-      { ex: "cablecrunch", sets: 3, reps: "12–15", start: "EW", alts: ["Crunch-Maschine", "Plank-Varianten"], ss: 6 }
+      { ex: "curls", sets: 4, reps: "10–12", start: "2×12 kg", alts: ["SZ-Stange", "Kabel-Curls"], ss: 4, note: "v4: 4 Sätze. Arme hier, solange sie frisch sind. Kabel-Curls am gleichen Turm wie die Pushdowns sparen Wege." },
+      { ex: "pushdown", sets: 4, reps: "12–15", start: "EW", alts: ["Dip-Maschine"], ss: 3 },
+      { ex: "calf_stand", sets: 3, reps: "10–12", start: "EW", alts: ["Wadenpresse an der Beinpresse"], ss: 6 },
+      { ex: "cablecrunch", sets: 3, reps: "12–15", start: "EW", alts: ["Crunch-Maschine", "Plank-Varianten"], ss: 5 }
     ] },
   ub: { key: "ub", name: "Oberkörper B · Volumen", day: "Donnerstag", dur: "60 Min", time: "07:15",
     pauses: "Wechselsatz 60–75 s · Superset ohne Pause",
@@ -787,26 +800,27 @@ const SESSIONS = {
   lb: { key: "lb", name: "Unterkörper B + Schultern/Arme", day: "Freitag", dur: "60 Min", time: "07:15",
     pauses: "Verbund 2–2½ Min · Superset ohne Pause",
     warmup: "5 Min Rad/Rudergerät + 2 leichte Beinpresse-Sätze — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze.",
-    after: "Danach drei freie Tage: Sauna und die lange Velo-Runde gehören aufs Wochenende.",
+    after: "Danach Wochenende: Pump-Session Sa oder So, dazu Sauna und die lange Velo-Runde.",
     slots: [
-      { ex: "hacksquat", sets: 4, reps: "10–12", start: "EW", alts: ["Beinpresse enger/tiefer Stand"] },
-      { ex: "legcurl", sets: 4, reps: "10–12", start: "EW", alts: ["Beinbeuger sitzend", "Nordic-Curl-Progression"] },
+      { ex: "hacksquat", sets: 3, reps: "10–12", start: "EW", alts: ["Beinpresse enger/tiefer Stand"], note: "v4: 3 statt 4 Sätze, dafür nah ans Versagen." },
+      { ex: "legcurl", sets: 3, reps: "10–12", start: "EW", alts: ["Beinbeuger sitzend", "Nordic-Curl-Progression"] },
       { ex: "hammer", sets: 4, reps: "12–15", start: "2×10 kg", alts: ["Seil-Curls am Kabel"], ss: 4 },
       { ex: "frenchpress", sets: 4, reps: "10–15", start: "2×10 kg", alts: ["Trizeps Pushdown", "Trizeps überkopf Kabel (nur wenn Schulter entspannt)"], ss: 3, note: "Zwickt der Ellbogen: auf Pushdown wechseln." },
       { ex: "latraise_c", sets: 4, reps: "15–20", start: "leicht", alts: ["KH-Seitheben"], ss: 6, note: "3. Seitheben-Frequenz der Woche." },
       { ex: "calf_seat", sets: 3, reps: "12–15", start: "EW", alts: [], ss: 5 }
     ] },
 
-  /* ---- Ab 17.10.2026: optionale 5. Einheit an einem freien Tag (Sa oder So). Zählt als Bonus, nicht ins Wochen-Soll. ---- */
-  px: { key: "px", name: "Pump-Session · optional", day: "Sa oder So", dur: "40 Min", optional: true,
-    pauses: "Superset ohne Pause · 60 s zwischen den Runden",
-    warmup: "5 Min Rad/Rudergerät + Band Pull-aparts 2×15 + Aussenrotation Kabel 2×12 leicht. Erste Sätze jeder Übung bewusst leicht.",
-    after: "Nur an einem freien Tag, nie am Montag (am Dienstag ist Oberkörper schwer) und nie als Ersatz für eine verpasste Session. Essen: Ruhetag-Shake reicht.", afterIcon: "💪",
+  /* ---- Ab 17.10.2026 optional, ab Training v4 (Woche ab 19.10.2026) fix: 5. Einheit an einem freien Tag (Sa oder So), zählt ins Wochen-Soll. ---- */
+  px: { key: "px", name: "Pump-Session · Oberkörper", day: "Sa oder So", dur: "45 Min",
+    pauses: "Schrägbank 2 Min · Superset ohne Pause, 60 s zwischen den Runden",
+    warmup: "5 Min Rad/Rudergerät + Face Pulls 2×15 leicht + Aussenrotation Kabel 2×12. Schrägbank: 2 Rampen-Sätze.",
+    after: "Fix als 5. Einheit: Sa oder So, einmal pro Woche, nie am Montag (am Dienstag ist Oberkörper schwer). Fällt sie aus: nicht nachholen. Bis zum Deload am 09.11. alle Sätze RIR 2.", afterIcon: "💪",
     slots: [
-      { ex: "latraise_c", sets: 4, reps: "12–20", start: "leicht", alts: ["KH-Seitheben", "Seitheben-Maschine"], note: "4. Seitheben-Frequenz der Woche: die seitliche Schulter macht den Rahmen breit." },
-      { ex: "curls", sets: 3, reps: "10–15", start: "2×10 kg", alts: ["Kabel-Curls", "Schrägbank-Curls"], ss: 3 },
-      { ex: "frenchpress", sets: 3, reps: "10–15", start: "2×10 kg", alts: ["Trizeps Pushdown", "Trizeps überkopf Kabel (nur wenn Schulter entspannt)"], ss: 2, note: "Langer Trizepskopf = der grösste Teil des Oberarms." },
-      { ex: "cablecrunch", sets: 3, reps: "10–15", start: "EW", alts: ["Crunch-Maschine", "Plank-Varianten"] }
+      { ex: "inclinemach", sets: 3, reps: "8–12", start: "EW", alts: ["KH-Schrägbankdrücken", "Smith schräg"], note: "3. Brust-Tag der Woche: obere Brust. Unten 1 s in der Dehnung halten." },
+      { ex: "latraise_c", sets: 4, reps: "12–20", start: "leicht", alts: ["KH-Seitheben", "Seitheben-Maschine"], ss: 3, note: "4. Seitheben-Frequenz der Woche: die seitliche Schulter macht den Rahmen breit." },
+      { ex: "revfly", sets: 3, reps: "15–20", start: "EW", alts: ["Kabel Rear-Delt Fly"], ss: 2 },
+      { ex: "inclinecurl", sets: 3, reps: "10–15", start: "2×8 kg", alts: ["Bayesian-Curl am Kabel", "KH-Curls"], ss: 5, note: "Arme hinter dem Körper: maximale Dehnung im Bizeps." },
+      { ex: "frenchpress", sets: 3, reps: "10–15", start: "2×10 kg", alts: ["Trizeps überkopf Kabel (nur wenn Schulter entspannt)", "Trizeps Pushdown"], ss: 4, note: "Langer Trizepskopf = der grösste Teil des Oberarms." }
     ] }
 };
 
@@ -821,8 +835,8 @@ const RESTDAY_OLD = {
 };
 const RESTDAY = {
   1: { title: "Ruhetag — Anlauf für vier Morgen", lines: ["Spaziergang / Schritte", "NSDR 10–20 Min", "optional Schwimmen 20–30 Min oder Sauna bis ~20:00", "Tasche packen · 22:15 Licht aus"] },
-  6: { title: "Ruhetag — aktive Erholung", lines: ["Velo lange Runde (Zone 2) oder Schwimmen 20–30 Min", "Sauna 2–3 Gänge", "optional Pump-Session 40 Min (Sa oder So)", "10-Min-Reset Mobility", "Spaziergang / Schritte"], px: true },
-  0: { title: "Sonntag — komplett frei", lines: ["Sonntag-System: Doppel-Topf + Review + Woche planen", "17:00 Check-in mit Coach", "Spaziergang, oder Velo falls am Sa keins war", "optional Pump-Session 40 Min, falls nicht schon am Sa", "Taille messen und eintragen"], px: true }
+  6: { title: "Samstag — Pump-Session + Erholung", lines: ["Pump-Session 45 Min (Sa oder So)", "Velo lange Runde (Zone 2) oder Schwimmen 20–30 Min", "Sauna 2–3 Gänge", "10-Min-Reset Mobility", "Spaziergang / Schritte"], px: true },
+  0: { title: "Sonntag — Sonntag-System", lines: ["Pump-Session 45 Min, falls nicht schon am Sa", "Sonntag-System: Doppel-Topf + Review + Woche planen", "17:00 Check-in mit Coach", "Spaziergang, oder Velo falls am Sa keins war", "Taille messen und eintragen"], px: true }
 };
 /* Pump-Session nur an freien Tagen (Sa/So) und nur einmal pro Woche */
 function pxAllowed(k) { const r = restdayFor(k)[fromKey(k).getDay()]; return k >= PLAN_SWITCH && !isTrainDay(k) && !!(r && r.px); }
@@ -830,13 +844,19 @@ function pxDoneWeek(k) { const mon = mondayOf(k); for (let i = 0; i < 7; i++) { 
 function weekplanFor(k) { return k < PLAN_SWITCH ? WEEKPLAN_OLD : WEEKPLAN; }
 function restdayFor(k) { return k < PLAN_SWITCH ? RESTDAY_OLD : RESTDAY; }
 function sessKeyFor(k) { return weekplanFor(k)[fromKey(k).getDay()]; }
+/* Training v4 (Oberkörper-Fokus): ab der Woche vom 19.10.2026 zählt die Pump-Session fix ins Wochen-Soll (5 statt 4) */
+const V4_WEEK = "2026-10-19", V4_BANNER = ["2026-10-22", "2026-11-01"];
+function isV4Week(k) { return mondayOf(k) >= V4_WEEK; }
+/* Pump-Session heute noch offen: freier Sa/So, diese Woche noch nicht gemacht, heute nicht schon erledigt */
+function pxPending(k) { return isV4Week(k) && pxAllowed(k) && !pxDoneWeek(k) && !(S.wo[k] && S.wo[k].sess === "px" && S.wo[k].done); }
 
 const TRAINING_RULES = [
-  ["Physique-Priorität (2-m-Rahmen)", "Bei 2 m wirkt dieselbe Muskelmasse flacher als bei einem kleineren Körper. Den Look machen seitliche Schultern, obere Brust, Lats und Arme: diese Muskeln 2–3× pro Woche, je 10–16 harte Sätze. Beine solide (8–10 Sätze), aber nicht der Fokus."],
+  ["Oberkörper-Fokus (Training v4)", "Bis Mai hat der Oberkörper Vorrang: Brust ~17, seitliche Schulter ~16, Rücken ~18, Bizeps und Trizeps je ~11 harte Sätze pro Woche, verteilt auf drei Tage (Di, Do, Pump-Session) plus die Arme am Mi und Fr. Bei 2 m wirkt dieselbe Muskelmasse flacher: Schultern, Brust und Arme machen den Look. Die Beine halten mit ~6 Sätzen pro Muskel ihre Masse, solange du nah ans Versagen gehst. Die frei werdende Erholung fliesst in den Oberkörper."],
+  ["Neue Sätze einschleichen", "Bis zum Deload am 09.11. laufen die neuen Sätze (Fliegende am Di, 4. Arm-Satz am Mi, die Pump-Session) mit RIR 2. Danach normal: Grundübungen RIR 1–2, Isolation im letzten Satz bis ans Versagen."],
   ["Lange Hebel: Maschinen vor Langhantel", "Mit langen Armen und Beinen limitieren Rücken und Schultern bei Langhantel-Kniebeuge, Kreuzheben vom Boden und Bankdrücken, bevor der Zielmuskel ausgelastet ist. Hack Squat, Beinpresse, RDL, KH- und Maschinendrücken, brustgestütztes Rudern: mehr Reiz bei weniger Ermüdung, und es schont die Schultern."],
-  ["Gedehnte Position zählt", "Volle Amplitude, besonders unten bei Schrägbank und Fliegenden, oben beim Latzug, hinter dem Kopf beim Trizeps. Lange Gliedmassen verleiten zu halben Wiederholungen. Lieber 1 Platte leichter und ganz."],
+  ["Gedehnte Position zählt", "Volle Amplitude, besonders unten bei Schrägbank und Fliegenden, oben beim Latzug, hinter dem Kopf beim Trizeps, unten bei den Schrägbank-Curls. Lange Gliedmassen verleiten zu halben Wiederholungen. Lieber 1 Platte leichter und ganz. Letzter Satz jeder Isolationsübung bis ans Versagen, dann 3–5 halbe Wiederholungen im gedehnten Bereich anhängen. Nur so weit, wie es schmerzfrei geht."],
   ["Jeden Satz loggen", "Gewicht und Wiederholungen in jeder Session eintragen, auch an miesen Tagen. Ohne Log keine doppelte Progression, und ohne Progression kein Wachstum."],
-  ["Optionale 5. Einheit: Pump-Session", "Sa oder So, 40 Min: Seitheben, Curls, Trizeps, Bauch. Arme und seitliche Schultern profitieren am meisten von zusätzlichem Volumen. Einmal pro Woche, nie am Montag, nie als Ersatz für eine verpasste Session. Zählt als Bonus, nicht ins Wochen-Soll."],
+  ["5. Einheit: Pump-Session (fix)", "Sa oder So, ~45 Min: Schrägbank-Maschine, Seitheben + Reverse Fly, Schrägbank-Curls + French Press. Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5). Einmal pro Woche, nie am Montag. Fällt sie aus: nicht nachholen."],
   ["60-Minuten-Fenster 07:15–08:15", "Um 08:15 ist Schluss. Die Slots stehen nach Wichtigkeit: was am Ende wegfällt, kostet am wenigsten. Wird es eng, den letzten Superset kürzen — nie die Pausen der Hauptübungen."],
   ["Wechselsatz", "Zwei Gegenspieler-Übungen abwechseln (Drücken ↔ Ziehen): Satz A, 60–75 Sek, Satz B, 60–75 Sek, wieder A. Jeder Muskel hat trotzdem ~3 Min Pause, der Block ist ~6 Min schneller. Gerät besetzt: nacheinander trainieren und den letzten Superset auf 2 Runden kürzen."],
   ["Doppelte Progression", "Alle Sätze am oberen Rand des Wiederholungsbereichs bei RIR 1–2 → nächste Einheit kleinste Steigerung (KH: nächstes Paar · Maschine: +1 Platte · sonst +1 Wdh). Nie Technik gegen Last tauschen."],
@@ -866,37 +886,41 @@ const PULLUP_PROJECT = {
 
 /* Baukasten v2.0 «Reality Edition»: Q · PW · T · T (+ S im Aufbau) + Zusatzmodule V (Velo) / W (Schwimmen) */
 const MODULES = {
-  Q:  { name: "Quark-Start", time: "morgens" },
-  PW: { name: "Post-Workout-Shake", time: "nach Training" },
+  Q:  { name: "Quark", time: "Frühstück" },
+  PW: { name: "Frühstücks-Shake", time: "Frühstück" },
   T1: { name: "Topf-Portion 1", time: "Mittag" },
   T2: { name: "Topf-Portion 2", time: "Abend" },
   S:  { name: "Energie-Snack", time: "Office", phase: "nur Aufbau" },
   V:  { name: "Velo-Modul", time: "ums Velo", phase: "an Velotagen" },
-  W:  { name: "Schwimm-Modul", time: "danach", phase: "an Schwimmtagen im Aufbau" }
+  W:  { name: "Schwimm-Modul", time: "danach", phase: "an Schwimmtagen im Aufbau" },
+  A:  { name: "Abend-Shake", time: "abends · bis ~21:00", phase: "Aufbau ab Stufe 2" }
 };
 
 /* Phasen-Profile: Shake (g), Reis pro Topf-Charge (Tassen), Topf-Portion, Zurückessen */
 const NUT = {
   cut:  { whey: 30, oats: 75, reis: "1.5", T: { kcal: 1005, p: 72 }, eat: "partial" },
-  bulk: { whey: 40, oats: 100, reis: "2", T: { kcal: 1120, p: 74 }, eat: "full" }
+  bulk: { whey: 30, oats: 100, reis: "2", T: { kcal: 1120, p: 74 }, eat: "full" }
 };
-/* Aufbau-Stufen (Baukasten Kap. 6) — Stufe wird im Ernährungs-Tab gesetzt */
-/* Ab 17.10.: Dichte statt Volumen. Stufe 3 = flüssige Kalorien (leichtester Hebel), Stufe 4 = «Topf dicht»: Bohnen raus
-   (weniger Ballaststoffe, weniger satt), mehr Reis, 40 statt 10 g Öl pro Charge. Protein ist mit ~250 g längst gedeckt. */
+/* Frühstück, wie Dimitri es isst (gemeldet 22.10.2026): 500 g Magerquark (Lidl) + Shake mit 100 g gemahlenen Oats und 30 g nu3 Whey mit Kreatin.
+   Im Aufbau jeden Tag gleich, auch am Ruhetag. Quark pur: ~66 kcal / 12 g Protein pro 100 g. */
+const QUARK = { kcal: 330, p: 60 };
+/* Aufbau-Stufen — Stufe wird im Ernährungs-Tab gesetzt.
+   Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
+   Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
 const STUFEN = {
-  1: { reis: "2", T: { kcal: 1120, p: 74 }, milk: 0, kcal: "~3500" },
-  2: { reis: "2.5", T: { kcal: 1230, p: 76 }, milk: 0, kcal: "~3720" },
-  3: { reis: "2.5", T: { kcal: 1230, p: 76 }, milk: 500, milkK: 0.65, pb: 15, kcal: "~4130" },
-  4: { reis: "3", T: { kcal: 1350, p: 72 }, milk: 500, milkK: 0.65, pb: 15, dense: true, kcal: "~4370" }
+  1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3420" },
+  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 50 }, kcal: "~3720" },
+  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 100 }, kcal: "~3910" },
+  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 100, milk: 500, milkK: 0.65 }, kcal: "~4230" }
 };
 const STUFEN_TABLE = [
   ["cut1", "Mini-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
-  ["bulk1", "Aufbau Stufe 1", "2 Tassen · Shake 40/100 · + S", "~3500"],
-  ["bulk2", "Aufbau Stufe 2", "2.5 Tassen · Shake 40/100 · + S", "~3720"],
-  ["bulk3", "Aufbau Stufe 3 · Shake-Plus", "2.5 Tassen · Shake mit 500 ml Vollmilch + 15 g Erdnussbutter · + S", "~4130"],
-  ["bulk4", "Aufbau Stufe 4 · Topf dicht", "3 Tassen, Bohnen raus, 40 g Öl · Shake-Plus · + S", "~4370"],
+  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · Topf 2 Tassen · S", "~3420"],
+  ["bulk2", "Aufbau Stufe 2 · Abend-Shake halb", "+ Abend-Shake: 30 g Whey + 50 g Oats", "~3720"],
+  ["bulk3", "Aufbau Stufe 3 · Abend-Shake voll", "+ Abend-Shake: 30 g Whey + 100 g Oats", "~3910"],
+  ["bulk4", "Aufbau Stufe 4 · Abend-Shake mit Milch", "Abend-Shake mit 500 ml Vollmilch statt Wasser", "~4230"],
   ["cut2", "Polish-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
-  ["summer", "Sommer", "2 Tassen · Shake 40/100 · ohne S", "~3150"]
+  ["summer", "Sommer", "2 Tassen · Shake 30/100 · ohne S", "~3060"]
 ];
 
 const POT = {
@@ -915,10 +939,10 @@ function potList(n) {
 }
 
 const TIMING = [
-  ["Q zuerst", "Quark ist immer die erste Mahlzeit — an Trainingstagen um ~06:30, 45 Min vor dem Start. Liegt er schwer im Magen: halbe Portion vorher, den Rest zum Shake. Fehlt der Zug: Banane aus Snack S vorziehen."],
-  ["PW direkt danach", "Di–Fr gleich nach der Session (~08:20) als zweites Frühstück. Am Ruhetag nur Whey, Zeit egal."],
-  ["Topf-Portionen", "Mittags ~12:00 und abends ~19:30. Die Abend-Portion ist der Treibstoff fürs Morgentraining: nicht auslassen, aber spätestens 1.5 h vor Licht aus (22:15)."],
-  ["Ruhetag-Regel", "Kein Training = keine Oats im Shake. Kreatin trotzdem täglich."],
+  ["Frühstück", "Quark + Frühstücks-Shake zusammen. Di–Fr nach dem Training (~08:30), an freien Tagen wann du willst. Das Kreatin ist im Shake."],
+  ["Topf-Portionen", "Mittags ~12:00 und abends ~19:30, spätestens 1.5 h vor Licht aus (22:15). Die Abend-Portion ist der Treibstoff fürs Morgentraining: nicht auslassen."],
+  ["Abend-Shake", "Ab Stufe 2, bis ~21:00. Flüssige Kalorien sättigen am wenigsten, und die Oats füllen die Speicher fürs Training am nächsten Morgen."],
+  ["Ruhetag", "Im Aufbau isst du jeden Tag gleich, die Oats auch am Ruhetag. Nur im Cut fällt am Ruhetag der Oats-Teil weg."],
   ["Velo & Schwimmen", "Auf «Heute» eintragen — Modul V bzw. W erscheint automatisch, dosiert nach Phase."]
 ];
 
@@ -1032,9 +1056,9 @@ const DRESSINGS = [
 ];
 
 const FOOD_RULES = [
-  ["Protein ist gedeckt — Kalorien über Carbs und Fett", "Muskel braucht ~1.8–2.2 g Protein pro kg, also 165–200 g. Der Baukasten liefert ~250 g. Mehr Protein baut nicht mehr Muskel, es sättigt nur und macht den Überschuss schwer. Fehlende Kalorien darum immer über Reis, Öl, Vollmilch, Nüsse oder Granola holen, nie über mehr Quark oder Hack."],
-  ["Dichte statt Volumen", "Bei knapp 2 m und vier Trainings liegt dein Erhalt bei ~3200–3300 kcal. Ist das Essen die Hürde, in dieser Reihenfolge: flüssige Kalorien (Vollmilch und Erdnussbutter im Shake, Stufe 3) → Topf dicht (Bohnen raus, mehr Reis und Öl, Stufe 4) → Granola im Quark (Baustein «Mehr essen»)."],
-  ["Die Waage entscheidet", "Watch-Kalorien sind eine Richtung, keine exakte Zahl. Gesteuert wird über den 7-Tage-Ø: Ziel +0.25–0.35 kg/Wo · 2 Wochen unter +0.2 → eine Stufe hoch · über +0.5 → eine Stufe zurück."],
+  ["Protein ist gedeckt — Kalorien über Carbs", "Muskel braucht ~1.8–2.2 g Protein pro kg, also 165–200 g. Der Baukasten liefert ~250 g. Mehr Protein baut nicht mehr Muskel, es sättigt nur. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Granola holen, nie über mehr Quark oder Hack."],
+  ["Trinken statt Reis", "Bei knapp 2 m und fünf Trainings liegt dein Erhalt bei ~3250–3350 kcal. Der Reis bleibt bei 2 Tassen. Mehr Kalorien kommen über den Abend-Shake: halb (Stufe 2) → voll (Stufe 3) → mit Vollmilch (Stufe 4). Flüssig sättigt am wenigsten."],
+  ["Die Waage entscheidet", "Watch-Kalorien sind eine Richtung, keine exakte Zahl. Gesteuert wird über den 7-Tage-Ø: Ziel +0.3–0.35 kg/Wo · 2 Wochen unter +0.25 → eine Stufe hoch · über +0.5 → eine Stufe zurück."],
   ["Restaurant-Regeln (max. 2×/Woche)", "Gericht mit klarem Protein-Anker + Reis/Kartoffeln · Sauce separat · kein Frittiertes · Wasser/Zero · ersetzt eine Topf-Portion, fertig. Einplanen statt bereuen."],
   ["Office-Notfall ohne Box (Migros/Coop)", "Skyr-Becher + Poulet-Sandwich · Sushi-Box + Edamame + Skyr · Hüttenkäse + Früchte + Proteinriegel. Regel: 1 Protein-Anker + 1 Carb-Quelle, kein Frittiertes."],
   ["Getränke", "3–3.5 L Wasser/Tag (2-Meter-Körper!) · Tee frei · Süssgetränke nur zero · kein Kaffee — dein Schlaf-Vorteil."],
@@ -1128,8 +1152,8 @@ const GOALS = {
   recomp: { label: "Recomp", rate: [0, 0.15],
     note: "Recomp: Gewicht halten bis leicht steigend (0 bis +0.15 kg/Wo) — Fett runter, Muskeln rauf. Langsamer als ein Aufbau, dafür ohne Anessen. Die Energie-Bilanz auf «Heute» zielt auf rund +100 kcal pro Tag.",
     rule: "Recomp-Regel: Fällt der 7-Tage-Ø zwei Wochen in Folge → eine Stufe hoch. Steigt er zwei Wochen lang schneller als +0.3 kg/Wo → eine Stufe zurück. Dazwischen steuert die Energie-Bilanz der Woche auf «Heute»." },
-  aufbau: { label: "Aufbau", rate: [0.25, 0.35],
-    note: "Aufbau nach Masterplan: +0.25–0.35 kg/Wo Richtung Winter-Peak 97–99 kg. Die Energie-Bilanz auf «Heute» zielt auf rund +350 kcal pro Tag.",
+  aufbau: { label: "Aufbau", rate: [0.3, 0.35],
+    note: "Aufbau nach Masterplan: +0.3–0.35 kg/Wo Richtung Winter-Peak 97–99 kg. Die Energie-Bilanz auf «Heute» zielt auf rund +350 kcal pro Tag.",
     rule: null }
 };
 function goalMode() { return S.goal === "recomp" ? "recomp" : "aufbau"; }
@@ -1144,13 +1168,13 @@ function fmtRate(r) {
 function nutFor(k) {
   const p = phaseFor(k);
   const base = NUT[p.nut || "bulk"];
-  if (p.id !== "bulk") return Object.assign({ milk: 0 }, base);
+  if (p.id !== "bulk") return Object.assign({ milk: 0, abend: null }, base);
   const st = STUFEN[curStufe()];
-  return Object.assign({}, base, { reis: st.reis, T: st.T, milk: st.milk, milkK: st.milkK, pb: st.pb || 0, dense: !!st.dense, stufe: curStufe() });
+  return Object.assign({}, base, { reis: st.reis, T: st.T, milk: 0, pb: 0, dense: !!st.dense, abend: st.abend || null, stufe: curStufe() });
 }
 function phaseKcal(k) {
   const p = phaseFor(k);
-  if (p.id === "bulk") return STUFEN[curStufe()].kcal + " kcal Trainingstag · Stufe " + curStufe();
+  if (p.id === "bulk") return STUFEN[curStufe()].kcal + " kcal pro Tag · Stufe " + curStufe();
   return p.kcal;
 }
 /* Milch: ohne milkK Milchdrink (0.47 kcal/ml), mit milkK Vollmilch 3.5 % (0.65 kcal/ml) · Erdnussbutter 6 kcal / 0.25 g P pro g */
@@ -1173,30 +1197,32 @@ function modsForDay(k) {
   const list = p.mods.slice();
   if (S.velo && S.velo[k]) list.push("V");
   if (S.swim && S.swim[k] && n.eat === "full") list.push("W");
+  if (p.id === "bulk" && nutFor(k).abend) list.push("A");
   return list;
 }
 /* Modul-Inhalt für einen Tag: phasen-, stufen- und ruhetagsabhängig */
 function modInfo(m, k) {
   const n = nutFor(k), M = MODULES[m], train = isTrainDay(k);
   const r = { id: m, name: M.name, time: M.time, desc: "", kcal: 0, p: 0 };
-  if (m === "Q") { r.desc = "500 g Magerquark + 100 g TK-Beeren" + (train ? "" : " · Ruhetag: 6 g Kreatin hier rein"); r.kcal = 380; r.p = 61; }
+  if (m === "Q") { r.desc = "500 g Magerquark (Lidl)"; r.kcal = QUARK.kcal; r.p = QUARK.p; }
   if (m === "PW") {
-    if (train) { r.desc = shakeTxt(n) + " + 6 g Kreatin"; r.kcal = shakeK(n); r.p = shakeP(n); }
+    if (train || n.eat === "full") { r.desc = n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser"; r.kcal = shakeK(n); r.p = shakeP(n); }
     else {
       const nn = Object.assign({}, n, { oats: 0 });
       r.name = "Whey-Shake (Ruhetag)"; r.time = "beliebig";
-      r.desc = n.whey + " g Whey" + (n.milk ? " + " + milkTxt(n) : "") + (n.pb ? " + " + n.pb + " g Erdnussbutter" : "") + " — Ruhetag: ohne Oats";
+      r.desc = n.whey + " g Whey mit Kreatin — Cut-Ruhetag: ohne Oats";
       r.kcal = shakeK(nn); r.p = shakeP(nn);
     }
   }
+  if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + " · ohne Kreatin"; r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
   if (m === "T1" || m === "T2") { r.desc = "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")"; r.kcal = n.T.kcal; r.p = n.T.p; }
   if (m === "S") { r.desc = "40 g Nüsse + 1 Banane"; r.kcal = 355; r.p = 8; }
   if (m === "V") {
     const lvl = veloLvl(k) || "kurz", v = veloMod(n, lvl);
     r.name = "Velo · " + (lvl === "lang" ? "lange Runde" : "kurze Fahrt"); r.desc = v.desc; r.kcal = v.kcal; r.p = v.p;
   }
-  if (m === "W") { r.desc = "+" + n.oats + " g Oats — an Ruhetagen zurück in den Shake, sonst in Wasser oder Quark"; r.kcal = Math.round(n.oats * 3.7); r.p = Math.round(n.oats * 0.13); }
-  if (train && k >= PLAN_SWITCH) { if (m === "Q") r.time = "06:30 · vor dem Training"; if (m === "PW") r.time = "08:20 · nach dem Training"; }
+  if (m === "W") { r.desc = "+" + n.oats + " g Oats in Wasser oder Quark"; r.kcal = Math.round(n.oats * 3.7); r.p = Math.round(n.oats * 0.13); }
+  if (train && k >= PLAN_SWITCH) { if (m === "Q" || m === "PW") r.time = "~08:30 · Frühstück nach dem Training"; }
   return r;
 }
 function fmtK(x) { return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, "’"); }
@@ -1229,10 +1255,11 @@ function fmtSets(sets) {
 function weekStats(k) {
   const mon = mondayOf(k);
   const days = []; for (let i = 0; i < 7; i++) days.push(addDays(mon, i));
-  const done = days.filter(d => S.wo[d] && S.wo[d].done && S.wo[d].sess !== "px");
-  const bonus = days.filter(d => S.wo[d] && S.wo[d].done && S.wo[d].sess === "px").length;
+  const v4 = mon >= V4_WEEK;   // ab Training v4 ist die Pump-Session fixer Teil des Wochen-Solls
+  const done = days.filter(d => S.wo[d] && S.wo[d].done && (v4 || S.wo[d].sess !== "px"));
+  const bonus = v4 ? 0 : days.filter(d => S.wo[d] && S.wo[d].done && S.wo[d].sess === "px").length;
   const planned = days.filter(d => isTrainDay(d) && d <= todayKey());
-  const target = days.filter(isTrainDay).length;
+  const target = days.filter(isTrainDay).length + (v4 && mon >= PLAN_SWITCH ? 1 : 0);
   let modHit = 0, modTot = 0;
   days.forEach(d => {
     if (d > todayKey()) return;
@@ -1288,6 +1315,8 @@ function bannersFor(k) {
   let h = "";
   if (!APP.session && k >= addDays(PLAN_SWITCH, -1) && k <= addDays(PLAN_SWITCH, 8))   // nicht in der Session-Ansicht
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
+  if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
+    h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
   else if (isDeloadWeek(k)) h += `<div class="banner warn"><span class="ic">🪫</span><div><b>Deload-Woche.</b> ${esc(PLAN.deloadRule)}</div></div>`;
@@ -2621,7 +2650,7 @@ function svRows(k) {
    EN.rest = Grundumsatz aus dem seca-Scan (26.04.26), falls der Kurzbefehl keine Ruheenergie liefert. */
 const EN = { rest: 2040, tef: 0.1, kg: 7700, band: 150, cap: 600 };
 /* Bausteine für «Mehr essen»: dicht vor voluminös — flüssig und fettreich zuerst, kein zusätzliches Protein nötig */
-const EN_ADD = [[90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
+const EN_ADD = [[305, "Abend-Shake halb: 30 g Whey + 50 g Oats"], [490, "Abend-Shake: 30 g Whey + 100 g Oats"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
   [280, "50 g Granola + 20 g Honig in den Quark"], [325, "500 ml Vollmilch statt Wasser im Shake"], [415, "Shake mit 500 ml Vollmilch + 15 g Erdnussbutter"],
   [445, "Snack S extra + 15 g Erdnussbutter im Shake"], [600, "Granola-Quark + 500 ml Vollmilch im Shake"]];
 function r10(x) { return Math.round(x / 10) * 10; }
@@ -2900,9 +2929,10 @@ function enExport(k) {
 
 /* ============ HEUTE ============ */
 /* ---------- Heute komplett: Helfer ---------- */
-const DAY_ORDER = ["Q", "T1", "S", "V", "TRAIN", "PW", "W", "T2"];
-const DAY_ORDER_AM = ["Q", "TRAIN", "PW", "T1", "S", "V", "W", "T2"];   // Morgentraining: Quark → Training → Shake
-function dayOrder(k) { return k >= PLAN_SWITCH && isTrainDay(k) ? DAY_ORDER_AM : DAY_ORDER; }
+const DAY_ORDER_OLD = ["Q", "T1", "S", "V", "TRAIN", "PW", "W", "T2", "A"];
+const DAY_ORDER = ["Q", "PW", "T1", "S", "V", "TRAIN", "W", "T2", "A"];      // Frühstück = Quark + Shake zusammen
+const DAY_ORDER_AM = ["TRAIN", "Q", "PW", "T1", "S", "V", "W", "T2", "A"];   // Morgentraining 07:15, danach Frühstück
+function dayOrder(k) { return k < PLAN_SWITCH ? DAY_ORDER_OLD : isTrainDay(k) ? DAY_ORDER_AM : DAY_ORDER; }
 function hmTxt(h) { const H = Math.floor(h), M = Math.round((h - H) * 60); return H + " h" + (M ? " " + M : ""); }
 function pbar(pct, mt) { return `<div style="height:8px;border-radius:999px;background:var(--surface2);overflow:hidden;margin-top:${mt}px"><div style="height:8px;background:var(--blue);width:${Math.round(Math.max(0, Math.min(100, pct)))}%"></div></div>`; }
 function splitStep(t) {
@@ -2940,13 +2970,14 @@ function vHome() {
   mods.forEach(m => { dayK += info[m].kcal; dayP += info[m].p; if (got[m]) { eatK += info[m].kcal; eatP += info[m].p; doneMods++; } });
   const extraK = Math.max(0, +S.extra[k] || 0);
   eatK += extraK;
-  const isDone = id => id === "TRAIN" ? (!sess || trainDone) : !!got[id];
+  const pxOpen = !sess && pxPending(k);
+  const isDone = id => id === "TRAIN" ? (sess ? trainDone : !pxOpen) : !!got[id];
   const nextId = order.find(id => !isDone(id)) || null;
   const modTitle = r => `${r.id.replace(/[12]$/, "")} · ${r.name}`;
   const modLine = r => `${r.desc} · ≈${fmtK(r.kcal)} kcal · ${r.p} g Protein`;
 
   // Hero: gegessen vs. Tagesziel
-  const planK = p.id === "bulk" ? STUFEN[curStufe()].kcal + " kcal Trainingstag" : p.kcal;
+  const planK = p.id === "bulk" ? STUFEN[curStufe()].kcal + " kcal pro Tag" : p.kcal;
   const eatBack = nut.eat === "full" ? "Velo und Schwimmen werden voll zurückgegessen." : "Cut: beim Velo nur die Untergrenze zurückessen.";
   const hero = `<div class="card hero">
       <div class="row" style="gap:8px;margin-bottom:12px"><span class="chip blue">${esc(phaseLabel(p))}</span><span class="chip ghost">Woche ${wk}/${totalWk}${p.id === "bulk" ? " · Stufe " + curStufe() : ""}</span></div>
@@ -2965,10 +2996,16 @@ function vHome() {
     next = `<div style="${LBL}">Alles erledigt</div>
       <div style="font-size:21px;font-weight:750;letter-spacing:-0.3px;margin-top:4px">Licht aus ${lightsOut}</div>
       <div style="font-size:14px;color:var(--ink2);margin-top:2px">Alle Mahlzeiten abgehakt${sess ? " und Training absolviert" : ""}. Abends Schritte eintragen.</div>`;
+  } else if (nextId === "TRAIN" && !sess) {
+    const px = SESSIONS.px;
+    next = `<div style="${LBL}">Als Nächstes · 5. Einheit · ${esc(px.day)}</div>
+      <div style="font-size:21px;font-weight:750;letter-spacing:-0.3px;margin-top:4px">${esc(px.name)}</div>
+      <div style="font-size:14px;color:var(--ink2);margin-top:2px">${px.dur} · ${px.slots.length} Übungen · ${wd === 6 ? "heute oder morgen" : "heute, falls nicht schon am Sa"}</div>
+      <button class="btn" data-open-sess="px">Session öffnen</button>`;
   } else if (nextId === "TRAIN") {
     next = `<div style="${LBL}">Als Nächstes · Training${sess.time ? " · " + sess.time : ""}</div>
       <div style="font-size:21px;font-weight:750;letter-spacing:-0.3px;margin-top:4px">${esc(sess.name)}</div>
-      <div style="font-size:14px;color:var(--ink2);margin-top:2px">${sess.dur} · ${sess.slots.length} Übungen${mods.indexOf("PW") >= 0 ? " · danach PW-Shake" : ""}</div>
+      <div style="font-size:14px;color:var(--ink2);margin-top:2px">${sess.dur} · ${sess.slots.length} Übungen${mods.indexOf("PW") >= 0 ? " · danach Frühstück" : ""}</div>
       <button class="btn" data-open-sess="${sessKey}">Session öffnen</button>`;
   } else {
     const r = info[nextId];
@@ -2986,7 +3023,7 @@ function vHome() {
     if (id === "TRAIN" && !sess) {
       const r = restdayFor(k)[wd];
       const pxW = S.wo[k] && S.wo[k].sess === "px", pxBtn = pxW || (pxAllowed(k) && !pxDoneWeek(k));
-      return r ? `<div class="tlrow"><div class="d">Ruhetag</div><div class="l">${esc(r.title)}</div><div class="dt">${r.lines.map(esc).join(" · ")}</div>${pxBtn ? `<button class="minibtn blue" data-open-sess="px" style="margin-top:8px">${pxW && S.wo[k].done ? "Pump-Session ✓ ansehen ›" : "Optional: Pump-Session öffnen ›"}</button>` : ""}</div>` : "";
+      return r ? `<div class="tlrow"><div class="d">Ruhetag</div><div class="l">${esc(r.title)}</div><div class="dt">${r.lines.map(esc).join(" · ")}</div>${pxBtn ? `<button class="minibtn blue" data-open-sess="px" style="margin-top:8px">${pxW && S.wo[k].done ? "Pump-Session ✓ ansehen ›" : isV4Week(k) ? "Pump-Session öffnen ›" : "Optional: Pump-Session öffnen ›"}</button>` : ""}</div>` : "";
     }
     const done = isDone(id), isNext = id === nextId, cls = done ? "past" : isNext ? "next" : "";
     if (id === "TRAIN") return `<div class="tlrow ${cls}">
@@ -3144,18 +3181,18 @@ function vTrain() {
   const pxMeta = pxS.dur + " · " + pxS.slots.map(s => EXERCISES[s.ex].name).join(" · ");
   const pxNote = pxToday && S.wo[k].done ? "Heute absolviert." : pxOther ? "Diese Woche schon gemacht (" + WDS[fromKey(pxOther).getDay()] + " " + fmtDate(pxOther) + ")." : pxOk ? "Heute startbar." : "Startbar am Sa oder So.";
   const pxCard = k >= PLAN_SWITCH ? `
-    <h2 class="sec">Optional · 5. Einheit</h2>
+    <h2 class="sec">5. Einheit · Sa oder So</h2>
     <div class="card pad0"><div class="sessrow"${pxOk || pxToday ? ' data-open-sess="px"' : ""}>
       <div class="day">+1</div>
       <div class="grow"><div class="nm"${pxOk || pxToday ? "" : ' style="color:var(--muted)"'}>${esc(pxS.name)}</div><div class="meta">${esc(pxMeta)}</div><div class="meta">${esc(pxNote)}</div></div>
       ${pxOk || pxToday ? `<div class="st ${pxToday && S.wo[k].done ? "ok" : ""}">${pxToday && S.wo[k].done ? "✓" : ""}</div><div class="chev">›</div>` : ""}</div></div>
-    <div class="note" style="padding:0 4px">Arme und seitliche Schultern profitieren am meisten von zusätzlichem Volumen. Bonus, nicht Pflicht: zählt nicht ins Wochen-Soll.</div>` : "";
+    <div class="note" style="padding:0 4px">Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5).</div>` : "";
 
   const pullLog = S.pull.slice(-3).reverse().map(t => `<div class="kv"><span class="k">${fmtDateY(t.d)}</span><span class="v">${esc(t.res)}</span></div>`).join("");
 
   root.innerHTML = `
     <div class="ltitle">Training</div>
-    <div class="lsub">${k < PLAN_SWITCH ? "5 Tage · KH, Maschinen & Kabel · verletzungsfrei zuerst" : "4 Morgen · Di–Fr 07:15–08:15 · verletzungsfrei zuerst"}</div>
+    <div class="lsub">${k < PLAN_SWITCH ? "5 Tage · KH, Maschinen & Kabel · verletzungsfrei zuerst" : "v4 · Oberkörper-Fokus · Di–Fr 07:15 + Pump-Session Sa oder So"}</div>
     ${bannersFor(k)}
     <div class="card pad0">${rows}</div>${preview}${pxCard}
 
@@ -3341,11 +3378,14 @@ function vFood() {
   // Modul-Karten mit den Mengen der aktuellen Phase/Stufe
   const nRest = Object.assign({}, n, { oats: 0 });
   const vk = veloMod(n, "kurz"), vl = veloMod(n, "lang");
+  const ab = STUFEN[Math.max(2, st)].abend;   // Abend-Shake der aktuellen Stufe, in Stufe 1 die Variante von Stufe 2 als Vorschau
   const cards = [
-    { id: "Q", title: "Q · Quark-Start", meta: "≈380 kcal · 61 g P", on: true,
-      body: "500 g Magerquark (Lidl) + 100 g TK-Beeren. Immer die erste Mahlzeit des Tages. An Ruhetagen kommen die 6 g Kreatin hier rein." },
-    { id: "PW", title: "PW · Post-Workout-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
-      body: "Trainingstag: " + shakeTxt(n) + " + 6 g Kreatin" + (n.milk && n.milkK ? " — Vollmilch statt Wasser: flüssige Kalorien sättigen am wenigsten." : ", in Wasser.") + "<br>Ruhetag: nur " + n.whey + " g Whey" + (n.milk ? " + " + milkTxt(n) : "") + (n.pb ? " + " + n.pb + " g Erdnussbutter" : "") + " + Kreatin, ohne Oats (≈" + shakeK(nRest) + " kcal)." },
+    { id: "Q", title: "Q · Quark", meta: "≈" + QUARK.kcal + " kcal · " + QUARK.p + " g P", on: true,
+      body: "500 g Magerquark (Lidl), jeden Tag zum Frühstück. Praktisch fettfrei, ~60 g Protein." },
+    { id: "PW", title: "PW · Frühstücks-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
+      body: n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser. Zusammen mit dem Quark zum Frühstück, Di–Fr nach dem Training." + (n.eat === "full" ? "<br>Im Aufbau jeden Tag gleich, auch am Ruhetag." : "<br>Cut-Ruhetag: nur Whey, ohne Oats (≈" + shakeK(nRest) + " kcal).") },
+    { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
+      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Kreatin nur morgens.<br>Stufe 2: 50 g Oats (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 100 g Oats (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: mit 500 ml Vollmilch (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Topf-Portion (2× täglich)", meta: "≈" + fmtK(n.T.kcal) + " kcal · " + n.T.p + " g P", on: true,
       body: "⅓ des Standard-Topfs mit " + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, mit 40 g Öl («Topf dicht»)" : "") + ". Zwei Portionen pro Tag, ≥4 h Abstand." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: "nur Aufbau",
@@ -3353,7 +3393,7 @@ function vFood() {
     { id: "V", title: "V · Velo-Modul", meta: "an Velotagen", on: true, phase: n.eat === "full" ? "voll zurückessen" : "Cut: nur Untergrenze",
       body: "<b>Kurz (≤90′, Rolle, halbe Runde):</b> " + esc(vk.desc) + " — ≈" + fmtK(vk.kcal) + " kcal<br><b>Lang (ganze Zürisee-Runde):</b> " + esc(vl.desc) + " — ≈" + fmtK(vl.kcal) + " kcal<br><span class=\"note\">Eine lange Runde kostet dich ~1200–1600 kcal. Im Aufbau nicht nachgegessen = fast der ganze Wochen-Überschuss weg.</span>" },
     { id: "W", title: "W · Schwimm-Modul", meta: n.eat === "full" ? "≈" + Math.round(n.oats * 3.7) + " kcal" : "im Cut eingerechnet", on: n.eat === "full", phase: "an Schwimmtagen im Aufbau",
-      body: "+" + n.oats + " g Oats — an Ruhetagen zurück in den Shake, sonst in Wasser oder Quark. Deckt 20–30 Min lockeres Schwimmen (~250–350 kcal)." }
+      body: "+" + n.oats + " g Oats in Wasser oder Quark. Deckt 20–30 Min lockeres Schwimmen (~250–350 kcal)." }
   ];
   const modCards = cards.map(c => `<div class="card" style="padding:0${c.on ? "" : ";opacity:.55"}">
       <button class="row" data-modcard="${c.id}" style="width:100%;padding:13px 16px;text-align:left">
@@ -3371,16 +3411,16 @@ function vFood() {
 
   root.innerHTML = `
     <div class="ltitle">Ernährung</div>
-    <div class="lsub">Baukasten v2.0 — vier Entscheidungen pro Tag, alle vorab getroffen</div>
+    <div class="lsub">Baukasten v2.1 — jeden Tag gleich, alle Entscheidungen vorab getroffen</div>
     <div class="card">
       <div class="row"><span class="chip blue">${esc(phaseLabel(p))}</span><div class="grow"></div><b style="font-size:15px">${esc(phaseKcal(k))}</b></div>
-      <div class="note">Tages-Set: ${setTxt} · Ruhetag: Shake ohne Oats · ${esc(p.protein)} — abhaken auf «Heute».</div>
+      <div class="note">Tages-Set: ${setTxt}${isBulk && n.abend ? " + A" : ""} · ${n.eat === "full" ? "jeden Tag gleich" : "Ruhetag: Shake ohne Oats"} · ${esc(p.protein)} — abhaken auf «Heute».</div>
       ${isBulk ? `<div style="${LBL};margin-top:14px">Stufe</div>
       <div class="seg" style="margin:6px 0 0">${[1, 2, 3, 4].map(s => `<button class="${st === s ? "on" : ""}" data-stufe="${s}">${s}</button>`).join("")}</div>
       <div class="note">${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[1])}: ${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[2])}</div>
       <div class="note">${esc(GOALS[goalMode()].rule || p.rule)}</div>
       <div style="${LBL};margin-top:16px">Ziel bis zum Polish-Cut</div>
-      <div class="seg" style="margin:6px 0 0">${[["aufbau", "Aufbau · +0.25–0.35"], ["recomp", "Recomp · halten"]].map(g => `<button class="${goalMode() === g[0] ? "on" : ""}" data-goal="${g[0]}">${g[1]}</button>`).join("")}</div>
+      <div class="seg" style="margin:6px 0 0">${[["aufbau", "Aufbau · +0.3–0.35"], ["recomp", "Recomp · halten"]].map(g => `<button class="${goalMode() === g[0] ? "on" : ""}" data-goal="${g[0]}">${g[1]}</button>`).join("")}</div>
       <div class="note">${esc(GOALS[goalMode()].note)}</div>` : ""}
     </div>
 
@@ -3390,13 +3430,13 @@ function vFood() {
     <h2 class="sec">Der Standard-Topf · 3 Portionen</h2>
     <div class="card">
       <ul style="margin:2px 0 4px 18px;color:var(--ink2);font-size:14.5px">${potList(n).map(x => `<li style="margin-bottom:3px">${esc(x)}</li>`).join("")}</ul>
-      <div class="note">Ergibt 3 Portionen à ≈${fmtK(n.T.kcal)} kcal / ${n.T.p} g Protein. Reis ist der Hauptregler zwischen den Phasen; in Stufe 4 ersetzen Öl und Reis die Bohnen.</div>
+      <div class="note">Ergibt 3 Portionen à ≈${fmtK(n.T.kcal)} kcal / ${n.T.p} g Protein. Im Aufbau bleibt der Reis bei 2 Tassen: mehr Kalorien kommen über den Abend-Shake.</div>
     </div>
     ${POT.notes.map(x => `<div class="card"><b style="font-size:14.5px">${esc(x[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(x[1])}</div></div>`).join("")}
 
     <h2 class="sec">Phasen & Stufen</h2>
     <div class="card">${stufenRows}
-      <div class="note">kcal = Trainingstag. Ruhetag ≈ 300–370 kcal weniger (Shake ohne Oats).</div></div>
+      <div class="note">Aufbau: jeder Tag gleich, auch der Ruhetag. Cut: am Ruhetag ohne Oats, ≈370 kcal weniger.</div></div>
 
     <h2 class="sec">Timing</h2>
     <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${esc(r[1])}</span></div>`).join("")}</div>
@@ -3533,8 +3573,8 @@ function vProg() {
   const pr = rateFor(p);
   if (d != null && pr) {
     const lo = Math.min(...pr), hi = Math.max(...pr), rc = p.id === "bulk" && goalMode() === "recomp", ab = p.id === "bulk" && !rc;
-    const loT = ab ? 0.2 : lo - 0.15, hiT = ab ? 0.5 : hi + 0.15;   // Aufbau: Stufenregel ab 17.10. (unter +0.2 / über +0.5)
-    if (d < loT) rateHint = rc ? "Du nimmst ab — im Recomp nicht das Ziel. Mehr essen: siehe «Energie diese Woche» auf Heute. Hält es 2 Wochen an: eine Stufe hoch." : ab ? "Unter +0.2 kg/Wo — hält das 2 Wochen an: eine Stufe hoch (Ernährung → Stufe" + (curStufe() < STUFE_MAX ? " " + (curStufe() + 1) : "") + ")." : "Schneller als geplant — >0.8 kg/Wo wäre +150 kcal.";
+    const loT = ab ? 0.25 : lo - 0.15, hiT = ab ? 0.5 : hi + 0.15;   // Aufbau: Stufenregel ab 22.10. (unter +0.25 / über +0.5)
+    if (d < loT) rateHint = rc ? "Du nimmst ab — im Recomp nicht das Ziel. Mehr essen: siehe «Energie diese Woche» auf Heute. Hält es 2 Wochen an: eine Stufe hoch." : ab ? "Unter +0.25 kg/Wo — hält das 2 Wochen an: eine Stufe hoch (Ernährung → Stufe" + (curStufe() < STUFE_MAX ? " " + (curStufe() + 1) : "") + ")." : "Schneller als geplant — >0.8 kg/Wo wäre +150 kcal.";
     else if (d > hiT) rateHint = rc ? "Schneller als Recomp-Tempo — hält das 2 Wochen an: eine Stufe zurück." : ab ? "Über +0.5 kg/Wo — eine Stufe zurück." : "Zu langsam — nach 2 Wochen unter 0.3 kg/Wo: Reis 1.5 → 1.25 Tassen.";
     else if (ab && d < lo) rateHint = "Knapp unter dem Korridor (" + fmtRate(pr) + " kg/Wo) — noch kein Grund für eine neue Stufe.";
     else rateHint = "Im Zielkorridor (" + fmtRate(pr) + " kg/Wo) — weiter so.";
