@@ -170,6 +170,12 @@ input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.45; 
 .exdetail .tallrow, .exdetail .shldrow { background: var(--surface2); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 11px; }
 .exdetail ol.steps { margin: 2px 0 0 20px; padding: 0; }
 .exdetail ol.steps li { margin-bottom: 5px; }
+.linkcard { display: flex; align-items: center; gap: 11px; padding: 10px 12px; margin-top: 6px; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 12px; color: var(--ink); text-decoration: none; }
+.linkcard:active { background: var(--grid); }
+.linkcard .lic { font-size: 18px; width: 22px; text-align: center; flex: none; }
+.linkcard .lt { font-size: 14px; font-weight: 650; line-height: 1.3; }
+.linkcard .lm { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.linkcard .lgo { margin-left: auto; color: var(--muted); font-size: 15px; flex: none; }
 .setupnote { width: 100%; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 10px; padding: 9px 11px; font-size: 14px; margin-top: 6px; min-height: 40px; resize: vertical; }
 .setupnote:focus { outline: none; border-color: var(--blue); }
 
@@ -514,7 +520,8 @@ const EXERCISES = {
     feel: "Brust zuerst, dazu vordere Schulter und Trizeps", notFeel: "Stechen vorn im Schultergelenk · Nacken",
     mistakes: "Schultern rollen beim Drücken nach vorn ab · Abfedern auf der Brust · Füsse tanzen",
     check: "Video seitlich: Unterarm am tiefsten Punkt senkrecht. Schulterblätter am Satzende noch fixiert wie am Anfang.",
-    videos: [["Form-Tutorial", "https://www.youtube.com/watch?v=t1iaVBMItPo"], ["Vertiefung (Nippard)", "https://www.youtube.com/watch?v=vcBig73ojpE"]] },
+    videos: [["How To: Dumbbell Bench Press", "https://www.youtube.com/watch?v=Y_7aHqXeCfQ", "ScottHermanFitness · Englisch"], ["Kurzhantel Bankdrücken richtige Ausführung - Technik + Anatomie", "https://www.youtube.com/watch?v=810F1bbTTHQ", "Fitness Einfach Erklärt · Deutsch"]],
+    read: ["How to Do Dumbbell Chest Press: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-chest-press/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   chestrow: { name: "Brustgestütztes Rudern", muscles: "zwischen den Schulterblättern · Lat",
     cue: "Brust bleibt am Pad — gezogen wird mit den Schulterblättern, nicht mit Schwung.",
     setup: "Pad-Höhe so, dass das Brustbein satt aufliegt und die Arme frei hängen. Neutrale Griffe, wenn vorhanden. Pad- und Sitzhöhe notieren.",
@@ -523,7 +530,8 @@ const EXERCISES = {
     feel: "zwischen den Schulterblättern, Lat", notFeel: "unterer Rücken (Aufbäumen) · Nacken · Bizeps als Hauptarbeiter",
     mistakes: "Brust hebt beim Zug ab (= Schwung) · Schultern wandern zu den Ohren · Arm-Beugen statt Schulterblatt-Zug",
     check: "Die Brust hat während des ganzen Satzes Pad-Kontakt.",
-    videos: [["Quick Fixes", "https://www.youtube.com/watch?v=FU6YQawma2Q"]] },
+    videos: [["How to Properly Use Chest Supported Row Machine (QUICK FIXES)", "https://www.youtube.com/watch?v=FU6YQawma2Q", "Colossus Fitness · Englisch"], ["Machine Chest Supported Row Tutorial", "https://www.youtube.com/watch?v=QpLTp2AJ_cI", "Fox Body Fitness · Englisch"]],
+    read: ["How to Do Seated Machine Row: Muscles Worked & Proper Form", "https://www.strengthlog.com/seated-machine-row", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   ohp: { name: "KH-Schulterdrücken (neutral)", muscles: "vordere + seitliche Schulter · Trizeps",
     cue: "Neutraler Griff, Bahn knapp vor dem Kopf — so hoch, wie es glatt läuft, keinen Zentimeter weiter.",
     setup: "Lehne auf 80–85° (ein Loch zurück), Rücken satt dran. KH auf die Knie, einzeln hochkicken. Handflächen zueinander. Lehnen-Loch notieren.",
@@ -533,7 +541,8 @@ const EXERCISES = {
     feel: "vordere + seitliche Schulter, Trizeps", notFeel: "Nacken/oberer Trapez (Schultern nicht hochziehen) · schmerzhaftes Knacken",
     mistakes: "Zu schwer → Rücken überstreckt · Hanteln driften hinter den Kopf · Schulterzucken",
     check: "Video frontal: Unterarme bleiben senkrecht, Abstand Ohr–Schulter konstant.",
-    videos: [["Form, Tips & Mistakes", "https://www.youtube.com/watch?v=fuQpuu--bMI"]] },
+    videos: [["How To Do A NEUTRAL GRIP SEATED DUMBBELL SHOULDER PRESS", "https://www.youtube.com/watch?v=1WOecdL8nrI", "Live Lean TV Daily Exercises · Englisch"], ["Seated Dumbbell Shoulder Press Guide", "https://www.youtube.com/watch?v=fuQpuu--bMI", "That Fit Friend · Englisch"]],
+    read: ["How to Do Seated Dumbbell Shoulder Press: Muscles Worked & Proper Form", "https://www.strengthlog.com/seated-dumbbell-shoulder-press/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   latwide: { name: "Latzug breit", muscles: "Lat («Flügel») · etwas Bizeps",
     cue: "Ellbogen «in die Hosentaschen» ziehen — die Stange folgt von allein.",
     setup: "Oberschenkelpolster fest einklemmen, Griff etwas breiter als schulterbreit.",
@@ -543,7 +552,8 @@ const EXERCISES = {
     feel: "Lat — die seitliche Rückenwand", notFeel: "Nacken/Trapez dominant · unterer Rücken durch Schaukeln",
     mistakes: "Aus dem Rumpf schaukeln · halbe Wiederholungen oben · Handgelenke knicken ein",
     check: "Du kannst die Stange 1 s am Brustbein halten, ohne dich zu bewegen.",
-    videos: [["7 Lat-Pulldown-Fehler", "https://www.youtube.com/watch?v=lPxIPKdNsSo"]] },
+    videos: [["How To Actually Target Your Lats With The Lat Pulldown!", "https://www.youtube.com/watch?v=an1BMInTXLk", "Mind Pump TV · Englisch"], ["How-To: Latzug richtig ausführen 💪🏼 I #4", "https://www.youtube.com/watch?v=cnlq_dFL3HA", "Fitness First Germany · Deutsch"]],
+    read: ["How to Do Lat Pulldown: Muscles Worked & Proper Form", "https://www.strengthlog.com/lat-pulldown-with-pronated-grip/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   latclose: { name: "Latzug eng/neutral", muscles: "unterer Lat",
     cue: "Ellbogen eng vor dem Körper — das betont den unteren Lat.",
     setup: "Wie Latzug breit, enger Neutralgriff. Polster fest einklemmen, Einstellung notieren.",
@@ -552,7 +562,8 @@ const EXERCISES = {
     feel: "Lat, Richtung unterer Ansatz", notFeel: "Nacken · Schaukeln aus dem Rumpf",
     mistakes: "Aus dem Rumpf schaukeln · halbe Wiederholungen",
     check: "1-s-Halten am Brustbein möglich.",
-    videos: [["Lat-Pulldown-Guide", "https://www.youtube.com/watch?v=lPxIPKdNsSo"]] },
+    videos: [["Close Grip (V Bar) Pulldown", "https://www.youtube.com/watch?v=wrt5Y25QbH4", "Sweeney Fitness · Englisch"], ["How to PROPERLY Close Grip Lat Pulldown (FIX THIS NOW!)", "https://www.youtube.com/watch?v=Gspnzli9v2Y", "Colossus Fitness · Englisch"]],
+    read: ["How to Do Neutral Close-Grip Lat Pulldown: Muscles Worked & Proper Form", "https://www.strengthlog.com/neutral-close-grip-lat-pulldown/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   latraise_c: { name: "Kabel-Seitheben", muscles: "seitliche Schulter",
     cue: "Mit dem Ellbogen führen, bis knapp Schulterhöhe — das Brennen ist der Auftrag.",
     setup: "Zug auf tiefster oder Kniehöhe, seitlich zum Turm, leicht weglehnen. Griff startet vor dem Körper.",
@@ -562,7 +573,8 @@ const EXERCISES = {
     feel: "seitliche Schulter — sie darf brennen", notFeel: "Nacken/Trapez (Schulter-Hochziehen) · Handgelenk",
     mistakes: "Zu schwer → Hüftschwung, Trapez übernimmt · über Schulterhöhe reissen · fallen lassen",
     check: "Oben 1 s halten möglich; Ohr-Schulter-Abstand bleibt gross.",
-    videos: [["Cable Lateral Raise", "https://www.youtube.com/watch?v=zpbm-xRHB6k"]] },
+    videos: [["How to Do Single Arm Cable Lateral Raises", "https://www.youtube.com/watch?v=TamcQzxCe7o", "Mike P · Englisch"], ["Cable Lateral Raise", "https://www.youtube.com/watch?v=zpbm-xRHB6k", "FIT.nl · Englisch"]],
+    read: ["How to Do Cable Lateral Raise: Muscles Worked & Proper Form", "https://www.strengthlog.com/cable-lateral-raise/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   latraise_d: { name: "KH-Seitheben", muscles: "seitliche Schulter",
     cue: "Leicht nehmen, mit dem Ellbogen führen, in 2 s absenken.",
     setup: "Stehend, minimal vorgeneigt, Hanteln hängen seitlich.",
@@ -572,7 +584,8 @@ const EXERCISES = {
     feel: "seitliche Schulter", notFeel: "Nacken/Trapez · Handgelenk",
     mistakes: "Hüftschwung · über Schulterhöhe reissen · fallen lassen statt absenken",
     check: "Oben 1 s halten möglich.",
-    videos: [["Fehler in 60 Sek", "https://www.youtube.com/shorts/f_OGBg2KxgY"]] },
+    videos: [["The Only Dumbbell Lateral Raise Guide You Need (For Side Delt Growth)", "https://www.youtube.com/watch?v=4hTUCDUQaNA", "Renaissance Periodization · Englisch"], ["Seitheben mit Kurzhanteln: Ausführung & Technik", "https://www.youtube.com/watch?v=PZBsrhbKCr4", "Deutsch"]],
+    read: ["How to Do Dumbbell Lateral Raise: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-lateral-raise/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   facepull: { name: "Face Pulls", muscles: "hintere Schulter · oberer Rücken",
     cue: "Zum Gesicht ziehen, Daumen am Ende nach hinten — Doppel-Bizeps-Pose.",
     setup: "Seil auf Gesichts- bis Stirnhöhe, Schrittstellung für Stabilität. Seit v4 Teil des Warm-ups an den Oberkörper-Tagen: leicht und sauber.",
@@ -582,7 +595,8 @@ const EXERCISES = {
     feel: "hintere Schulter, zwischen den Schulterblättern", notFeel: "unterer Rücken (Zurücklehnen) · Bizeps",
     mistakes: "Zu schwer — das ist eine Gesundheits-Übung · aus dem Rumpf gerissen · Ellbogen sacken ab",
     check: "Zeitlupen-fähig ohne Wackeln.",
-    videos: [["Proper Form (NASM)", "https://www.youtube.com/watch?v=eTCBSFlCJ_s"]] },
+    videos: [["How to do a Face Pull", "https://www.youtube.com/watch?v=eTCBSFlCJ_s", "NASM · Englisch"], ["Face Pull - Proper Form & Technique [4K]", "https://www.youtube.com/watch?v=eQaSpG7aMYQ", "Steev · Englisch"]],
+    read: ["How to Do Face Pull: Muscles Worked & Proper Form", "https://www.strengthlog.com/face-pull/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   legpress: { name: "Beinpresse", muscles: "Oberschenkel-Vorderseite · Gesäss",
     cue: "Tiefe endet, bevor das Becken abrollt — der Lendenkontakt ist das Gesetz.",
     setup: "Rückenlehne eher flach, Gesäss satt ins Polster, Füsse mittig bis hoch und hüftbreit. Schlitten so, dass Startspannung da ist. Sitz- und Fussposition notieren.",
@@ -591,7 +605,8 @@ const EXERCISES = {
     feel: "Oberschenkel vorn + Gesäss", notFeel: "unterer Rücken (nie) · stechende Knie",
     mistakes: "Zu tief → unterer Rücken rollt ein · Knie fallen nach innen · Fersen heben ab",
     check: "Der Lendenbereich hat Dauerkontakt mit dem Polster — eine Hand passt nie dazwischen.",
-    videos: [["Beginner's Guide", "https://www.youtube.com/watch?v=8nm863C0c60"], ["7 Mistakes", "https://www.youtube.com/watch?v=8vk6rWMSxOk"]] },
+    videos: [["HOW TO USE A 45 DEGREE LEG PRESS - DETAILED TUTORIAL", "https://www.youtube.com/watch?v=3FshdqcoOUo", "Leaner Stronger You · Englisch"], ["8 Schritte zur korrekten Ausführung der 45° Beinpresse", "https://www.youtube.com/watch?v=DUwA3bbfYuQ", "Karriere als Fitnesstrainer · Deutsch"]],
+    read: ["How to Do Leg Press: Muscles Worked & Proper Form", "https://www.strengthlog.com/leg-press/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   rdl: { name: "KH-RDL", muscles: "Beinrückseite · Gesäss",
     cue: "Hüfte nach hinten, Hanteln am Bein — nicht tief kommen wollen, Dehnung spüren.",
     setup: "KH vor den Oberschenkeln, Füsse hüftbreit, Knie minimal gebeugt — die Beugung bleibt konstant. Morgens immer 1 Vorsatz mit halber Last.",
@@ -600,7 +615,8 @@ const EXERCISES = {
     feel: "Dehnung und Spannung in Beinrückseite + Gesäss", notFeel: "unterer Rücken brennend oder schmerzend (leichte Haltespannung ist normal) · Nacken",
     mistakes: "Rücken rundet (wichtigster Fehler!) · Knie beugen nach → wird Kniebeuge · Hanteln wandern vom Körper weg",
     check: "Video seitlich ab Woche 1: Rückenlinie gerade. Diese Übung bleibt IMMER bei RIR 2+.",
-    videos: [["Hip-Hinge-Tutorial", "https://www.youtube.com/watch?v=3zqDris6lD4"]] },
+    videos: [["How to: Dumbbell Romanian Deadlift (RDL) - Hamstrings & Glutes", "https://www.youtube.com/watch?v=MAa24xjE9kk", "Physique Development · Englisch"], ["Rumänisches Kreuzheben mit Kurzhanteln", "https://www.youtube.com/watch?v=QVWekyMdWvU", "balance Flensburg · Deutsch"]],
+    read: ["How to Do Dumbbell Romanian Deadlift: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-romanian-deadlift/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   legext: { name: "Beinstrecker", muscles: "Quadrizeps",
     cue: "Oben 1 s anspannen, in 2–3 s runter — Schwung bringt hier null.",
     setup: "Kniekehle an der Sitzkante, Drehpunkt der Maschine auf Höhe des Kniegelenks, Polster unten am Schienbein. Einstellungen notieren.",
@@ -609,7 +625,8 @@ const EXERCISES = {
     feel: "Quadrizeps", notFeel: "Schmerz hinter der Kniescheibe (dann Range begrenzen und melden)",
     mistakes: "Gesäss hebt beim Strecken · Gewicht knallt zurück",
     check: "Ruhiges Absenken über 2–3 s möglich.",
-    videos: [["Perfekte Technik", "https://www.youtube.com/watch?v=ljO4jkwv8wQ"]] },
+    videos: [["How To Do Leg Extensions With Perfect Technique (Grow Every Quad Head)", "https://www.youtube.com/watch?v=ljO4jkwv8wQ", "Englisch"], ["Beinstrecker Maschine - Einstellen und richtig Ausführungen", "https://www.youtube.com/watch?v=0GK-GJ6vKBs", "Deutsch"]],
+    read: ["How to Do Leg Extension: Muscles Worked & Proper Form", "https://www.strengthlog.com/leg-extension/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   calf_stand: { name: "Wadenheben stehend", muscles: "Wade (Gastrocnemius)",
     cue: "1 s Dehnung unten, 1 s Spitze oben — volle Range ist 80 % des Erfolgs.",
     setup: "Fussballen auf die Kante, Ferse frei, aufrecht bleiben.",
@@ -618,7 +635,8 @@ const EXERCISES = {
     feel: "Wade inkl. Dehnschmerz unten", notFeel: "Achillessehnen-Stechen",
     mistakes: "Federn mit halben Wiederholungen",
     check: "Jede Wiederholung mit 1-s-Pause unten UND oben.",
-    videos: [["Standing Calf Raises", "https://www.youtube.com/watch?v=MAMzF7iZNkc"]] },
+    videos: [["How to: Machine Standing Calf Raise", "https://www.youtube.com/watch?v=ucy86plaufg", "MenoMojo · Englisch"], ["Trainingsübung Wadenheben stehend an der Maschine", "https://www.youtube.com/watch?v=SvLgi_yPnfc", "Deutsch"]],
+    read: ["How to Do Standing Calf Raise: Muscles Worked & Proper Form", "https://www.strengthlog.com/standing-calf-raise/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   cablecrunch: { name: "Cable Crunch", muscles: "Bauch",
     cue: "Brustbein Richtung Becken einrollen — die Hüfte steht still.",
     setup: "Kniend vor dem Turm, Seil neben den Ohren halten, Hüfte fixiert.",
@@ -627,7 +645,8 @@ const EXERCISES = {
     feel: "Bauch", notFeel: "Hüftbeuger · Arme · Nacken",
     mistakes: "Aus der Hüfte klappen statt einrollen",
     check: "Hüftwinkel bleibt konstant über den ganzen Satz.",
-    videos: [["Richtig ausgeführt", "https://www.youtube.com/watch?v=AV5PmZJIrrw"]] },
+    videos: [["How To Do A KNEELING CABLE CRUNCH", "https://www.youtube.com/watch?v=kc0PRn372lo", "Live Lean TV Daily Exercises · Englisch"], ["Kabelzug Crunch(kniend)", "https://www.youtube.com/watch?v=Egwsgmht-nE", "Deutsch"]],
+    read: ["How to Do Cable Crunch: Muscles Worked & Proper Form", "https://www.strengthlog.com/cable-crunch/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   incline: { name: "KH-Schrägbankdrücken", muscles: "obere Brust",
     cue: "Lehne ~30° — zu steil wird es Schulterdrücken statt obere Brust.",
     setup: "Lehne auf ~30° (1–2 Löcher). Schulterblätter zusammen und runter, Füsse fest. Lehnen-Loch notieren.",
@@ -637,7 +656,8 @@ const EXERCISES = {
     feel: "obere Brust", notFeel: "Schulter-Stechen · Nacken",
     mistakes: "Lehne zu steil (wird Schulterdrücken) · Schultern rollen ab · halbe Range ohne Dehnung",
     check: "Video seitlich: Unterarm senkrecht am tiefsten Punkt.",
-    videos: [["Proper Form", "https://www.youtube.com/watch?v=sK4Rvug6ufo"]] },
+    videos: [["How To: Dumbbell Incline Press", "https://www.youtube.com/watch?v=hChjZQhX1Ls", "ScottHermanFitness · Englisch"], ["Tutorial Schrägbankdrücken mit der Kurzhantel", "https://www.youtube.com/watch?v=ADlmJAE8EV4", "Trainingslab · Deutsch"]],
+    read: ["How to Do Incline Dumbbell Press: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-incline-press/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   chestpress: { name: "Brustpresse Maschine", muscles: "Brust · Trizeps",
     cue: "Griffe starten auf Brustmitte — Sitz einstellen, notieren, nie mehr suchen.",
     setup: "Sitz so, dass die Griffe auf Brustmitte liegen. Schulterblätter zusammen ins Polster, Füsse fest.",
@@ -647,7 +667,8 @@ const EXERCISES = {
     feel: "Brust, Trizeps", notFeel: "Schulterspitze",
     mistakes: "Sitz zu hoch · Schultern lösen sich vom Polster",
     check: "Setup notiert? Gleiche Einstellung jede Woche.",
-    videos: [["How to", "https://www.youtube.com/watch?v=mDsynSGWaUM"]] },
+    videos: [["How to Adjust & Use the Chest Press Machine Correctly", "https://www.youtube.com/watch?v=4YpxZXFADmc", "Fitness 19 · Englisch"], ["Machine Chest Press: How To", "https://www.youtube.com/watch?v=B-zyH8OTlsg", "Hammer Fitness · Englisch"]],
+    read: ["How to Do Machine Chest Press: Muscles Worked & Proper Form", "https://www.strengthlog.com/machine-chest-press/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   cablefly: { name: "Kabel-Fliegende", muscles: "Brust (Dehnung + Kontraktion)",
     cue: "Der Ellbogenwinkel bleibt eingefroren — pumpt er, wird es Drücken.",
     setup: "Kabel auf Brusthöhe, Schrittstellung, leichte konstante Ellbogenbeugung.",
@@ -657,7 +678,8 @@ const EXERCISES = {
     feel: "Brust — Dehnung hinten, Krampf vorn", notFeel: "Zwicken vorn in der Schulter",
     mistakes: "Aus der Dehnung federn · Ellbogenwinkel pumpt (wird Drücken) · zu schwer",
     check: "Ellbogenwinkel bleibt konstant — hinten wie vorn.",
-    videos: [["Technik & Fehler", "https://www.youtube.com/watch?v=4Y8QgiT2-OA"]] },
+    videos: [["Mid-Cable Chest Fly", "https://www.youtube.com/watch?v=4Y8QgiT2-OA", "Physique Development · Englisch"], ["Standing Cable Chest Fly: Demonstration", "https://www.youtube.com/watch?v=pJDbn8Kyx0o", "StrengthLog · Englisch"]],
+    read: ["How to Do Standing Cable Chest Fly: Muscles Worked & Proper Form", "https://www.strengthlog.com/standing-cable-chest-fly/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   pushdown: { name: "Trizeps Pushdown", muscles: "Trizeps",
     cue: "Ellbogen ans Becken «getackert» — es bewegt sich nur der Unterarm.",
     setup: "Kabel oben, aufrechter Stand nah am Turm, Ellbogen seitlich am Körper fixiert.",
@@ -666,7 +688,8 @@ const EXERCISES = {
     feel: "Trizeps", notFeel: "Schultern (kein Vorbeugen und Mitdrücken)",
     mistakes: "Ellbogen flattern nach aussen · Oberkörper drückt mit",
     check: "Ellbogen bleiben am Körper — die ganze Zeit.",
-    videos: [["3 Golden Rules", "https://www.youtube.com/watch?v=_w-HpW70nSQ"]] },
+    videos: [["HOW TO: Cable Triceps Pushdown || 3 Golden Rules (FOR GROWTH)", "https://www.youtube.com/watch?v=_w-HpW70nSQ", "ScottHermanFitness · Englisch"], ["Trizepsdrücken am Kabel (Technik Tutorial)", "https://www.youtube.com/watch?v=yk6VdVwww5k", "Coach Stef · Deutsch"]],
+    read: ["How to Do Tricep Pushdown With Rope: Muscles Worked & Proper Form", "https://www.strengthlog.com/tricep-pushdown-with-rope/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   frenchpress: { name: "French Press liegend", muscles: "Trizeps (langer Kopf)",
     cue: "Ellbogen zeigen zur Decke und bleiben stehen — gesenkt wird hinter den Scheitel.",
     setup: "Flache Bank, KH über dem Gesicht, Handflächen zueinander.",
@@ -675,7 +698,8 @@ const EXERCISES = {
     feel: "Trizeps, Dehnung hinter dem Kopf", notFeel: "Ellbogen-Schmerz (dann Gewicht runter oder zurück zum Pushdown)",
     mistakes: "Ellbogen wandern auseinander · zu schnelles Absenken",
     check: "Ellbogen-Position konstant über den Satz.",
-    videos: [["Lying Tricep Extension", "https://www.youtube.com/watch?v=vZvvkx1qYt0"]] },
+    videos: [["How To: Flat Bench Dumbbell Triceps Extension (Skull Crusher)", "https://www.youtube.com/watch?v=UQuJu-gXQa0", "Live Lean TV Daily Exercises · Englisch"], ["Lying Dumbbell Tricep Extension", "https://www.youtube.com/watch?v=vZvvkx1qYt0", "Englisch"]],
+    read: ["How to Do Dumbbell Lying Triceps Extension: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-lying-triceps-extension/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   cablerow: { name: "Kabelrudern sitzend, eng", muscles: "mittlerer Rücken · Lat",
     cue: "±10° Pendel, mehr nicht — gezogen wird mit den Schulterblättern.",
     setup: "Füsse auf die Platten, Knie leicht gebeugt, aufrecht sitzen.",
@@ -684,7 +708,8 @@ const EXERCISES = {
     feel: "mittlerer Rücken, Lat", notFeel: "unterer Rücken (Reissen) · Nacken",
     mistakes: "Ganzer Oberkörper rudert · Schultern zu den Ohren · Griff verkrampft (Hände sind Haken)",
     check: "Die ±10°-Pendel-Regel hält den ganzen Satz.",
-    videos: [["Proper Form", "https://www.youtube.com/watch?v=EU7bOadUsNI"]] },
+    videos: [["Seated Cable Row - Proper Form & Technique [4K]", "https://www.youtube.com/watch?v=EU7bOadUsNI", "Steev · Englisch"], ["How To Properly Do The Seated Cable Row (IT MATTERS!)", "https://www.youtube.com/watch?v=sP_4vybjVJs", "Mind Pump TV · Englisch"]],
+    read: ["How to Do Cable Close Grip Seated Row: Muscles Worked & Proper Form", "https://www.strengthlog.com/cable-close-grip-seated-row/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   pullup_neg: { name: "Klimmzug-Negative / Assisted", muscles: "Lat · Bizeps · Griffkraft",
     cue: "3–5 s pro Negative — wirklich zählen, schnelles Fallen bringt nichts.",
     setup: "Kasten unter die Stange, Griff etwas breiter als schulterbreit. Oder Assisted-Maschine: Unterstützung so, dass 5–8 saubere Wdh gehen (−25 → −10 kg).",
@@ -694,7 +719,8 @@ const EXERCISES = {
     feel: "Lat, Bizeps, Griffkraft", notFeel: "«Auskugel-Gefühl» unten in der Schulter (dann früher stoppen)",
     mistakes: "Zu schnelles Fallenlassen (bringt nichts) · Kippen und Schwingen",
     check: "Jede Negative dauert wirklich 3–5 s. Test 1×/Monat am letzten Dienstag: 1 Versuch strikt aus dem Hang → ins Log.",
-    videos: [["Negative Pull-Up Guide", "https://www.youtube.com/watch?v=gbPURTSxQLY"]] },
+    videos: [["How To Do a Negative Pull-Up", "https://www.youtube.com/watch?v=gbPURTSxQLY", "Bodybuilding.com · Englisch"], ["[7] Negative Klimmzüge", "https://www.youtube.com/watch?v=k_45ljv726Y", "Insane Bootcamp · Deutsch"]],
+    read: ["What Are Negative Pull Ups & How Do You Do Them?", "https://www.setforset.com/blogs/news/negative-pull-ups", "Set For Set · Fotos, Schritt für Schritt · Englisch"] },
   revfly: { name: "Reverse Fly Maschine", muscles: "hintere Schulter",
     cue: "Fast gestreckte Arme auf Schulterhöhe nach hinten öffnen — 1 s halten.",
     setup: "Brust ans Pad, Griffe auf Schulterhöhe, Arme fast gestreckt.",
@@ -703,7 +729,8 @@ const EXERCISES = {
     feel: "hintere Schulter", notFeel: "Trapez-Zucken · Schwung",
     mistakes: "Zu schwer → Schwung · Ellbogen sacken ab",
     check: "1-s-Halten hinten möglich.",
-    videos: [["Richtig eingestellt", "https://www.youtube.com/watch?v=dC7jhEk-29A"]] },
+    videos: [["How to PROPERLY Reverse Pec Deck Fly (DO THIS)", "https://www.youtube.com/watch?v=dC7jhEk-29A", "Colossus Fitness · Englisch"]],
+    read: ["How to Do Reverse Machine Fly: Muscles Worked & Proper Form", "https://www.strengthlog.com/reverse-machine-fly/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   curls: { name: "KH-Curls", muscles: "Bizeps",
     cue: "In 2–3 s absenken bis fast gestreckt — die Dehnphase baut den Bizeps.",
     setup: "Stehend oder an der Schrägbank angelehnt, Ellbogen leicht vor dem Körper fixiert.",
@@ -712,7 +739,8 @@ const EXERCISES = {
     feel: "Bizeps inkl. Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandert hoch) · Handgelenk",
     mistakes: "Hüftschwung · oben ohne Spannung zuklappen · halbe Streckung",
     check: "2–3 s Absenken bei jeder Wiederholung.",
-    videos: [["Fix Your Form", "https://www.youtube.com/watch?v=Jfp4b5Olc7A"]] },
+    videos: [["How To PROPERLY Dumbbell Curl For Bigger Biceps (FIX YOUR FORM NOW)", "https://www.youtube.com/watch?v=Jfp4b5Olc7A", "Colossus Fitness · Englisch"]],
+    read: ["How to Dumbbell Curl: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-curl/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   hammer: { name: "Hammer-Curls", muscles: "Bizeps · Brachialis · Unterarm",
     cue: "Daumen oben, Ellbogen am Körper — langsame Exzentrik.",
     setup: "Wie KH-Curls, neutraler Griff (Daumen oben).",
@@ -721,7 +749,8 @@ const EXERCISES = {
     feel: "Bizeps + Unterarm-Aussenseite", notFeel: "Schulter · Handgelenk",
     mistakes: "Schwung · zu schnelles Absenken",
     check: "Ellbogen bleiben am Körper.",
-    videos: [["Richtig ausgeführt", "https://www.youtube.com/watch?v=Hy5L3-QJETc"]] },
+    videos: [["How To: Dumbbell Hammer Curl", "https://www.youtube.com/watch?v=zC3nLlEvin4", "ScottHermanFitness · Englisch"], ["How to do a Dumbbell Hammer Curl", "https://www.youtube.com/watch?v=CFBZ4jN1CMI", "NASM · Englisch"]],
+    read: ["How to Do Hammer Curl: Muscles Worked & Proper Form", "https://www.strengthlog.com/hammer-curl/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   hacksquat: { name: "Hack Squat / Pendulum", muscles: "Quads · Gesäss",
     cue: "Gesäss bleibt am Pad, Fersen bleiben unten — das bestimmt deine Tiefe.",
     setup: "Schultern unter die Polster, Rücken satt ans Pad, Füsse mittig-hoch und hüftbreit. Fussposition notieren.",
@@ -730,7 +759,8 @@ const EXERCISES = {
     feel: "Quads, Gesäss", notFeel: "stechende Knie · unterer Rücken",
     mistakes: "Fersen heben ab · Abknallen unten · zu tief für die eigene Hebellänge",
     check: "Gesäss bleibt am Pad — über die ganze Range.",
-    videos: [["Form, Muskeln, Fehler", "https://www.youtube.com/watch?v=36_EC-MgVz8"]] },
+    videos: [["Hack Squat Machine (Exercise Tutorial + Form Tips)", "https://www.youtube.com/watch?v=hglQExHCM9Q", "Vivian Ngo (Team Evolve) · Englisch"], ["Hackenschmidt-Kniebeugen in der Maschine - Fitnessübung für die Beine", "https://www.youtube.com/watch?v=TnsoJ68pcQw", "Thomas Bluhm · Deutsch"]],
+    read: ["How to Do Hack Squats: Muscles Worked & Benefits", "https://www.strengthlog.com/hack-squat-machine/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   legcurl: { name: "Beinbeuger liegend", muscles: "Beinrückseite",
     cue: "Hüfte aktiv ins Polster pressen — hebt sie ab, stiehlt der Rücken den Satz.",
     setup: "Drehpunkt der Maschine auf Höhe des Kniegelenks, Polster knapp über der Ferse.",
@@ -739,7 +769,8 @@ const EXERCISES = {
     feel: "Beinrückseite — Krampfgefühl nahe dem Versagen ist normal", notFeel: "unterer Rücken · Wade",
     mistakes: "Gesäss hebt bei jeder Wiederholung · Gewicht schnellt zurück",
     check: "Hüfte bleibt unten — den ganzen Satz.",
-    videos: [["Setup, Technik & Fehler", "https://www.youtube.com/watch?v=vl5nUdE9mWM"]] },
+    videos: [["How to Lying Leg Curl", "https://www.youtube.com/watch?v=vl5nUdE9mWM", "Physique Development · Englisch"], ["SO machst Du Beinbeugen im Liegen an der Maschine! [Lying Leg Curls]", "https://www.youtube.com/watch?v=Cp83sPJk6zg", "Deutsch"]],
+    read: ["How to Do Lying Leg Curl: Muscles Worked & Proper Form", "https://www.strengthlog.com/lying-leg-curl/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   bss: { name: "Bulgarian Split Squats", muscles: "Quad + Gesäss (vorderes Bein)",
     cue: "Schrittlänge notieren — gleiche Länge, gleicher Reiz, jede Session.",
     setup: "Spann des Hinterfusses auf die Bank, Vorderfuss so weit vorn, dass das Knie unten über dem Mittelfuss steht. KH hängen seitlich.",
@@ -748,7 +779,8 @@ const EXERCISES = {
     feel: "Quad + Gesäss vorderes Bein, Hüft-Dehnung hinten", notFeel: "Hinterbein arbeitet mit · seitliches Kniewackeln",
     mistakes: "Zu kurzer Stand · Abstossen mit dem hinteren Bein · Schrittlänge jede Session anders",
     check: "Gleiche Schrittlänge wie letztes Mal (Notiz!).",
-    videos: [["Korrekt ausgeführt", "https://www.youtube.com/watch?v=VPhhE6bBzZE"]] },
+    videos: [["Dual Dumbbell Bulgarian Split Squats (Exercise Tutorial + Form Tips)", "https://www.youtube.com/watch?v=LA8O5B3r_7U", "Vivian Ngo (Team Evolve) · Englisch"], ["Erhöhter Ausfallschritt / Bulgarian Split Squat (deutsches Tutorial)", "https://www.youtube.com/watch?v=DQ1lm1QoYIg", "Matthias von HNL Physiotherapie · Deutsch"]],
+    read: ["How to Do Bulgarian Split Squat: Muscles Worked & Proper Form", "https://www.strengthlog.com/bulgarian-split-squat/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   inclinemach: { name: "Schrägbank-Presse Maschine", muscles: "obere Brust · vordere Schulter · Trizeps",
     cue: "Unten 1 s in der Brust-Dehnung halten — dort wächst die obere Brust.",
     setup: "Sitz so, dass die Griffe knapp unter dem Schlüsselbein starten. Schulterblätter zusammen und runter ins Polster, Füsse fest. Setup notieren.",
@@ -758,7 +790,8 @@ const EXERCISES = {
     feel: "obere Brust, vordere Schulter", notFeel: "Stechen vorn im Schultergelenk · Nacken",
     mistakes: "Sitz zu hoch (wird Schulterdrücken) · Schultern lösen sich vom Polster · halbe Wiederholungen ohne Dehnung",
     check: "Unten 1 s halten möglich, Schulterblätter bleiben im Polster.",
-    videos: [["Form-Anleitung", "https://liftosaur.com/exercises/leverage-machine-incline-chest-press"]] },
+    videos: [["Hammer Strength Plate-Loaded Incline Press Instructions", "https://www.youtube.com/watch?v=xwK8Wd5F0Hk", "Life Fitness / Hammer Strength · Englisch"], ["How To Do A MACHINE INCLINE CHEST PRESS (Star Trac)", "https://www.youtube.com/watch?v=7_scLkTCwTU", "Englisch"]],
+    read: ["Hammer Strength Machine Incline Bench Press: Video Exercise Guide & Tips", "https://www.muscleandstrength.com/exercises/hammer-strength-incline-bench-press", "Muscle & Strength · Video, Bilder, Schritt für Schritt · Englisch"] },
   inclinecurl: { name: "Schrägbank-Curls", muscles: "Bizeps (langer Kopf)",
     cue: "Ellbogen bleiben hinter dem Körper — die Dehnung unten ist der Wachstumsreiz.",
     setup: "Schrägbank auf 45–60°, Rücken und Hinterkopf an der Lehne, Arme hängen senkrecht nach unten.",
@@ -767,7 +800,8 @@ const EXERCISES = {
     feel: "Bizeps inkl. starker Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandern nach vorn) · Handgelenk",
     mistakes: "Ellbogen kommen nach vorn · Schultern rollen von der Lehne · oben ohne Spannung zuklappen",
     check: "Ellbogen bleiben während des ganzen Satzes hinter dem Körper.",
-    videos: [["Form-Anleitung", "https://liftosaur.com/exercises/dumbbell-incline-curl"]] },
+    videos: [["How To Do The Incline Dumbbell Curl Correctly", "https://www.youtube.com/watch?v=PAnypqTfEuU", "Colossus Fitness · Englisch"], ["Incline Dumbbell Curl Form (How-To in 90 Seconds)", "https://www.youtube.com/watch?v=e3zNNfjJszA", "J2FIT Strength & Conditioning · Englisch"]],
+    read: ["How to Do Incline Dumbbell Curl: Muscles Worked & Proper Form", "https://www.strengthlog.com/incline-dumbbell-curl/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   calf_seat: { name: "Wadenheben sitzend", muscles: "tiefe Wade (Soleus)",
     cue: "1-s-Pausen unten und oben — Federn ist verschenkte Zeit.",
     setup: "Polster auf den Oberschenkeln, Fussballen auf der Kante.",
@@ -776,7 +810,8 @@ const EXERCISES = {
     feel: "Wade, tief", notFeel: "Achillessehnen-Stechen",
     mistakes: "Federn ohne Pausen",
     check: "1-s-Pausen unten und oben.",
-    videos: [["How to", "https://www.youtube.com/watch?v=smyXy_dhXo8"]] }
+    videos: [["How To: Seated Calf Raise Machine", "https://www.youtube.com/watch?v=smyXy_dhXo8", "Englisch"], ["Sitzendes Wadenheben - Hammer Strength Seated Calf Raise", "https://www.youtube.com/watch?v=Tu8b-g6GBdU", "Deutsch"]],
+    read: ["How to Do Seated Calf Raise: Muscles Worked & Proper Form", "https://www.strengthlog.com/seated-calf-raise/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] }
 };
 
 const SESSIONS = {
@@ -3386,6 +3421,9 @@ function parseStartW(s) {
   const m2 = s.match(/^(\d+(?:\.\d+)?)\s*kg/); if (m2) return parseFloat(m2[1]);
   return null;
 }
+/* Video- und Anleitungs-Links einer Übung als Karten (öffnen im Browser) */
+function linkCard(ic, l) { return `<a class="linkcard" href="${esc(l[1])}" target="_blank" rel="noopener"><span class="lic">${ic}</span><span style="min-width:0"><span class="lt" style="display:block">${esc(l[0])}</span>${l[2] ? `<span class="lm" style="display:block">${esc(l[2])}</span>` : ""}</span><span class="lgo">↗</span></a>`; }
+function exLinks(ex) { return (ex.videos || []).map(v => linkCard("▶︎", v)).join("") + (ex.read ? linkCard("📖", ex.read) : ""); }
 function repTop(reps) { const m = String(reps).match(/(\d+)\s*$/); return m ? parseInt(m[1]) : null; }
 
 function vSession() {
@@ -3439,9 +3477,11 @@ function vSession() {
         <button class="minibtn" data-timer="pause180">3 Min</button>`}
         <button class="minibtn" data-addset="${slot.ex}">+ Satz</button>
         <button class="minibtn blue" data-tech="${slot.ex}">📖 Technik & Setup</button>
+        ${ex.videos && ex.videos[0] ? `<a class="minibtn blue" href="${esc(ex.videos[0][1])}" target="_blank" rel="noopener">▶︎ Video</a>` : ""}
       </div>
       <div class="exdetail" id="tech-${slot.ex}">
-        <h4>Maschinen-Setup / Notiz (bleibt gespeichert)</h4>
+        <h4>Ansehen & nachlesen</h4>${exLinks(ex)}
+        <h4 style="margin-top:14px">Maschinen-Setup / Notiz (bleibt gespeichert)</h4>
         <textarea class="setupnote" data-setup="${slot.ex}" placeholder="z.B. Stadelhofen, Sitz 7, Griff 3 …">${esc(S.setup[slot.ex] || "")}</textarea>
         <h4>Setup</h4>${esc(ex.setup)}
         ${ex.tall ? `<h4>Für deine 2 m</h4><div class="tallrow">📏 ${esc(ex.tall)}</div>` : ""}
@@ -3451,7 +3491,6 @@ function vSession() {
         <h4>Häufigste Fehler</h4>${esc(ex.mistakes)}
         <h4>Selbstcheck</h4>${esc(ex.check)}
         ${slot.alts && slot.alts.length ? `<h4>Alternativen (gleicher Slot)</h4>${slot.alts.map(esc).join(" · ")}` : ""}
-        <h4>Video</h4>${ex.videos.map(v => `<a href="${v[1]}" target="_blank" rel="noopener">▶︎ ${esc(v[0])}</a>`).join(" · ")}
       </div>
     </div>`;
   }).join("");
@@ -3462,7 +3501,7 @@ function vSession() {
       <div class="grow"><div class="t">${sess.day} — ${esc(sess.name)}</div><div class="s">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${esc(sess.pauses || "Pausen: Verbund 2–3 Min, Isolation 60–90 s")}</div></div>
     </div>
     ${bannersFor(k)}
-    ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: Übungs-Guides für deine 2 m.</b> Bei jeder Übung «Technik & Setup» öffnen — Schritt-für-Schritt-Ausführung, 2-m-Hinweise, Schulter-Schutz. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
+    ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: Übungs-Guides für deine 2 m.</b> «▶︎ Video» zeigt die Übung, «Technik & Setup» bringt Videos (Englisch und Deutsch), eine bebilderte Anleitung, Schritte, 2-m-Hinweise und Schulter-Schutz. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
     <div class="card" style="background:var(--surface2)">
       <div style="font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px">Warm-up · 8 Min</div>
       <div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(sess.warmup)}</div>
