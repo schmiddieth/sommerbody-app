@@ -981,22 +981,22 @@ const QUARK = { kcal: 330, p: 60 };
 /* Aufbau-Stufen — Stufe wird im Ernährungs-Tab gesetzt.
    Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
    Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
-/* Ab 27.10.2026: Abend-Shake ohne Whey, mit Honig statt Banane (Dimitris Wunsch). Protein ist mit ~260–300 g gedeckt,
-   der Shake liefert nur noch Kohlenhydrate. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
+/* Ab 27.10.2026: Abend-Shake nur aus gemahlenen Oats und Vollmilch, ohne Whey, Honig oder Banane (Dimitris Wunsch).
+   Protein ist mit ~260–310 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
 const STUFEN = {
   1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3420" },
-  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, honey: 20 }, kcal: "~3720" },
-  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 120, honey: 20 }, kcal: "~3910" },
-  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 120, honey: 20, milk: 500, milkK: 0.65 }, kcal: "~4230" }
+  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, kcal: "~3720" },
+  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, milk: 400, milkK: 0.65 }, kcal: "~3910" },
+  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 130, milk: 600, milkK: 0.65 }, kcal: "~4230" }
 };
 const STUFEN_ABEND_OLD = { 1: null, 2: { whey: 30, oats: 50 }, 3: { whey: 30, oats: 100 }, 4: { whey: 30, oats: 100, milk: 500, milkK: 0.65 } };
 function stufeKcal(st) { return +String(STUFEN[st || curStufe()].kcal).replace(/\D/g, ""); }
 const STUFEN_TABLE = [
   ["cut1", "Mini-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
   ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · 2 Hauptmahlzeiten · S, wo nötig", "~3420"],
-  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 90 g Oats + 20 g Honig", "~3720"],
-  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 120 g Oats + 20 g Honig", "~3910"],
-  ["bulk4", "Aufbau Stufe 4 · Abend-Shake mit Milch", "Abend-Shake 120/20 mit 500 ml Vollmilch statt Wasser", "~4230"],
+  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 60 g Oats + 300 ml Vollmilch", "~3720"],
+  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 90 g Oats + 400 ml Vollmilch", "~3910"],
+  ["bulk4", "Aufbau Stufe 4 · Abend-Shake XL", "+ Abend-Shake: 130 g Oats + 600 ml Vollmilch", "~4230"],
   ["cut2", "Polish-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
   ["summer", "Sommer", "2 Tassen · Shake 30/100 · ohne S", "~3060"]
 ];
@@ -1355,7 +1355,7 @@ function modInfo(m, k) {
       r.kcal = shakeK(nn); r.p = shakeP(nn);
     }
   }
-  if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + (n.abend.whey ? " · ohne Kreatin" : " · Zimt oder Kakao dazu"); r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
+  if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + " · ohne Kreatin"; r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
   if (m === "T1" || m === "T2") { const ml = mealInfo(mealFor(k, m), n); r.name = ml.name; r.meal = ml.id; r.desc = ml.desc; r.kcal = ml.kcal; r.p = ml.p; }
   if (m === "S") { r.desc = "40 g Nüsse + 1 Banane"; r.kcal = 355; r.p = 8; }
   if (m === "V") {
@@ -1459,7 +1459,7 @@ function bannersFor(k) {
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
     h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
   if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
-    h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Hauptmahlzeiten wählbar.</b> Mittags Quinoa-Box, abends Pasta oder Reis-Topf — pro Tag mit «Mahlzeit wechseln» oder als Standard im Ernährungs-Tab. Abend-Shake jetzt mit Honig, ohne Whey. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
+    h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Hauptmahlzeiten wählbar.</b> Mittags Quinoa-Box, abends Pasta oder Reis-Topf — pro Tag mit «Mahlzeit wechseln» oder als Standard im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
   else if (isDeloadWeek(k)) h += `<div class="banner warn"><span class="ic">🪫</span><div><b>Deload-Woche.</b> ${esc(PLAN.deloadRule)}</div></div>`;
@@ -2793,7 +2793,7 @@ function svRows(k) {
    EN.rest = Grundumsatz aus dem seca-Scan (26.04.26), falls der Kurzbefehl keine Ruheenergie liefert. */
 const EN = { rest: 2040, tef: 0.1, kg: 7700, band: 150, cap: 600 };
 /* Bausteine für «Mehr essen»: dicht vor voluminös — flüssig und fettreich zuerst, kein zusätzliches Protein nötig */
-const EN_ADD = [[395, "Abend-Shake: 90 g Oats + 20 g Honig"], [505, "Abend-Shake: 120 g Oats + 20 g Honig"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
+const EN_ADD = [[415, "Abend-Shake: 60 g Oats + 300 ml Vollmilch"], [595, "Abend-Shake: 90 g Oats + 400 ml Vollmilch"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
   [280, "50 g Granola + 20 g Honig in den Quark"], [325, "500 ml Vollmilch statt Wasser im Shake"], [415, "Shake mit 500 ml Vollmilch + 15 g Erdnussbutter"],
   [445, "Snack S extra + 15 g Erdnussbutter im Shake"], [600, "Granola-Quark + 500 ml Vollmilch im Shake"]];
 function r10(x) { return Math.round(x / 10) * 10; }
@@ -3550,7 +3550,7 @@ function vFood() {
     { id: "PW", title: "PW · Frühstücks-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
       body: n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser. Zusammen mit dem Quark zum Frühstück, Di–Fr nach dem Training." + (n.eat === "full" ? "<br>Im Aufbau jeden Tag gleich, auch am Ruhetag." : "<br>Cut-Ruhetag: nur Whey, ohne Oats (≈" + shakeK(nRest) + " kcal).") },
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
-      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Zimt oder ein TL Kakao für den Geschmack.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt, der Shake bringt nur noch Kohlenhydrate. Kreatin nur morgens.<br>Stufe 2: 90 g Oats + 20 g Honig (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 120 g Oats + 20 g Honig (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: dazu 500 ml Vollmilch statt Wasser (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
+      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
       body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n).kcal) + " kcal). Den Standard wählst du unten bei «Hauptmahlzeiten», einzelne Tage auf «Heute» mit «Mahlzeit wechseln»." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
