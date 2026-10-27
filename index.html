@@ -166,6 +166,10 @@ input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.45; 
 .exdetail h4:first-child { margin-top: 0; }
 .exdetail .ok { color: #7fd0b0; }
 .exdetail .no { color: #e8a1a1; }
+.exhead .cue { font-size: 13.5px; color: var(--aqua); font-weight: 600; margin-top: 4px; }
+.exdetail .tallrow, .exdetail .shldrow { background: var(--surface2); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 11px; }
+.exdetail ol.steps { margin: 2px 0 0 20px; padding: 0; }
+.exdetail ol.steps li { margin-bottom: 5px; }
 .setupnote { width: 100%; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 10px; padding: 9px 11px; font-size: 14px; margin-top: 6px; min-height: 40px; resize: vertical; }
 .setupnote:focus { outline: none; border-color: var(--blue); }
 
@@ -351,7 +355,7 @@ const PLAN = {
       kcal: "2790 → 3150 → 3500 kcal", protein: "~250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       desc: "Deload + Kalorien-Ramp: Topf mit 2 Tassen Reis, Shake 40/100, ab Do Snack S. +1–1.5 kg = Glykogen und Wasser, kein Fett." },
     { id: "bulk", name: "Aufbau", short: "Aufbau", from: "2026-09-28", to: "2027-05-09",
-      kcal: "~3420 kcal pro Tag", protein: "~250–290 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
+      kcal: "~3420 kcal pro Tag", protein: "~260–310 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       rate: [0.3, 0.35], targetW: [97, 99],
       desc: "32 Wochen, +0.3–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
       rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.25 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
@@ -502,204 +506,273 @@ const SUNDAY = {
 
 const EXERCISES = {
   bench: { name: "KH-Bankdrücken flach", muscles: "Brust · vordere Schulter · Trizeps",
-    setup: "Bank flach. Schulterblätter zusammen und nach unten («in die Gesässtaschen»), bleiben den ganzen Satz festgeklemmt. Leichtes Hohlkreuz ok, Gesäss auf der Bank. Füsse flach und fest (200 cm: ggf. weiter hinten aufstellen). KH mit Knie-Schwung in Position.",
-    exec: "Ellbogen ~45–60° vom Körper (nicht 90°!), Hanteln zur Brustwarzen-Linie absenken bis knapp unter Brustniveau, leicht schräg nach oben-innen drücken, oben nicht zusammenschlagen.",
-    feel: "Brust, vordere Schulter, Trizeps", notFeel: "Stechen vorn im Schultergelenk, Nacken",
-    mistakes: "Schultern rollen beim Drücken nach vorn ab · zu tief trotz Schulter-Zwicken · Füsse tanzen",
-    check: "Video seitlich: Unterarm am tiefsten Punkt senkrecht. Schulterblätter am Satzende noch auf der Bank wie am Anfang.",
+    cue: "Schulterblätter festklemmen, Ellbogen 45–60° — die Schulter dankt.",
+    setup: "Bank flach. Hanteln auf die Knie, mit Knie-Schwung einzeln in Position. Schulterblätter zusammen und nach unten («in die Gesässtaschen») — sie bleiben den ganzen Satz geklemmt. Leichtes Hohlkreuz ok, Gesäss bleibt auf der Bank.",
+    tall: "Füsse weiter hinten fest aufstellen; hebt die Ferse ab, Scheiben unterlegen. Lange Arme = langer Weg: lieber ein Paar leichter und volle, kontrollierte Range als schwer und halb.",
+    shoulder: "Ellbogen ~45–60° vom Körper, nie 90° ausgestellt. Tiefe bis knapp unter Brustniveau reicht. Zwickt es vorn: Range unten 2–3 cm kürzen und beim Check-in melden.",
+    exec: ["Hanteln über der Brust, Handgelenke gerade, ganzer Körper unter Spannung.", "In 2–3 s zur Brustwarzen-Linie absenken, Ellbogen bei 45–60°.", "Unten kurz stoppen — kein Abfedern.", "Leicht schräg nach oben-innen drücken; oben fast strecken, Hanteln nicht zusammenschlagen."],
+    feel: "Brust zuerst, dazu vordere Schulter und Trizeps", notFeel: "Stechen vorn im Schultergelenk · Nacken",
+    mistakes: "Schultern rollen beim Drücken nach vorn ab · Abfedern auf der Brust · Füsse tanzen",
+    check: "Video seitlich: Unterarm am tiefsten Punkt senkrecht. Schulterblätter am Satzende noch fixiert wie am Anfang.",
     videos: [["Form-Tutorial", "https://www.youtube.com/watch?v=t1iaVBMItPo"], ["Vertiefung (Nippard)", "https://www.youtube.com/watch?v=vcBig73ojpE"]] },
   chestrow: { name: "Brustgestütztes Rudern", muscles: "zwischen den Schulterblättern · Lat",
-    setup: "Pad-Höhe so, dass das Brustbein satt aufliegt und die Arme frei hängen (200 cm: Sitz meist ganz runter oder Pad ganz hoch). Griffe neutral, wenn vorhanden.",
-    exec: "Zug Richtung unterer Rippenbogen, Ellbogen nah am Körper, am Ende Schulterblätter aktiv zusammenkneifen, 1 s halten, langsam strecken lassen.",
-    feel: "zwischen den Schulterblättern, Lat", notFeel: "unterer Rücken (kein Aufbäumen), Nacken, Bizeps als Hauptarbeiter",
-    mistakes: "Brust hebt beim Zug vom Pad ab (= Schwung) · Schultern wandern zu den Ohren · nur Arm-Beugen statt Schulterblatt-Zug",
+    cue: "Brust bleibt am Pad — gezogen wird mit den Schulterblättern, nicht mit Schwung.",
+    setup: "Pad-Höhe so, dass das Brustbein satt aufliegt und die Arme frei hängen. Neutrale Griffe, wenn vorhanden. Pad- und Sitzhöhe notieren.",
+    tall: "Sitz meist ganz runter oder Pad ganz hoch, sonst hängst du drüber. Deine langen Arme holen unten eine riesige Dehnung — nutz sie bei jeder Wiederholung.",
+    exec: ["Arme lang, Schulterblätter nach vorn mitgehen lassen — volle Dehnung.", "Ellbogen nah am Körper Richtung unterer Rippenbogen ziehen.", "Schulterblätter zusammenkneifen, 1 s halten.", "In 2 s strecken lassen — die Brust bleibt unten."],
+    feel: "zwischen den Schulterblättern, Lat", notFeel: "unterer Rücken (Aufbäumen) · Nacken · Bizeps als Hauptarbeiter",
+    mistakes: "Brust hebt beim Zug ab (= Schwung) · Schultern wandern zu den Ohren · Arm-Beugen statt Schulterblatt-Zug",
     check: "Die Brust hat während des ganzen Satzes Pad-Kontakt.",
     videos: [["Quick Fixes", "https://www.youtube.com/watch?v=FU6YQawma2Q"]] },
   ohp: { name: "KH-Schulterdrücken (neutral)", muscles: "vordere + seitliche Schulter · Trizeps",
-    setup: "Lehne auf 80–85° (1 Loch zurück). KH auf die Knie, einzeln hochkicken. Handflächen zueinander (neutral) — deine schulterfreundliche Bahn.",
-    exec: "Leicht vor der Kopflinie nach oben drücken, Ellbogen unter den Handgelenken, nur so hoch wie es sich glatt anfühlt (Endstreckung nicht erzwingen). Rippen unten halten.",
-    feel: "vordere + seitliche Schulter, Trizeps", notFeel: "Nacken/oberer Trapez (Schultern nicht hochziehen), kein schmerzhaftes Knacken",
+    cue: "Neutraler Griff, Bahn knapp vor dem Kopf — so hoch, wie es glatt läuft, keinen Zentimeter weiter.",
+    setup: "Lehne auf 80–85° (ein Loch zurück), Rücken satt dran. KH auf die Knie, einzeln hochkicken. Handflächen zueinander. Lehnen-Loch notieren.",
+    tall: "Dein Drückweg ist extra lang — Startgewicht bescheiden, Fortschritt über saubere Wiederholungen statt über Scheiben.",
+    shoulder: "Neutral ist deine schulterfreundliche Bahn. Endstreckung nie erzwingen. Knacken ohne Schmerz: weitermachen. Schmerz: Satz beenden, Winkel ändern — im Zweifel Physio statt Durchbeissen.",
+    exec: ["Rippen unten, Bauch an — der Druck kommt aus der Schulter, nicht aus dem Hohlkreuz.", "Knapp vor der Kopflinie hochdrücken, Ellbogen unter den Handgelenken.", "Oben nicht einrasten, in 2–3 s zurück bis auf Ohrhöhe."],
+    feel: "vordere + seitliche Schulter, Trizeps", notFeel: "Nacken/oberer Trapez (Schultern nicht hochziehen) · schmerzhaftes Knacken",
     mistakes: "Zu schwer → Rücken überstreckt · Hanteln driften hinter den Kopf · Schulterzucken",
     check: "Video frontal: Unterarme bleiben senkrecht, Abstand Ohr–Schulter konstant.",
     videos: [["Form, Tips & Mistakes", "https://www.youtube.com/watch?v=fuQpuu--bMI"]] },
   latwide: { name: "Latzug breit", muscles: "Lat («Flügel») · etwas Bizeps",
-    setup: "Oberschenkelpolster fest einklemmen (200 cm: höchste Einstellung). Griff etwas breiter als schulterbreit.",
-    exec: "10–20° zurücklehnen, Brust raus. Ellbogen nach unten-hinten ziehen («in die Hosentaschen») bis die Stange das obere Brustbein fast berührt. Oben Arme wieder lang werden lassen. Nie in den Nacken.",
-    feel: "Lat — die seitliche Rückenwand", notFeel: "Nacken/Trapez dominant, unterer Rücken durch Schaukeln",
+    cue: "Ellbogen «in die Hosentaschen» ziehen — die Stange folgt von allein.",
+    setup: "Oberschenkelpolster fest einklemmen, Griff etwas breiter als schulterbreit.",
+    tall: "Polster auf die höchste Einstellung, sonst hebelst du dich hoch. Oben die Arme ganz lang werden lassen — die Dehnung auf deinem langen Zugweg ist der halbe Lat-Reiz. Das ist dein Klimmzug-Motor: Progression hier zählt doppelt.",
+    shoulder: "Immer vor die Brust ziehen, nie in den Nacken.",
+    exec: ["10–20° zurücklehnen, Brust raus — der Winkel bleibt den ganzen Satz gleich.", "Ellbogen nach unten-hinten ziehen, bis die Stange das obere Brustbein fast berührt.", "1 s halten.", "In 2–3 s hoch, bis die Arme lang sind und der Lat spürbar zieht."],
+    feel: "Lat — die seitliche Rückenwand", notFeel: "Nacken/Trapez dominant · unterer Rücken durch Schaukeln",
     mistakes: "Aus dem Rumpf schaukeln · halbe Wiederholungen oben · Handgelenke knicken ein",
     check: "Du kannst die Stange 1 s am Brustbein halten, ohne dich zu bewegen.",
     videos: [["7 Lat-Pulldown-Fehler", "https://www.youtube.com/watch?v=lPxIPKdNsSo"]] },
   latclose: { name: "Latzug eng/neutral", muscles: "unterer Lat",
-    setup: "Wie Latzug breit, enger Neutralgriff. Polster fest einklemmen.",
-    exec: "Ellbogen bleiben eng vor dem Körper — betont den unteren Lat. Oben Arme lang, Lat-Dehnung zulassen.",
-    feel: "Lat, Richtung Ansatz", notFeel: "Nacken, Schaukeln aus dem Rumpf",
+    cue: "Ellbogen eng vor dem Körper — das betont den unteren Lat.",
+    setup: "Wie Latzug breit, enger Neutralgriff. Polster fest einklemmen, Einstellung notieren.",
+    tall: "Polster höchste Stufe. Oben volle Streckung inklusive Schulterblatt — bei deinen Armen ist die Dehnung der halbe Satz.",
+    exec: ["Leicht zurücklehnen, Brust raus.", "Griff Richtung oberes Brustbein ziehen, Ellbogen bleiben eng.", "1 s halten, in 2–3 s zurück in die volle Dehnung."],
+    feel: "Lat, Richtung unterer Ansatz", notFeel: "Nacken · Schaukeln aus dem Rumpf",
     mistakes: "Aus dem Rumpf schaukeln · halbe Wiederholungen",
     check: "1-s-Halten am Brustbein möglich.",
     videos: [["Lat-Pulldown-Guide", "https://www.youtube.com/watch?v=lPxIPKdNsSo"]] },
   latraise_c: { name: "Kabel-Seitheben", muscles: "seitliche Schulter",
-    setup: "Zug auf tiefster oder Kniehöhe, seitlich stehen, leicht vom Turm weglehnen, Griff vor dem Körper starten.",
-    exec: "Mit dem Ellbogen führen, Arm fast gestreckt (fixe leichte Beugung), heben bis knapp Schulterhöhe, 2 s kontrolliert runter.",
-    feel: "seitliche Schulter — sie darf brennen", notFeel: "Nacken/Trapez (Schulter-Hochziehen!), Handgelenk",
+    cue: "Mit dem Ellbogen führen, bis knapp Schulterhöhe — das Brennen ist der Auftrag.",
+    setup: "Zug auf tiefster oder Kniehöhe, seitlich zum Turm, leicht weglehnen. Griff startet vor dem Körper.",
+    tall: "Deine Arme sind lange Hebel: 5–10 kg sind hier viel. Leicht und ganz schlägt schwer und halb — und die Seitdelts machen deinen Rahmen breit.",
+    shoulder: "Nicht über Schulterhöhe reissen; die Schulter bleibt weit weg vom Ohr.",
+    exec: ["Arm fast gestreckt, die leichte Beugung bleibt fix.", "Mit dem Ellbogen voran seitlich heben, bis knapp Schulterhöhe.", "Oben 1 s, dann in 2 s runter — der Rückweg ist die halbe Übung."],
+    feel: "seitliche Schulter — sie darf brennen", notFeel: "Nacken/Trapez (Schulter-Hochziehen) · Handgelenk",
     mistakes: "Zu schwer → Hüftschwung, Trapez übernimmt · über Schulterhöhe reissen · fallen lassen",
     check: "Oben 1 s halten möglich; Ohr-Schulter-Abstand bleibt gross.",
     videos: [["Cable Lateral Raise", "https://www.youtube.com/watch?v=zpbm-xRHB6k"]] },
   latraise_d: { name: "KH-Seitheben", muscles: "seitliche Schulter",
-    setup: "Stehend, minimal vorgeneigt, Hanteln seitlich.",
-    exec: "Mit dem Ellbogen führen, bis knapp Schulterhöhe, 2 s kontrolliert absenken. Kein Daumen-runter-Kippen nötig.",
-    feel: "seitliche Schulter", notFeel: "Nacken/Trapez, Handgelenk",
+    cue: "Leicht nehmen, mit dem Ellbogen führen, in 2 s absenken.",
+    setup: "Stehend, minimal vorgeneigt, Hanteln hängen seitlich.",
+    tall: "8 kg wirken an deinen Hebeln wie 12 bei Kürzeren — Ego aus, Range voll.",
+    shoulder: "Bis knapp Schulterhöhe; kein Daumen-runter-Kippen nötig.",
+    exec: ["Mit dem Ellbogen voran heben, Arm fast gestreckt.", "Bis knapp Schulterhöhe, oben kurz halten.", "In 2 s kontrolliert absenken, unten nicht ausruhen."],
+    feel: "seitliche Schulter", notFeel: "Nacken/Trapez · Handgelenk",
     mistakes: "Hüftschwung · über Schulterhöhe reissen · fallen lassen statt absenken",
     check: "Oben 1 s halten möglich.",
     videos: [["Fehler in 60 Sek", "https://www.youtube.com/shorts/f_OGBg2KxgY"]] },
   facepull: { name: "Face Pulls", muscles: "hintere Schulter · oberer Rücken",
-    setup: "Seil auf Gesichts- bis Stirnhöhe. Schrittstellung für Stabilität.",
-    exec: "Zum Gesicht ziehen, Hände auseinanderführen, Daumen zeigen am Ende nach hinten (Doppel-Bizeps-Pose), Ellbogen hoch und weit, 1 s halten.",
-    feel: "hintere Schulter, zwischen den Schulterblättern", notFeel: "unterer Rücken (Zurücklehnen), Bizeps",
+    cue: "Zum Gesicht ziehen, Daumen am Ende nach hinten — Doppel-Bizeps-Pose.",
+    setup: "Seil auf Gesichts- bis Stirnhöhe, Schrittstellung für Stabilität. Seit v4 Teil des Warm-ups an den Oberkörper-Tagen: leicht und sauber.",
+    tall: "Einen halben Schritt weiter weg vom Turm als gewohnt — dein langer Zugweg braucht Platz.",
+    shoulder: "Deine Cuff-Versicherung gegen das Schulterknacken: 2×/Woche, leicht, nie schwer.",
+    exec: ["Zum Gesicht ziehen und die Hände dabei auseinanderführen.", "Ellbogen hoch und weit, Daumen zeigen am Ende nach hinten.", "1 s halten, langsam strecken lassen."],
+    feel: "hintere Schulter, zwischen den Schulterblättern", notFeel: "unterer Rücken (Zurücklehnen) · Bizeps",
     mistakes: "Zu schwer — das ist eine Gesundheits-Übung · aus dem Rumpf gerissen · Ellbogen sacken ab",
     check: "Zeitlupen-fähig ohne Wackeln.",
     videos: [["Proper Form (NASM)", "https://www.youtube.com/watch?v=eTCBSFlCJ_s"]] },
   legpress: { name: "Beinpresse", muscles: "Oberschenkel-Vorderseite · Gesäss",
-    setup: "Der wichtigste 200-cm-Moment der Woche: Rückenlehne eher flach. Füsse mittig bis hoch, hüftbreit. Schlitten so, dass Startspannung da ist und das Gesäss satt aufliegt.",
-    exec: "Nur so tief absenken, bis das Becken ansatzweise abrollen WILL — davor umkehren (lange Oberschenkel: der Punkt kommt früher, lieber kürzere saubere Range). Ganze Fusssohle drückt, Knie in Fussrichtung, oben nicht einrasten.",
-    feel: "Oberschenkel vorn + Gesäss", notFeel: "unterer Rücken (NIE), stechende Knie",
+    cue: "Tiefe endet, bevor das Becken abrollt — der Lendenkontakt ist das Gesetz.",
+    setup: "Rückenlehne eher flach, Gesäss satt ins Polster, Füsse mittig bis hoch und hüftbreit. Schlitten so, dass Startspannung da ist. Sitz- und Fussposition notieren.",
+    tall: "Der wichtigste 2-m-Moment der Woche: Lange Oberschenkel lassen das Becken früh abrollen. Füsse hoch platzieren und bewusst kürzere Range fahren als die Nachbarn — sauber schlägt tief. Seit v4: 3 Sätze, dafür bis RIR 1.",
+    exec: ["Ganze Fusssohle drückt, Knie zeigen in Fussrichtung.", "In 2–3 s absenken — nur bis das Becken abrollen WILL, davor umkehren.", "Ohne Abprallen hochdrücken, oben nicht einrasten."],
+    feel: "Oberschenkel vorn + Gesäss", notFeel: "unterer Rücken (nie) · stechende Knie",
     mistakes: "Zu tief → unterer Rücken rollt ein · Knie fallen nach innen · Fersen heben ab",
     check: "Der Lendenbereich hat Dauerkontakt mit dem Polster — eine Hand passt nie dazwischen.",
     videos: [["Beginner's Guide", "https://www.youtube.com/watch?v=8nm863C0c60"], ["7 Mistakes", "https://www.youtube.com/watch?v=8vk6rWMSxOk"]] },
   rdl: { name: "KH-RDL", muscles: "Beinrückseite · Gesäss",
-    setup: "Königsübung für Technik — Woche 1 nur mit 2×20 kg üben. KH vor den Oberschenkeln, Füsse hüftbreit, Knie MINIMAL gebeugt (Beugung bleibt konstant).",
-    exec: "Hüfte nach hinten schieben (als würdest du mit dem Gesäss eine Tür zudrücken). Hanteln gleiten AM Bein, Rücken lang von Steiss bis Hinterkopf, Blick schräg zum Boden. Runter bis zur deutlichen Dehnung hinten (oft reicht Schienbein-Mitte), dann Hüfte nach vorn, Gesäss anspannen.",
-    feel: "Dehnung/Spannung Beinrückseite + Gesäss", notFeel: "unterer Rücken brennend/schmerzend (leichte Haltespannung normal), Nacken",
+    cue: "Hüfte nach hinten, Hanteln am Bein — nicht tief kommen wollen, Dehnung spüren.",
+    setup: "KH vor den Oberschenkeln, Füsse hüftbreit, Knie minimal gebeugt — die Beugung bleibt konstant. Morgens immer 1 Vorsatz mit halber Last.",
+    tall: "Bei deinen Beinen ist die Rückseite oft schon ab Schienbein-Mitte voll gedehnt — dort ist DEIN Umkehrpunkt. Range nur so tief, wie der Rücken lang bleibt; Bodenkontakt ist kein Ziel.",
+    exec: ["Hüfte nach hinten schieben, als würdest du mit dem Gesäss eine Tür zudrücken.", "Hanteln gleiten am Bein entlang, Rücken lang von Steiss bis Hinterkopf, Blick schräg zum Boden.", "In 3 s runter bis zur deutlichen Dehnung hinten.", "Hüfte nach vorn, Gesäss anspannen — zügig hoch, oben nicht zurücklehnen."],
+    feel: "Dehnung und Spannung in Beinrückseite + Gesäss", notFeel: "unterer Rücken brennend oder schmerzend (leichte Haltespannung ist normal) · Nacken",
     mistakes: "Rücken rundet (wichtigster Fehler!) · Knie beugen nach → wird Kniebeuge · Hanteln wandern vom Körper weg",
-    check: "Video seitlich ab Woche 1 — Rückenlinie gerade. Diese Übung bleibt IMMER bei RIR 2+.",
+    check: "Video seitlich ab Woche 1: Rückenlinie gerade. Diese Übung bleibt IMMER bei RIR 2+.",
     videos: [["Hip-Hinge-Tutorial", "https://www.youtube.com/watch?v=3zqDris6lD4"]] },
   legext: { name: "Beinstrecker", muscles: "Quadrizeps",
-    setup: "Kniekehle an der Sitzkante, Drehpunkt der Maschine = Kniegelenk (200 cm: fast alles auf lang). Polster unten am Schienbein.",
-    exec: "Ohne Schwung strecken, oben 1 s anspannen, 2–3 s runter.",
+    cue: "Oben 1 s anspannen, in 2–3 s runter — Schwung bringt hier null.",
+    setup: "Kniekehle an der Sitzkante, Drehpunkt der Maschine auf Höhe des Kniegelenks, Polster unten am Schienbein. Einstellungen notieren.",
+    tall: "Fast alle Regler Richtung Maximum: Lehne weit, Beinpolster lang. Stimmt der Drehpunkt nicht, schert das Knie — die 20 Sekunden Einstellen lohnen sich jedes Mal.",
+    exec: ["Ohne Schwung strecken.", "Oben 1 s bewusst anspannen.", "In 2–3 s absenken, unten nicht absetzen."],
     feel: "Quadrizeps", notFeel: "Schmerz hinter der Kniescheibe (dann Range begrenzen und melden)",
     mistakes: "Gesäss hebt beim Strecken · Gewicht knallt zurück",
     check: "Ruhiges Absenken über 2–3 s möglich.",
     videos: [["Perfekte Technik", "https://www.youtube.com/watch?v=ljO4jkwv8wQ"]] },
   calf_stand: { name: "Wadenheben stehend", muscles: "Wade (Gastrocnemius)",
-    setup: "Fussballen auf der Kante, Ferse frei. Passt das Schulterpolster nicht (200 cm): Wadenpresse an der Beinpresse.",
-    exec: "Unten 1 s tiefe Dehnung (Ferse Richtung Boden), hoch auf die Zehenspitzen, oben 1 s. Volle Range ist 80 % des Erfolgs.",
+    cue: "1 s Dehnung unten, 1 s Spitze oben — volle Range ist 80 % des Erfolgs.",
+    setup: "Fussballen auf die Kante, Ferse frei, aufrecht bleiben.",
+    tall: "Passt das Schulterpolster nicht unter deine 2 m: Wadenpresse an der Beinpresse — gleicher Reiz, besseres Setup.",
+    exec: ["Ferse in 2 s Richtung Boden — 1 s in der tiefen Dehnung halten.", "Hoch auf die Zehenspitzen.", "Oben 1 s halten, wieder runter — kein Federn."],
     feel: "Wade inkl. Dehnschmerz unten", notFeel: "Achillessehnen-Stechen",
     mistakes: "Federn mit halben Wiederholungen",
     check: "Jede Wiederholung mit 1-s-Pause unten UND oben.",
     videos: [["Standing Calf Raises", "https://www.youtube.com/watch?v=MAMzF7iZNkc"]] },
   cablecrunch: { name: "Cable Crunch", muscles: "Bauch",
-    setup: "Kniend vor dem Turm, Seil neben den Ohren halten.",
-    exec: "Brustbein Richtung Becken einrollen — Bewegung aus der Wirbelsäule, Hüfte bleibt, Arme bleiben.",
-    feel: "Bauch", notFeel: "Hüftbeuger, Arme, Nacken",
+    cue: "Brustbein Richtung Becken einrollen — die Hüfte steht still.",
+    setup: "Kniend vor dem Turm, Seil neben den Ohren halten, Hüfte fixiert.",
+    tall: "Dein langer Oberkörper macht den Weg gross — roll Wirbel für Wirbel ein statt zu klappen, dann arbeitet wirklich der Bauch.",
+    exec: ["Aus der Wirbelsäule einrollen, Brustbein Richtung Becken.", "Unten 1 s anspannen.", "Kontrolliert aufrollen — Hüftwinkel konstant, Arme bleiben passiv."],
+    feel: "Bauch", notFeel: "Hüftbeuger · Arme · Nacken",
     mistakes: "Aus der Hüfte klappen statt einrollen",
     check: "Hüftwinkel bleibt konstant über den ganzen Satz.",
     videos: [["Richtig ausgeführt", "https://www.youtube.com/watch?v=AV5PmZJIrrw"]] },
   incline: { name: "KH-Schrägbankdrücken", muscles: "obere Brust",
-    setup: "Wie Bankdrücken flach, plus: Lehne auf ~30° (1–2 Löcher). Schulterblätter zusammen und runter.",
-    exec: "Hanteln zur oberen Brust/Schlüsselbein-Linie, Ellbogen ~45–60°, oben nicht zusammenschlagen.",
-    feel: "obere Brust", notFeel: "Schulter-Stechen, Nacken",
-    mistakes: "Lehne zu steil (wird Schulterdrücken) · Schultern rollen ab",
+    cue: "Lehne ~30° — zu steil wird es Schulterdrücken statt obere Brust.",
+    setup: "Lehne auf ~30° (1–2 Löcher). Schulterblätter zusammen und runter, Füsse fest. Lehnen-Loch notieren.",
+    tall: "Füsse weiter hinten oder Scheiben unterlegen. Unten zählt die Dehnung: bei deinen Armen lieber ein Paar leichter und 1 s im tiefsten Punkt.",
+    shoulder: "Ellbogen 45–60°, Tiefe nur so weit, wie es vorn ruhig bleibt — die Schrägbank reizt die Schulter schneller als flach.",
+    exec: ["Hanteln über der oberen Brust, Handgelenke gerade.", "In 2–3 s zur Schlüsselbein-Linie absenken, Ellbogen 45–60°.", "Unten 1 s Dehnung, dann hoch — oben nicht zusammenschlagen."],
+    feel: "obere Brust", notFeel: "Schulter-Stechen · Nacken",
+    mistakes: "Lehne zu steil (wird Schulterdrücken) · Schultern rollen ab · halbe Range ohne Dehnung",
     check: "Video seitlich: Unterarm senkrecht am tiefsten Punkt.",
     videos: [["Proper Form", "https://www.youtube.com/watch?v=sK4Rvug6ufo"]] },
   chestpress: { name: "Brustpresse Maschine", muscles: "Brust · Trizeps",
-    setup: "Sitz so, dass die Griffe auf Brustmitte liegen (200 cm: Sitz fast immer ganz runter). Schulterblätter zusammen ins Polster.",
-    exec: "Ellbogen ~45°, kontrolliert drücken, nicht einrasten, langsam zurück.",
+    cue: "Griffe starten auf Brustmitte — Sitz einstellen, notieren, nie mehr suchen.",
+    setup: "Sitz so, dass die Griffe auf Brustmitte liegen. Schulterblätter zusammen ins Polster, Füsse fest.",
+    tall: "Sitz fast immer ganz runter. Starten die Griffe auf Schulterhöhe statt Brustmitte, ist der Sitz zu hoch.",
+    shoulder: "Schulterblätter bleiben hinten im Polster; Ellbogen ~45°, oben nicht ganz einrasten.",
+    exec: ["Kontrolliert drücken, Ellbogen bei ~45°.", "Oben nicht einrasten.", "In 2–3 s zurück bis zur sanften Dehnung — die Schultern bleiben hinten."],
     feel: "Brust, Trizeps", notFeel: "Schulterspitze",
     mistakes: "Sitz zu hoch · Schultern lösen sich vom Polster",
     check: "Setup notiert? Gleiche Einstellung jede Woche.",
     videos: [["How to", "https://www.youtube.com/watch?v=mDsynSGWaUM"]] },
   cablefly: { name: "Kabel-Fliegende", muscles: "Brust (Dehnung + Kontraktion)",
+    cue: "Der Ellbogenwinkel bleibt eingefroren — pumpt er, wird es Drücken.",
     setup: "Kabel auf Brusthöhe, Schrittstellung, leichte konstante Ellbogenbeugung.",
-    exec: "Grosser Bogen, hinten Dehnung nur so weit schmerzfrei, vorne Hände zusammenführen und Brust 1 s zusammendrücken.",
-    feel: "Brust — Dehnung hinten, Krampf vorne", notFeel: "Zwicken vorn in der Schulter",
-    mistakes: "Aus der Dehnung federn · Ellbogenwinkel pumpt (wird Drücken)",
-    check: "Ellbogenwinkel bleibt konstant.",
+    tall: "Deine langen Arme machen hier mehr Dehnungsreiz als jede Maschine — darum ist die Übung seit v4 im Dienstag. Leicht bleiben: Die Dehnung arbeitet, nicht das Gewicht.",
+    shoulder: "Hinten nur so weit öffnen, wie es vorn ruhig bleibt — kein Zwicken, kein Federn aus der Dehnung.",
+    exec: ["In 2–3 s weit öffnen, grosser Bogen, bis zur schmerzfreien Dehnung.", "Dort kurz stehen lassen — nicht federn.", "Im Bogen zusammenführen, Hände treffen sich vor der Brustmitte, 1 s zusammendrücken."],
+    feel: "Brust — Dehnung hinten, Krampf vorn", notFeel: "Zwicken vorn in der Schulter",
+    mistakes: "Aus der Dehnung federn · Ellbogenwinkel pumpt (wird Drücken) · zu schwer",
+    check: "Ellbogenwinkel bleibt konstant — hinten wie vorn.",
     videos: [["Technik & Fehler", "https://www.youtube.com/watch?v=4Y8QgiT2-OA"]] },
   pushdown: { name: "Trizeps Pushdown", muscles: "Trizeps",
-    setup: "Kabel oben, Ellbogen ans Becken «getackert».",
-    exec: "Nur der Unterarm bewegt, unten voll strecken, 1 s halten.",
+    cue: "Ellbogen ans Becken «getackert» — es bewegt sich nur der Unterarm.",
+    setup: "Kabel oben, aufrechter Stand nah am Turm, Ellbogen seitlich am Körper fixiert.",
+    tall: "Aufrecht bleiben statt über das Gewicht beugen — bei deiner Grösse wird aus Vorlehnen schnell ein Drücken mit der Schulter.",
+    exec: ["Unterarme nach unten strecken, Ellbogen bleiben am Körper.", "Unten voll strecken, 1 s halten.", "In 2 s hoch bis knapp über 90° — die Ellbogen stehen still."],
     feel: "Trizeps", notFeel: "Schultern (kein Vorbeugen und Mitdrücken)",
     mistakes: "Ellbogen flattern nach aussen · Oberkörper drückt mit",
     check: "Ellbogen bleiben am Körper — die ganze Zeit.",
     videos: [["3 Golden Rules", "https://www.youtube.com/watch?v=_w-HpW70nSQ"]] },
   frenchpress: { name: "French Press liegend", muscles: "Trizeps (langer Kopf)",
-    setup: "Auf flacher Bank, KH über dem Gesicht, Handflächen zueinander.",
-    exec: "Ellbogen zeigen zur Decke und bleiben stehen; Hanteln neben dem Kopf/hinter den Scheitel absenken, strecken.",
-    feel: "Trizeps, Dehnung hinter dem Kopf", notFeel: "Ellbogen-Schmerz (falls ja: Gewicht runter oder zurück zum Pushdown)",
+    cue: "Ellbogen zeigen zur Decke und bleiben stehen — gesenkt wird hinter den Scheitel.",
+    setup: "Flache Bank, KH über dem Gesicht, Handflächen zueinander.",
+    tall: "Deine langen Unterarme machen die Dehnung hinter dem Kopf riesig — genau sie baut den langen Trizepskopf, den grössten Teil deines Oberarms. Leicht starten.",
+    exec: ["Ellbogen über den Schultern fixieren, sie zeigen zur Decke.", "In 2–3 s neben dem Kopf bis hinter den Scheitel absenken.", "Aus der Dehnung strecken, ohne dass die Ellbogen wandern."],
+    feel: "Trizeps, Dehnung hinter dem Kopf", notFeel: "Ellbogen-Schmerz (dann Gewicht runter oder zurück zum Pushdown)",
     mistakes: "Ellbogen wandern auseinander · zu schnelles Absenken",
     check: "Ellbogen-Position konstant über den Satz.",
     videos: [["Lying Tricep Extension", "https://www.youtube.com/watch?v=vZvvkx1qYt0"]] },
   cablerow: { name: "Kabelrudern sitzend, eng", muscles: "mittlerer Rücken · Lat",
-    setup: "Füsse auf die Platten, Knie leicht gebeugt, aufrecht (200 cm: Sitzweite maximal).",
-    exec: "Zug zum Bauchnabel, Schulterblätter zusammen, Oberkörper pendelt max. ±10°. Nach vorn Arme lang und Schulterblätter mitgehen lassen.",
-    feel: "mittlerer Rücken, Lat", notFeel: "unterer Rücken (Reissen), Nacken",
+    cue: "±10° Pendel, mehr nicht — gezogen wird mit den Schulterblättern.",
+    setup: "Füsse auf die Platten, Knie leicht gebeugt, aufrecht sitzen.",
+    tall: "Sitzweite auf Maximum, Beine fast lang — vorn braucht deine Streckung Platz. Vorne die Schulterblätter mitgehen lassen: erst volle Dehnung, dann ziehen.",
+    exec: ["Arme lang, Schulterblätter nach vorn mitgehen lassen.", "Zug zum Bauchnabel, Schulterblätter zusammen.", "1 s halten, in 2 s nach vorn — der Oberkörper pendelt höchstens ±10°."],
+    feel: "mittlerer Rücken, Lat", notFeel: "unterer Rücken (Reissen) · Nacken",
     mistakes: "Ganzer Oberkörper rudert · Schultern zu den Ohren · Griff verkrampft (Hände sind Haken)",
-    check: "±10°-Pendel-Regel eingehalten.",
+    check: "Die ±10°-Pendel-Regel hält den ganzen Satz.",
     videos: [["Proper Form", "https://www.youtube.com/watch?v=EU7bOadUsNI"]] },
   pullup_neg: { name: "Klimmzug-Negative / Assisted", muscles: "Lat · Bizeps · Griffkraft",
-    setup: "Kasten unter die Stange, Griff etwas breiter als schulterbreit. Oder Assisted-Maschine: Unterstützung so, dass 5–8 saubere Wdh gehen (−25 kg → −10 kg).",
-    exec: "Oben starten (Kinn über Stange per Absprung), 3–5 s kontrolliert ablassen bis Arme fast gestreckt. Schulterblätter aktiv halten, nie tot ins Gelenk hängen.",
+    cue: "3–5 s pro Negative — wirklich zählen, schnelles Fallen bringt nichts.",
+    setup: "Kasten unter die Stange, Griff etwas breiter als schulterbreit. Oder Assisted-Maschine: Unterstützung so, dass 5–8 saubere Wdh gehen (−25 → −10 kg).",
+    tall: "94 kg an 2 m Hebeln — jede Negative ist bei dir ein echter Arbeitssatz, genau deshalb wirkt sie. Die Assisted-Maschine ist kein Downgrade, sondern dein Weg: Unterstützung Monat für Monat runter.",
+    shoulder: "Schulterblätter aktiv halten, nie tot ins Gelenk hängen. «Auskugel-Gefühl» unten = früher stoppen.",
+    exec: ["Per Kasten oder Absprung nach oben, Kinn über die Stange.", "In 3–5 s kontrolliert ablassen — laut mitzählen.", "Unten fast gestreckt, Schulterblätter noch aktiv — absteigen, nächste Wiederholung."],
     feel: "Lat, Bizeps, Griffkraft", notFeel: "«Auskugel-Gefühl» unten in der Schulter (dann früher stoppen)",
-    mistakes: "Zu schnelles Fallenlassen (bringt nichts) · Kippen/Schwingen",
-    check: "Jede Negative dauert wirklich 3–5 s (zählen!). Test 1×/Monat am letzten Dienstag: 1 Versuch strikt aus dem Hang → ins Log.",
+    mistakes: "Zu schnelles Fallenlassen (bringt nichts) · Kippen und Schwingen",
+    check: "Jede Negative dauert wirklich 3–5 s. Test 1×/Monat am letzten Dienstag: 1 Versuch strikt aus dem Hang → ins Log.",
     videos: [["Negative Pull-Up Guide", "https://www.youtube.com/watch?v=gbPURTSxQLY"]] },
   revfly: { name: "Reverse Fly Maschine", muscles: "hintere Schulter",
-    setup: "Brust ans Pad, Sitz so, dass die Griffe auf Schulterhöhe sind (200 cm beachten).",
-    exec: "Arme fast gestreckt auf Schulterhöhe nach hinten-aussen öffnen, 1 s halten.",
-    feel: "hintere Schulter", notFeel: "Trapez-Zucken, Schwung",
+    cue: "Fast gestreckte Arme auf Schulterhöhe nach hinten öffnen — 1 s halten.",
+    setup: "Brust ans Pad, Griffe auf Schulterhöhe, Arme fast gestreckt.",
+    tall: "Sitz eher hoch, damit die Griffe wirklich auf Schulterhöhe liegen — sitzt du zu tief, übernimmt der Trapez. Einstellung notieren.",
+    exec: ["Arme auf Schulterhöhe nach hinten-aussen öffnen.", "Hinten 1 s halten — die hintere Schulter arbeitet, nicht die Schulterblätter.", "In 2 s zurück, ohne das Gewicht abzusetzen."],
+    feel: "hintere Schulter", notFeel: "Trapez-Zucken · Schwung",
     mistakes: "Zu schwer → Schwung · Ellbogen sacken ab",
     check: "1-s-Halten hinten möglich.",
     videos: [["Richtig eingestellt", "https://www.youtube.com/watch?v=dC7jhEk-29A"]] },
   curls: { name: "KH-Curls", muscles: "Bizeps",
-    setup: "Stehend oder an Schrägbank angelehnt, Ellbogen leicht vor dem Körper fixiert.",
-    exec: "Ohne Schwung beugen, oben kurz, 2–3 s absenken bis fast gestreckt — die Dehnphase baut den Bizeps.",
-    feel: "Bizeps inkl. Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandert hoch), Handgelenk",
-    mistakes: "Hüftschwung · oben «zuklappen» ohne Spannung · halbe Streckung",
+    cue: "In 2–3 s absenken bis fast gestreckt — die Dehnphase baut den Bizeps.",
+    setup: "Stehend oder an der Schrägbank angelehnt, Ellbogen leicht vor dem Körper fixiert.",
+    tall: "Lange Unterarme hebeln gegen dich: 12 kg sauber schlagen 16 kg geschwungen. Unten fast ganz strecken — dein langer Weg ist der Reiz.",
+    exec: ["Ohne Schwung beugen, die Ellbogen bleiben stehen.", "Oben kurz anspannen, nicht «zuklappen».", "In 2–3 s absenken bis fast gestreckt."],
+    feel: "Bizeps inkl. Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandert hoch) · Handgelenk",
+    mistakes: "Hüftschwung · oben ohne Spannung zuklappen · halbe Streckung",
     check: "2–3 s Absenken bei jeder Wiederholung.",
     videos: [["Fix Your Form", "https://www.youtube.com/watch?v=Jfp4b5Olc7A"]] },
   hammer: { name: "Hammer-Curls", muscles: "Bizeps · Brachialis · Unterarm",
+    cue: "Daumen oben, Ellbogen am Körper — langsame Exzentrik.",
     setup: "Wie KH-Curls, neutraler Griff (Daumen oben).",
-    exec: "Ohne Schwung, langsame Exzentrik.",
-    feel: "Bizeps + Unterarm-Aussenseite", notFeel: "Schulter, Handgelenk",
+    tall: "Gleiche Hebel-Wahrheit wie bei den Curls: Das Gewicht ist egal, der kontrollierte Rückweg zählt. Der Brachialis darunter macht deinen Arm von der Seite dick.",
+    exec: ["Ohne Schwung beugen, neutraler Griff.", "Oben kurz halten.", "In 2–3 s absenken bis fast gestreckt."],
+    feel: "Bizeps + Unterarm-Aussenseite", notFeel: "Schulter · Handgelenk",
     mistakes: "Schwung · zu schnelles Absenken",
     check: "Ellbogen bleiben am Körper.",
     videos: [["Richtig ausgeführt", "https://www.youtube.com/watch?v=Hy5L3-QJETc"]] },
   hacksquat: { name: "Hack Squat / Pendulum", muscles: "Quads · Gesäss",
-    setup: "Schultern unter die Polster, Rücken satt ans Pad, Füsse mittig-hoch und hüftbreit (200 cm: höherer Stand = mehr Tiefe ohne Fersen-Abheben).",
-    exec: "Kontrolliert absenken, so tief wie: Fersen unten UND Gesäss am Pad UND kein Kniestechen. Hoch ohne Einrasten.",
-    feel: "Quads, Gesäss", notFeel: "Knie stechend, unterer Rücken",
+    cue: "Gesäss bleibt am Pad, Fersen bleiben unten — das bestimmt deine Tiefe.",
+    setup: "Schultern unter die Polster, Rücken satt ans Pad, Füsse mittig-hoch und hüftbreit. Fussposition notieren.",
+    tall: "Höherer Stand = mehr Tiefe ohne Fersen-Abheben — der wichtigste Regler für lange Beine. Deine Tiefe endet, wo Ferse oder Gesäss nachgeben, nicht wo die Nachbarn umkehren. Seit v4: 3 Sätze, dafür nah ans Versagen.",
+    exec: ["In 2–3 s kontrolliert absenken.", "Umkehren, sobald Ferse oder Gesäss nachgeben wollen oder das Knie sticht.", "Hochdrücken ohne Einrasten, Knie in Fussrichtung."],
+    feel: "Quads, Gesäss", notFeel: "stechende Knie · unterer Rücken",
     mistakes: "Fersen heben ab · Abknallen unten · zu tief für die eigene Hebellänge",
-    check: "Gesäss bleibt am Pad — die ganze Range.",
+    check: "Gesäss bleibt am Pad — über die ganze Range.",
     videos: [["Form, Muskeln, Fehler", "https://www.youtube.com/watch?v=36_EC-MgVz8"]] },
   legcurl: { name: "Beinbeuger liegend", muscles: "Beinrückseite",
-    setup: "Kniegelenk-Achse = Maschinen-Drehpunkt (200 cm: Polster ganz nach unten verlängern, über der Ferse).",
-    exec: "Hüfte AKTIV ins Polster drücken, beugen, oben 1 s, volle kontrollierte Streckung. Zehen Richtung Schienbein ziehen isoliert besser.",
-    feel: "Beinrückseite — Krampfgefühl nahe Versagen ist normal", notFeel: "unterer Rücken, Wade",
+    cue: "Hüfte aktiv ins Polster pressen — hebt sie ab, stiehlt der Rücken den Satz.",
+    setup: "Drehpunkt der Maschine auf Höhe des Kniegelenks, Polster knapp über der Ferse.",
+    tall: "Beinlänge der Maschine ganz ausfahren — sitzt das Polster in der Wade statt über der Ferse, ist sie zu kurz eingestellt. Zehen Richtung Schienbein ziehen isoliert die Rückseite besser.",
+    exec: ["Hüfte bewusst ins Polster drücken und dort lassen.", "Beugen, oben 1 s halten.", "In 2–3 s in die volle, kontrollierte Streckung."],
+    feel: "Beinrückseite — Krampfgefühl nahe dem Versagen ist normal", notFeel: "unterer Rücken · Wade",
     mistakes: "Gesäss hebt bei jeder Wiederholung · Gewicht schnellt zurück",
     check: "Hüfte bleibt unten — den ganzen Satz.",
     videos: [["Setup, Technik & Fehler", "https://www.youtube.com/watch?v=vl5nUdE9mWM"]] },
   bss: { name: "Bulgarian Split Squats", muscles: "Quad + Gesäss (vorderes Bein)",
-    setup: "Spann des Hinterfusses auf die Bank, Vorderfuss so weit vorn, dass das Knie unten über dem Mittelfuss steht. KH hängen seitlich. Ohne Gewicht 5 Wdh Balance testen — bei 200 cm ist der Hebel lang. Schrittlänge markieren/notieren!",
-    exec: "Senkrecht absenken, hinteres Knie Richtung Boden, Oberkörper leicht vor (= mehr Gesäss). Das vordere Knie DARF über die Zehen, solange die Ferse unten bleibt.",
-    feel: "Quad + Gesäss vorderes Bein, Hüft-Dehnung hinten", notFeel: "Hinterbein arbeitet mit, seitliches Kniewackeln",
+    cue: "Schrittlänge notieren — gleiche Länge, gleicher Reiz, jede Session.",
+    setup: "Spann des Hinterfusses auf die Bank, Vorderfuss so weit vorn, dass das Knie unten über dem Mittelfuss steht. KH hängen seitlich.",
+    tall: "Dein Hebel ist lang: ohne Gewicht 5 Wdh Balance testen, Schrittlänge markieren. Das vordere Knie darf über die Zehen, solange die Ferse unten bleibt.",
+    exec: ["Senkrecht absenken, hinteres Knie Richtung Boden.", "Oberkörper leicht vor — mehr Gesäss.", "Über die ganze Fusssohle hochdrücken, ohne Abstossen hinten."],
+    feel: "Quad + Gesäss vorderes Bein, Hüft-Dehnung hinten", notFeel: "Hinterbein arbeitet mit · seitliches Kniewackeln",
     mistakes: "Zu kurzer Stand · Abstossen mit dem hinteren Bein · Schrittlänge jede Session anders",
     check: "Gleiche Schrittlänge wie letztes Mal (Notiz!).",
     videos: [["Korrekt ausgeführt", "https://www.youtube.com/watch?v=VPhhE6bBzZE"]] },
   inclinemach: { name: "Schrägbank-Presse Maschine", muscles: "obere Brust · vordere Schulter · Trizeps",
-    setup: "Sitz so, dass die Griffe auf Höhe der oberen Brust bzw. knapp unter dem Schlüsselbein starten (200 cm: Sitz meist ganz runter). Schulterblätter zusammen und nach unten ins Polster, Füsse fest am Boden. Setup notieren.",
-    exec: "Ellbogen ~45–60° vom Körper, kontrolliert nach oben-vorn drücken, oben nicht einrasten. Zurück bis zur deutlichen Brust-Dehnung und dort 1 s halten, dann ohne Schwung wieder drücken.",
-    feel: "obere Brust, vordere Schulter", notFeel: "Stechen vorn im Schultergelenk, Nacken",
+    cue: "Unten 1 s in der Brust-Dehnung halten — dort wächst die obere Brust.",
+    setup: "Sitz so, dass die Griffe knapp unter dem Schlüsselbein starten. Schulterblätter zusammen und runter ins Polster, Füsse fest. Setup notieren.",
+    tall: "Sitz meist ganz runter. Starten die Griffe auf Augen- statt Schlüsselbeinhöhe, drückst du Schulter statt Brust.",
+    shoulder: "Schulterblätter bleiben im Polster, Ellbogen 45–60°. Zwickt es vorn: Griffe eine Stufe enger oder Range oben kürzen.",
+    exec: ["Ellbogen 45–60° vom Körper, nach oben-vorn drücken.", "Oben nicht einrasten.", "In 2–3 s zurück bis zur deutlichen Dehnung — dort 1 s halten, dann ohne Schwung drücken."],
+    feel: "obere Brust, vordere Schulter", notFeel: "Stechen vorn im Schultergelenk · Nacken",
     mistakes: "Sitz zu hoch (wird Schulterdrücken) · Schultern lösen sich vom Polster · halbe Wiederholungen ohne Dehnung",
     check: "Unten 1 s halten möglich, Schulterblätter bleiben im Polster.",
     videos: [["Form-Anleitung", "https://liftosaur.com/exercises/leverage-machine-incline-chest-press"]] },
   inclinecurl: { name: "Schrägbank-Curls", muscles: "Bizeps (langer Kopf)",
-    setup: "Schrägbank auf 45–60°, Rücken und Hinterkopf an der Lehne. Arme hängen senkrecht nach unten, leicht hinter dem Körper.",
-    exec: "Ellbogen bleiben hinten und ruhig, nur der Unterarm bewegt sich. Hoch ohne Schwung, 2–3 s absenken bis die Arme ganz lang sind: die Dehnung unten ist der Wachstumsreiz.",
-    feel: "Bizeps inkl. starker Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandern nach vorn), Handgelenk",
-    mistakes: "Ellbogen kommen nach vorn · Schultern rollen von der Lehne · oben ohne Spannung «zuklappen»",
+    cue: "Ellbogen bleiben hinter dem Körper — die Dehnung unten ist der Wachstumsreiz.",
+    setup: "Schrägbank auf 45–60°, Rücken und Hinterkopf an der Lehne, Arme hängen senkrecht nach unten.",
+    tall: "Mit deinen Armen reicht schon eine 60°-Lehne für eine riesige Dehnung — flacher (45°) nur, wenn die Schulter dabei entspannt bleibt. 2×8 kg sind hier ehrlich.",
+    exec: ["Arme hängen lang, leicht hinter dem Körper.", "Ohne Schwung beugen — die Ellbogen bleiben hinten und still.", "In 2–3 s absenken, bis die Arme ganz lang sind."],
+    feel: "Bizeps inkl. starker Dehnung unten", notFeel: "vordere Schulter (Ellbogen wandern nach vorn) · Handgelenk",
+    mistakes: "Ellbogen kommen nach vorn · Schultern rollen von der Lehne · oben ohne Spannung zuklappen",
     check: "Ellbogen bleiben während des ganzen Satzes hinter dem Körper.",
     videos: [["Form-Anleitung", "https://liftosaur.com/exercises/dumbbell-incline-curl"]] },
   calf_seat: { name: "Wadenheben sitzend", muscles: "tiefe Wade (Soleus)",
+    cue: "1-s-Pausen unten und oben — Federn ist verschenkte Zeit.",
     setup: "Polster auf den Oberschenkeln, Fussballen auf der Kante.",
-    exec: "Volle Dehnung unten (1 s), Pause oben (1 s). Wie stehend, nur sitzend für den Soleus.",
+    tall: "Polster weit genug ausfahren, Knie etwa 90° — der Soleus arbeitet nur sitzend voll.",
+    exec: ["Ferse tief — 1 s Dehnung halten.", "Hoch auf den Ballen, oben 1 s.", "In 2 s runter — keine halben Wiederholungen."],
     feel: "Wade, tief", notFeel: "Achillessehnen-Stechen",
     mistakes: "Federn ohne Pausen",
     check: "1-s-Pausen unten und oben.",
@@ -884,12 +957,13 @@ const PULLUP_PROJECT = {
 /* ============ ERNÄHRUNG: Module, Menüs, Swaps, Regeln ============ */
 "use strict";
 
-/* Baukasten v2.0 «Reality Edition»: Q · PW · T · T (+ S im Aufbau) + Zusatzmodule V (Velo) / W (Schwimmen) */
+/* Baukasten v2.2: Q · PW · T · T (+ S im Aufbau) + Zusatzmodule V (Velo) / W (Schwimmen).
+   Ab 27.10.2026: T1/T2 sind wählbare Hauptmahlzeiten (MEALS) statt fix Topf-Portion. */
 const MODULES = {
   Q:  { name: "Quark", time: "Frühstück" },
   PW: { name: "Frühstücks-Shake", time: "Frühstück" },
-  T1: { name: "Topf-Portion 1", time: "Mittag" },
-  T2: { name: "Topf-Portion 2", time: "Abend" },
+  T1: { name: "Mittagessen", time: "Mittag" },
+  T2: { name: "Abendessen", time: "Abend" },
   S:  { name: "Energie-Snack", time: "Office", phase: "nur Aufbau" },
   V:  { name: "Velo-Modul", time: "ums Velo", phase: "an Velotagen" },
   W:  { name: "Schwimm-Modul", time: "danach", phase: "an Schwimmtagen im Aufbau" },
@@ -907,18 +981,22 @@ const QUARK = { kcal: 330, p: 60 };
 /* Aufbau-Stufen — Stufe wird im Ernährungs-Tab gesetzt.
    Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
    Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
+/* Ab 27.10.2026: Abend-Shake ohne Whey, mit Honig statt Banane (Dimitris Wunsch). Protein ist mit ~260–300 g gedeckt,
+   der Shake liefert nur noch Kohlenhydrate. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
 const STUFEN = {
   1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3420" },
-  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 50 }, kcal: "~3720" },
-  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 100 }, kcal: "~3910" },
-  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 30, oats: 100, milk: 500, milkK: 0.65 }, kcal: "~4230" }
+  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, honey: 20 }, kcal: "~3720" },
+  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 120, honey: 20 }, kcal: "~3910" },
+  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 120, honey: 20, milk: 500, milkK: 0.65 }, kcal: "~4230" }
 };
+const STUFEN_ABEND_OLD = { 1: null, 2: { whey: 30, oats: 50 }, 3: { whey: 30, oats: 100 }, 4: { whey: 30, oats: 100, milk: 500, milkK: 0.65 } };
+function stufeKcal(st) { return +String(STUFEN[st || curStufe()].kcal).replace(/\D/g, ""); }
 const STUFEN_TABLE = [
   ["cut1", "Mini-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
-  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · Topf 2 Tassen · S", "~3420"],
-  ["bulk2", "Aufbau Stufe 2 · Abend-Shake halb", "+ Abend-Shake: 30 g Whey + 50 g Oats", "~3720"],
-  ["bulk3", "Aufbau Stufe 3 · Abend-Shake voll", "+ Abend-Shake: 30 g Whey + 100 g Oats", "~3910"],
-  ["bulk4", "Aufbau Stufe 4 · Abend-Shake mit Milch", "Abend-Shake mit 500 ml Vollmilch statt Wasser", "~4230"],
+  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · 2 Hauptmahlzeiten · S, wo nötig", "~3420"],
+  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 90 g Oats + 20 g Honig", "~3720"],
+  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 120 g Oats + 20 g Honig", "~3910"],
+  ["bulk4", "Aufbau Stufe 4 · Abend-Shake mit Milch", "Abend-Shake 120/20 mit 500 ml Vollmilch statt Wasser", "~4230"],
   ["cut2", "Polish-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
   ["summer", "Sommer", "2 Tassen · Shake 30/100 · ohne S", "~3060"]
 ];
@@ -932,6 +1010,68 @@ const POT = {
     ["Vitamin C fürs Eisen", "Tomatenmark oder Peperoni in den Topf, Beeren im Quark."]
   ]
 };
+/* Hauptmahlzeiten für die Slots T1 (Mittag) und T2 (Abend), gemeldet von Dimitri am 27.10.2026.
+   Werte pro Portion, gerechnet mit Quinoa/Pasta/Reis roh und Hülsenfrüchten abgetropft:
+   Quinoa 365 kcal/100 g · Pouletbrust 110 · Edamame 130 · Schafskäse 265 · Pasta 355 · Pesto Vemondo vegan Calabrese 200 ·
+   Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105. */
+const MEAL_SWITCH = "2026-10-27";
+const MEAL_IDS = ["topf", "quinoa", "pasta", "reis"];
+const MEALS = {
+  topf: { name: "Standard-Topf", short: "Topf", full: "Standard-Topf mit Linsen, Bohnen, Reis & Hack", portions: 3, typ: "warm", time: "35 Min" },
+  quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Schafskäse", portions: 4, typ: "kalt", time: "40 Min, davon 20 passiv",
+    kcal: 1040, p: 82, kh: 84, f: 37, bs: 17, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
+    ing: ["450 g Quinoa (roh) · 900 ml Wasser · 1 TL Bouillon-Pulver", "700 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne",
+      "1 Gurke · 250 g Cherrytomaten · 2 Peperoni · 1 rote Zwiebel · 1 Bund Petersilie", "Dressing: 25 g Olivenöl · Saft von 1½ Zitronen · 1 TL Senf · 1 Knoblauchzehe · 1 TL Kreuzkümmel", "1 TL Paprika edelsüss · Salz · Pfeffer"],
+    steps: ["Ofen auf 200 °C. Quinoa im feinen Sieb spülen, bis es nicht mehr schäumt (sonst bitter).", "Quinoa mit Wasser und Bouillon aufkochen, zugedeckt 15 Min köcheln, 5 Min ziehen lassen. Auf einem Blech auskühlen.",
+      "Parallel: Poulet mit Paprika, ½ TL Kreuzkümmel, Salz und Pfeffer einreiben, 20–24 Min in den Ofen bis 74 °C Kerntemperatur. Lauwarm würfeln.", "Edamame 3 Min in Salzwasser blanchieren, kalt abschrecken.",
+      "Gemüse würfeln, Petersilie hacken. Dressing verquirlen.", "Alles mischen und auf 4 Boxen verteilen. Schafskäse und Kürbiskerne separat, erst beim Essen drüber.", "Innert 1 h in den Kühlschrank."],
+    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 550 g gekochte Crevetten oder 3 Dosen Thon in Wasser ersetzen."]] },
+  pasta: { name: "Pasta Poulet-Pesto", short: "Pasta", full: "Pasta mit Poulet und Pesto alla Calabrese", portions: 1, typ: "warm", time: "20 Min",
+    kcal: 1460, p: 116, kh: 186, f: 25, bs: 9, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
+    ing: ["250 g Pasta (roh)", "350 g Pouletbrust (roh)", "½ Glas Pesto alla Calabrese vegan (Vemondo, Lidl) · ~95 g", "Salz · Pfeffer"],
+    steps: ["Pasta in reichlich Salzwasser kochen.", "Poulet in Streifen schneiden, in der beschichteten Pfanne 6–8 Min braten, salzen und pfeffern.", "Pasta abgiessen, eine Kelle Kochwasser aufheben.", "Pesto und Poulet unterheben, mit etwas Kochwasser cremig ziehen."],
+    tips: [["Mehr Kalorien, weniger satt", "200 g Poulet und das ganze Glas Pesto: gleich viele Kalorien (~1490), aber deutlich weniger Sättigung. Protein bleibt bei ~270 g pro Tag."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 200 g Lachs statt Poulet: etwa gleich viele Kalorien."]] },
+  reis: { name: "Reis-Topf", short: "Reis", full: "Reis-Topf mit Hack, Linsen, Bohnen & Kichererbsen", portions: 4, typ: "warm", time: "35 Min",
+    kcal: 1410, p: 71, kh: 226, f: 20, bs: 18, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
+    ing: ["1 kg Parboiled-Reis (roh)", "700 g Bio-Hack <9 % (Aldi)", "400 g Beluga-Linsen, abgetropft", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
+    steps: ["Reis in einem grossen Topf in reichlich Salzwasser nach Packung kochen, abgiessen und auf einem Blech ausbreiten.", "Hack ohne Öl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
+      "Hülsenfrüchte abspülen, dazugeben und mit einem Schluck Wasser 5 Min köcheln.", "Reis unterheben, abschmecken, auf 4 Boxen verteilen.", "Innert 1 h kühlen. Box 3 und 4 einfrieren und am Vorabend in den Kühlschrank legen."],
+    tips: [["Grosse Portion", "Eine Box wiegt gut 1 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1130 kcal verteilen."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
+};
+function mealFor(k, slot) {
+  const m = S.meal && S.meal[k] && S.meal[k][slot];
+  if (m && MEALS[m]) return m;
+  if (k < MEAL_SWITCH) return "topf";
+  const d = S.mealDef && S.mealDef[slot];
+  return d && MEALS[d] ? d : (slot === "T1" ? "quinoa" : "pasta");
+}
+/* Inhalt einer Hauptmahlzeit; der Standard-Topf folgt Phase und Stufe */
+function mealInfo(id, n) {
+  const M = MEALS[id] || MEALS.topf;
+  if (id === "topf" || !MEALS[id]) return { id: "topf", name: M.name, short: M.short, kcal: n.T.kcal, p: n.T.p,
+    desc: "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")", sub: "⅓ von 3 Portionen" };
+  return { id: id, name: M.name, short: M.short, kcal: M.kcal, p: M.p, desc: M.portions > 1 ? "¼ " + M.full : M.full, sub: M.portions > 1 ? "1 von " + M.portions + " Boxen" : "1 Portion frisch" };
+}
+/* Wahl merken, bevor sich der Standard ändert: abgehakte Tage behalten ihre Mahlzeit */
+function freezeMeals(slot) {
+  const tk = todayKey();
+  for (let d = MEAL_SWITCH; d <= tk; d = addDays(d, 1)) {
+    if (S.meal[d] && S.meal[d][slot]) continue;
+    if (!(S.mods[d] && Object.keys(S.mods[d]).some(m => S.mods[d][m]))) continue;
+    S.meal[d] = S.meal[d] || {}; S.meal[d][slot] = mealFor(d, slot);
+  }
+}
+function pinMeals(k) { ["T1", "T2"].forEach(sl => { S.meal[k] = S.meal[k] || {}; if (!S.meal[k][sl]) S.meal[k][sl] = mealFor(k, sl); }); }
+/* Energie-Snack S als Reserve: Decken die Hauptmahlzeiten (plus Abend-Shake) das Stufen-Ziel schon bis auf <175 kcal,
+   fällt S aus dem Tagesplan. Abgehakt zählt er trotzdem als gegessen. */
+const S_RESERVE_GAP = 175;
+function sReserve(k) {
+  const p = phaseFor(k);
+  if (p.id !== "bulk" || p.mods.indexOf("S") < 0 || k < MEAL_SWITCH) return false;
+  const n = nutFor(k);
+  const base = p.mods.filter(m => m !== "S").reduce((a, m) => a + modInfo(m, k).kcal, 0) + (n.abend ? shakeK(n.abend) : 0);
+  return stufeKcal() - base < S_RESERVE_GAP;
+}
 /* Topf-Zutaten der aktuellen Phase/Stufe: «Topf dicht» (Stufe 4) ohne Bohnen und mit 40 g Öl */
 function potList(n) {
   return POT.base.filter(x => !(n.dense && /Bohnen/.test(x)))
@@ -940,8 +1080,8 @@ function potList(n) {
 
 const TIMING = [
   ["Frühstück", "Quark + Frühstücks-Shake zusammen. Di–Fr nach dem Training (~08:30), an freien Tagen wann du willst. Das Kreatin ist im Shake."],
-  ["Topf-Portionen", "Mittags ~12:00 und abends ~19:30, spätestens 1.5 h vor Licht aus (22:15). Die Abend-Portion ist der Treibstoff fürs Morgentraining: nicht auslassen."],
-  ["Abend-Shake", "Ab Stufe 2, bis ~21:00. Flüssige Kalorien sättigen am wenigsten, und die Oats füllen die Speicher fürs Training am nächsten Morgen."],
+  ["Hauptmahlzeiten", "Mittags ~12:00 und abends ~19:30, spätestens 1.5 h vor Licht aus (22:15). Das Abendessen ist der Treibstoff fürs Morgentraining: nicht auslassen."],
+  ["Abend-Shake", "Ab Stufe 2, bis ~21:00. Flüssige Kalorien sättigen am wenigsten, und die Oats füllen die Speicher fürs Training am nächsten Morgen. Ohne Whey, Kreatin nur morgens."],
   ["Ruhetag", "Im Aufbau isst du jeden Tag gleich, die Oats auch am Ruhetag. Nur im Cut fällt am Ruhetag der Oats-Teil weg."],
   ["Velo & Schwimmen", "Auf «Heute» eintragen — Modul V bzw. W erscheint automatisch, dosiert nach Phase."]
 ];
@@ -1081,11 +1221,11 @@ function loadState() {
   return null;
 }
 function defaultState() {
-  return { v: 1, w: {}, sleep: {}, steps: {}, waist: {}, mods: {}, wo: {}, setup: {}, pull: [], nsdr: {}, sauna: {}, velo: {}, swim: {}, stufe: 1, exnote: {}, health: {}, extra: {}, goal: "aufbau", meas: {}, hxMeta: {}, strava: { acts: {} } };
+  return { v: 1, w: {}, sleep: {}, steps: {}, waist: {}, mods: {}, wo: {}, setup: {}, pull: [], nsdr: {}, sauna: {}, velo: {}, swim: {}, stufe: 1, exnote: {}, health: {}, extra: {}, goal: "aufbau", meas: {}, hxMeta: {}, strava: { acts: {} }, meal: {}, mealDef: { T1: "quinoa", T2: "pasta" } };
 }
 let S = loadState() || MEM || defaultState();
 // Migration/Absicherung
-function migrateState(o) { const d = defaultState(); for (const k in d) if (o[k] === undefined) o[k] = d[k]; if (!o.strava || typeof o.strava !== "object") o.strava = d.strava; if (!o.strava.acts || typeof o.strava.acts !== "object") o.strava.acts = {}; return o; }
+function migrateState(o) { const d = defaultState(); for (const k in d) if (o[k] === undefined) o[k] = d[k]; if (!o.strava || typeof o.strava !== "object") o.strava = d.strava; if (!o.strava.acts || typeof o.strava.acts !== "object") o.strava.acts = {}; if (!o.meal || typeof o.meal !== "object") o.meal = {}; if (!o.mealDef || typeof o.mealDef !== "object") o.mealDef = d.mealDef; return o; }
 migrateState(S);
 
 let saveT = null;
@@ -1170,7 +1310,8 @@ function nutFor(k) {
   const base = NUT[p.nut || "bulk"];
   if (p.id !== "bulk") return Object.assign({ milk: 0, abend: null }, base);
   const st = STUFEN[curStufe()];
-  return Object.assign({}, base, { reis: st.reis, T: st.T, milk: 0, pb: 0, dense: !!st.dense, abend: st.abend || null, stufe: curStufe() });
+  const abend = k < MEAL_SWITCH ? STUFEN_ABEND_OLD[curStufe()] : st.abend;
+  return Object.assign({}, base, { reis: st.reis, T: st.T, milk: 0, pb: 0, dense: !!st.dense, abend: abend || null, stufe: curStufe() });
 }
 function phaseKcal(k) {
   const p = phaseFor(k);
@@ -1178,13 +1319,13 @@ function phaseKcal(k) {
   return p.kcal;
 }
 /* Milch: ohne milkK Milchdrink (0.47 kcal/ml), mit milkK Vollmilch 3.5 % (0.65 kcal/ml) · Erdnussbutter 6 kcal / 0.25 g P pro g */
-function shakeK(n) { return Math.round(n.whey * 4 + n.oats * 3.7 + (n.milk ? n.milk * (n.milkK || 0.47) : 0) + (n.pb ? n.pb * 6 : 0)); }
-function shakeP(n) { return Math.round(n.whey * 0.8 + n.oats * 0.13 + (n.milk ? n.milk * 0.034 : 0) + (n.pb ? n.pb * 0.25 : 0)); }
+function shakeK(n) { return Math.round((n.whey || 0) * 4 + n.oats * 3.7 + (n.honey ? n.honey * 3.04 : 0) + (n.milk ? n.milk * (n.milkK || 0.47) : 0) + (n.pb ? n.pb * 6 : 0)); }
+function shakeP(n) { return Math.round((n.whey || 0) * 0.8 + n.oats * 0.13 + (n.milk ? n.milk * 0.034 : 0) + (n.pb ? n.pb * 0.25 : 0)); }
 function milkTxt(n) { return n.milk ? n.milk + " ml " + (n.milkK ? "Vollmilch" : "Milch") : ""; }
-function shakeTxt(n) { return n.whey + " g Whey + " + n.oats + " g Oats" + (n.milk ? " + " + milkTxt(n) : "") + (n.pb ? " + " + n.pb + " g Erdnussbutter" : ""); }
+function shakeTxt(n) { return [n.whey ? n.whey + " g Whey" : "", n.oats + " g Oats", n.honey ? n.honey + " g Honig" : "", n.milk ? milkTxt(n) : "", n.pb ? n.pb + " g Erdnussbutter" : ""].filter(Boolean).join(" + "); }
 function veloMod(n, lvl) {
   if (n.eat === "full") {
-    if (lvl === "lang") return { desc: "Unterwegs 2 Bananen + 500 ml Sirup-Wasser (~60 g KH/h) · danach Extra-Shake " + shakeTxt(n) + " · abends ½ Topf-Portion extra",
+    if (lvl === "lang") return { desc: "Unterwegs 2 Bananen + 500 ml Sirup-Wasser (~60 g KH/h) · danach Extra-Shake " + shakeTxt(n) + " · abends ½ Hauptmahlzeit extra",
       kcal: 330 + shakeK(n) + Math.round(n.T.kcal / 2), p: 3 + shakeP(n) + Math.round(n.T.p / 2) };
     return { desc: "Unterwegs 1 Banane · danach Extra-Shake " + shakeTxt(n), kcal: 105 + shakeK(n), p: 1 + shakeP(n) };
   }
@@ -1194,7 +1335,7 @@ function veloMod(n, lvl) {
 function veloLvl(k) { return S.velo[k] ? (S.velo[k] === "lang" ? "lang" : "kurz") : ""; }
 function modsForDay(k) {
   const p = phaseFor(k), n = NUT[p.nut || "bulk"];
-  const list = p.mods.slice();
+  const list = p.mods.filter(m => !(m === "S" && sReserve(k)));
   if (S.velo && S.velo[k]) list.push("V");
   if (S.swim && S.swim[k] && n.eat === "full") list.push("W");
   if (p.id === "bulk" && nutFor(k).abend) list.push("A");
@@ -1214,8 +1355,8 @@ function modInfo(m, k) {
       r.kcal = shakeK(nn); r.p = shakeP(nn);
     }
   }
-  if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + " · ohne Kreatin"; r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
-  if (m === "T1" || m === "T2") { r.desc = "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")"; r.kcal = n.T.kcal; r.p = n.T.p; }
+  if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + (n.abend.whey ? " · ohne Kreatin" : " · Zimt oder Kakao dazu"); r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
+  if (m === "T1" || m === "T2") { const ml = mealInfo(mealFor(k, m), n); r.name = ml.name; r.meal = ml.id; r.desc = ml.desc; r.kcal = ml.kcal; r.p = ml.p; }
   if (m === "S") { r.desc = "40 g Nüsse + 1 Banane"; r.kcal = 355; r.p = 8; }
   if (m === "V") {
     const lvl = veloLvl(k) || "kurz", v = veloMod(n, lvl);
@@ -1317,6 +1458,8 @@ function bannersFor(k) {
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
     h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
+  if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
+    h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Hauptmahlzeiten wählbar.</b> Mittags Quinoa-Box, abends Pasta oder Reis-Topf — pro Tag mit «Mahlzeit wechseln» oder als Standard im Ernährungs-Tab. Abend-Shake jetzt mit Honig, ohne Whey. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
   else if (isDeloadWeek(k)) h += `<div class="banner warn"><span class="ic">🪫</span><div><b>Deload-Woche.</b> ${esc(PLAN.deloadRule)}</div></div>`;
@@ -2650,7 +2793,7 @@ function svRows(k) {
    EN.rest = Grundumsatz aus dem seca-Scan (26.04.26), falls der Kurzbefehl keine Ruheenergie liefert. */
 const EN = { rest: 2040, tef: 0.1, kg: 7700, band: 150, cap: 600 };
 /* Bausteine für «Mehr essen»: dicht vor voluminös — flüssig und fettreich zuerst, kein zusätzliches Protein nötig */
-const EN_ADD = [[305, "Abend-Shake halb: 30 g Whey + 50 g Oats"], [490, "Abend-Shake: 30 g Whey + 100 g Oats"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
+const EN_ADD = [[395, "Abend-Shake: 90 g Oats + 20 g Honig"], [505, "Abend-Shake: 120 g Oats + 20 g Honig"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
   [280, "50 g Granola + 20 g Honig in den Quark"], [325, "500 ml Vollmilch statt Wasser im Shake"], [415, "Shake mit 500 ml Vollmilch + 15 g Erdnussbutter"],
   [445, "Snack S extra + 15 g Erdnussbutter im Shake"], [600, "Granola-Quark + 500 ml Vollmilch im Shake"]];
 function r10(x) { return Math.round(x / 10) * 10; }
@@ -2687,6 +2830,7 @@ function dayEnergy(k, rt) {
   const h = S.health[k] || {}, got = S.mods[k] || {}, mods = modsForDay(k);
   let plan = 0, eat = 0, n = 0;
   mods.forEach(m => { const i = modInfo(m, k); plan += i.kcal; if (got[m]) { eat += i.kcal; n++; } });
+  if (got.S && mods.indexOf("S") < 0 && sReserve(k)) eat += modInfo("S", k).kcal;
   const extra = Math.max(0, +S.extra[k] || 0);
   eat += extra;
   const logged = n >= Math.ceil(mods.length / 2) || extra > 0;
@@ -2890,7 +3034,7 @@ function energySheet() {
     <button class="btn ghost" id="enclose">Schliessen</button>`);
   document.getElementById("enclose").addEventListener("click", closeSheet);
   document.querySelectorAll("#sheet [data-en-fill]").forEach(b => b.addEventListener("click", () => {
-    const d = b.dataset.enFill; S.mods[d] = S.mods[d] || {};
+    const d = b.dataset.enFill; S.mods[d] = S.mods[d] || {}; pinMeals(d);
     modsForDay(d).forEach(m => { S.mods[d][m] = true; });
     save(); renderAll(); energySheet();
   }));
@@ -2968,6 +3112,8 @@ function vHome() {
   const order = dayOrder(k).filter(id => id === "TRAIN" || mods.indexOf(id) >= 0);
   let eatK = 0, dayK = 0, eatP = 0, dayP = 0, doneMods = 0;
   mods.forEach(m => { dayK += info[m].kcal; dayP += info[m].p; if (got[m]) { eatK += info[m].kcal; eatP += info[m].p; doneMods++; } });
+  const resS = mods.indexOf("S") < 0 && sReserve(k), resInfo = resS ? modInfo("S", k) : null;
+  if (resS && got.S) { eatK += resInfo.kcal; eatP += resInfo.p; }
   const extraK = Math.max(0, +S.extra[k] || 0);
   eatK += extraK;
   const pxOpen = !sess && pxPending(k);
@@ -3033,15 +3179,27 @@ function vHome() {
         <button class="minibtn blue" data-open-sess="${sessKey}" style="margin-top:8px">${done ? "Session ansehen ›" : "Session öffnen ›"}</button>
       </div>`;
     const r = info[id];
-    return `<button class="tlrow ${cls}" data-mod="${id}" aria-pressed="${done}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">
-        <span style="display:block;flex-grow:1;min-width:0">
+    const inner = `<span style="display:block;flex-grow:1;min-width:0">
           <span class="d" style="display:block${isNext ? ";color:var(--blue);font-weight:650" : ""}">${esc(r.time)}${isNext ? " · als Nächstes" : ""}</span>
           <span class="l" style="display:block">${esc(modTitle(r))}</span>
           <span class="dt" style="display:block">${esc(modLine(r))}</span>
         </span>
-        <span class="cbox"${done ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span>
+        <span class="cbox"${done ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span>`;
+    if (id === "T1" || id === "T2") return `<div class="tlrow ${cls}">
+        <button data-mod="${id}" aria-pressed="${done}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">${inner}</button>
+        <button class="minibtn" data-meal="${id}" style="margin-top:7px">Mahlzeit wechseln ›</button>
+      </div>`;
+    return `<button class="tlrow ${cls}" data-mod="${id}" aria-pressed="${done}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">
+        ${inner}
       </button>`;
-  }).join("");
+  }).join("") + (resS ? `<button class="tlrow ${got.S ? "past" : ""}" data-mod="S" aria-pressed="${!!got.S}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">
+        <span style="display:block;flex-grow:1;min-width:0">
+          <span class="d" style="display:block">Reserve · nur bei Bedarf</span>
+          <span class="l" style="display:block">S · ${esc(resInfo.name)}</span>
+          <span class="dt" style="display:block">${esc(resInfo.desc)} · ≈${fmtK(resInfo.kcal)} kcal — deine Hauptmahlzeiten decken ihn heute schon. Essen, wenn die Energie-Karte «mehr essen» zeigt.</span>
+        </span>
+        <span class="cbox"${got.S ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span>
+      </button>` : "");
   const fromH = [hh.w != null && S.w[k] === hh.w ? "Gewicht" : "", hh.sleep != null && sl.h === hh.sleep ? "Schlaf" : ""].filter(Boolean);
   const fromHNote = fromH.length ? `<div class="note">⌚ ${fromH.join(" und ")} aus Apple Health${hh.sleep != null && sl.h === hh.sleep && !sl.q ? " — Schlafqualität bitte selbst wählen" : ""}.</div>` : "";
   const dTr = dayTrainings(k), hasCat = c => dTr.some(x => x.cat === c);
@@ -3127,8 +3285,11 @@ function vHome() {
   stIn.addEventListener("change", () => { const v = parseInt(stIn.value); if (v >= 0) { S.steps[k] = v; if (S.health[k]) delete S.health[k].stepsAt; save(); vHome(); } else if (!stIn.value) { delete S.steps[k]; save(); vHome(); } });
   root.querySelectorAll("[data-mod]").forEach(row => row.addEventListener("click", () => {
     const m = row.dataset.mod; S.mods[k] = S.mods[k] || {};
-    S.mods[k][m] = !S.mods[k][m]; save(); vHome();
+    S.mods[k][m] = !S.mods[k][m];
+    if ((m === "T1" || m === "T2") && S.mods[k][m]) { S.meal[k] = S.meal[k] || {}; if (!S.meal[k][m]) S.meal[k][m] = mealFor(k, m); }
+    save(); vHome();
   }));
+  root.querySelectorAll("[data-meal]").forEach(b => b.addEventListener("click", () => mealSheet(b.dataset.meal, k)));
   root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; APP.tab = "train"; renderAll(); window.scrollTo(0, 0); }));
   root.querySelectorAll("[data-timer]").forEach(b => b.addEventListener("click", () => openTimer(b.dataset.timer)));
   bindHealth(root);
@@ -3264,6 +3425,7 @@ function vSession() {
         <div class="nr">SLOT ${si + 1}${slot.pair ? " · Wechselsatz mit Slot " + slot.pair : ""}${slot.ss ? " · Superset mit Slot " + slot.ss : ""}</div>
         <div class="nm">${esc(ex.name)}</div>
         <div class="target">${slot.sets} × ${slot.reps}${deload ? " · Deload: ½ Sätze, −10 %" : setup ? " · RIR 3, Gewicht finden" : " · RIR 1–2"}</div>
+        ${ex.cue ? `<div class="cue">★ ${esc(ex.cue)}</div>` : ""}
         ${perf ? `<div class="last">Letztes Mal (${fmtDate(perf.date)}): ${fmtSets(perf.sets)}</div>` : `<div class="startw">Start: ${esc(slot.start)}</div>`}
         ${progHint}
         ${slot.note ? `<div class="startw">${esc(slot.note)}</div>` : ""}
@@ -3276,13 +3438,15 @@ function vSession() {
         <button class="minibtn" data-timer="pause120">2 Min</button>
         <button class="minibtn" data-timer="pause180">3 Min</button>`}
         <button class="minibtn" data-addset="${slot.ex}">+ Satz</button>
-        <button class="minibtn blue" data-tech="${slot.ex}">Technik & Setup</button>
+        <button class="minibtn blue" data-tech="${slot.ex}">📖 Technik & Setup</button>
       </div>
       <div class="exdetail" id="tech-${slot.ex}">
         <h4>Maschinen-Setup / Notiz (bleibt gespeichert)</h4>
         <textarea class="setupnote" data-setup="${slot.ex}" placeholder="z.B. Stadelhofen, Sitz 7, Griff 3 …">${esc(S.setup[slot.ex] || "")}</textarea>
         <h4>Setup</h4>${esc(ex.setup)}
-        <h4>Ausführung</h4>${esc(ex.exec)}
+        ${ex.tall ? `<h4>Für deine 2 m</h4><div class="tallrow">📏 ${esc(ex.tall)}</div>` : ""}
+        ${ex.shoulder ? `<h4>Schulter-Schutz</h4><div class="shldrow">🛡️ ${esc(ex.shoulder)}</div>` : ""}
+        <h4>Ausführung — Schritt für Schritt</h4>${Array.isArray(ex.exec) ? `<ol class="steps">${ex.exec.map(s => `<li>${esc(s)}</li>`).join("")}</ol>` : esc(ex.exec)}
         <h4>Spüren</h4><span class="ok">✓ ${esc(ex.feel)}</span><br><span class="no">✗ ${esc(ex.notFeel)}</span>
         <h4>Häufigste Fehler</h4>${esc(ex.mistakes)}
         <h4>Selbstcheck</h4>${esc(ex.check)}
@@ -3298,6 +3462,7 @@ function vSession() {
       <div class="grow"><div class="t">${sess.day} — ${esc(sess.name)}</div><div class="s">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${esc(sess.pauses || "Pausen: Verbund 2–3 Min, Isolation 60–90 s")}</div></div>
     </div>
     ${bannersFor(k)}
+    ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: Übungs-Guides für deine 2 m.</b> Bei jeder Übung «Technik & Setup» öffnen — Schritt-für-Schritt-Ausführung, 2-m-Hinweise, Schulter-Schutz. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
     <div class="card" style="background:var(--surface2)">
       <div style="font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px">Warm-up · 8 Min</div>
       <div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(sess.warmup)}</div>
@@ -3385,11 +3550,11 @@ function vFood() {
     { id: "PW", title: "PW · Frühstücks-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
       body: n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser. Zusammen mit dem Quark zum Frühstück, Di–Fr nach dem Training." + (n.eat === "full" ? "<br>Im Aufbau jeden Tag gleich, auch am Ruhetag." : "<br>Cut-Ruhetag: nur Whey, ohne Oats (≈" + shakeK(nRest) + " kcal).") },
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
-      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Kreatin nur morgens.<br>Stufe 2: 50 g Oats (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 100 g Oats (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: mit 500 ml Vollmilch (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
-    { id: "T", title: "T · Topf-Portion (2× täglich)", meta: "≈" + fmtK(n.T.kcal) + " kcal · " + n.T.p + " g P", on: true,
-      body: "⅓ des Standard-Topfs mit " + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, mit 40 g Öl («Topf dicht»)" : "") + ". Zwei Portionen pro Tag, ≥4 h Abstand." },
-    { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: "nur Aufbau",
-      body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen." },
+      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Zimt oder ein TL Kakao für den Geschmack.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt, der Shake bringt nur noch Kohlenhydrate. Kreatin nur morgens.<br>Stufe 2: 90 g Oats + 20 g Honig (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 120 g Oats + 20 g Honig (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: dazu 500 ml Vollmilch statt Wasser (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
+    { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
+      body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n).kcal) + " kcal). Den Standard wählst du unten bei «Hauptmahlzeiten», einzelne Tage auf «Heute» mit «Mahlzeit wechseln»." },
+    { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
+      body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen.<br>Decken deine Hauptmahlzeiten den Snack schon ab (z. B. Quinoa-Box + Pasta), wird er zur Reserve: Du isst ihn, wenn die Energie-Karte «mehr essen» zeigt, und hakst ihn dann ab." },
     { id: "V", title: "V · Velo-Modul", meta: "an Velotagen", on: true, phase: n.eat === "full" ? "voll zurückessen" : "Cut: nur Untergrenze",
       body: "<b>Kurz (≤90′, Rolle, halbe Runde):</b> " + esc(vk.desc) + " — ≈" + fmtK(vk.kcal) + " kcal<br><b>Lang (ganze Zürisee-Runde):</b> " + esc(vl.desc) + " — ≈" + fmtK(vl.kcal) + " kcal<br><span class=\"note\">Eine lange Runde kostet dich ~1200–1600 kcal. Im Aufbau nicht nachgegessen = fast der ganze Wochen-Überschuss weg.</span>" },
     { id: "W", title: "W · Schwimm-Modul", meta: n.eat === "full" ? "≈" + Math.round(n.oats * 3.7) + " kcal" : "im Cut eingerechnet", on: n.eat === "full", phase: "an Schwimmtagen im Aufbau",
@@ -3427,6 +3592,18 @@ function vFood() {
     <h2 class="sec">Die Module</h2>
     ${modCards}
 
+    <h2 class="sec">Hauptmahlzeiten</h2>
+    <div class="card">
+      ${[["T1", "Mittag"], ["T2", "Abend"]].map(sl => `<div style="${LBL};margin-top:${sl[0] === "T1" ? 0 : 14}px">Standard ${sl[1]}</div>
+      <div class="seg" style="margin:6px 0 0">${MEAL_IDS.map(id => `<button class="${S.mealDef[sl[0]] === id ? "on" : ""}" data-mdef="${sl[0]}|${id}">${esc(MEALS[id].short)}</button>`).join("")}</div>`).join("")}
+      <div class="note">Gilt ab heute für jeden Tag. Einzelne Tage wechselst du auf «Heute» mit «Mahlzeit wechseln». Schon abgehakte Tage behalten ihre Mahlzeit.</div>
+    </div>
+    ${MEAL_IDS.map(id => { const mi = mealInfo(id, n), M = MEALS[id]; return `<button class="card" data-mrec="${id}" style="display:block;width:100%;text-align:left">
+      <div class="row"><div class="grow"><b style="font-size:15px">${esc(M.full)}</b>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">≈${fmtK(mi.kcal)} kcal · ${mi.p} g P${M.kh ? " · " + M.kh + " g KH · " + M.f + " g F · " + M.bs + " g Ballaststoffe" : ""}</div>
+        <div style="font-size:13px;color:var(--muted)">${M.portions} ${M.portions === 1 ? "Portion" : "Portionen"} · ${esc(M.time)} · ${M.typ === "kalt" ? "❄️ kalt" : "🔥 warm"}</div></div>
+        <div class="chev">›</div></div></button>`; }).join("")}
+
     <h2 class="sec">Der Standard-Topf · 3 Portionen</h2>
     <div class="card">
       <ul style="margin:2px 0 4px 18px;color:var(--ink2);font-size:14.5px">${potList(n).map(x => `<li style="margin-bottom:3px">${esc(x)}</li>`).join("")}</ul>
@@ -3442,7 +3619,7 @@ function vFood() {
     <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${esc(r[1])}</span></div>`).join("")}</div>
 
     <h2 class="sec">Abwechslungs-Pool · ${menus.length} Menüs</h2>
-    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional, wenn der Topf zum Hals raushängt: 1 Menü ersetzt 1 Topf-Portion. Im Aufbau Carbs +40 g roh.</div>
+    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Im Aufbau Carbs +40 g roh.</div>
     <div class="seg">${[["alle", "Alle"], ["kalt", "❄️ Kalt"], ["warm", "🔥 Warm"]].map(t => `<button class="${f.typ === t[0] ? "on" : ""}" data-ftyp="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="seg">${[["alle", "Alle"], ["fisch", "Fisch"], ["fleisch", "Fleisch"], ["pflanzlich", "Pflanzlich"]].map(t => `<button class="${f.cat === t[0] ? "on" : ""}" data-fcat="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="card pad0">${menuRows || `<div class="emptyhint">Keine Menüs in dieser Kombination.</div>`}</div>
@@ -3470,6 +3647,14 @@ function vFood() {
     document.getElementById("mc-" + b.dataset.modcard).style.transform = d.classList.contains("open") ? "rotate(90deg)" : "";
   }));
   root.querySelectorAll("[data-menu]").forEach(r => r.addEventListener("click", () => openMenu(+r.dataset.menu)));
+  root.querySelectorAll("[data-mdef]").forEach(b => b.addEventListener("click", () => {
+    const [sl, id] = b.dataset.mdef.split("|");
+    if (S.mealDef[sl] === id) return;
+    freezeMeals(sl); S.mealDef[sl] = id;
+    const tk = todayKey(); if (S.meal[tk] && S.meal[tk][sl] && !(S.mods[tk] && S.mods[tk][sl])) delete S.meal[tk][sl];
+    save(); renderAll();
+  }));
+  root.querySelectorAll("[data-mrec]").forEach(b => b.addEventListener("click", () => openMeal(b.dataset.mrec)));
 }
 
 /* ============ ERHOLUNG ============ */
@@ -3771,6 +3956,44 @@ function openMenu(n) {
     <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
 }
 
+/* ---------- Hauptmahlzeiten: wechseln und Rezept ---------- */
+function mealSheet(slot, k) {
+  k = k || todayKey();
+  const n = nutFor(k), cur = mealFor(k, slot), def = S.mealDef[slot], lbl = slot === "T1" ? "Mittag" : "Abend";
+  const ticked = !!(S.mods[k] && S.mods[k][slot]);
+  openSheet(`
+    <div class="sheettitle">${lbl}: Mahlzeit wählen</div>
+    <div style="color:var(--muted);font-size:14px;margin-bottom:10px">Heute: ${esc(mealInfo(cur, n).name)} · Standard: ${esc(MEALS[def] ? MEALS[def].name : MEALS.quinoa.name)}</div>
+    ${MEAL_IDS.map(id => { const mi = mealInfo(id, n); return `<div class="card" style="padding:12px 14px">
+      <b style="font-size:15px">${esc(mi.name)}${id === cur ? " ✓" : ""}</b>
+      <div style="font-size:13px;color:var(--muted)">≈${fmtK(mi.kcal)} kcal · ${mi.p} g Protein · ${esc(mi.sub)}</div>
+      <div class="row" style="gap:8px;margin-top:9px"><button class="minibtn${id === cur ? " blue" : ""}" data-mpick="day|${id}">Nur heute</button><button class="minibtn${id === def ? " blue" : ""}" data-mpick="def|${id}">Als Standard</button><div class="grow"></div><button class="minibtn" data-mrec2="${id}">Rezept</button></div></div>`; }).join("")}
+    <div class="note">«Als Standard» gilt ab heute für jeden ${lbl}. Schon abgehakte Tage behalten ihre Mahlzeit.${ticked ? " Heute ist schon abgehakt: «Nur heute» korrigiert die Kalorien von heute." : ""}</div>
+    <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
+  document.querySelectorAll("#sheet [data-mpick]").forEach(b => b.addEventListener("click", () => {
+    const [sc, id] = b.dataset.mpick.split("|");
+    if (sc === "def") { freezeMeals(slot); S.mealDef[slot] = id; }
+    S.meal[k] = S.meal[k] || {}; S.meal[k][slot] = id;
+    save(); renderAll(); mealSheet(slot, k);
+  }));
+  document.querySelectorAll("#sheet [data-mrec2]").forEach(b => b.addEventListener("click", () => openMeal(b.dataset.mrec2)));
+}
+function openMeal(id) {
+  const n = nutFor(todayKey()), M = MEALS[id] || MEALS.topf, mi = mealInfo(id, n);
+  const ing = id === "topf" ? potList(n) : M.ing, steps = id === "topf" ? null : M.steps, tips = id === "topf" ? POT.notes : M.tips;
+  const macro = M.kh ? `<div class="card" style="padding:10px 16px">${[["kcal", fmtK(M.kcal)], ["Protein", M.p + " g"], ["Kohlenhydrate", M.kh + " g"], ["Fett", M.f + " g"], ["Ballaststoffe", M.bs + " g"]].map(x => `<div class="kv"><span class="k">${x[0]}</span><span class="v">${x[1]}</span></div>`).join("")}<div class="note">Pro Portion. ${id === "pasta" ? "Pasta roh gewogen." : id === "reis" ? "Reis roh gewogen, Hülsenfrüchte abgetropft." : "Quinoa roh gewogen."}</div></div>` : "";
+  openSheet(`
+    <div class="sheettitle">${esc(M.full)}</div>
+    <div style="color:var(--muted);font-size:13.5px;margin-bottom:10px">≈${fmtK(mi.kcal)} kcal · ${mi.p} g Protein pro Portion · ${M.portions} ${M.portions === 1 ? "Portion" : "Portionen"} · ${esc(M.time)}${M.keeps ? " · " + esc(M.keeps) : ""}</div>
+    ${macro}
+    <h2 class="sec" style="margin-top:4px">Zutaten (${M.portions} ${M.portions === 1 ? "Portion" : "Portionen"})</h2>
+    <div class="card"><ul style="margin:2px 0 2px 18px;color:var(--ink2);font-size:14.5px">${ing.map(x => `<li style="margin-bottom:4px">${esc(x)}</li>`).join("")}</ul></div>
+    ${steps ? `<h2 class="sec">Zubereitung</h2>
+    <div class="card">${steps.map((s, i) => `<div class="kv"><span class="k" style="min-width:18px">${i + 1}</span><span class="v" style="text-align:left;flex:1;font-weight:500;font-size:14px">${esc(s)}</span></div>`).join("")}</div>` : ""}
+    ${tips && tips.length ? `<h2 class="sec">Tipps</h2>${tips.map(t => `<div class="card"><b style="font-size:14.5px">${esc(t[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(t[1])}</div></div>`).join("")}` : ""}
+    <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
+}
+
 /* ---------- Klimmzug-Test ---------- */
 function openPullTest() {
   openSheet(`
@@ -3887,6 +4110,8 @@ function buildExport() {
   const waistK = Object.keys(S.waist).sort().filter(x => x >= ws.mon && x <= addDays(ws.mon, 6));
   lines.push("Taille: " + (waistK.length ? fmt1(S.waist[waistK[waistK.length - 1]]) + " cm" : "—"));
   lines.push("Trainings: " + ws.trainDone + "/" + ws.trainTarget + (ws.bonus ? " + " + ws.bonus + " Pump-Session" : "") + " · Module: " + (ws.modPct != null ? ws.modPct + " % (" + ws.modHit + "/" + ws.modTot + ")" : "—"));
+  const mealTxt = sl => { const c = {}; ws.days.filter(d0 => d0 <= k).forEach(d0 => { const m = mealFor(d0, sl); c[m] = (c[m] || 0) + 1; }); return Object.keys(c).map(m => MEALS[m].name + " " + c[m] + "×").join(", "); };
+  lines.push("Hauptmahlzeiten: Mittag " + mealTxt("T1") + " · Abend " + mealTxt("T2") + (p.id === "bulk" && sReserve(k) ? " · Snack S heute Reserve" : ""));
   lines.push("Schlaf: Ø " + (ws.sleepH ? fmt1(ws.sleepH) + " h" : "—") + (ws.sleepQ ? " · Qualität Ø " + fmt1(ws.sleepQ) + "/5" : ""));
   lines.push("Schritte: Ø " + (ws.steps ? Math.round(ws.steps) : "—") + " · NSDR: " + ws.nsdr + " · Sauna: " + ws.sauna + "×");
   lines.push("Velo: " + ws.velo + "×" + (ws.veloLong ? " (davon " + ws.veloLong + " lang)" : "") + " · Schwimmen: " + ws.swim + "×");
