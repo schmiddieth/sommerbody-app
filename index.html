@@ -285,6 +285,104 @@ input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.45; 
 textarea.exportbox { width: 100%; min-height: 150px; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 12px; padding: 10px; font-size: 12.5px; font-family: ui-monospace, Menlo, monospace; color: var(--ink2); }
 .emptyhint { text-align: center; color: var(--muted); font-size: 14px; padding: 24px 12px; }
 
+/* ---------- Wissen: Lexikon, Glossar, Erklärbilder, Videos ---------- */
+.kb { color: inherit; text-decoration: underline dotted rgba(57,135,229,0.85); text-decoration-thickness: 1.5px; text-underline-offset: 3px; cursor: pointer; -webkit-text-decoration: underline dotted rgba(57,135,229,0.85); }
+.kb:active { color: var(--blue); }
+.kbbtn { width: 38px; height: 38px; min-width: 38px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--hairline); color: var(--blue); display: flex; align-items: center; justify-content: center; }
+.kbbtn svg { width: 21px; height: 21px; }
+.ltitle.withkb { display: flex; align-items: center; gap: 10px; }
+.ltitle.withkb > span { flex: 1; min-width: 0; }
+.kbchips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.kbchip { padding: 6px 11px; border-radius: 999px; background: var(--surface); border: 1px solid var(--hairline); font-size: 13px; font-weight: 650; color: var(--blue); line-height: 1.25; }
+.kbchip:active { background: var(--grid); }
+.kbchip.term { color: var(--ink2); }
+.kbhead { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.kbhead .backbtn { margin-top: 1px; }
+.kbmeta { font-size: 13.5px; color: var(--muted); margin-bottom: 8px; }
+.kbshort { font-size: 16px; color: var(--ink); font-weight: 600; line-height: 1.4; margin: 4px 0 6px; }
+.kbsec { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); font-weight: 700; margin: 16px 0 5px; }
+.kbtxt { font-size: 14.5px; color: var(--ink2); }
+.kbtxt ul, .kbtxt ol { margin: 2px 0 0 19px; }
+.kbtxt li { margin-bottom: 5px; }
+.kbtxt .tallrow, .kbtxt .shldrow { background: var(--surface2); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 11px; }
+.kbtxt .ok { color: #7fd0b0; }
+.kbtxt .no { color: #e8a1a1; }
+.kbplan { background: var(--blue-dim); border: 1px solid var(--hairline); border-radius: 12px; padding: 10px 12px; font-size: 14px; color: #c9dcf4; margin-top: 12px; }
+.kbplan b { color: var(--ink); }
+.kbrow { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--hairline); width: 100%; text-align: left; }
+.kbrow:last-child { border-bottom: none; }
+.kbrow .nm { font-size: 15px; font-weight: 650; }
+.kbrow .ds { font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kbrow .ic { width: 26px; text-align: center; font-size: 16px; flex: none; color: var(--muted); }
+.kbsearch { width: 100%; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 12px; padding: 10px 12px; font-size: 16px; margin: 6px 0 10px; -webkit-appearance: none; appearance: none; }
+.kbsearch:focus { outline: none; border-color: var(--blue); }
+.kbfig { margin: 10px 0 4px; background: var(--surface2); border: 1px solid var(--hairline); border-radius: 12px; padding: 8px 8px 6px; }
+.kbfig svg { display: block; width: 100%; height: auto; max-height: 260px; }
+.kbfig figcaption { font-size: 12.5px; color: var(--muted); margin: 4px 4px 2px; line-height: 1.35; }
+.vids { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; margin-top: 6px; }
+.vid { background: var(--surface2); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; min-width: 0; }
+.vid.playing { grid-column: 1 / -1; }
+.vthumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; padding: 0; }
+.vthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vthumb .vplay { position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(13,13,13,0.72); color: #fff; font-size: 17px; display: flex; align-items: center; justify-content: center; padding-left: 3px; border: 1px solid rgba(255,255,255,0.25); }
+.vframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+.vmeta { display: block; padding: 7px 9px 8px; color: var(--ink); text-decoration: none; }
+.vmeta .lt { display: block; font-size: 12.5px; font-weight: 650; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.vmeta .lm { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+/* SVG-Bausteine */
+.kbfig text { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+.f-t { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.f-tl { fill: var(--ink2); font-size: 11.5px; font-weight: 600; }
+.f-tlb { fill: var(--blue); font-size: 11.5px; font-weight: 700; }
+.f-tw2 { fill: var(--warn); font-size: 11.5px; font-weight: 700; }
+.f-tin { fill: #fff; font-size: 11px; font-weight: 700; }
+.f-b, .f-a, .f-g { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.f-b { stroke: var(--ink2); }
+.f-a { stroke: var(--blue); }
+.f-g { stroke: var(--muted); opacity: 0.32; }
+.f-gf { fill: var(--muted); opacity: 0.55; }
+.f-gh { fill: none; stroke: var(--muted); stroke-width: 2.5; stroke-dasharray: 3 4; }
+.f-hd { fill: var(--ink2); stroke: var(--surface2); stroke-width: 3; }
+.f-bod { fill: rgba(195,194,183,0.18); stroke: var(--ink2); stroke-width: 2.5; }
+.f-af { fill: var(--blue); }
+.f-e { fill: none; stroke: var(--muted); stroke-width: 2.5; stroke-linecap: round; }
+.f-bar { stroke: var(--muted); stroke-width: 6; stroke-linecap: round; }
+.f-c { stroke: var(--muted); stroke-width: 1.6; }
+.f-cg { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 3 4; opacity: 0.6; }
+.f-tw { fill: var(--warn); }
+.f-m { fill: none; stroke: var(--aqua); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.f-m2 { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.f-hl { fill: none; stroke: var(--warn); stroke-width: 16; stroke-linecap: round; opacity: 0.38; }
+.f-hlc { fill: var(--warn); opacity: 0.38; }
+.f-lead { stroke: var(--muted); stroke-width: 1; }
+.f-band { fill: none; stroke: var(--warn); stroke-width: 3.5; stroke-linecap: round; }
+.f-bandg { stroke: var(--warn); stroke-width: 3; stroke-dasharray: 4 4; opacity: 0.45; }
+.f-seat { fill: var(--muted); }
+.f-gs { fill: var(--muted); opacity: 0.3; }
+.f-rep { fill: var(--blue); }
+.f-repg { fill: none; stroke: var(--aqua); stroke-width: 2; stroke-dasharray: 4 3; }
+.f-br { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.f-br2 { fill: none; stroke: var(--aqua); stroke-width: 1.5; }
+.f-band2 { fill: var(--blue-dim); }
+.f-bandr { fill: var(--blue-dim); }
+.f-rampb { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
+.f-work { fill: var(--blue); }
+.f-rampb2 { fill: var(--aqua); }
+.f-pause { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 2 4; }
+.f-line { fill: none; stroke: var(--blue); stroke-width: 2; }
+.f-line2 { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.f-dot { fill: var(--blue); }
+.f-dotg { fill: var(--good); }
+.f-dotm { fill: var(--muted); }
+.f-step { stroke: var(--warn); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.f-del { fill: var(--warn); }
+.f-z2 { fill: var(--aqua); }
+.f-zx { fill: var(--surface); stroke: rgba(255,255,255,0.18); stroke-width: 1; }
+.f-ecc { fill: var(--aqua); }
+.f-romarc { fill: none; stroke: rgba(255,255,255,0.16); stroke-width: 10; stroke-linecap: round; }
+.f-romhl { fill: none; stroke: var(--warn); stroke-width: 10; stroke-linecap: round; opacity: 0.75; }
+.f-zig { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linejoin: round; }
+
 </style>
 </head>
 <body>
@@ -1466,12 +1564,1124 @@ function weekStats(k) {
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 function el(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstElementChild; }
 
+/* ============ WISSEN: Übungs-Lexikon (Warm-up, Mobility, Alternativen) und Glossar ============ */
+"use strict";
+/* Übungen, die nicht als Slot geloggt werden. grp: warm | mob | alt · for: Slot-Übungen, die eine Alternative ersetzt.
+   videos/read wie bei EXERCISES. Videos nur mit in einer Suche bestätigter ID (Stand 28.10.2026); fehlt eines, sucht yt auf YouTube. */
+const DRILLS = {
+  w_extrot: { name: "Aussenrotation Kabel", grp: "warm", muscles: "Rotatorenmanschette (hinterer Teil)", fig: "extrot",
+    dose: "2×12 pro Seite, sehr leicht (kleinste Stufe, ~2,5–5 kg) · vor jedem Oberkörper-Tag",
+    why: "Wärmt die kleinen Muskeln auf, die den Oberarmkopf in der Pfanne zentrieren, bevor Bank- und Schulterdrücken schwer werden.",
+    cue: "Ellbogen klebt an der Seite, nur der Unterarm dreht, wie eine Türe, die aufgeht.",
+    setup: "Kabel auf Ellbogenhöhe, Einhandgriff. Seitlich zum Turm stehen und mit der Hand greifen, die weiter weg ist. Ein eingerolltes Handtuch zwischen Ellbogen und Rippen.",
+    exec: ["Ellbogen 90° gebeugt, Oberarm am Körper, der Unterarm zeigt vor den Bauch.", "Unterarm nach aussen drehen, vom Bauch weg, so weit es ohne Ausweichen geht.", "1 s halten, in 2–3 s zurück. Nach 12 Wiederholungen Seite wechseln."],
+    feel: "hinten an der Schulter, eher Wärme als Brennen", notFeel: "Nacken · vorne im Gelenk · Unterarm",
+    mistakes: "Ellbogen wandert vom Körper weg · Oberkörper dreht mit · zu schwer, dann übernimmt Schwung",
+    shoulder: "Leicht ist hier Pflicht: Die Übung soll aktivieren, nicht ermüden. Knackt es ohne Schmerz: weiter. Mit Schmerz: Range kleiner.",
+    alt: "Kabel besetzt: gleich ausgeführt mit einem Band an einem Pfosten.",
+    alias: ["Aussenrotation Kabel", "Aussenrotation am Kabel", "Aussenrotation"],
+    videos: [["Exercise Tutorial: Cable Machine Shoulder External Rotation", "https://www.youtube.com/watch?v=vjUE_9BsPUU", "Travis Tarrant · Englisch"], ["Übungspool A: Schultern außenrotation am Kabelzug", "https://www.youtube.com/watch?v=vCX6mcty5Xc", "Jörg Jensen · Deutsch · sitzend"], ["Band External Rotation - Elbow at Side", "https://www.youtube.com/watch?v=sf5lfdkavtA", "Myles Methner · Englisch · mit Band"]],
+    read: ["How to Do Cable External Shoulder Rotation", "https://www.strengthlog.com/cable-external-shoulder-rotation/", "StrengthLog · Animation, Muskelkarte, Schritte · Englisch"] },
+  w_pullapart: { name: "Band Pull-aparts", grp: "warm", muscles: "hintere Schulter · zwischen den Schulterblättern", fig: "pullapart",
+    dose: "2×15 mit mittlerem Band · Warm-up am Do",
+    why: "Weckt die hintere Schulter und die Muskeln zwischen den Schulterblättern, die beim Drücken die Schulter stabil halten.",
+    cue: "Arme lang, Schulterblätter zusammen, das Band läuft vor der Brust vorbei.",
+    setup: "Band schulterbreit fassen, Handflächen nach unten, Arme gestreckt auf Schulterhöhe vor dem Körper.",
+    exec: ["Band auseinanderziehen, bis die Arme seitlich ein T bilden und das Band die Brust berührt.", "Am Ende die Schulterblätter kurz zusammendrücken, Schultern bleiben tief.", "Langsam zurück nach vorn, die Spannung bleibt."],
+    feel: "hintere Schulter, zwischen den Schulterblättern", notFeel: "Nacken · unterer Rücken (Hohlkreuz)",
+    mistakes: "Schultern ziehen zu den Ohren · Hohlkreuz, Kopf schiebt nach vorn · Band zu stark",
+    tall: "Lange Arme: eher breiter greifen oder ein leichteres Band nehmen, damit der Weg ganz bis ins T geht.",
+    alt: "«Band Pull-aparts schwer» als Ersatz für Face Pulls: stärkeres Band, 3×15–20.",
+    alias: ["Band Pull-aparts schwer", "Band Pull-aparts", "Pull-aparts"],
+    videos: [["How To Do Band Pull Aparts", "https://www.youtube.com/watch?v=smSSXITNpCI", "Rogue Fitness · Englisch"], ["Exercise Tutorial: Band Pull Apart", "https://www.youtube.com/watch?v=Zxp9IORjjK4", "Travis Tarrant · Englisch"]],
+    read: ["Band Pull-Apart", "https://www.strengthlog.com/band-pull-apart/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  w_row: { name: "Rad / Rudergerät locker", grp: "warm", muscles: "ganzer Körper · Kreislauf", fig: "row",
+    dose: "5 Min locker, Puls leicht hoch, nicht ausser Atem",
+    why: "Hebt Körpertemperatur und Puls. Um 07:15 ist der Körper kühl und steif, darum wird das Warm-up nie gekürzt.",
+    cue: "Beine, Rumpf, Arme, und zurück umgekehrt. Locker, du sollst nur warm werden.",
+    setup: "Rudergerät: Füsse fest, der Gurt liegt über der breitesten Stelle des Fusses. Dämpfer tief (3–5). Rad: Sattel so hoch, dass das Knie unten fast gestreckt ist.",
+    exec: ["Auslage: Arme lang, Oberkörper aus der Hüfte leicht vorgeneigt, Schienbeine senkrecht.", "Zug: erst Beine strecken, dann Oberkörper leicht zurück, zuletzt den Griff an die unteren Rippen.", "Zurück: Arme vor, Oberkörper vor, erst dann die Knie beugen. Der Rückweg ist ruhiger als der Zug."],
+    feel: "warm im ganzen Körper", notFeel: "unterer Rücken · Nacken",
+    mistakes: "zuerst mit den Armen ziehen · Knie beugen, bevor die Hände über den Knien sind · Rundrücken statt aus der Hüfte neigen",
+    alt: "Rad: 5 Min auf mittlerer Stufe, rund 80–90 Umdrehungen pro Minute.",
+    alias: ["Rad/Rudergerät", "Rudergerät"],
+    videos: [["Concept2 Technique Video on the Indoor Rower", "https://www.youtube.com/watch?v=QPvYrfyGHi8", "ErgFit (Concept2) · Englisch"], ["Concept2 - So ruderst Du richtig - Einstieg in das Rudertraining", "https://www.youtube.com/watch?v=GV5158xPxt8", "Concept2 Deutschland · Deutsch"]],
+    read: ["How to Use a Rowing Machine", "https://www.hss.edu/article_how-to-use-rowing-machine.asp", "Hospital for Special Surgery · Fotos der Phasen · Englisch"] },
+
+  m_9090: { name: "90/90-Hüftwechsel", grp: "mob", muscles: "Hüfte: Innen- und Aussenrotation", fig: "h9090",
+    dose: "2 Min ruhig hin und her",
+    why: "Hält die Hüfte in beide Drehrichtungen beweglich. Steife Hüften kosten Tiefe bei Beinpresse und Hack Squat und ziehen am unteren Rücken.",
+    cue: "Aufrecht sitzen, die Knie kippen langsam von einer Seite zur anderen, die Füsse bleiben am Boden.",
+    setup: "Am Boden sitzen, beide Knie 90° gebeugt, Füsse etwas mehr als hüftbreit. Wenn nötig die Hände hinter dem Körper aufstützen.",
+    exec: ["Ein Bein liegt vorn (Schienbein quer vor dir), das andere seitlich hinten, beide Knie 90°.", "Beide Knie gleichzeitig zur anderen Seite kippen, bis die Beine gespiegelt liegen.", "Aufrichten, kurz atmen, zurück. Ruhig weiter, ohne Schwung."],
+    feel: "tief in der Hüfte, aussen und innen", notFeel: "Stechen im Knie (dann Füsse weiter auseinander)",
+    mistakes: "Rundrücken, zusammensacken · mit Schwung kippen",
+    tall: "Lange Oberschenkel: Füsse weiter auseinander und Hände hinten aufstützen, bis die Hüfte nachgibt.",
+    alias: ["90/90-Hüftwechsel"],
+    videos: [["How to Do the 90/90 Switch for Hip Mobility (Step-by-Step Tutorial)", "https://www.youtube.com/watch?v=HUZimFZJZWU", "Alejandro Matias · Englisch"], ["GolfFitness Übung: 90°/90° Hip Mobility", "https://www.youtube.com/watch?v=zhCWD5n4y1k", "Schulthess Klinik · Deutsch"]],
+    read: ["90/90 Hip Switch Stretch", "https://theprehabguys.com/vimeo-video/90-90-hip-switch-stretch/", "[P]rehab · Video und Bild · Englisch"] },
+  m_couch: { name: "Couch-Stretch", grp: "mob", muscles: "Hüftbeuger · vorderer Oberschenkel", fig: "couch",
+    dose: "je Seite 45 s",
+    why: "Langes Sitzen verkürzt die Hüftbeuger. Locker gelassen ziehen sie das Becken nicht ins Hohlkreuz, und die Hüfte streckt beim RDL frei.",
+    cue: "Gesäss anspannen und das Becken nach vorn schieben, dann wird es von allein intensiv.",
+    setup: "Kissen unter das hintere Knie. Knie an die Wand oder Sofakante, Schienbein senkrecht hoch, Fussrücken an der Wand. Vorderer Fuss flach, Knie über dem Sprunggelenk.",
+    exec: ["Mit vorgeneigtem Oberkörper starten, Hände auf dem Boden oder auf dem vorderen Knie.", "Gesäss der hinteren Seite anspannen, Becken leicht aufrichten.", "Oberkörper Schritt für Schritt aufrichten, ruhig atmen, 45 s halten. Seite wechseln."],
+    feel: "vorn an Hüfte und Oberschenkel des hinteren Beins", notFeel: "Druck im Knie (mehr Polster) · unterer Rücken (Hohlkreuz)",
+    mistakes: "Hohlkreuz statt Becken aufrichten · Hüfte dreht nach aussen · Atem anhalten",
+    tall: "Lange Oberschenkel: das Knie anfangs eine Handbreit weiter weg von der Wand und mit der Zeit näher ran.",
+    alias: ["Couch-Stretch"],
+    videos: [["Couch Stretch Progressions: Beginner To Advanced (Tight Hip Flexors & Quads)", "https://www.youtube.com/watch?v=WKo4APrwfXQ", "Flow Motion Fitness · Englisch"], ["Couch Stretch - für Mobilität und Flexibilität", "https://www.youtube.com/watch?v=8P1TdRhMDlc", "WOHLLEBEN SPORTS · Deutsch · aktive Variante"]],
+    read: ["An Expert Guide to the Couch Stretch", "https://www.garagegymreviews.com/couch-stretch", "Garage Gym Reviews · Fotos und Animation · Englisch"] },
+  m_door: { name: "Türrahmen-Brustdehnung", grp: "mob", muscles: "Brust · vordere Schulter", fig: "door",
+    dose: "je Seite 45 s",
+    why: "Viel Drücken und Sitzen ziehen die Schultern nach vorn. Die Dehnung hält die Brust lang und gibt der Schulter Platz.",
+    cue: "Unterarm an den Rahmen, kleiner Schritt vor: Die Brust öffnet sich, die Schulter bleibt entspannt.",
+    setup: "Unterarm flach an den Türrahmen, Ellbogen etwa auf Schulterhöhe und 90° gebeugt. Der Fuss derselben Seite steht vorn.",
+    exec: ["Kleinen Schritt durch die Tür machen, bis es in der Brust zieht.", "Oberkörper aufrecht lassen, Schulter tief und weg vom Ohr.", "45 s ruhig atmen, ohne zu federn. Seite wechseln."],
+    feel: "Brust, vorn an der Schulter", notFeel: "Kribbeln im Arm · Klicken oder Stechen in der Schulter",
+    mistakes: "zu weit reinlehnen oder ins Hohlkreuz fallen · Ellbogen zu hoch, dann zieht es im Gelenk",
+    shoulder: "Starte mit dem Ellbogen etwas unter Schulterhöhe. Zieht es vorne im Gelenk statt im Muskel: weniger tief rein.",
+    alias: ["Türrahmen-Brustdehnung", "Türrahmen-Dehnung"],
+    videos: [["How to Do a Single Arm Doorway Pec Stretch at 120 Degrees Abduction", "https://www.youtube.com/watch?v=Qa4LPRjj0Yw", "Medbridge · Englisch · Arm höher als bei dir"], ["Verkürzung in der Brustmuskulatur? Brustmuskel dehnen am Türrahmen", "https://www.youtube.com/watch?v=wSPsVW9Oi5Y", "Philipp Stieber · Deutsch"]],
+    read: ["Doorway Pectoral Stretch", "https://healthlibrary.vanderbilthealth.com/Search/3,90642", "Vanderbilt Health · Foto · Englisch"] },
+  m_lathang: { name: "Lat-Hang an der Stange", grp: "mob", muscles: "Lat · Schultern · Griffkraft", fig: "lathang",
+    dose: "2×30 s, Füsse am Boden",
+    why: "Dehnt den Lat in die lange Position, die beim Latzug und Klimmzug zählt, und entlastet die Schultern nach Drücktagen.",
+    cue: "Füsse bleiben am Boden, die Hüfte sinkt nach hinten: Du hängst die Dehnung in den Lat.",
+    setup: "Stange etwa auf Kopfhöhe oder höher (Smith-Maschine, Klimmzugstange), schulterbreit greifen.",
+    exec: ["Arme strecken, Füsse unter der Stange oder leicht davor.", "Hüfte nach hinten und unten sinken lassen, Knie leicht gebeugt, bis es seitlich am Rumpf zieht.", "30 s ruhig atmen, bei jeder Ausatmung etwas tiefer. Variante: einarmig, Rumpf leicht vom Arm weg drehen."],
+    feel: "seitlich am Rumpf, unter der Achsel", notFeel: "vorne in der Schulter · Klemmen oben im Gelenk",
+    mistakes: "ins Gelenk fallen lassen und wippen · Atem anhalten",
+    shoulder: "Zieht es vorne in der Schulter statt im Lat: Griff etwas enger, Hüfte weniger tief.",
+    alias: ["Lat-Hang an der Stange (Füsse am Boden)", "Lat-Hang an der Stange", "Lat-Hang"],
+    videos: [["Foot Assisted Dead Hang Demo", "https://www.youtube.com/watch?v=yUWQ6qj0duw", "Steph Gaudreau · Englisch"], ["Modified Lat Stretch", "https://www.youtube.com/watch?v=Q4ALgRuM2f4", "Testosterone Nation · Englisch · einarmig"]],
+    read: ["Rack Lat Stretch", "https://www.muscleandstrength.com/exercises/rack-lat-stretch", "Muscle & Strength · Video, Muskelkarte · Englisch"] },
+  m_tspine: { name: "BWS-Rotation im Vierfüsser", grp: "mob", muscles: "Brustwirbelsäule · Rumpf", fig: "tspine",
+    dose: "2×8 pro Seite · Kurzversion täglich",
+    why: "Eine bewegliche Brustwirbelsäule nimmt Nacken und Schultern Arbeit ab, gerade nach langen Tagen am Schreibtisch.",
+    cue: "Das Becken bleibt still, nur der Brustkorb dreht auf. Der Blick folgt dem Ellbogen.",
+    setup: "Vierfüsser: Hände unter den Schultern, Knie unter der Hüfte. Eine Hand hinter den Kopf.",
+    exec: ["Ausatmen und den Ellbogen nach unten Richtung Stützarm einfädeln.", "Einatmen und den Ellbogen weit zur Decke aufdrehen, der Blick folgt.", "Oben 1–2 s halten, langsam zurück. Nach 8 Wiederholungen Seite wechseln."],
+    feel: "Mitte des Rückens, zwischen den Schulterblättern", notFeel: "unterer Rücken (dann dreht das Becken mit)",
+    mistakes: "Drehung aus Lendenwirbelsäule oder Hüfte · Stützschulter sackt ein",
+    tall: "Gesäss etwas Richtung Fersen schieben: Dann sperrt die Lendenwirbelsäule und die Drehung kommt wirklich aus der BWS.",
+    alias: ["BWS-Rotation im Vierfüsser", "BWS-Rotation"],
+    videos: [["Thoracic Rotation in Quadruped - Ask Doctor Jo", "https://www.youtube.com/watch?v=snzLuyYgbVI", "AskDoctorJo · Englisch"], ["Mobilisation Brustwirbelsäule im Vierfüßlerstand", "https://www.youtube.com/watch?v=k-a2D-fdrxc", "Rehaklinik Lautergrund · Deutsch"], ["Quadruped Rotation, Hand Behind Head", "https://www.youtube.com/watch?v=aFUhPd7cEGk", "Gotham Physical Therapy · Englisch"]] },
+  m_neck: { name: "Nacken seitlich dehnen", grp: "mob", muscles: "oberer Trapez · seitlicher Nacken", fig: "neck",
+    dose: "je Seite 30 s, sanft · Kurzversion täglich",
+    why: "Seitenschlaf, Bildschirm und Velo-Haltung verspannen den oberen Trapez. Die Dehnung löst das Ziehen im Nacken.",
+    cue: "Ohr zur Schulter sinken lassen, die andere Schulter aktiv nach unten. Sanft, nie ziehen.",
+    setup: "Aufrecht sitzen oder stehen. Eine Hand an die Stuhlkante oder hinter den Rücken, damit die Schulter unten bleibt.",
+    exec: ["Kopf langsam zur Seite neigen, ohne ihn zu drehen.", "Die gegenüberliegende Schulter Richtung Boden schieben, bis es seitlich am Nacken zieht.", "30 s ruhig atmen, langsam zurück, Seite wechseln."],
+    feel: "seitlich am Nacken bis zur Schulter", notFeel: "Kribbeln oder Ausstrahlen in den Arm (dann sofort lockern)",
+    mistakes: "Schulter zum Ohr hochziehen · mit der Hand am Kopf reissen",
+    alias: ["Nacken seitlich sanft", "Nacken seitlich"],
+    yt: "Nacken seitlich dehnen Trapezius Physiotherapie" },
+
+  a_smithbench: { name: "Smith-Bank", grp: "alt", for: ["bench"], muscles: "Brust · vordere Schulter · Trizeps",
+    cue: "Bank so stellen, dass die Stange senkrecht über der unteren Brust läuft.",
+    setup: "Flachbank in die Smith-Maschine (Multipresse), so dass die Stange auf die untere Brust trifft. Griff etwas breiter als schulterbreit, Sicherheitsstopps knapp über Brusthöhe.",
+    exec: ["Schulterblätter zusammen und nach unten, Brust hoch, Füsse fest.", "Stange aushaken, in 2–3 s zur unteren Brust absenken.", "Kurz stoppen, hochdrücken, oben nicht einrasten."],
+    mistakes: "Bank falsch: Die Stange trifft Hals oder Bauch · Schultern rollen nach vorn",
+    shoulder: "Die feste Bahn verzeiht weniger als Kurzhanteln: Ellbogen 45–60°, Tiefe knapp unter Brustniveau.",
+    alias: ["Smith-Bank"],
+    videos: [["Exercise Tutorial: Smith Machine Bench Press", "https://www.youtube.com/watch?v=7FyJdsXeta8", "Travis Tarrant · Englisch"], ["Bankdrücken an der Multipresse / Smith Machine Bank Drücken", "https://www.youtube.com/watch?v=lFYq3OEJru8", "mhsports · Deutsch"]],
+    read: ["How to Do Smith Machine Bench Press", "https://www.strengthlog.com/smith-machine-bench-press/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_smithincline: { name: "Smith schräg", grp: "alt", for: ["incline", "inclinemach"], muscles: "obere Brust · vordere Schulter · Trizeps",
+    cue: "Bank auf ~30°, die Stange trifft die obere Brust, nicht den Hals.",
+    setup: "Schrägbank auf ~30° in die Smith-Maschine, so dass die Stange senkrecht über der oberen Brust läuft. Griff etwas breiter als schulterbreit.",
+    exec: ["Schulterblätter zurück und nach unten, Brust hoch.", "Kontrolliert in 2–3 s bis zur oberen Brust absenken, unten 1 s in der Dehnung.", "Hochdrücken, beim Drücken ausatmen."],
+    mistakes: "Bank zu steil: wird zum Schulterdrücken · Stange landet am Hals oder Kinn",
+    alias: ["Smith schräg"],
+    videos: [["How to: Incline Smith Machine Chest Press", "https://www.youtube.com/watch?v=PbROfDSbK4s", "ATLASTHETICS · Englisch"], ["Schrägbankdrücken an der Multipresse (Brust)", "https://www.youtube.com/watch?v=cxK4YrSjIkY", "bodydiscounter · Deutsch"]],
+    read: ["How to Do Smith Machine Incline Bench Press", "https://www.strengthlog.com/smith-machine-incline-bench-press/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_pecdeck: { name: "Pec Deck (Butterfly)", grp: "alt", for: ["cablefly"], muscles: "Brust",
+    cue: "Mit den Ellbogen führen, Brust raus. Hinten nur so weit, wie die Schulter ruhig bleibt.",
+    setup: "Sitz so, dass die Griffe auf Brusthöhe liegen und die Oberarme fast waagrecht sind. Rücken satt an der Lehne.",
+    exec: ["Arme leicht gebeugt, Griffe vor der Brust zusammenführen.", "Vorn 1 s zusammendrücken.", "Langsam zurück bis in die Dehnung, ohne dass die Schulter nach vorn rollt."],
+    mistakes: "zu weit nach hinten reissen · Schultern rollen nach vorn · Schwung",
+    shoulder: "Hinten ist die Schulter am verletzlichsten: dort nur so weit, wie es schmerzfrei bleibt.",
+    alias: ["Pec Deck", "Pec-Deck", "Butterfly"],
+    videos: [["HOW TO: Pec Deck (AKA: Chest Fly Machine)", "https://www.youtube.com/watch?v=ze4JaQCcGLg", "Health By Scott · Englisch"], ["Technikcheck - Richtige Ausführung von Butterfly und häufige Fehler", "https://www.youtube.com/watch?v=4xH9ZEPwZWE", "Izi Fit · Deutsch"]],
+    read: ["How to Do Pec Deck", "https://www.strengthlog.com/pec-deck/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_flylow: { name: "Kabel-Fliegende tief → hoch", grp: "alt", for: ["cablefly"], muscles: "obere Brust",
+    cue: "Von unten nach oben vor die Brust schöpfen, die Ellbogen bleiben leicht gebeugt.",
+    setup: "Beide Rollen ganz unten, Griffe fassen, einen Schritt vor, leichte Schrittstellung, Rumpf fest.",
+    exec: ["Arme seitlich tief neben dem Körper, Handflächen nach vorn.", "Im Bogen nach vorne-oben bis vor die obere Brust führen.", "Langsam zurück, bis die Brust gedehnt ist."],
+    mistakes: "Ellbogenwinkel ändert sich: wird zum Drücken · Schwung aus der Hüfte",
+    alias: ["Kabel-Fliegende tief → hoch"],
+    videos: [["HOW TO: Chest \"Low-To-High\" Cable Fly (BIGGER UPPER CHEST)", "https://www.youtube.com/watch?v=eQ_NBB6OBH4", "ScottHermanFitness · Englisch"], ["Obere Brust am Kabelzug richtig treffen - Seilzug von unten", "https://www.youtube.com/watch?v=3lDXOF1dB2E", "Izi Fit · Deutsch"]],
+    read: ["The 10 Best Upper Chest Exercises (Nr. 6)", "https://www.strengthlog.com/upper-chest-exercises/", "StrengthLog · Foto und Schritte · Englisch"] },
+  a_landmine: { name: "Landmine-Press", grp: "alt", for: ["ohp"], muscles: "vordere Schulter · obere Brust · Trizeps",
+    cue: "Schräg nach vorne-oben drücken: Die Bahn ist von Natur aus schulterfreundlich.",
+    setup: "Ein Langhantel-Ende in die Landmine-Halterung oder in eine Ecke. Halb kniend mit dem Knie der Arbeitsseite am Boden, oder stehend mit dem Gegenfuss vorn.",
+    exec: ["Stangenende vor der Schulter, Rumpf fest.", "Schräg nach vorne-oben drücken, bis der Arm gestreckt ist. Das Schulterblatt darf mitgehen.", "Kontrolliert zurück zur Schulter. Wiederholungen pro Seite."],
+    mistakes: "Oberkörper verdreht sich oder geht ins Hohlkreuz · Stange fällt unkontrolliert zurück",
+    shoulder: "Zwickt das Schulterdrücken, ist das oft die schmerzfreie Alternative.",
+    alias: ["Landmine-Press"],
+    videos: [["How To Do A Single Arm Landmine Press", "https://www.youtube.com/watch?v=qPxvgth0dQQ", "PureGym · Englisch"], ["Half Kneeling Landmine Press Tutorial", "https://www.youtube.com/watch?v=CA6tkn3Qilc", "Prototype Training Systems · Englisch"]],
+    read: ["How to Do One-Arm Landmine Press", "https://www.strengthlog.com/one-arm-landmine-press/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_shpressmach: { name: "Schulterpresse Maschine (neutral)", grp: "alt", for: ["ohp"], muscles: "vordere + seitliche Schulter · Trizeps",
+    cue: "Neutraler Griff, Kopf an der Lehne, nie in den Nacken schieben.",
+    setup: "Sitz so, dass die Griffe auf Schulterhöhe starten. Rücken satt an der Lehne.",
+    exec: ["Griffe mit den Handflächen zueinander fassen, Bauch an.", "Hochdrücken, oben die Ellbogen minimal gebeugt lassen.", "In 2–3 s zurück bis auf Schulterhöhe."],
+    mistakes: "Kopf schiebt nach vorn, der Nacken übernimmt · Rücken löst sich vom Polster",
+    tall: "Sitz meist ganz hoch, sonst starten die Griffe über der Schulter und die Range fehlt.",
+    alias: ["Schulterpresse Maschine (neutral)", "Schulterpresse Maschine", "Schulterpresse"],
+    videos: [["Machine Shoulder Press (Neutral Grip)", "https://www.youtube.com/watch?v=RYVe9WlQcC4", "Englisch"], ["Matrix ULTRA Schulterpresse Einstellungen und Ausführung", "https://www.youtube.com/watch?v=Sfjg4R7YCxI", "Matrix Fitness · Deutsch"]],
+    read: ["How to Do Machine Shoulder Press", "https://www.strengthlog.com/machine-shoulder-press/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_latraisemach: { name: "Seitheben-Maschine", grp: "alt", for: ["latraise_c", "latraise_d"], muscles: "seitliche Schulter",
+    cue: "Mit den Ellbogen gegen die Polster heben, bis die Oberarme waagrecht sind.",
+    setup: "Sitz so, dass die Schultergelenke auf Höhe der Drehachsen liegen, Polster aussen an den Ellbogen.",
+    exec: ["Brust ans Polster, Schultern tief.", "Arme seitlich heben, bis die Oberarme waagrecht sind. Hände nicht höher als die Ellbogen.", "Oben kurz halten, in 2 s ablassen."],
+    mistakes: "zu hoch heben, dann übernimmt der Trapez · Schwung",
+    tall: "Sitz meist ganz hoch, sonst stimmt die Drehachse nicht.",
+    alias: ["Seitheben-Maschine"], yt: "lateral raise machine tutorial",
+    read: ["Machine Lateral Raise", "https://www.strengthlog.com/machine-lateral-raise/", "StrengthLog · Animation · Englisch"] },
+  a_dipmach: { name: "Dip-Maschine", grp: "alt", for: ["pushdown"], muscles: "Trizeps · untere Brust",
+    cue: "Oberkörper aufrecht, Arme nach unten strecken: Der Trizeps macht die Arbeit.",
+    setup: "Sitz so, dass die Griffe neben dem Körper etwa auf Brusthöhe starten. Gurt, falls vorhanden, über die Oberschenkel.",
+    exec: ["Griffe fassen, Schultern tief und hinten.", "Arme nach unten strecken, bis sie fast gestreckt sind.", "Langsam zurück, bis die Ellbogen etwa 90° gebeugt sind."],
+    mistakes: "Schultern ziehen hoch oder rollen nach vorn · zu tief zurück in die Dehnung",
+    shoulder: "Nicht tiefer als 90° im Ellbogen: Die Schulter vorn mag die tiefe Dip-Position nicht.",
+    alias: ["Dip-Maschine"], yt: "seated dip machine tutorial" },
+  a_tbar: { name: "T-Bar-Rudern mit Brustpad", grp: "alt", for: ["chestrow"], muscles: "oberer Rücken · Lat · hintere Schulter",
+    cue: "Die Brust bleibt am Polster, die Ellbogen ziehen hinter den Körper.",
+    setup: "Füsse fest auf die Plattform, Brust ans Polster, Kopf neutral. Griffe so wählen, dass die Arme unten frei hängen.",
+    exec: ["Mit gestreckten Armen starten, die Schulterblätter nach vorn gleiten lassen.", "Ellbogen hinter den Körper ziehen, Schulterblätter zusammen, 1 s halten.", "In 2 s ablassen, bis die Arme lang sind."],
+    mistakes: "Brust hebt ab und Schwung kommt dazu · Kopf in den Nacken",
+    tall: "Mit langen Armen das Polster meist auf die höchste Stufe, sonst schlagen die Gewichte unten auf.",
+    alias: ["T-Bar mit Brustpad", "T-Bar-Rudern"],
+    videos: [["Chest Supported T-Bar Row Form Breakdown", "https://www.youtube.com/watch?v=FQyC1XtmRVQ", "Englisch"], ["How To: T-BAR RUDERMASCHINE (brustgestützt)", "https://www.youtube.com/watch?v=U-LElDV6nyE", "Deutsch"]],
+    read: ["Chest-Supported T-Bar Row", "https://fitnessvolt.com/chest-supported-t-bar-row-guide/", "Fitness Volt · Foto · Englisch"] },
+  a_rowwide: { name: "Kabelrudern breit", grp: "alt", for: ["chestrow", "cablerow"], muscles: "oberer Rücken · hintere Schulter",
+    cue: "Breit greifen, Ellbogen seitlich nach hinten: Das trifft den oberen Rücken.",
+    setup: "Latstange ans Kabelrudern, Griff etwas breiter als schulterbreit, Füsse fest, Knie leicht gebeugt.",
+    exec: ["Vorn die Schulterblätter nach vorn gleiten lassen, Rücken lang.", "Stange Richtung unterer Brustkorb ziehen, Ellbogen nach aussen-hinten.", "Schulterblätter zusammen, langsam zurück."],
+    mistakes: "stark zurücklehnen, Schwung aus dem Rücken · Arme vorn zurückschnellen lassen",
+    alias: ["Kabelrudern breit"],
+    videos: [["How To: Wide Grip Seated Cable Row", "https://www.youtube.com/watch?v=y7h823PdWIY", "Englisch"], ["Rudern am Kabelzug, breit", "https://www.youtube.com/watch?v=hrgCpsGZ6_U", "Deutsch"]],
+    read: ["How to Do Cable Wide Grip Seated Row", "https://www.strengthlog.com/cable-wide-grip-seated-row/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_latsingle: { name: "Einarm-Latzug am Kabel", grp: "alt", for: ["latwide", "latclose"], muscles: "Lat",
+    cue: "Ellbogen zur Hüfte ziehen, oben den Arm ganz lang werden lassen.",
+    setup: "Einhandgriff am oberen Zug. Kniend am Kabelturm oder sitzend am Latzug.",
+    exec: ["Arm oben ganz strecken, die Schulter darf mit in die Dehnung.", "Ellbogen nach unten zur Seite bzw. zur Hüfte ziehen.", "Langsam zurück in die volle Streckung. Wiederholungen pro Seite."],
+    mistakes: "Oberkörper kippt seitlich weg · mit dem Bizeps zum Gesicht ziehen",
+    tall: "Mit langen Armen ist die Dehnung oben besonders gross: nutz sie, das ist der halbe Reiz.",
+    alias: ["Einarm-Latzug Kabel", "Einarm-Latzug"],
+    videos: [["How To Do A HALF KNEELING SINGLE ARM LAT PULLDOWN", "https://www.youtube.com/watch?v=Vu3OrBHrMNk", "Englisch"], ["Einarmiger Latzug am Kabel", "https://www.youtube.com/watch?v=boVG9VvSHS8", "Deutsch"]],
+    read: ["How to Do One-Handed Lat Pulldown", "https://www.strengthlog.com/one-handed-lat-pulldown/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_rdfly: { name: "Kabel Rear-Delt Fly", grp: "alt", for: ["revfly"], muscles: "hintere Schulter",
+    cue: "Leicht, langsam, Ellbogen fix: Die Arme gehen seitlich nach hinten, nicht nach unten.",
+    setup: "Beide Rollen auf Schulterhöhe, Griffe oder Kabelenden überkreuzt fassen: die linke Hand am rechten Kabel.",
+    exec: ["Mittig stehen, Arme vor dem Körper gekreuzt, Ellbogen leicht gebeugt.", "Arme seitlich nach hinten auseinanderführen, bis sie etwa in Linie mit dem Körper sind.", "1 s halten, langsam zurück."],
+    mistakes: "Schwung, Hohlkreuz · Ellbogen beugen, dann wird es Rudern",
+    alias: ["Kabel Rear-Delt Fly"],
+    videos: [["How to Cross Cable Rear Delt Fly", "https://www.youtube.com/watch?v=ywMSCem375A", "Englisch"], ["Reverse Fly am Kabelzug", "https://www.youtube.com/watch?v=sff7_6tCLgg", "Deutsch"]],
+    read: ["How to Do Reverse Cable Flyes", "https://www.strengthlog.com/reverse-cable-fly/", "StrengthLog · Animation, Fotos · Englisch"] },
+  a_backext: { name: "45°-Rückenstrecker (gewichtet)", grp: "alt", for: ["rdl"], muscles: "Gesäss · Beinrückseite · unterer Rücken",
+    cue: "Bewegung aus der Hüfte, der Rücken bleibt stabil. Oben Gesäss fest, nicht überstrecken.",
+    setup: "Polster knapp unter dem Hüftknochen, so dass die Hüfte frei beugen kann. Hantelscheibe vor der Brust, erst wenn 12+ Wiederholungen sauber gehen.",
+    exec: ["Aus der Hüfte nach vorn absenken, bis es hinten deutlich zieht.", "Mit Gesäss und Beinrückseite hochkommen, bis der Körper eine Linie bildet.", "Oben 1 s Gesäss anspannen, langsam zurück."],
+    mistakes: "oben ins Hohlkreuz überstrecken · Schwung · Ziehen tief im unteren Rücken ist ein Warnsignal",
+    tall: "Polster tief genug einstellen, dass es unter der Hüfte liegt und nicht auf dem Bauch.",
+    alias: ["45°-Rückenstrecker (gewichtet)", "45°-Rückenstrecker"],
+    videos: [["45 Degree Hip Extension [Glutes & Hamstrings Bias]", "https://www.youtube.com/watch?v=OMb1VFQK9Tk", "Englisch"], ["How To: 45 Degree Back Extension With Weight Plate", "https://www.youtube.com/watch?v=KA2AuDQipSQ", "Englisch"]],
+    read: ["How to Do Back Extensions", "https://www.strengthlog.com/back-extension/", "StrengthLog · Animation, Foto, Muskelkarte · Englisch"] },
+  a_ezcurl: { name: "Curls mit der SZ-Stange", grp: "alt", for: ["curls"], muscles: "Bizeps",
+    cue: "Ellbogen bleiben am Körper, nur die Unterarme bewegen sich.",
+    setup: "Untergriff an den abgewinkelten Stellen der Stange, schulterbreit, Rumpf fest.",
+    exec: ["Stange in 1–2 s hochcurlen, Handgelenke gerade.", "Oben kurz halten.", "In 2–3 s ablassen, bis die Arme fast gestreckt sind."],
+    mistakes: "Ellbogen wandern nach vorn oder hinten · Schwung aus dem Rücken",
+    alias: ["SZ-Stange", "SZ-Curls"],
+    videos: [["How To EZ Bar Curl With Perfect Form (Grow Your Biceps)", "https://www.youtube.com/watch?v=5NsFLGUf0Fo", "Englisch"], ["Stehende Bizeps Curls mit SZ-Hantel", "https://www.youtube.com/watch?v=PsIwPPApYKk", "Deutsch"]],
+    read: ["How to Do EZ Curls", "https://www.strengthlog.com/ez-curl/", "StrengthLog · Animation, Fotos · Englisch"] },
+  a_cablecurl: { name: "Kabel-Curls", grp: "alt", for: ["curls"], muscles: "Bizeps",
+    cue: "Das Kabel hält die Spannung auch unten: ganz strecken, ruhig hoch.",
+    setup: "Gerade Stange oder SZ-Griff an der tiefen Rolle, Untergriff schulterbreit, einen Schritt zurück.",
+    exec: ["Oberarme ruhig, Ellbogen nah am Körper.", "Hochcurlen bis knapp vor die Schultern, oben anspannen.", "Langsam ganz zurück in die Streckung."],
+    mistakes: "Ellbogen nach hinten ziehen · Schwung aus dem Oberkörper",
+    alias: ["Kabel-Curls"],
+    videos: [["How To Do A STANDING BICEP CABLE CURL WITH STRAIGHT BAR", "https://www.youtube.com/watch?v=_hRnRorKRWs", "Englisch"], ["Bizepscurls am Kabelzug mit SZ-Griff", "https://www.youtube.com/watch?v=jRRHJkZJUNo", "Deutsch"]],
+    read: ["How to Do Cable Curl With Bar", "https://www.strengthlog.com/cable-curl-with-bar/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_ropecurl: { name: "Seil-Curls am Kabel", grp: "alt", for: ["hammer"], muscles: "Bizeps · Brachialis · Unterarm",
+    cue: "Daumen oben wie beim Hammer-Curl, die Seilenden gehen oben leicht auseinander.",
+    setup: "Seil an der tiefen Rolle, neutraler Griff, einen Schritt zurück.",
+    exec: ["Oberarme ruhig an der Seite.", "Kontrolliert hochcurlen, oben kurz anspannen.", "Langsam zurück, bis die Arme lang sind."],
+    mistakes: "Oberarm nach hinten ziehen · Schwung",
+    alias: ["Seil-Curls am Kabel", "Seil-Curls"],
+    videos: [["How To: Rope Cable Hammer Curls", "https://www.youtube.com/watch?v=PslvRTdHJHY", "Englisch"], ["Bizeps-Curls mit Tau am Kabelzug", "https://www.youtube.com/watch?v=30NSrkeaoU8", "Deutsch"]],
+    read: ["How to Do Cable Curl With Rope", "https://www.strengthlog.com/cable-curl-with-rope/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_bayesian: { name: "Bayesian-Curl am Kabel", grp: "alt", for: ["inclinecurl"], muscles: "Bizeps in der Dehnung",
+    cue: "Rücken zum Kabel, der Arm startet hinter dem Körper: maximale Dehnung im Bizeps.",
+    setup: "Einhandgriff an der tiefen Rolle, Rücken zum Turm, einen Schritt vor, so dass das Kabel hinten zieht.",
+    exec: ["Arm gestreckt hinter dem Körper, der Ellbogen bleibt fix.", "Nur den Unterarm nach vorne-oben curlen, oben anspannen.", "Langsam zurück in die Dehnung. Seite wechseln."],
+    mistakes: "Ellbogen wandert nach vorn · unten zurückschnellen lassen",
+    shoulder: "Die Dehnung hinten nicht erzwingen. Zieht es vorn in der Schulter: einen halben Schritt näher zum Turm.",
+    alias: ["Bayesian-Curl am Kabel", "Bayesian-Curl"],
+    videos: [["How To: Standing Face Away Bayesian Cable Curl", "https://www.youtube.com/watch?v=paM4Yo8fo8g", "Englisch"], ["Bizeps Curls am Kabel hinter dem Körper erklärt", "https://www.youtube.com/shorts/GePLo6NDA0o", "Deutsch · Short"]],
+    read: ["How to Do Bayesian Curl", "https://www.strengthlog.com/bayesian-curl/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_ohtri: { name: "Trizeps überkopf am Kabel", grp: "alt", for: ["frenchpress"], muscles: "Trizeps, vor allem der lange Kopf",
+    cue: "Oberarme neben den Ohren, nur die Ellbogen arbeiten.",
+    setup: "Seil an der hohen Rolle, Rücken zum Turm, Schrittstellung, aus der Hüfte leicht vorgelehnt.",
+    exec: ["Seil hinter dem Kopf, die Ellbogen zeigen nach vorne-oben.", "Arme strecken, bis sie fast gestreckt sind, die Seilenden leicht auseinander.", "Langsam zurück in die Dehnung hinter dem Kopf."],
+    mistakes: "Ellbogen weichen seitlich aus · Hohlkreuz",
+    shoulder: "Nur wenn die Schulter entspannt ist: Über dem Kopf ist die Position für empfindliche Schultern am heikelsten.",
+    alias: ["Trizeps überkopf Kabel", "Trizeps überkopf"],
+    videos: [["How To Do A STANDING OVERHEAD CABLE TRICEPS EXTENSION (WITH ROPE)", "https://www.youtube.com/watch?v=jioCqlKKrJc", "Englisch"], ["Trizepsdrücken über Kopf Kabelzug - Anleitung durch Personal Trainer", "https://www.youtube.com/watch?v=P74OG4x5HOY", "Deutsch"]],
+    read: ["How to Do Overhead Cable Triceps Extension", "https://www.strengthlog.com/overhead-cable-triceps-extension-upper-position/", "StrengthLog · Animation, Fotos · Englisch"] },
+  a_pendulum: { name: "Pendulum Squat", grp: "alt", for: ["hacksquat", "legpress"], muscles: "Quads · Gesäss",
+    cue: "Rücken fest am Polster, tief und kontrolliert: Die Maschine führt dich.",
+    setup: "Schulterpolster so einstellen, dass die Schultern satt darunter liegen. Füsse hüftbreit, mittig bis vorn auf der Plattform.",
+    exec: ["Rumpf anspannen, Sicherung lösen.", "Kontrolliert absenken, mindestens bis die Oberschenkel parallel sind, so tief wie das Becken ruhig bleibt.", "Über die ganze Fusssohle hochdrücken."],
+    mistakes: "Rücken löst sich vom Polster · in die Tiefe fallen lassen",
+    tall: "Prüf vorher, ob das Schulterpolster hoch genug geht. Wandern die Knie stark nach vorn: Füsse weiter vorn.",
+    alias: ["Pendulum Squat", "Pendulum"],
+    videos: [["How to Use the Pendulum Squat Machine (Complete Guide)", "https://www.youtube.com/watch?v=2l9TyVMh_XA", "Dr. Amanda Lifts · Englisch"], ["How To: Pendulum Squat Machine", "https://www.youtube.com/watch?v=Wz6EjnvifE4", "Live Lean TV · Englisch"]],
+    read: ["How to Do Pendulum Squat", "https://www.strengthlog.com/pendulum-squat/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_smithsquat: { name: "Smith-Kniebeuge fersenerhöht", grp: "alt", for: ["legpress", "hacksquat"], muscles: "Quads · Gesäss",
+    cue: "Fersen hoch, Oberkörper aufrecht, die Knie dürfen weit nach vorn: Das trifft die Quads.",
+    setup: "Fersen auf eine Hantelscheibe oder einen Keil, Füsse schulterbreit direkt unter der Stange. Stange auf dem oberen Rücken.",
+    exec: ["Rumpf anspannen, Stange aushaken.", "In ~3 s absenken, so tief wie sauber möglich, unten kurz halten.", "Hochdrücken, oben nicht ganz einrasten."],
+    mistakes: "unten abfedern · tiefer als die Technik erlaubt (Rücken rundet)",
+    tall: "Mit langen Oberschenkeln deine Kniebeuge für die Quads: Die erhöhten Fersen machen die aufrechte Position erst möglich.",
+    alias: ["Smith-Kniebeuge fersenerhöht", "Smith-Kniebeuge"],
+    videos: [["Smith Machine Heel-Elevated Quad-Focused Squats (Tutorial + Tips)", "https://www.youtube.com/watch?v=L4sFTY50UDY", "Vivian Ngo (Team Evolve) · Englisch"], ["Heel Elevated Smith Machine Squats Tutorial", "https://www.youtube.com/watch?v=usnktuCEOyE", "Team Evolve · Englisch"]],
+    read: ["How to Do Smith Machine Squat", "https://www.strengthlog.com/smith-machine-squat/", "StrengthLog · Animation (ohne erhöhte Fersen) · Englisch"] },
+  a_cablerdl: { name: "Kabel-RDL", grp: "alt", for: ["rdl"], muscles: "Beinrückseite · Gesäss",
+    cue: "Hüfte nach hinten, der Griff bleibt nah an den Beinen. Das Kabel zieht auch oben.",
+    setup: "Gerade Stange oder Seil an der tiefsten Rolle, so weit zurück stehen, dass oben Spannung bleibt.",
+    exec: ["Knie leicht gebeugt und fix, Rücken lang.", "Hüfte nach hinten schieben, der Griff gleitet nah an den Beinen bis etwa Schienbeinmitte.", "Hüfte nach vorn, Gesäss anspannen."],
+    mistakes: "Rundrücken bei Ermüdung · zu nah am Turm, dann wird das Kabel oben locker",
+    alt: "Wie beim KH-RDL: immer RIR 2+.",
+    alias: ["Kabel-RDL"],
+    videos: [["How To: Cable Romanian Deadlift With Dual Hook Straight Bar (RDL)", "https://www.youtube.com/watch?v=OCtb5fsb-Bo", "Live Lean TV · Englisch"], ["Kreuzheben am Kabel – effektiver als du denkst!", "https://www.youtube.com/watch?v=Po5WqEvClA0", "Stronger Than You · Deutsch"]],
+    read: ["Cable Romanian Deadlift", "https://liftmanual.com/cable-romanian-deadlift/", "Lift Manual · Fotos · Englisch"] },
+  a_seatcurl: { name: "Beinbeuger sitzend", grp: "alt", for: ["legcurl"], muscles: "Beinrückseite",
+    cue: "Knie genau auf die Drehachse, dann trifft es die Beinrückseite auch in der Dehnung.",
+    setup: "Rückenlehne so, dass die Knie auf Höhe der Drehachse liegen. Oberschenkelpolster fest, Unterschenkelpolster knapp über der Ferse.",
+    exec: ["Rumpf anspannen, leicht nach vorn lehnen, das gibt mehr Dehnung.", "Fersen so weit wie möglich nach unten-hinten ziehen.", "Langsam zurück, bis die Beine fast gestreckt sind."],
+    mistakes: "Knie nicht auf der Achse · Schwung",
+    tall: "Rückenlehne meist ganz nach hinten, damit die Knie die Achse erreichen.",
+    alias: ["Beinbeuger sitzend"],
+    videos: [["Seated Leg Curl: How To", "https://www.youtube.com/watch?v=Z5pRnXaCjpM", "Hammer Fitness · Englisch"], ["Beinbeuger (sitzend): Richtig einstellen und ausführen", "https://www.youtube.com/watch?v=33FMqtH5zao", "Return Sport & Wellness · Deutsch"]],
+    read: ["How to Do Seated Leg Curl", "https://www.strengthlog.com/seated-leg-curl/", "StrengthLog · Animation, Fotos · Englisch"] },
+  a_nordic: { name: "Nordic-Curl-Progression", grp: "alt", for: ["legcurl"], muscles: "Beinrückseite",
+    cue: "So langsam wie möglich nach vorn fallen, Knie bis Kopf eine Linie.",
+    setup: "Knien auf einem Polster, Fersen fixieren (Partner oder Polster unter einer beladenen Langhantel). Ein Band an einem hohen Punkt hilft am Anfang.",
+    exec: ["Hüfte gestreckt, Rumpf fest.", "Aus dem Knie langsam nach vorn absenken, mindestens 2–3 s bremsen.", "Mit den Händen abfangen, mit den Armen zurückdrücken. Stufen: mit Band → nur exzentrisch → ganz."],
+    mistakes: "Hüfte knickt ein · fallen lassen statt bremsen",
+    alt: "Sehr hart für die Beinrückseite: neu mit 2×3–5 beginnen.",
+    alias: ["Nordic-Curl-Progression", "Nordic Curl", "Nordic-Curl"],
+    videos: [["How to Set Up, Perform, & Program Nordic Hamstring Curls (Progressions | Regressions)", "https://www.youtube.com/watch?v=_e9vFU9-tkc", "E3 Rehab · Englisch"], ["Wie du endlich einen NORDIC HAMSTRING CURL schaffst", "https://www.youtube.com/watch?v=o7jQAybwOkI", "AthletenFundament · Deutsch"]],
+    read: ["How to Do Nordic Hamstring Eccentric", "https://www.strengthlog.com/nordic-hamstring-eccentric/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_calfpress: { name: "Wadenpresse an der Beinpresse", grp: "alt", for: ["calf_stand"], muscles: "Waden",
+    cue: "Nur das Sprunggelenk arbeitet: tief in die Dehnung, oben 1 s halten.",
+    setup: "Fussballen auf die untere Kante der Plattform, Fersen frei. Beine gestreckt, Knie nicht durchgedrückt. Die Sicherungen bleiben eingelegt.",
+    exec: ["Plattform über die Zehen maximal wegdrücken, oben 1 s halten.", "Langsam ganz tief zurück, unten 1 s Dehnung.", "Kein Wippen."],
+    mistakes: "Wippen statt kontrolliert · Knie beugen mit",
+    alt: "Rutscht der Fuss ab, schlägt die Plattform zurück: Sicherungen nie ganz lösen.",
+    alias: ["Wadenpresse an der Beinpresse", "Wadenpresse"],
+    videos: [["Calf Raises on Leg Press Machine: How To", "https://www.youtube.com/watch?v=gU-NeDmjmIc", "Hammer Fitness · Englisch"], ["Wadenheben an der Beinpresse", "https://www.youtube.com/watch?v=0RvGpTuw6yI", "demusqle · Deutsch"]],
+    read: ["How to Do Calf Raise in Leg Press", "https://www.strengthlog.com/calf-raise-in-leg-press/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
+  a_crunchmach: { name: "Crunch-Maschine", grp: "alt", for: ["cablecrunch"], muscles: "gerader Bauch",
+    cue: "Rippen Richtung Becken einrollen, nicht aus der Hüfte klappen.",
+    setup: "Sitz so, dass die Griffe oder Polster auf Brusthöhe liegen.",
+    exec: ["Beim Einrollen ausatmen, Bauch fest.", "Unten 1 s halten.", "Langsam zurück, ohne ganz abzulegen."],
+    mistakes: "mit den Armen ziehen · Schwung",
+    alias: ["Crunch-Maschine"],
+    videos: [["Machine Ab Crunch: How To", "https://www.youtube.com/watch?v=0kLWho-pEdQ", "Hammer Fitness · Englisch"], ["How to Do a Machine Ab Crunch | Exercise Tutorial", "https://www.youtube.com/watch?v=tE-X4SZtAio", "KDTrains · Englisch"]],
+    read: ["Machine Crunch", "https://www.strengthlog.com/machine-crunch/", "StrengthLog · Englisch"] },
+  a_plank: { name: "Plank-Varianten", grp: "alt", for: ["cablecrunch"], muscles: "ganzer Rumpf",
+    cue: "Der Körper ist eine Linie, Gesäss und Bauch maximal fest. Kurz und hart statt lang und schlaff.",
+    setup: "Unterarme am Boden, Ellbogen unter den Schultern.",
+    exec: ["Plank: Körper gerade, Gesäss anspannen, 20–40 s.", "RKC-Plank: Ellbogen und Zehen aktiv zueinander ziehen, alles anspannen, 10–20 s.", "Long-Lever-Plank: Ellbogen deutlich vor den Schultern. Seitstütz: Ellbogen unter der Schulter, Hüfte hoch."],
+    mistakes: "Hüfte hängt durch · Po zu hoch · lange halten ohne echte Spannung",
+    alias: ["Plank-Varianten", "Plank"], yt: "RKC plank tutorial",
+    read: ["Plank", "https://www.strengthlog.com/plank/", "StrengthLog · Englisch"] }
+};
+
+/* Weitere Namen der Slot-Übungen, damit sie in Texten und bei den Alternativen verlinkt werden */
+const EX_ALIAS = {
+  bench: ["KH-Bankdrücken flach", "KH-Bankdrücken", "Bankdrücken"], chestrow: ["Rudermaschine brustgestützt", "Brustgestütztes Rudern", "brustgestütztes Rudern"],
+  ohp: ["KH-Schulterdrücken", "Schulterdrücken"], latwide: ["Latzug breit", "Latzug breiter Griff", "Latzug"], latclose: ["Latzug eng/neutral", "Latzug neutral/eng", "Latzug eng"],
+  latraise_c: ["Kabel-Seitheben einarmig", "Kabel-Seitheben", "Seitheben"], latraise_d: ["KH-Seitheben"], facepull: ["Face Pulls", "Face Pull"],
+  legpress: ["Beinpresse enger/tiefer Stand", "Beinpresse-Sätze", "Beinpresse"], rdl: ["KH-RDL", "RDL"], legext: ["Beinstrecker"], calf_stand: ["Wadenheben stehend"],
+  cablecrunch: ["Cable Crunch"], incline: ["KH-Schrägbankdrücken", "Schrägbankdrücken"], chestpress: ["Brustpresse Maschine", "Brustpresse"],
+  cablefly: ["Kabel-Fliegende stehend", "Kabel-Fliegende", "Fliegende", "Fliegenden"], pushdown: ["Trizeps Pushdown", "Pushdowns", "Pushdown", "Trizepsdrücken"],
+  frenchpress: ["French Press liegend", "French Press"], cablerow: ["Kabelrudern sitzend, eng", "Kabelrudern sitzend"],
+  pullup_neg: ["Assisted-Maschine −25 → −10 kg", "Assisted Pull-up Maschine", "Assisted Pull-up", "Assisted-Maschine", "Klimmzug-Negative"],
+  revfly: ["Reverse Fly Maschine", "Reverse Fly"], curls: ["KH-Curls"], hammer: ["Hammer-Curls", "Hammer-Curl"], hacksquat: ["Hack Squat"], legcurl: ["Beinbeuger liegend"],
+  bss: ["Bulgarian Split Squats"], inclinemach: ["Schrägbank-Presse Maschine", "Schrägbank-Maschine"], inclinecurl: ["Schrägbank-Curls"], calf_seat: ["Wadenheben sitzend"]
+};
+
+const GL_CAT = [["train", "Training & Methode"], ["body", "Körper & Muskeln"], ["food", "Ernährung & Phasen"], ["rec", "Erholung"], ["data", "Messwerte"], ["plan", "Dein Plan"]];
+
+/* Glossar. short = ein Satz · body = Punkte · plan = wie es in deinem Plan gilt (Text oder Funktion) · fig = Erklärbild · see = verwandte Begriffe */
+const GLOSSAR = {
+  rir: { t: "RIR · Reps in Reserve", s: "RIR", cat: "train", fig: "rir", alias: ["RIR"],
+    short: "Wie viele saubere Wiederholungen du am Satzende noch geschafft hättest.",
+    body: ["RIR 2 heisst: Satz beenden, obwohl noch 2 saubere Wiederholungen drin wären. RIR 0 ist Muskelversagen.", "Wachstum braucht Sätze nah am Versagen, etwa RIR 0–3. Weiter weg bringt ein Satz wenig, ganz bis zum Versagen kostet er viel Erholung.", "Die meisten unterschätzen, was noch geht. Eichen: ab und zu im letzten Satz einer Isolationsübung bis zum Versagen gehen und vergleichen, wie viele es wirklich waren.", "Verwandt: RPE 8 entspricht etwa RIR 2."],
+    plan: "Einstellwoche RIR 3 · normale Wochen RIR 1–2 · letzte Woche vor dem Deload RIR 0–1 · Deload RIR 3–4 · KH-RDL nie unter RIR 2 · die neuen Sätze aus v4 bis 09.11. mit RIR 2. Das Ziel steht in jeder Übungskarte.",
+    videos: [["How To Tell If You're Training Hard Enough (Using Science)", "https://www.youtube.com/watch?v=deDlhPmT2SY", "Englisch"]],
+    read: ["How To Perfect Your Ability To Predict Repetitions In Reserve", "https://www.strongerbyscience.com/reps-in-reserve", "Stronger By Science · Englisch"], see: ["failure", "dprog", "deload"] },
+  failure: { t: "Muskelversagen", cat: "train", alias: ["Muskelversagen", "Versagen"],
+    short: "Der Punkt, an dem keine weitere saubere Wiederholung mehr gelingt (RIR 0).",
+    body: ["Technisches Versagen: Die Form bricht ein, bevor der Muskel ganz leer ist. Dort ist Schluss, nicht mit Schwung weiterkämpfen.", "Bei Isolationsübungen (Seitheben, Curls, Fliegende) ist der letzte Satz bis ans Versagen sicher und lohnend.", "Bei schweren Grundübungen (Bankdrücken, RDL, Beinpresse) bringt Versagen viel Ermüdung und Verletzungsrisiko für wenig Zusatzreiz. 1–2 Wiederholungen davor wachsen fast gleich gut."],
+    plan: "Isolation: letzter Satz bis ans Versagen, dann 3–5 Teilwiederholungen. Grundübungen RIR 1–2, KH-RDL immer RIR 2+.",
+    videos: [["Effective Reps: Does Training To Failure Matter For Muscle Growth?", "https://www.youtube.com/watch?v=xiJKa41Fsxo", "Jeff Nippard · Englisch"]],
+    read: ["Training to Failure: Is It Necessary for Muscle Growth & Strength?", "https://www.strengthlog.com/training-to-failure/", "StrengthLog · Englisch"], see: ["rir", "partials"] },
+  partials: { t: "Teilwiederholungen (gedehnt)", s: "Teilwiederholungen", cat: "train", fig: "rom:1", alias: ["Teilwiederholungen", "halbe Wiederholungen", "Partials"],
+    short: "Nach dem Versagen noch 3–5 halbe Wiederholungen im gedehnten Teil der Bewegung.",
+    body: ["Geht keine ganze Wiederholung mehr, schaffst du im gedehnten Bereich noch ein paar halbe: die untere Hälfte bei Fliegenden und Schrägbank-Curls, die obere beim Latzug.", "Die Forschung deutet darauf hin, dass Teilwiederholungen in der Dehnung mindestens so gut wirken wie ganze. Der Vorteil ist klein, als Anhang am Satzende aber gratis.", "Wichtig: halbe Wiederholungen statt ganzer, nur um mehr Gewicht zu bewegen, sind ein Technikfehler. Erst ganz, dann halb."],
+    plan: "Nur im letzten Satz von Isolationsübungen und nur so weit, wie es schmerzfrei geht.",
+    videos: [["The best intensity technique - Long Length Partials with Jeff Nippard", "https://www.youtube.com/watch?v=tTpjTpuw7UA", "Englisch"]],
+    read: ["Do Lengthened Partials Really Stimulate Stretch-Mediated Hypertrophy?", "https://www.strongerbyscience.com/stretch-mediated-hypertrophy/", "Stronger By Science · Englisch"], see: ["stretch", "failure"] },
+  stretch: { t: "Gedehnte Position & volle Range", s: "Gedehnte Position", cat: "train", fig: "rom", alias: ["gedehnte Position", "gedehnten Position", "Gedehnte Position", "gedehnten Bereich", "Range", "volle Amplitude", "Amplitude"],
+    short: "Range ist der Bewegungsweg. Die gedehnte Position ist der Teil, in dem der Zielmuskel am längsten ist.",
+    body: ["Muskeln, die unter Last gedehnt werden, wachsen besonders gut. Darum zählt der untere Teil beim Schrägbankdrücken und bei Fliegenden, der obere beim Latzug und die Position hinter dem Kopf beim Trizeps.", "Lange Arme und Beine machen den Weg länger und verleiten zu halben Wiederholungen. Lieber eine Platte leichter und ganz.", "Die Grenze ist immer schmerzfrei: Bei der Schulter und beim Becken (Beinpresse) gilt dein sauberer Weg, nicht der maximale."],
+    plan: "Bei Schrägbank-Maschine und Schrägbank-Curls unten 1 s in der Dehnung halten. Regel «Gedehnte Position zählt» im Training-Tab.",
+    read: ["How Range of Motion and Muscle Lengths Affect Muscle Growth", "https://www.strongerbyscience.com/rom", "Stronger By Science · Englisch"], see: ["partials", "tall"] },
+  ecc: { t: "Exzentrik & Negative", s: "Exzentrik", cat: "train", fig: "ecc", alias: ["Exzentrik", "exzentrisch", "Negative", "negativ", "Negativen", "Absenkphase", "langsame Exzentrik"],
+    short: "Die Absenkphase einer Wiederholung: Der Muskel arbeitet, während er länger wird.",
+    body: ["Konzentrisch heisst heben (der Muskel verkürzt sich), exzentrisch heisst absenken (er wird unter Last länger). Exzentrisch bist du deutlich stärker.", "Kontrolliert absenken (2–3 s) macht jede Wiederholung wirksamer und schont die Gelenke. Ewig langsam bringt aber nicht mehr.", "Negative: nur die Absenkphase. Mit Sprung oder Kasten in die obere Klimmzug-Position, dann 3–5 s ablassen. So trainierst du eine Bewegung, die du hoch noch nicht schaffst. Sie brauchen etwas mehr Erholung."],
+    plan: "3-Sekunden-Test: Jede Wiederholung muss sich 3 s absenken lassen, sonst ist das Gewicht zu schwer. Klimmzug-Projekt: 2× pro Woche Negative, 3–5 s ablassen, 90 s Pause.",
+    read: ["Is the eccentric really more hypertrophic than the concentric?", "https://www.strongerbyscience.com/eccentric-hypertrophy/", "Stronger By Science · Englisch"], see: ["rir"] },
+  ramp: { t: "Rampen-Sätze & Arbeitssätze", s: "Rampen-Sätze", cat: "train", fig: "ramp", alias: ["Rampen-Sätze", "Rampen-Satz", "Rampen-Sätzen", "Rampensätze", "Arbeitssätze", "Arbeitssatz", "Arbeitssätzen", "Vorsatz", "Aufwärmsätze"],
+    short: "Aufwärmsätze mit steigendem Gewicht vor der ersten schweren Übung. Danach folgen die Arbeitssätze, die zählen.",
+    body: ["Typisch: ~50 % des Arbeitsgewichts × 10, dann ~70 % × 5. Kurze Pausen, kein Brennen, kein Ermüden.", "Sie wärmen Gelenke und Muskeln gezielt für diese Bewegung auf und zeigen dir, ob sie heute sauber läuft.", "Arbeitssätze sind die geplanten Sätze nah am Versagen (z. B. 4 × 6–8). Nur sie trägst du im Log ein.", "Vorsatz: ein einzelner Rampen-Satz mit halber Last, zum Beispiel vor dem RDL am Morgen."],
+    plan: "Erste Verbundübung jeder Session: 2 Rampen-Sätze. Beispiel Bankdrücken mit 2×24 kg: 2×12 kg × 10, 2×16 kg × 5, dann die 4 Arbeitssätze.",
+    videos: [["How To Warm Up Properly Using Ramping Sets", "https://www.youtube.com/watch?v=ivolThregqY", "Englisch"]],
+    read: ["Warm Up Before Lifting: Better Performance & Fewer Injuries", "https://www.strengthlog.com/warm-up-before-lifting/", "StrengthLog · Englisch"], see: ["compound", "morning"] },
+  wechsel: { t: "Wechselsatz", cat: "train", fig: "wechsel", alias: ["Wechselsatz", "Wechselsätze", "Wechselsätzen", "Wechselsatz-Runde"],
+    short: "Zwei Übungen für Gegenspieler-Muskeln im Wechsel, mit 60–75 s Pause dazwischen.",
+    body: ["Ablauf: Satz A (z. B. Drücken) · 60–75 s · Satz B (Ziehen) · 60–75 s · wieder A …", "Jeder Muskel hat so trotzdem rund 3 Minuten Pause, der Block dauert aber etwa 6 Minuten weniger als nacheinander.", "Es klappt, weil sich Drücker und Zieher kaum gegenseitig ermüden. Studien zeigen ähnlich viel Muskel- und Kraftzuwachs in rund einem Drittel weniger Zeit.", "In Plänen auch als ⇄ geschrieben."],
+    plan: "Di und Do: Slot 1 ⇄ 2 und Slot 4 ⇄ 5. Bei diesen Slots sitzen die Timer 75 s, 90 s und 2 Min. Gerät besetzt: nacheinander trainieren und den letzten Superset auf 2 Runden kürzen.",
+    videos: [["Why You Should Be Doing Antagonist Supersets", "https://www.youtube.com/watch?v=fgzIUf2SW3Y", "Englisch"]],
+    read: ["Are supersets THE most underrated workout hack?", "https://www.strongerbyscience.com/supersets-research/", "Stronger By Science · Englisch"], see: ["superset"] },
+  superset: { t: "Superset", cat: "train", fig: "superset", alias: ["Superset", "Supersets", "Superset-Runde"],
+    short: "Zwei Übungen direkt hintereinander, ohne Pause dazwischen. Die Pause kommt erst nach beiden.",
+    body: ["Spart Zeit, besonders bei leichteren Isolationsübungen für verschiedene Muskeln: Seitheben + Fliegende, Curls + Trizepsdrücken.", "Weil die Muskeln verschieden sind, leidet die Leistung kaum. Für sehr schwere Grundübungen sind normale Sätze besser.", "Nach der Runde 60–90 s Pause, dann die nächste Runde."],
+    plan: "In der Session steht «Superset mit Slot N». In der Pump-Session 60 s zwischen den Runden.",
+    videos: [["SAME growth in HALF the time? (Superset Science Breakdown)", "https://www.youtube.com/watch?v=h1ORE68AMxY", "Englisch"]],
+    read: ["What Is a Superset? Train Harder in Less Time", "https://www.strengthlog.com/what-is-a-superset/", "StrengthLog · Englisch"], see: ["wechsel", "compound"] },
+  dprog: { t: "Doppelte Progression", cat: "train", fig: "dprog", alias: ["Doppelte Progression", "doppelte Progression", "doppelten Progression", "progressiert"],
+    short: "Erst die Wiederholungen steigern, dann das Gewicht.",
+    body: ["Beispiel 3 × 8–10: Du startest bei 3 × 8. Von Woche zu Woche kommen Wiederholungen dazu, bis alle Sätze 10 schaffen (bei RIR 1–2).", "Dann die kleinste Steigerung: nächstes Kurzhantel-Paar oder +1 Platte an der Maschine. Mit dem neuen Gewicht fällst du wieder auf ~8 und baust neu auf.", "Nie Technik gegen Gewicht tauschen: Wird die Form schlechter, zählt die Wiederholung nicht."],
+    plan: "Die App zeigt «↗︎ Oberes Ziel erreicht», sobald im Log alle Sätze am oberen Rand sind. Darum jeden Satz eintragen.",
+    videos: [["How To Build Muscle (Using Double Progression)", "https://www.youtube.com/watch?v=7P2F1El7E_U", "Englisch"]],
+    read: ["Progressive Overload: The Key to Strength and Muscle Growth", "https://www.strengthlog.com/progressive-overload/", "StrengthLog · Englisch"], see: ["rir", "setup"] },
+  deload: { t: "Deload", cat: "train", fig: "deload", alias: ["Deload-Woche", "Deload-Wochen", "Deloads", "Deload"],
+    short: "Eine geplante leichte Woche, damit Ermüdung abbaut und du danach stärker weitermachst.",
+    body: ["Ermüdung sammelt sich über Wochen an und verdeckt deine echte Kraft. Eine Woche mit halbem Volumen baut sie ab, ohne dass Muskel verloren geht.", "Gleiche Übungen, gleicher Ablauf: Sätze halbieren, Last −10 %, RIR 3–4.", "Danach fühlen sich die Gewichte meist leichter an und die Progression geht weiter."],
+    plan: k => { const up = PLAN.deloads.filter(d => addDays(d, 6) >= k); return (up.length ? "Nächster Deload: Woche ab Mo " + fmtDate(up[0]) + (up.length > 1 ? " · danach " + up.slice(1).map(fmtDate).join(", ") : "") + ". " : "") + PLAN.deloadRule.replace(/^Deload: /, ""); },
+    videos: [["When, Why & How to Deload for Building Muscle", "https://www.youtube.com/watch?v=SX2WGxksJ74", "Englisch"], ["Deload erklärt: Wann du pausieren solltest, um stärker zu werden", "https://www.youtube.com/watch?v=ZwIYf3dJuus", "Deutsch"]],
+    read: ["Why did my training get so much easier? (deload)", "https://help.rpstrength.com/hc/en-us/articles/31639551676439-Why-did-my-training-get-so-much-easier-deload", "Renaissance Periodization · Englisch"], see: ["rir", "volume"] },
+  setup: { t: "Einstellwoche & «EW»", s: "EW", cat: "train", alias: ["Einstellwoche", "EW"],
+    short: "«EW» in der Startspalte heisst: Das Startgewicht wurde in der Einstellwoche gefunden, nicht vorgegeben.",
+    body: ["In der Einstellwoche (17.–23.08.26) hast du pro Übung das Gewicht gesucht, mit dem das obere Wiederholungsziel sauber bei RIR 3 klappt.", "Seither gilt immer deine letzte Leistung: Die App zeigt sie blau als «Letztes Mal» und setzt sie als Platzhalter in die Felder.", "Maschinen-Einstellungen (Sitz, Polster, Griff) gehören ins Notizfeld der Übung. Gleiche Einstellung, vergleichbare Leistung."],
+    see: ["dprog", "rir"] },
+  compound: { t: "Verbund- & Isolationsübung", s: "Verbund & Isolation", cat: "train", alias: ["Verbundübungen", "Verbundübung", "Verbundsatz", "Verbund", "Grundübungen", "Grundübung", "Isolationsübungen", "Isolationsübung", "Isolation"],
+    short: "Verbundübungen bewegen mehrere Gelenke und viel Muskulatur, Isolationsübungen ein Gelenk und einen Zielmuskel.",
+    body: ["Verbund (Grundübung): Bankdrücken, Schulterdrücken, Rudern, Latzug, Beinpresse, RDL. Schwerer, längere Pausen (2–2½ Min), stehen am Anfang.", "Isolation: Seitheben, Fliegende, Curls, Trizepsdrücken, Beinstrecker, Waden. Leichter, kurze Pausen (60–90 s), ideal für Supersets und den letzten Satz bis ans Versagen.", "Für viel Muskel braucht es beides: Verbund für Last und Volumen, Isolation für Muskeln, die dabei zu kurz kommen, etwa die seitliche Schulter und die Arme."],
+    videos: [["Compound vs Isolation Lifts for Muscle Growth", "https://www.youtube.com/watch?v=7NzeBcIkKUs", "Englisch"]],
+    read: ["Are compound exercises best for hypertrophy?", "https://www.strongerbyscience.com/compound-exercises-for-hypertrophy/", "Stronger By Science · Englisch"], see: ["superset", "failure"] },
+  volume: { t: "Volumen: harte Sätze pro Woche", s: "Volumen", cat: "train", fig: "volume", alias: ["harte Sätze", "harten Sätze", "harter Sätze", "Sätze pro Woche", "Volumen"],
+    short: "Wie viele harte Sätze (RIR 0–3) ein Muskel pro Woche bekommt. Der wichtigste Stellhebel fürs Wachstum.",
+    body: ["Gezählt werden nur Arbeitssätze nah am Versagen, keine Rampen-Sätze.", "Meist wirken 10–20 harte Sätze pro Muskel und Woche, verteilt auf 2–3 Tage. Mehr bringt immer weniger dazu, und die Erholung muss mitkommen.", "Was du einem Muskel gibst, fehlt anderen. Darum hält dein Plan die Beine knapp und gibt dem Oberkörper mehr."],
+    plan: "Training v4 bis Mai: Brust ~17 · seitliche Schulter ~16 · Rücken ~18 · Bizeps und Trizeps je ~11 · Beine ~6 pro Muskel.",
+    videos: [["How Many Sets Does It Take to Build Muscle?", "https://www.youtube.com/watch?v=yelCnm4S3Og", "Englisch"]],
+    read: ["More Training, More Gaining: Everything You Need to Know About Training Volume", "https://www.strongerbyscience.com/volume/", "Stronger By Science · Englisch"], see: ["freq", "deload"] },
+  freq: { t: "Frequenz", cat: "train", alias: ["Seitheben-Frequenz", "Frequenz"],
+    short: "Wie oft pro Woche ein Muskel trainiert wird.",
+    body: ["Dasselbe Wochen-Volumen auf 2–4 Tage verteilt wirkt besser als alles an einem Tag: Jeder Satz wird frischer gemacht, und der Muskel bekommt öfter ein Wachstumssignal.", "Kleine Muskeln, die sich schnell erholen (seitliche Schulter, Waden), vertragen hohe Frequenzen besonders gut."],
+    plan: "Seitheben 4× pro Woche (Di, Do, Fr, Pump-Session), Brust 3× (Di, Do, Pump-Session).", see: ["volume"] },
+  autoreg: { t: "Autoregulation", cat: "train", alias: ["Autoregulation"],
+    short: "Das Training an die Tagesform anpassen, statt den Plan stur durchzuziehen.",
+    body: ["Schlecht geschlafen, viel Stress, krank in den Knochen: Pflicht sind die Hauptblöcke à 2 Sätze, der Rest ist optional.", "Gute Tage nicht überziehen: Das Ziel bleibt RIR 1–2, nicht Rekorde um jeden Preis.", "Fällt ein Morgen ganz aus: nicht nachholen, am nächsten Tag normal weiter."],
+    plan: "Zählt als voller Trainingstag. Das Erholungs-Signal auf «Heute» (Ruhepuls, HRV, Schlaf) hilft beim Entscheid.", see: ["hrv", "mvd"] },
+  morning: { t: "Morgentraining", cat: "train", alias: ["Morgentraining"],
+    short: "Um 07:15 ist der Körper kühler und steifer als am Abend.",
+    body: ["Darum wird das Warm-up nie gekürzt, und der erste Satz jeder Hauptübung ist bewusst kontrolliert.", "Der Rücken ist morgens besonders steif: vor dem RDL ein Vorsatz mit halber Last.", "Die Energie kommt vom Vorabend: Das Abendessen und der Abend-Shake sind der Treibstoff, 22:15 Licht aus das beste Pre-Workout."],
+    see: ["ramp", "autoreg"] },
+  neutral: { t: "Neutraler Griff", cat: "train", alias: ["neutraler Griff", "neutralen Griff", "neutralem Griff", "Neutraler Griff", "neutrale Griffe", "neutralen Griffen", "Neutralgriffe", "Neutralgriff"],
+    short: "Die Handflächen zeigen zueinander, wie beim Hammer-Curl.",
+    body: ["Der Oberarm dreht dabei leicht nach aussen, das gibt dem Schultergelenk mehr Platz. Darum ist der neutrale Griff beim Drücken und Ziehen oft schulterfreundlicher.", "Gegenteil: Obergriff (Handrücken oben) und Untergriff (Handflächen zu dir)."],
+    plan: "Schulterdrücken, Latzug eng und viele Maschinen mit neutralen Griffen: deine Standardbahn im Schulter-Protokoll.", see: ["cuff"] },
+  kh: { t: "KH · Kurzhantel", s: "KH", cat: "train", alias: ["KH"],
+    short: "KH ist die Kurzhantel, LH die Langhantel.",
+    body: ["Mit Kurzhanteln arbeitet jede Seite für sich, die Bahn ist frei und die Range oft grösser. Gut für Schultern, die bei der Langhantel zwicken.", "Steigerung beim nächsten Paar: meist +2 kg pro Hand. Bei kleinen Muskeln ist das viel, dann zuerst Wiederholungen sammeln."],
+    see: ["dprog", "smith"] },
+  smith: { t: "Smith-Maschine (Multipresse)", s: "Smith-Maschine", cat: "train", alias: ["Smith-Maschine", "Multipresse", "Smith"],
+    short: "Eine Langhantel, die in einer festen Schiene läuft, mit Sicherungshaken.",
+    body: ["Die feste Bahn nimmt das Ausbalancieren weg. Du kannst näher ans Versagen gehen, ohne Partner.", "Weil die Bahn fix ist, entscheidet die Position der Bank oder der Füsse über die Bewegung: vor dem ersten Satz sauber einrichten.", "Die Stange wiegt je nach Gerät 5–20 kg. Auf dem Gerät oder beim Personal nachfragen und im Notizfeld festhalten."],
+    see: ["kh"] },
+  pump: { t: "Pump & Pump-Session", s: "Pump-Session", cat: "plan", alias: ["Pump-Session", "Pump"],
+    short: "Pump ist das pralle Gefühl, wenn sich beim Training Blut im Muskel staut. Die Pump-Session ist deine 5. Einheit am Wochenende.",
+    body: ["Pump zeigt, dass der Muskel gearbeitet hat, ist aber kein Garant fürs Wachstum. Entscheidend bleiben harte Sätze und Progression.", "Die Pump-Session: rund 45 Minuten Oberkörper, Sa oder So, einmal pro Woche, nie am Montag (am Dienstag ist Oberkörper schwer). Fällt sie aus: nicht nachholen."],
+    plan: "Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5).", see: ["freq", "volume"] },
+  mvd: { t: "Minimum Viable Day", s: "MVD", cat: "plan", alias: ["Minimum Viable Day", "MVD"],
+    short: "Die Mindestversion eines Tages, wenn alles schiefläuft. Nie null.",
+    body: ["3 Übungen à 2 Sätze oder 20 Min Spazieren, dazu das Protein-Ziel und die Schlafenszeit halten.", "So reisst die Serie nicht, und am nächsten Tag geht es normal weiter."], see: ["autoreg"] },
+  reset: { t: "10-Min-Reset (Mobility)", s: "10-Min-Reset", cat: "rec", alias: ["10-Min-Reset Mobility", "10-Min-Reset", "5-Min-Version"],
+    short: "Sechs kurze Mobility-Übungen, die Hüfte, Brust, Lat, Brustwirbelsäule und Nacken locker halten.",
+    body: ["90/90-Hüftwechsel 2 Min · Couch-Stretch je 45 s · Türrahmen-Brustdehnung je 45 s · Lat-Hang an der Stange 2×30 s · BWS-Rotation im Vierfüsser 2×8 pro Seite · Nacken seitlich je 30 s.", "Kurzversion täglich, 5 Min: BWS-Rotation, Türrahmen-Dehnung, Nacken seitlich.", "Ruhig atmen, nie federn. Dehnen soll ziehen, nicht schmerzen."],
+    plan: "2–3× pro Woche abends oder am Ruhetag, dazu nach langen Velo-Runden. Timer im Erholung-Tab.", see: ["bws", "trap"] },
+  lat: { t: "Lat (Latissimus)", s: "Lat", cat: "body", alias: ["Latissimus", "Lats", "Lat"],
+    short: "Der grosse, flächige Rückenmuskel an der Seite des Oberkörpers, «die Flügel».",
+    body: ["Er zieht den Oberarm nach unten und hinten: Latzug, Klimmzug und Rudern mit den Ellbogen nah am Körper.", "Ein breiter Lat macht die V-Form: Schultern breit, Taille schmal.", "Er wächst am besten, wenn du oben die Arme ganz lang werden lässt und mit den Ellbogen ziehst, nicht mit den Händen."],
+    see: ["delt", "stretch"] },
+  delt: { t: "Schulter: vorn, seitlich, hinten", s: "Schultermuskel", cat: "body", alias: ["seitliche Schulter", "seitlichen Schulter", "hintere Schulter", "hinteren Schulter", "vordere Schulter", "vorderen Schulter", "Seitdelts", "Seitdelt", "Deltamuskel", "Rear Delts"],
+    short: "Der Deltamuskel hat drei Teile. Die seitliche Schulter macht die Schultern breit.",
+    body: ["Vordere Schulter: arbeitet bei jedem Drücken mit, braucht selten Extra-Arbeit.", "Seitliche Schulter: hebt den Arm zur Seite, also Seitheben. Sie bestimmt, wie breit du von vorn wirkst.", "Hintere Schulter: zieht den Arm nach hinten, also Reverse Fly und Face Pulls. Wichtig für Haltung und gesunde Schultern."],
+    plan: "Seitliche Schulter ~16 Sätze pro Woche mit 4× Seitheben. Die hintere Schulter über Reverse Fly und Face Pulls.", see: ["cuff", "freq"] },
+  cuff: { t: "Rotatorenmanschette", cat: "body", alias: ["Rotatorenmanschette", "Cuff"],
+    short: "Vier kleine Muskeln rund ums Schultergelenk. Sie halten den Oberarmkopf in der Pfanne zentriert.",
+    body: ["Sie arbeiten bei jeder Armbewegung als Stabilisatoren und ermüden schnell.", "Aussenrotation am Kabel und Face Pulls wärmen sie gezielt auf und kräftigen sie: leicht, sauber, nie schwer.", "Knacken ohne Schmerz ist meist harmlos. Knacken mit Schmerz: Übung stoppen, Winkel ändern, bei echtem Schmerz zur Physio."],
+    plan: "Vor jedem Oberkörper-Tag: Aussenrotation Kabel 2×12 und Face Pulls oder Band Pull-aparts 2×15.", see: ["delt", "neutral"] },
+  trap: { t: "Trapez (Trapezius)", s: "Trapez", cat: "body", alias: ["oberer Trapez", "oberen Trapez", "Trapezius", "Trapez"],
+    short: "Der Kapuzenmuskel vom Nacken über die Schultern bis zur Mitte des Rückens.",
+    body: ["Oberer Trapez: zieht die Schultern hoch. Er übernimmt gern, wenn Seitheben oder Schulterdrücken zu schwer sind. Dann spürst du es im Nacken statt in der Schulter.", "Mittlerer und unterer Trapez: ziehen die Schulterblätter zusammen und nach unten, beim Rudern, bei Face Pulls und Reverse Fly.", "Ein verspannter oberer Trapez zeigt sich als Ziehen im Nacken: Nacken-Dehnung im 10-Min-Reset."],
+    see: ["delt", "reset"] },
+  bws: { t: "BWS (Brustwirbelsäule)", s: "BWS", cat: "body", alias: ["Brustwirbelsäule", "BWS"],
+    short: "Der mittlere Abschnitt der Wirbelsäule, an dem die Rippen hängen.",
+    body: ["Sie soll sich gut drehen und aufrichten lassen. Ist sie steif, zum Beispiel durch viel Sitzen, arbeiten Schultern und Nacken mehr.", "Die BWS-Rotation im Vierfüsser und die Türrahmen-Dehnung halten sie beweglich."], see: ["reset"] },
+  quads: { t: "Quads & Beinrückseite", s: "Quads", cat: "body", alias: ["Quadrizeps", "Quads", "Beinrückseite", "Hamstrings"],
+    short: "Quads ist der vordere Oberschenkel (Quadrizeps), die Beinrückseite heisst auch Hamstrings.",
+    body: ["Quadrizeps: streckt das Knie. Beinpresse, Hack Squat, Beinstrecker.", "Beinrückseite: beugt das Knie und streckt die Hüfte. Beinbeuger und RDL.", "Mit langen Oberschenkeln arbeiten die Quads über einen langen Weg. Erhöhte Fersen oder tiefer gesetzte Füsse betonen sie."], see: ["tall"] },
+  trilong: { t: "Langer Trizepskopf", cat: "body", alias: ["Langer Trizepskopf", "langer Trizepskopf", "langen Trizepskopf", "Langen Trizepskopf"],
+    short: "Der grösste der drei Trizeps-Köpfe. Er setzt am Schulterblatt an und wird gedehnt, wenn der Arm über dem Kopf ist.",
+    body: ["Der Trizeps macht rund zwei Drittel des Oberarms aus. Für dicke Arme zählt er mehr als der Bizeps.", "Übungen mit dem Arm über oder hinter dem Kopf (French Press, Trizeps überkopf) dehnen den langen Kopf und lassen ihn am besten wachsen."],
+    plan: "French Press am Fr und in der Pump-Session. Überkopf am Kabel nur, wenn die Schulter entspannt ist.", see: ["stretch"] },
+  tall: { t: "Lange Hebel (2 m)", s: "Lange Hebel", cat: "body", alias: ["Lange Hebel", "lange Hebel", "langen Hebeln"],
+    short: "Lange Arme und Beine sind lange Hebel: Dasselbe Gewicht wirkt schwerer, und der Bewegungsweg ist länger.",
+    body: ["Bei Langhantel-Kniebeuge, Kreuzheben vom Boden und Bankdrücken limitieren dann oft Rücken und Schultern, bevor der Zielmuskel ausgelastet ist.", "Maschinen, Kurzhanteln und brustgestützte Übungen geben mehr Reiz bei weniger Ermüdung.", "Gleich viel Muskel wirkt auf langen Knochen flacher. Darum braucht es bei 2 m etwas mehr Masse für denselben Look."],
+    plan: "In jeder Übung steht unter «Für deine 2 m», worauf du achten musst.", see: ["stretch", "quads"] },
+
+  bulk: { t: "Aufbau (Lean Bulk) & Überschuss", s: "Aufbau", cat: "food", alias: ["Lean Bulk", "Kalorienüberschuss", "Überschusses", "Überschuss", "Aufbauphase", "Aufbau-Phase"],
+    short: "Eine Phase mit leichtem Kalorienüberschuss, damit Muskeln wachsen, mit möglichst wenig Fett.",
+    body: ["Muskelaufbau braucht Baumaterial und Energie. Ein kleiner Überschuss reicht: Zu viel wird Fett, zu wenig bremst das Wachstum.", "Faustregel: +0.25–0.5 % des Körpergewichts pro Woche.", "Gesteuert wird über den 7-Tage-Ø der Waage, nicht über einzelne Tage."],
+    plan: "Aufbau 28.09.26–09.05.27: +0.3–0.35 kg pro Woche Richtung Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen.",
+    videos: [["How Fast Should You be Gaining Weight While Bulking?", "https://www.youtube.com/watch?v=SEuKg858eNI", "Englisch"]],
+    read: ["How to Bulk: The Complete Guide to Muscle Gain", "https://www.strengthlog.com/how-to-bulk/", "StrengthLog · Englisch"], see: ["avg7", "stufe", "glyco", "energy"] },
+  cut: { t: "Cut, Mini-Cut & Polish-Cut", s: "Cut", cat: "food", alias: ["Mini-Cut", "Polish-Cut", "Sommer-Cut", "Kaloriendefizit", "Defizit", "Cut"],
+    short: "Eine Phase mit Kaloriendefizit, um Fett zu verlieren und die Muskeln zu halten.",
+    body: ["Mini-Cut: kurz (2–6 Wochen) und zügig, um vor einem Aufbau Fett abzubauen.", "Polish-Cut: der letzte Schliff vor dem Sommer.", "Tempo −0.5–0.6 kg pro Woche: schnell genug fürs Ziel, langsam genug, um Kraft und Muskel zu halten. Das Training bleibt schwer, das Protein hoch (~240 g)."],
+    plan: "Mini-Cut 17.08.–20.09.26 (vorzeitig beendet) · Polish-Cut 10.05.–27.06.27, 7 Wochen, Ziel 94–96 kg bei 15–16 %.",
+    videos: [["The Smartest Way To Quickly Lose Fat (Mini-Cuts Explained)", "https://www.youtube.com/watch?v=pR3RqBlHJHQ", "Englisch"]], see: ["bulk", "avg7"] },
+  recomp: { t: "Recomp (Body Recomposition)", s: "Recomp", cat: "food", alias: ["Body Recomposition", "Recomp"],
+    short: "Bei etwa gleichem Gewicht Fett ab- und Muskeln aufbauen.",
+    body: ["Klappt am besten bei Einsteigern, Wiedereinsteigern oder höherem Körperfett, zusammen mit gutem Training, viel Protein und genug Schlaf.", "Langsamer als ein echter Aufbau: Die Waage bewegt sich kaum. Den Fortschritt zeigen Umfänge, Fotos und der seca-Scan."],
+    plan: "Im Ernährungs-Tab als Alternative zum Aufbau wählbar: Gewicht halten bis leicht steigend (0 bis +0.15 kg pro Woche).",
+    videos: [["Build Muscle & Lose Fat At The Same Time: Body Recomposition Explained", "https://www.youtube.com/watch?v=f4szJ_e4zsQ", "Englisch"]], see: ["bulk", "seca"] },
+  avg7: { t: "7-Tage-Ø", cat: "food", fig: "avg7", alias: ["7-Tage-Durchschnitten", "7-Tage-Durchschnitt", "7-Tage-Ø", "Ø-Gewicht"],
+    short: "Der Durchschnitt deiner Morgengewichte der letzten 7 Tage.",
+    body: ["Das Tagesgewicht schwankt um 1–2 kg durch Wasser, Salz, Kohlenhydrate, Darminhalt und Sauna. Der 7-Tage-Ø glättet dieses Rauschen.", "Entscheide (Stufe hoch oder zurück) nur auf dem Ø von Woche zu Woche, nie auf einem einzelnen Tag.", "Täglich morgens nach der Toilette und vor dem Essen wiegen."],
+    plan: "Ziel im Aufbau: +0.3–0.35 kg pro Woche. Die Kurve im Fortschritt-Tab zeigt Tageswerte und Ø.", see: ["stufe", "bulk"] },
+  glyco: { t: "Glykogen", cat: "food", alias: ["Glykogens", "Glykogen"],
+    short: "Die Kohlenhydrat-Speicher in Muskeln und Leber. Sie binden Wasser.",
+    body: ["Pro Gramm Glykogen speichert der Körper etwa 3 g Wasser. Mehr Kohlenhydrate füllen die Speicher und bringen innert Tagen 1–2 kg mehr auf die Waage, ohne Fett.", "Darum steigt das Gewicht nach einem Cut zuerst schnell. Volle Speicher machen die Muskeln praller und das Training stärker."],
+    plan: "Erste 3 Wochen im Aufbau: +1–1.5 kg Glykogen und Wasser. Die Stufenregel greift erst danach.", see: ["avg7", "creatine"] },
+  stufe: { t: "Stufen & Stufenregel", s: "Stufen", cat: "food", alias: ["Stufenregel", "Stufenwechsel", "Aufbau-Stufen", "Aufbau-Stufe", "Stufe 1", "Stufe 2", "Stufe 3", "Stufe 4"],
+    short: "Vier Kalorien-Stufen im Aufbau. Du gehst nach Regel hoch oder zurück, nie nach Gefühl.",
+    body: () => STUFEN_TABLE.filter(r => /^bulk/.test(r[0])).map(r => "Stufe " + r[0].slice(4) + ": " + (r[0] === "bulk1" ? "Basis, " + r[2] : r[2].replace(/^\+ Abend-Shake: /, "Abend-Shake mit ")) + " · " + r[3] + " kcal").concat(["Regel: 2 Wochen unter +0.25 kg pro Woche → eine Stufe hoch · über +0.5 kg pro Woche → eine Stufe zurück. Immer auf dem 7-Tage-Ø."]),
+    plan: () => "Aktuell Stufe " + curStufe() + ". Wechseln im Ernährungs-Tab.", see: ["avg7", "bulk"] },
+  modules: { t: "Module (Q · PW · T · S · A · V · W)", s: "Module", cat: "food", alias: ["Velo-Modul", "Schwimm-Modul", "Module", "Modulen", "Modul"],
+    short: "Die Bausteine deines Essens. Jeder Tag besteht aus festen Modulen, die du auf «Heute» abhakst.",
+    body: () => Object.keys(MODULES).map(k => k + " · " + MODULES[k].name + (MODULES[k].phase ? " (" + MODULES[k].phase + ")" : "")),
+    plan: "Was ein Modul enthält, steht im Ernährungs-Tab unter «Die Module». V und W erscheinen, sobald du Velo oder Schwimmen einträgst.", see: ["stufe"] },
+  creatine: { t: "Kreatin-Monohydrat", s: "Kreatin", cat: "food", alias: ["Kreatin-Monohydrat", "Kreatin"],
+    short: "Das am besten untersuchte Supplement für Kraft und Muskelaufbau.",
+    body: ["Es füllt die Phosphokreatin-Speicher im Muskel: ein, zwei Wiederholungen mehr pro Satz, über Monate mehr Muskel.", "3–5 g pro Tag, jeden Tag, auch am Ruhetag. Der Zeitpunkt ist egal, eine Ladephase unnötig.", "Es bindet etwas Wasser im Muskel: +0.5–1 kg in den ersten Wochen ist normal und kein Fett.", "Monohydrat reicht, teurere Formen bringen nichts mehr."],
+    plan: "Steckt im nu3 Whey im Frühstücks-Shake.",
+    videos: [["Creatine: Dose, Benefits & Safety", "https://www.youtube.com/watch?v=qiogHNvz4kw", "Englisch"]],
+    read: ["Not Another Boring Creatine Guide", "https://www.strongerbyscience.com/creatine/", "Stronger By Science · Englisch"], see: ["whey", "glyco"] },
+  whey: { t: "Whey (Molkenprotein)", s: "Whey", cat: "food", alias: ["Whey"],
+    short: "Proteinpulver aus Milchmolke: schnell verdaulich, reich an Leucin.",
+    body: ["Praktisch, aber kein Wundermittel: Es zählt einfach als Protein. 30 g Pulver liefern rund 24 g Protein.", "Nie kochen: Whey klumpt in heisser Flüssigkeit. Vom Herd nehmen und erst dann einrühren."],
+    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~260–310 g längst gedeckt.", see: ["creatine"] },
+  omega3: { t: "Omega-3 (EPA/DHA)", s: "Omega-3", cat: "food", alias: ["Omega-3", "EPA/DHA", "EPA+DHA"],
+    short: "Langkettige Fettsäuren aus fettem Fisch und Algen.",
+    body: ["EPA und DHA unterstützen Herz, Gefässe und Gehirn. Ohne regelmässig fetten Fisch kommt man kaum auf genug.", "Gezählt wird die Menge EPA + DHA, nicht das Fischöl insgesamt: Etikett lesen."],
+    plan: "~2 g EPA + DHA pro Tag, weil kein Fisch in der Routine. Alternative: 1–2× pro Woche Lachs.", see: ["vitd"] },
+  vitd: { t: "Vitamin D", cat: "food", alias: ["Vitamin D", "IE"],
+    short: "Wird in der Haut mit Sonnenlicht gebildet. Von Oktober bis April reicht die Sonne in der Schweiz dafür nicht.",
+    body: ["IE heisst Internationale Einheiten: 1000 IE sind 25 µg.", "Ideal: den Blutwert (25-OH-Vitamin-D) messen lassen und danach dosieren."],
+    plan: "1000–2000 IE pro Tag, Oktober bis April.", see: ["omega3"] },
+  energy: { t: "Erhalt, Ruhe- & Aktivkalorien", s: "Erhalt", cat: "data", alias: ["Ruhekalorien", "Aktivkalorien", "Ruheenergie", "Aktivenergie", "Grundumsatz", "Erhalt"],
+    short: "Erhalt heisst: so viele Kalorien essen, wie du verbrauchst. Darüber baust du auf, darunter nimmst du ab.",
+    body: ["Ruheenergie (Grundumsatz): was der Körper in Ruhe verbraucht, bei dir rund 2000 kcal.", "Aktivenergie: Bewegung, Training, Schritte. Die Apple Watch misst sie, mit Fehlern von 10–30 %.", "Dazu kommt die Verdauung selbst, etwa 10 % der gegessenen Kalorien.", "Die Waage ist der Schiedsrichter: Die Watch zeigt die Richtung, der 7-Tage-Ø die Wahrheit."],
+    plan: "Erhalt bei knapp 2 m und fünf Trainings: ~3250–3350 kcal. Die Karte «Energie diese Woche» auf «Heute» rechnet beides gegen dein Essen.", see: ["bulk", "avg7"] },
+  ffmi: { t: "FFMI", cat: "data", alias: ["FFMI"],
+    short: "Fat-Free Mass Index: deine Magermasse im Verhältnis zur Grösse, wie ein BMI ohne Fett.",
+    body: ["Rechnung: Magermasse in kg geteilt durch die Grösse in Metern im Quadrat. Bei 2 m entspricht FFMI 19 rund 76 kg Magermasse, FFMI 22 rund 88 kg.", "Untrainierte Männer liegen meist bei 17–19, gut trainierte bei 21–23. Natürlich trainiert liegt die grobe Obergrenze um 25."],
+    plan: "Start im August ~19, das Zielbild liegt bei ~22–23.",
+    videos: [["What is FFMI? (Fat Free Mass Index)", "https://www.youtube.com/watch?v=_kaPf6HRZ-U", "Englisch"]], see: ["kf"] },
+  kf: { t: "KF (Körperfett) & Magermasse", s: "KF & Magermasse", cat: "data", alias: ["Körperfettanteil", "Körperfett", "Magermasse", "KF"],
+    short: "KF ist der Körperfettanteil in Prozent. Magermasse ist alles ausser Fett: Muskeln, Knochen, Organe, Wasser.",
+    body: ["Magermasse = Gewicht × (1 − KF). Beispiel: 93 kg bei 19 % sind rund 75 kg Magermasse.", "KF-Schätzungen per Waage oder Foto schwanken stark. Die seca-Scans im Gym sind deine Referenz."], see: ["ffmi", "seca"] },
+  seca: { t: "seca-Scan", cat: "data", alias: ["seca-Scans", "seca-Scan", "seca"],
+    short: "Eine Messung der Körperzusammensetzung (Bioimpedanz) mit dem seca-Gerät im Gym.",
+    body: ["Schwache Ströme fliessen durch den Körper, daraus schätzt das Gerät Fett, Muskeln und Wasser.", "Die Werte schwanken mit dem Wasserhaushalt: immer zur gleichen Tageszeit, nüchtern, ohne Training oder Sauna davor messen."],
+    plan: () => "Termine: " + PLAN.checkpoints.filter(c => /seca/.test(c.label + c.detail)).map(c => fmtDate(c.date) + " (" + c.label + ")").join(" · ") + ".", see: ["kf", "cp"] },
+  cp: { t: "Checkpoints (CP1–CP4)", s: "Checkpoints", cat: "plan", alias: ["Checkpoints", "Checkpoint", "CP1", "CP2", "CP3", "CP4"],
+    short: "Feste Termine, an denen du Fotos, Umfänge und den Plan überprüfst.",
+    body: () => PLAN.checkpoints.map(c => fmtDateY(c.date) + " · " + c.label + ": " + c.detail), see: ["seca"] },
+  hrv: { t: "Ruhepuls & HRV", s: "HRV", cat: "data", alias: ["Ruhepuls", "HRV"],
+    short: "Zwei Erholungs-Signale der Apple Watch: der Ruhepuls und die HRV, die Schwankung der Abstände zwischen den Herzschlägen.",
+    body: ["Erholt: Ruhepuls tief, HRV hoch. Gestresst, krank oder schlecht geschlafen: Ruhepuls höher, HRV tiefer.", "Einzelwerte schwanken stark. Aussagekräftig ist die Abweichung vom eigenen Schnitt über mehrere Tage.", "Die HRV ist sehr individuell: nur mit dir selbst vergleichen."],
+    plan: "Die App vergleicht mit deinem Schnitt und zeigt auf «Heute» ein Erholungs-Signal.",
+    videos: [["HRV Explained: How to Track & Interpret Your Heart Rate Variability", "https://www.youtube.com/watch?v=K1_FXDlO64E", "Englisch"]], see: ["autoreg"] },
+  vo2: { t: "VO₂max", cat: "data", alias: ["VO₂max", "VO2max"],
+    short: "Die maximale Sauerstoffaufnahme, ein Mass für deine Ausdauerfitness.",
+    body: ["Die Apple Watch schätzt sie aus Puls und Tempo bei Gehen, Laufen oder Velo im Freien.", "Steigt mit Zone-2-Training und gelegentlich harten Intervallen. Für dich zählt der Trend, nicht der Einzelwert."], see: ["zone2"] },
+  ratio: { t: "Schulter : Taille", cat: "data", alias: ["Schulter : Taille", "Schulter:Taille", "V-Form-Mass"],
+    short: "Der Schulterumfang geteilt durch den Taillenumfang: dein Mass für die V-Form.",
+    body: ["Er steigt mit breiteren Schultern und einem breiten Lat und sinkt, wenn der Bauch wächst. Darum zeigt er Aufbau ohne Fettzunahme besonders gut.", "Gemessen wird immer an der gleichen Stelle: Schulter an der breitesten Stelle mit lockeren Armen, Taille am Nabel."],
+    plan: "Ziel ≥ 1,50. Schulter einmal im Monat mit den Fotos, Taille jeden Sonntag.", see: ["delt", "lat"] },
+
+  zone2: { t: "Zone 2", cat: "rec", fig: "zone2", alias: ["Zone 2", "Zone-2"],
+    short: "Lockere Ausdauer, bei der du noch in ganzen Sätzen reden könntest.",
+    body: ["Etwa 60–70 % der maximalen Herzfrequenz. Gefühlt: angenehm, «könnte ewig so weiter».", "Trainiert die Ausdauerbasis, ohne die Erholung fürs Krafttraining stark zu belasten.", "Wird es zum Rennen, ist es nicht mehr Zone 2: Tempo raus, besonders am Berg."],
+    plan: "Zürisee-Runde und Schwimmen immer in Zone 2. Velo ersetzt nie ein Krafttraining.",
+    videos: [["This Is How You Know If You're in Zone 2 When Doing Cardio", "https://www.youtube.com/watch?v=UThuWiIKEBc", "Englisch"]],
+    read: ["Easy Does It: Why You Should Target Zone 2 Cardio Workouts", "https://health.clevelandclinic.org/zone-2-cardio", "Cleveland Clinic · Englisch"], see: ["vo2"] },
+  nsdr: { t: "NSDR / Yoga Nidra", s: "NSDR", cat: "rec", alias: ["Yoga Nidra", "NSDR"],
+    short: "Non-Sleep Deep Rest: tiefe Entspannung im Liegen, geführt per Audio, ohne zu schlafen.",
+    body: ["Eine Stimme führt dich durch Atmung und Körperwahrnehmung (Body Scan). 10–20 Minuten, Augen zu, Kopfhörer.", "Kann Stress senken und etwas fehlenden Schlaf auffangen, ersetzt aber keine Nacht.", "Man kann nichts falsch machen. Einschlafen ist okay."],
+    plan: "3× pro Woche, Mittagspause oder nach dem Training. Zähler und Timer im Erholung-Tab.",
+    videos: [["10 Minute Non-Sleep Deep Rest (NSDR)", "https://www.youtube.com/watch?v=KHIbgSN2qAU", "geführt · Englisch"], ["20 Minute Non-Sleep Deep Rest (NSDR)", "https://www.youtube.com/watch?v=hEypv90GzDE", "geführt · Englisch"], ["Yoga Nidra 20 Minuten deutsch - geführte Audio", "https://www.youtube.com/watch?v=SXHAVf1VAKg", "geführt · Deutsch"]],
+    read: ["Non-Sleep Deep Rest (NSDR)", "https://www.hubermanlab.com/nsdr", "Huberman Lab · Englisch"], see: ["breath478"] },
+  breath478: { t: "4-7-8-Atmung", cat: "rec", fig: "breath", alias: ["4-7-8-Atmung"],
+    short: "4 s einatmen, 7 s halten, 8 s ausatmen. 5 Runden dauern rund 95 Sekunden.",
+    body: ["Die lange Ausatmung bremst Puls und Anspannung.", "Durch die Nase ein, durch den Mund hörbar aus. Das Tempo darf langsamer oder schneller sein, das Verhältnis zählt."],
+    plan: "Abends ab 21:45 oder vor stressigen Terminen. Der Atem-Guide im Erholung-Tab zählt mit.",
+    videos: [["Dr. Weil explains how to do his 4-7-8 breathing technique", "https://www.youtube.com/watch?v=p8fjYPC-k2k", "Englisch"], ["Guided 4-7-8 Breathing with Dr. Weil", "https://www.youtube.com/watch?v=yHsE4z1gba0", "geführt · Englisch"]], see: ["nsdr", "brain"] },
+  sauna: { t: "Sauna-Gang", s: "Sauna", cat: "rec", alias: ["Sauna-Gänge", "Sauna-Gang", "Sauna"],
+    short: "Ein Durchgang in der Sauna, danach Abkühlen und Ruhen.",
+    body: ["Ein Gang: 8–12 Min bei 85–95 °C, lauwarm abduschen, 5 Min ruhen.", "Sie entspannt, lockert verspannte Schultern und kann den Schlaf am Folgetag verbessern. Einen Muskelaufbau-Effekt belegt die Forschung beim Menschen kaum.", "Pro Gang ~500 ml trinken. Der Gewichtsverlust danach ist Wasser. Letzter Gang 1.5–2 h vor dem Schlafen."],
+    videos: [["Do Saunas Boost Muscle Growth?", "https://www.youtube.com/watch?v=YLOASZeTa-E", "Englisch"]], see: ["nsdr"] },
+  brain: { t: "Brain-Dump", cat: "rec", alias: ["Brain-Dump"],
+    short: "5 Minuten alles aufschreiben, was im Kopf kreist: Sorgen, Offenes und die Top-3 für morgen.",
+    body: ["Was auf dem Papier steht, muss der Kopf nicht mehr festhalten. So fällt das Einschlafen leichter, besonders mit einer To-do-Liste für morgen.", "Danach das Handy aus dem Schlafzimmer."], see: ["breath478"] },
+  topf: { t: "Doppel-Topf & Sonntag-System", s: "Doppel-Topf", cat: "plan", alias: ["Doppel-Topf", "Sonntag-System"],
+    short: "Doppel-Topf: alles doppelt kochen, 6 Portionen für 3 Tage. Sonntag-System: 90 Minuten, die die Woche vorbereiten.",
+    body: () => SUNDAY.items.slice(), see: ["modules"] }
+};
+const GL_ORDER = GL_CAT.map(c => c[0]);
+const DRILL_GRP = [["warm", "Warm-up"], ["mob", "Mobility · 10-Min-Reset"], ["alt", "Alternativen (Gerät besetzt)"]];
+
+/* ---------- Wissen: Erklärbilder (SVG, Farben über CSS-Klassen) ---------- */
+const FG = {
+  r: n => Math.round(n * 10) / 10,
+  ln(x1, y1, x2, y2, c) { return `<line x1="${FG.r(x1)}" y1="${FG.r(y1)}" x2="${FG.r(x2)}" y2="${FG.r(y2)}" class="${c}"/>`; },
+  pl(pts, c) { return `<polyline points="${pts.map(p => FG.r(p[0]) + "," + FG.r(p[1])).join(" ")}" class="${c}"/>`; },
+  pa(d, c) { return `<path d="${d}" class="${c}"/>`; },
+  ci(x, y, r, c) { return `<circle cx="${FG.r(x)}" cy="${FG.r(y)}" r="${r}" class="${c}"/>`; },
+  rc(x, y, w, h, rx, c) { return `<rect x="${FG.r(x)}" y="${FG.r(y)}" width="${FG.r(w)}" height="${FG.r(h)}" rx="${rx}" class="${c}"/>`; },
+  tx(x, y, s, c, a) { return `<text x="${FG.r(x)}" y="${FG.r(y)}" class="${c || "f-t"}" text-anchor="${a || "middle"}">${s}</text>`; },
+  head(x, y, deg, c) {
+    const a = deg * Math.PI / 180, L = 8, w = 0.5;
+    return `<path d="M${FG.r(x - L * Math.cos(a - w))},${FG.r(y - L * Math.sin(a - w))} L${FG.r(x)},${FG.r(y)} L${FG.r(x - L * Math.cos(a + w))},${FG.r(y - L * Math.sin(a + w))}" class="${c || "f-m"}"/>`;
+  },
+  arrow(x1, y1, x2, y2, c) { return FG.ln(x1, y1, x2, y2, c || "f-m") + FG.head(x2, y2, Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI, c); },
+  /* Bogen um (cx,cy) von Winkel a1 nach a2 (Grad, 0 = rechts, positiv = im Uhrzeigersinn), Pfeilspitze am Ende */
+  arc(cx, cy, r, a1, a2, c) {
+    const p = a => [cx + r * Math.cos(a * Math.PI / 180), cy + r * Math.sin(a * Math.PI / 180)];
+    const s = p(a1), e = p(a2), large = Math.abs(a2 - a1) > 180 ? 1 : 0, sw = a2 > a1 ? 1 : 0;
+    return `<path d="M${FG.r(s[0])},${FG.r(s[1])} A${r},${r} 0 ${large} ${sw} ${FG.r(e[0])},${FG.r(e[1])}" class="${c || "f-m"}"/>` + FG.head(e[0], e[1], a2 + (sw ? 90 : -90), c);
+  },
+  /* Glied: Linie zwischen Gelenkpunkten */
+  limb(pts, c) { return FG.pl(pts, c); },
+  wrap(vb, inner, cap) { return `<figure class="kbfig"><svg viewBox="${vb}" role="img" aria-label="${esc(cap || "")}">${inner}</svg>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`; }
+};
+
+const FIG = {
+  /* Aussenrotation Kabel: Ansicht von oben */
+  extrot() {
+    const E = [86, 126], L = 58, pt = d => [E[0] + L * Math.cos(d * Math.PI / 180), E[1] + L * Math.sin(d * Math.PI / 180)];
+    const hs = pt(-35), he = pt(-140), P = [276, 92];
+    return FG.wrap("0 0 320 190",
+      FG.tx(12, 18, "Ansicht von oben", "f-t", "start") +
+      FG.rc(268, 52, 30, 84, 6, "f-e") + FG.ci(P[0], P[1], 5, "f-e") + FG.tx(283, 152, "Kabel", "f-t") +
+      FG.ln(P[0], P[1], hs[0], hs[1], "f-cg") + FG.ln(P[0], P[1], he[0], he[1], "f-c") +
+      `<ellipse cx="150" cy="128" rx="60" ry="20" class="f-bod"/>` + FG.ci(150, 122, 17, "f-hd") + FG.pa("M144,106 L150,96 L156,106", "f-hd") +
+      FG.rc(89, 118, 8, 18, 3, "f-tw") +
+      FG.ln(E[0], E[1], hs[0], hs[1], "f-g") + FG.ci(hs[0], hs[1], 6, "f-gf") +
+      FG.ln(E[0], E[1], he[0], he[1], "f-a") + FG.ci(he[0], he[1], 7, "f-af") + FG.ci(E[0], E[1], 6, "f-af") +
+      FG.arc(E[0], E[1], 74, -42, -132) +
+      FG.tx(86, 40, "Unterarm dreht nach aussen", "f-tl") +
+      FG.ln(93, 140, 104, 160, "f-lead") + FG.tx(112, 174, "Ellbogen bleibt am Körper (Handtuch)", "f-tl", "start"),
+      "Ellbogen fix an der Seite, nur der Unterarm dreht nach aussen. Blass: Start.");
+  },
+  /* Band Pull-aparts: Ansicht von oben */
+  pullapart() {
+    const LS = [104, 128], RS = [216, 128];
+    return FG.wrap("0 0 320 190",
+      FG.tx(12, 18, "Ansicht von oben", "f-t", "start") +
+      FG.ln(LS[0], LS[1], 128, 50, "f-g") + FG.ln(RS[0], RS[1], 192, 50, "f-g") + FG.ln(128, 50, 192, 50, "f-bandg") +
+      `<ellipse cx="160" cy="130" rx="60" ry="20" class="f-bod"/>` + FG.ci(160, 124, 17, "f-hd") + FG.pa("M154,108 L160,98 L166,108", "f-hd") +
+      FG.pa("M36,120 Q160,96 284,120", "f-band") +
+      FG.ln(LS[0], LS[1], 36, 120, "f-a") + FG.ln(RS[0], RS[1], 284, 120, "f-a") + FG.ci(36, 120, 7, "f-af") + FG.ci(284, 120, 7, "f-af") +
+      FG.arc(LS[0], LS[1], 70, -78, -160) + FG.arc(RS[0], RS[1], 70, -102, -20, "f-m") +
+      FG.arrow(124, 166, 144, 156) + FG.arrow(196, 166, 176, 156) +
+      FG.tx(160, 40, "Arme lang, auf Schulterhöhe", "f-tl") + FG.tx(160, 184, "Schulterblätter zusammen", "f-tl"),
+      "Band vor der Brust auseinanderziehen, bis die Arme ein T bilden. Blass: Start.");
+  },
+  /* Rudergerät: Seitenansicht, Auslage (gestrichelt) und Endzug */
+  row() {
+    const g = "f-g", b = "f-b";
+    return FG.wrap("0 0 320 180",
+      FG.ln(20, 146, 300, 146, "f-e") + FG.rc(268, 70, 34, 64, 14, "f-e") + FG.ln(214, 146, 228, 116, "f-e") +
+      FG.ln(272, 100, 238, 96, "f-cg") + FG.ln(272, 100, 122, 98, "f-c") +
+      FG.rc(156, 124, 30, 8, 3, "f-gs") + FG.limb([[170, 122], [204, 84], [217, 129]], g) + FG.limb([[170, 122], [196, 74]], g) + FG.ci(204, 58, 10, "f-gh") + FG.limb([[196, 74], [238, 96]], g) +
+      FG.rc(104, 124, 30, 8, 3, "f-seat") + FG.limb([[118, 122], [168, 118], [217, 129]], b) + FG.limb([[118, 122], [102, 72]], b) + FG.ci(97, 55, 10, "f-hd") + FG.limb([[102, 74], [92, 100], [122, 98]], "f-a") +
+      FG.arrow(150, 160, 112, 160) + FG.tx(156, 164, "Sitz rollt zurück", "f-t", "start") +
+      FG.tx(16, 22, "Reihenfolge zurück: Beine → Rumpf → Arme", "f-tl", "start") + FG.tx(16, 38, "vor: Arme → Rumpf → Beine · locker, ~22 Züge/Min", "f-t", "start"),
+      "Seitenansicht. Blass: Auslage vorn mit senkrechten Schienbeinen. Kräftig: Endzug, Griff an den unteren Rippen.");
+  },
+  /* 90/90-Hüftwechsel: von oben, Position A und B */
+  h9090() {
+    const pan = (ox, m) => {
+      const X = x => ox + (m ? 160 - x : x);
+      const legs = m ? [[92, 100], [132, 100], [132, 142]] : [[68, 100], [28, 100], [28, 142]];
+      const front = m ? [[68, 100], [68, 50], [110, 50]] : [[92, 100], [92, 50], [50, 50]];
+      return FG.limb(front.map(p => [ox + p[0], p[1]]), "f-a") + FG.limb(legs.map(p => [ox + p[0], p[1]]), "f-b") +
+        `<ellipse cx="${ox + 80}" cy="104" rx="28" ry="12" class="f-bod"/>` + FG.ci(ox + 80, 101, 11, "f-hd") + FG.pa(`M${ox + 76},91 L${ox + 80},84 L${ox + 84},91`, "f-hd") +
+        FG.tx(ox + 80, 170, m ? "B: links vorn" : "A: rechts vorn", "f-tl");
+    };
+    return FG.wrap("0 0 320 180",
+      FG.tx(12, 18, "Ansicht von oben", "f-t", "start") + pan(0, false) + pan(160, true) +
+      FG.arrow(146, 76, 176, 76) + FG.arrow(174, 88, 144, 88),
+      "Beide Knie 90° gebeugt. Knie zur anderen Seite kippen, Füsse bleiben am Boden.");
+  },
+  /* Couch-Stretch: Seitenansicht */
+  couch() {
+    return FG.wrap("0 0 320 180",
+      FG.ln(34, 16, 34, 150, "f-e") + FG.ln(20, 150, 300, 150, "f-e") + FG.rc(46, 141, 30, 9, 4, "f-e") + FG.tx(40, 26, "Wand", "f-t", "start") +
+      FG.pa("M70,142 L103,104", "f-hl") +
+      FG.limb([[96, 100], [150, 104], [152, 148], [170, 148]], "f-b") +
+      FG.limb([[96, 100], [60, 144], [40, 96]], "f-a") +
+      FG.limb([[96, 100], [120, 50]], "f-g") + FG.ci(127, 35, 10, "f-gh") +
+      FG.limb([[96, 100], [96, 46]], "f-b") + FG.ci(96, 30, 10, "f-hd") + FG.limb([[96, 52], [108, 78], [128, 98]], "f-b") +
+      FG.arc(96, 100, 62, -68, -86) +
+      FG.tx(184, 66, "Dehnung vorn an", "f-tw2", "start") + FG.tx(184, 80, "Hüfte + Oberschenkel", "f-tw2", "start") +
+      FG.tx(184, 28, "Gesäss anspannen,", "f-tl", "start") + FG.tx(184, 42, "Oberkörper aufrichten", "f-tl", "start"),
+      "Hinteres Knie an der Wand, Schienbein senkrecht hoch. Blass: Start vorgeneigt.");
+  },
+  /* Türrahmen-Brustdehnung: Seitenansicht */
+  door() {
+    return FG.wrap("0 0 320 180",
+      FG.rc(58, 12, 10, 138, 2, "f-e") + FG.ln(20, 150, 300, 150, "f-e") + FG.tx(63, 166, "Türrahmen", "f-t") +
+      FG.limb([[100, 66], [96, 116]], "f-g") + FG.ci(104, 49, 10, "f-gh") +
+      FG.ci(122, 74, 11, "f-hlc") +
+      FG.limb([[68, 26], [70, 64], [116, 66]], "f-a") +
+      FG.limb([[116, 64], [100, 116]], "f-b") + FG.ci(126, 48, 10, "f-hd") +
+      FG.limb([[100, 116], [126, 132], [138, 150]], "f-b") + FG.limb([[100, 116], [90, 134], [76, 150]], "f-b") +
+      FG.arrow(170, 120, 204, 120) + FG.tx(210, 124, "Schritt vor", "f-tl", "start") +
+      FG.tx(160, 82, "Dehnung in der Brust", "f-tw2", "start") +
+      FG.tx(160, 26, "Unterarm am Rahmen,", "f-tl", "start") + FG.tx(160, 40, "Ellbogen auf Schulterhöhe", "f-tl", "start"),
+      "Seitenansicht. Unterarm an den Rahmen, mit dem Körper nach vorn lehnen. Blass: Start.");
+  },
+  /* Lat-Hang an der Stange, Füsse am Boden */
+  lathang() {
+    return FG.wrap("0 0 320 180",
+      FG.ln(40, 20, 290, 20, "f-bar") + FG.ln(20, 150, 300, 150, "f-e") +
+      FG.pa("M160,64 L130,92", "f-hl") +
+      FG.limb([[200, 24], [167, 71]], "f-a") +
+      FG.limb([[167, 71], [124, 104]], "f-b") + FG.ci(182, 62, 10, "f-hd") +
+      FG.limb([[124, 104], [160, 112], [154, 150], [170, 150]], "f-b") +
+      FG.arrow(120, 106, 104, 116) +
+      FG.tx(16, 50, "Dehnung seitlich", "f-tw2", "start") + FG.tx(16, 64, "am Rumpf (Lat)", "f-tw2", "start") +
+      FG.tx(16, 128, "Hüfte nach hinten", "f-tl", "start") + FG.tx(16, 142, "sinken lassen", "f-tl", "start") +
+      FG.tx(214, 44, "Arme lang", "f-tl", "start") + FG.tx(214, 120, "Füsse bleiben", "f-tl", "start") + FG.tx(214, 134, "am Boden", "f-tl", "start"),
+      "Seitenansicht. Stange greifen, Gewicht nach hinten und unten abgeben, bis der Lat zieht.");
+  },
+  /* BWS-Rotation im Vierfüsser: Ansicht von vorn */
+  tspine() {
+    return FG.wrap("0 0 320 180",
+      FG.ln(20, 150, 300, 150, "f-e") +
+      FG.limb([[100, 92], [100, 148], [58, 150]], "f-b") + FG.limb([[178, 92], [180, 148]], "f-b") +
+      FG.limb([[178, 92], [172, 122], [196, 102]], "f-g") +
+      FG.limb([[100, 92], [178, 92]], "f-b") + FG.ci(198, 86, 10, "f-hd") +
+      FG.limb([[178, 92], [170, 56], [192, 76]], "f-a") +
+      FG.arc(178, 92, 40, 102, -100) +
+      FG.tx(218, 42, "Ellbogen weit", "f-tl", "start") + FG.tx(218, 56, "zur Decke drehen", "f-tl", "start") +
+      FG.tx(218, 120, "Blick folgt", "f-tl", "start") + FG.tx(218, 134, "dem Ellbogen", "f-tl", "start") +
+      FG.tx(16, 30, "Hand hinter dem Kopf", "f-tl", "start") + FG.tx(16, 62, "Becken bleibt", "f-tl", "start") + FG.tx(16, 76, "über den Knien", "f-tl", "start"),
+      "Seitenansicht im Vierfüsser. Blass: Ellbogen zuerst Richtung Stützarm, dann weit nach oben aufdrehen.");
+  },
+  /* Nacken seitlich dehnen: Ansicht von vorn */
+  neck() {
+    const a = 24 * Math.PI / 180, N = [170, 112], hc = [N[0] + 44 * Math.sin(a), N[1] - 44 * Math.cos(a)];
+    return FG.wrap("0 0 320 180",
+      FG.pa("M158,106 Q140,112 120,124", "f-hl") +
+      FG.ci(170, 66, 24, "f-gh") +
+      FG.pa("M100,134 Q170,104 242,122", "f-b") + FG.limb([[102, 132], [94, 172]], "f-a") +
+      FG.ln(N[0], N[1], N[0] + 20 * Math.sin(a), N[1] - 20 * Math.cos(a), "f-b") + FG.ci(hc[0], hc[1], 24, "f-hd") +
+      FG.arc(170, 112, 66, -96, -70) +
+      FG.arrow(72, 146, 72, 170) + FG.tx(16, 140, "Schulter sinkt", "f-tl", "start") +
+      FG.tx(16, 92, "Dehnung seitlich", "f-tw2", "start") + FG.tx(16, 106, "am Nacken", "f-tw2", "start") +
+      FG.tx(236, 40, "Ohr Richtung", "f-tl", "start") + FG.tx(236, 54, "Schulter, sanft", "f-tl", "start"),
+      "Ansicht von vorn. Kopf zur Seite neigen, die andere Schulter aktiv nach unten. 30 s pro Seite.");
+  },
+  /* ---------- Glossar-Grafiken ---------- */
+  rir() {
+    let s = "";
+    for (let i = 0; i < 10; i++) s += FG.rc(20 + i * 28.4, 34, 24, 30, 5, i < 8 ? "f-rep" : "f-repg");
+    const tick = (v, x) => FG.ln(x, 104, x, 110, "f-e") + FG.tx(x, 124, "RIR " + v, "f-t");
+    const X = v => 36 + (4 - v) * 64;
+    return FG.wrap("0 0 320 160",
+      s + FG.pa("M20,28 L20,22 L245,22 L245,28", "f-br") + FG.tx(132, 16, "8 saubere Wiederholungen gemacht", "f-tl") +
+      FG.pa("M250,70 L250,76 L300,76 L300,70", "f-br2") + FG.tx(275, 90, "2 noch drin", "f-tl") +
+      FG.rc(X(2) - 8, 98, X(1) - X(2) + 16, 18, 9, "f-band2") + FG.ln(20, 107, 300, 107, "f-e") +
+      [4, 3, 2, 1, 0].map(v => tick(v, X(v))).join("") +
+      FG.tx(X(3.5), 146, "Deload · Einstellwoche", "f-t") + FG.tx(X(1.5), 146, "dein Normalfall", "f-tlb") + FG.tx(X(0), 146, "Versagen", "f-tw2"),
+      "Satz beendet mit 2 Wiederholungen Reserve = RIR 2.");
+  },
+  ramp() {
+    const bars = [["~50 %", "× 10", 0.5, "f-rampb"], ["~70 %", "× 5", 0.7, "f-rampb"], ["100 %", "× 6–8", 1, "f-work"], ["100 %", "× 6–8", 1, "f-work"], ["100 %", "× 6–8", 1, "f-work"], ["100 %", "× 6–8", 1, "f-work"]];
+    let s = "";
+    bars.forEach((b, i) => { const h = 90 * b[2], x = 24 + i * 48; s += FG.rc(x, 124 - h, 34, h, 5, b[3]) + FG.tx(x + 17, 118 - h, b[0], "f-tl") + FG.tx(x + 17, 140, b[1], "f-t"); });
+    return FG.wrap("0 0 320 172",
+      s + FG.ln(14, 124, 306, 124, "f-e") +
+      FG.tx(65, 162, "Rampen-Sätze", "f-tl") + FG.tx(216, 162, "Arbeitssätze (zählen, ins Log)", "f-tlb"),
+      "Beispiel KH-Bankdrücken 2×24 kg: 2×12 kg × 10 · 2×16 kg × 5 · dann 4 Arbeitssätze.");
+  },
+  wechsel() {
+    const set = (x, y, c) => FG.rc(x, y, 30, 20, 5, c);
+    return FG.wrap("0 0 320 154",
+      FG.tx(12, 50, "A Drücken", "f-tl", "start") + FG.tx(12, 100, "B Ziehen", "f-tl", "start") +
+      [86, 198].map(x => set(x, 36, "f-work")).join("") + set(310 - 30, 36, "f-work") + [142, 254].map(x => set(x, 86, "f-rampb2")).join("") +
+      FG.pa("M116,30 L116,24 L198,24 L198,30", "f-br") + FG.tx(157, 18, "≈ 3 Min Pause für A", "f-t") +
+      FG.ln(116, 56, 142, 86, "f-pause") + FG.ln(172, 86, 198, 56, "f-pause") + FG.ln(228, 56, 254, 86, "f-pause") + FG.ln(284, 86, 284, 56, "f-pause") +
+      FG.tx(129, 122, "60–75 s", "f-t") + FG.tx(185, 122, "60–75 s", "f-t") +
+      FG.ln(86, 130, 306, 130, "f-e") + FG.tx(86, 146, "Zeit →", "f-t", "start"),
+      "Satz A, 60–75 s, Satz B, 60–75 s, wieder A. Jeder Muskel ruht ~3 Min, der Block ist ~6 Min kürzer.");
+  },
+  superset() {
+    const r = (x, c, t) => FG.rc(x, 40, 34, 24, 5, c) + FG.tx(x + 17, 56, t, "f-tin");
+    return FG.wrap("0 0 320 120",
+      r(20, "f-work", "A") + r(58, "f-rampb2", "B") + r(162, "f-work", "A") + r(200, "f-rampb2", "B") +
+      FG.pa("M96,52 L160,52", "f-pause") + FG.tx(128, 44, "Pause", "f-t") + FG.tx(128, 80, "60–90 s", "f-t") +
+      FG.pa("M238,52 L300,52", "f-pause") +
+      FG.pa("M20,72 L20,78 L92,78 L92,72", "f-br") + FG.tx(56, 96, "ohne Pause", "f-tlb") + FG.tx(56, 110, "1 Runde", "f-t"),
+      "A und B direkt hintereinander, dann Pause. Zum Beispiel Seitheben + Fliegende.");
+  },
+  dprog() {
+    const pts = [[8, 20], [9, 20], [9.7, 20], [10, 20], [8, 22], [8.7, 22], [9.3, 22], [10, 22], [8.3, 24]];
+    const X = i => 40 + i * 32, Y = r => 128 - (r - 7) * 26;
+    let s = FG.rc(30, Y(10), 286, Y(8) - Y(10), 4, "f-bandr") + FG.tx(36, Y(8) + 16, "Zielbereich 8–10 Wdh", "f-t", "start");
+    [7, 8, 9, 10, 11].forEach(r => { s += FG.tx(22, Y(r) + 4, r, "f-t", "end"); });
+    s += FG.pl(pts.map((p, i) => [X(i), Y(p[0])]), "f-line");
+    pts.forEach((p, i) => { s += FG.ci(X(i), Y(p[0]), 4.5, p[0] >= 10 ? "f-dotg" : "f-dot"); });
+    [3.5, 7.5].forEach((i, k) => { s += FG.ln(X(i), 30, X(i), 132, "f-step") + FG.tx(X(i), 24, k ? "22 → 24 kg" : "20 → 22 kg", "f-tlb"); });
+    s += FG.tx(X(0), 148, "W1", "f-t") + FG.tx(X(4), 148, "W5", "f-t") + FG.tx(X(8), 148, "W9", "f-t");
+    return FG.wrap("0 0 320 156", s, "Wiederholungen steigen, bis alle Sätze oben ankommen. Dann kleinste Steigerung und wieder unten anfangen.");
+  },
+  deload() {
+    const v = [70, 77, 83, 88, 93, 97, 48, 78, 84];
+    let s = "";
+    v.forEach((h, i) => { const x = 22 + i * 32; s += FG.rc(x, 120 - h, 24, h, 4, i === 6 ? "f-del" : "f-work") + FG.tx(x + 12, 136, "W" + (i + 1), "f-t"); });
+    s += FG.ln(14, 120, 306, 120, "f-e") + FG.tx(222, 66, "Deload", "f-tw2") + FG.tx(160, 152, "Sätze halbieren · Last −10 % · RIR 3–4", "f-tl");
+    return FG.wrap("0 0 320 160", s, "Belastung steigt über Wochen, die Deload-Woche baut Ermüdung ab, danach geht es höher weiter.");
+  },
+  avg7() {
+    const n = 28, d = [], a = [];
+    for (let i = 0; i < n; i++) { const t = 93 + i * 0.045, noise = Math.sin(i * 2.3) * 0.55 + Math.sin(i * 0.9 + 1) * 0.35 + (i % 5 === 3 ? 0.7 : 0) - (i % 7 === 0 ? 0.6 : 0); d.push(t + noise); }
+    for (let i = 0; i < n; i++) { const w = d.slice(Math.max(0, i - 6), i + 1); a.push(w.reduce((x, y) => x + y, 0) / w.length); }
+    const X = i => 22 + i * 10.3, Y = v => 132 - (v - 92) * 24;
+    let s = "";
+    d.forEach((v, i) => { s += FG.ci(X(i), Y(v), 3, "f-dotm"); });
+    s += FG.pl(a.map((v, i) => [X(i), Y(v)]).slice(3), "f-line2");
+    s += FG.tx(22, 150, "Punkte: Tageswerte, springen um ±1 kg", "f-t", "start") + FG.tx(22, 26, "Linie: 7-Tage-Ø zeigt den Trend", "f-tlb", "start");
+    return FG.wrap("0 0 320 158", s, "Entscheide auf dem 7-Tage-Ø, nie auf einem einzelnen Morgen.");
+  },
+  zone2() {
+    const z = [["1", "locker", "50–60", 50], ["2", "könnte reden", "60–70", 82], ["3", "zügig", "70–80", 50], ["4", "hart", "80–90", 50], ["5", "Vollgas", "90–100", 50]];
+    let s = "", x = 12;
+    z.forEach((q, i) => { const w = q[3]; s += FG.rc(x, 40, w, 36, 6, i === 1 ? "f-z2" : "f-zx") + FG.tx(x + w / 2, 63, (i === 1 ? "Zone " : "") + q[0], i === 1 ? "f-tin" : "f-t") + FG.tx(x + w / 2, 94, q[1], i === 1 ? "f-tlb" : "f-t") + FG.tx(x + w / 2, 110, q[2], "f-t"); x += w + 4; });
+    s += FG.tx(160, 24, "Anteil der maximalen Herzfrequenz in %", "f-t");
+    return FG.wrap("0 0 320 124", s, "Zone 2: in ganzen Sätzen reden geht noch, singen nicht mehr.");
+  },
+  ecc() {
+    return FG.wrap("0 0 320 130",
+      FG.tx(16, 24, "Normale Wiederholung", "f-tl", "start") +
+      FG.rc(16, 32, 50, 22, 5, "f-work") + FG.tx(41, 47, "hoch 1 s", "f-tin") + FG.rc(70, 32, 150, 22, 5, "f-ecc") + FG.tx(145, 47, "runter 2–3 s · exzentrisch", "f-tin") +
+      FG.tx(16, 82, "Negative", "f-tl", "start") +
+      FG.rc(16, 90, 84, 22, 5, "f-zx") + FG.tx(58, 105, "hoch mit Hilfe", "f-t") + FG.rc(104, 90, 200, 22, 5, "f-ecc") + FG.tx(204, 105, "nur runter, 3–5 s bremsen", "f-tin"),
+      "Konzentrisch heben, exzentrisch kontrolliert absenken. Negative trainieren nur das Absenken.");
+  },
+  rom(partial) {
+    const C = [160, 136], R = 100, p = (d, r) => [C[0] + (r || R) * Math.cos(d * Math.PI / 180), C[1] + (r || R) * Math.sin(d * Math.PI / 180)];
+    const a = p(-172), b = p(-8), st = p(-124);
+    let s = `<path d="M${FG.r(a[0])},${FG.r(a[1])} A${R},${R} 0 0 1 ${FG.r(b[0])},${FG.r(b[1])}" class="f-romarc"/>`;
+    s += `<path d="M${FG.r(a[0])},${FG.r(a[1])} A${R},${R} 0 0 1 ${FG.r(st[0])},${FG.r(st[1])}" class="f-romhl"/>`;
+    s += FG.tx(a[0] + 8, a[1] + 22, "gedehnt", "f-tw2") + FG.tx(b[0] - 8, b[1] + 22, "verkürzt", "f-t");
+    if (partial) {
+      const r2 = R - 20, q1 = p(-166, r2), q2 = p(-130, r2);
+      s += `<path d="M${FG.r(q1[0])},${FG.r(q1[1])} A${r2},${r2} 0 0 1 ${FG.r(q2[0])},${FG.r(q2[1])}" class="f-zig"/>` + FG.head(q2[0], q2[1], -130 + 90, "f-zig") + FG.head(q1[0], q1[1], -166 - 90, "f-zig");
+      s += FG.tx(172, 92, "nach dem Versagen:", "f-t") + FG.tx(172, 108, "3–5 halbe Wdh hier", "f-tlb");
+    } else {
+      s += FG.arc(C[0], C[1], R - 18, -14, -166, "f-m") + FG.tx(160, 96, "ganze Range nutzen,", "f-t") + FG.tx(160, 112, "unten kurz halten", "f-tlb");
+    }
+    return FG.wrap("0 0 320 166", s, partial ? "Teilwiederholungen gehören in den gedehnten Teil, als Anhang nach sauberen ganzen Wiederholungen." : "Der gedehnte Teil der Bewegung bringt viel Wachstumsreiz. Ihn nie abschneiden.");
+  },
+  volume() {
+    const v = [["Rücken", 18], ["Brust", 17], ["seitl. Schulter", 16], ["Bizeps", 11], ["Trizeps", 11], ["Beine je Muskel", 6]];
+    const X = n => 112 + n * 9.4;
+    let s = FG.rc(X(10), 14, X(20) - X(10), 6 * 22 + 6, 4, "f-bandr") + FG.tx((X(10) + X(20)) / 2, 160, "typisch wirksam: 10–20", "f-t");
+    v.forEach((q, i) => { const y = 18 + i * 22; s += FG.tx(104, y + 12, q[0], "f-tl", "end") + FG.rc(112, y, X(q[1]) - 112, 16, 4, i < 5 ? "f-work" : "f-zx") + FG.tx(X(q[1]) + 6, y + 12, q[1], "f-tl", "start"); });
+    return FG.wrap("0 0 320 168", s, "Harte Sätze pro Woche in Training v4 (bis Mai 2027).");
+  },
+  breath() {
+    const seg = [["ein", 4, "f-work"], ["halten", 7, "f-zx"], ["aus", 8, "f-ecc"]];
+    let x = 16, s = "";
+    seg.forEach(q => { const w = q[1] / 19 * 288; s += FG.rc(x, 36, w - 4, 30, 6, q[2]) + FG.tx(x + w / 2 - 2, 56, q[1] + " s " + q[0], q[2] === "f-zx" ? "f-tl" : "f-tin"); x += w; });
+    s += FG.tx(160, 90, "5 Runden ≈ 95 Sekunden", "f-tl") + FG.tx(160, 22, "Nase ein · Mund aus", "f-t");
+    return FG.wrap("0 0 320 100", s, "Die lange Ausatmung bremst Puls und Anspannung.");
+  }
+};
+
+/* ---------- Wissen: Verlinkung der Begriffe ---------- */
+/* IDs: g:<Glossar> · d:<Übung aus DRILLS> · e:<Slot-Übung aus EXERCISES> · list (Übersicht) */
+let KB_RE = null, KB_MAP = null;
+function kbIndex() {
+  if (KB_RE) return;
+  const pairs = [];
+  Object.keys(GLOSSAR).forEach(k => (GLOSSAR[k].alias || []).forEach(a => pairs.push([a, "g:" + k])));
+  Object.keys(DRILLS).forEach(k => (DRILLS[k].alias || []).forEach(a => pairs.push([a, "d:" + k])));
+  Object.keys(EX_ALIAS).forEach(k => EX_ALIAS[k].forEach(a => pairs.push([a, "e:" + k])));
+  pairs.sort((a, b) => b[0].length - a[0].length);
+  KB_MAP = Object.create(null);
+  pairs.forEach(p => { if (!KB_MAP[p[0]]) KB_MAP[p[0]] = p[1]; });
+  const L = "A-Za-zÄÖÜäöüßéèàç0-9";
+  KB_RE = new RegExp("(^|[^" + L + "])(" + Object.keys(KB_MAP).sort((a, b) => b.length - a.length).map(a => a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")(?![" + L + "])", "g");
+}
+function kbEntry(id) {
+  if (!id || id.length < 3) return null;
+  const t = id.charAt(0), k = id.slice(2);
+  const o = t === "g" ? GLOSSAR : t === "d" ? DRILLS : t === "e" ? EXERCISES : null;
+  return o && Object.prototype.hasOwnProperty.call(o, k) ? o[k] : null;
+}
+function kbName(id, short) { const e = kbEntry(id); return !e ? "" : id.charAt(0) === "g" ? (short && e.s ? e.s : e.t) : e.name; }
+/* Begriffe in einem HTML-String verlinken: nur im Text, nie in Tags, Links oder Knöpfen. Jeder Begriff einmal pro Block.
+   skip: ID, Liste von IDs oder ein Set, das über mehrere Texte eines Blocks geteilt wird */
+function gl(html, skip) {
+  kbIndex();
+  const seen = skip instanceof Set ? skip : new Set(skip ? [].concat(skip) : []);
+  let depth = 0;
+  return String(html).split(/(<[^>]+>)/).map(seg => {
+    if (seg.charAt(0) === "<") {
+      if (/^<(a|button)[\s>]/i.test(seg)) depth++;
+      else if (/^<\/(a|button)>/i.test(seg)) depth = Math.max(0, depth - 1);
+      return seg;
+    }
+    if (depth || !seg) return seg;
+    return seg.replace(KB_RE, (m, pre, term) => {
+      const id = KB_MAP[term];
+      if (!id || seen.has(id) || !kbEntry(id)) return m;
+      seen.add(id);
+      return pre + `<span class="kb" data-kb="${id}" role="button" tabindex="0">${term}</span>`;
+    });
+  }).join("");
+}
+function gx(s, skip) { return gl(esc(s), skip); }
+/* Alle verlinkbaren IDs eines Textes, in Reihenfolge, ohne Doppelte */
+function kbIds(txt, kinds) {
+  kbIndex();
+  const out = [];
+  String(txt).replace(KB_RE, (m, pre, term) => { const id = KB_MAP[term]; if (id && out.indexOf(id) < 0 && (!kinds || kinds.indexOf(id.charAt(0)) >= 0) && kbEntry(id)) out.push(id); return m; });
+  return out;
+}
+/* Übungs-Eintrag zu einer Alternative («Trizeps überkopf Kabel (nur wenn …)» → d:a_ohtri) */
+function kbAltId(a) { kbIndex(); const x = KB_MAP[a]; return x && x.charAt(0) !== "g" ? x : (kbIds(a, ["d", "e"])[0] || null); }
+function kbChips(ids) {
+  return ids.length ? `<div class="kbchips">${ids.map(id => `<button class="kbchip${id.charAt(0) === "g" ? " term" : ""}" data-kb="${id}">${id.charAt(0) === "g" ? "" : "▶︎ "}${esc(kbName(id, true))}</button>`).join("")}</div>` : "";
+}
+const KB_BOOK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.2 5 7.6 4.5 4 4.7v13.6c3.6-.2 6.2.3 8 1.8 1.8-1.5 4.4-2 8-1.8V4.7c-3.6-.2-6.2.3-8 1.8z"/><path d="M12 6.5v13.6"/></svg>`;
+function ltitle(t) { return `<div class="ltitle withkb"><span>${esc(t)}</span><button class="kbbtn" data-kb="list" aria-label="Wissen: Übungen und Begriffe">${KB_BOOK}</button></div>`; }
+
+/* ---------- Videos: Vorschaubild, Abspielen direkt in der App ---------- */
+function ytId(u) { const m = String(u).match(/(?:[?&]v=|\/shorts\/|youtu\.be\/|\/embed\/)([\w-]{11})/); return m ? m[1] : null; }
+function vidCard(v) {
+  const id = ytId(v[1]);
+  if (!id) return linkCard("▶︎", v);
+  return `<div class="vid"><button class="vthumb" data-yt="${id}" aria-label="Video abspielen: ${esc(v[0])}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="vplay">▶</span></button>` +
+    `<a class="vmeta" href="${esc(v[1])}" target="_blank" rel="noopener"><span class="lt">${esc(v[0])}</span><span class="lm">${esc(v[2] || "YouTube")} · YouTube ↗</span></a></div>`;
+}
+function vidsHtml(list, yt) {
+  const v = (list || []).map(vidCard).join("");
+  return (v ? `<div class="vids">${v}</div>` : "") + (yt ? linkCard("▶︎", ["Videos dazu auf YouTube suchen", "https://www.youtube.com/results?search_query=" + encodeURIComponent(yt), "öffnet YouTube"]) : "");
+}
+function vidPlay(btn) {
+  const id = btn.dataset.yt, box = btn.closest(".vid");
+  if (!id || !box) return;
+  const f = document.createElement("iframe");
+  f.className = "vframe";
+  f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&playsinline=1&rel=0";
+  f.title = "YouTube-Video";
+  f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+  f.setAttribute("allowfullscreen", "");
+  f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+  box.dataset.thumb = btn.outerHTML;
+  btn.replaceWith(f);
+  box.classList.add("playing");
+}
+/* Laufende Videos stoppen (Panel zu, Sheet zu, Tab-Wechsel): zurück zum Vorschaubild */
+function vidReset(root) {
+  (root || document).querySelectorAll(".vid.playing").forEach(box => {
+    const f = box.querySelector("iframe");
+    if (f && box.dataset.thumb) { const t = document.createElement("template"); t.innerHTML = box.dataset.thumb; f.replaceWith(t.content.firstElementChild); }
+    else if (f) f.remove();
+    box.classList.remove("playing");
+  });
+}
+
+/* ---------- Wissen: Sheets ---------- */
+const KBS = [];   // Verlauf im Sheet für «‹ zurück»
+function kbHead(title, meta) {
+  return `<div class="kbhead">${KBS.length > 1 ? `<button class="backbtn" data-kbback aria-label="Zurück">‹</button>` : ""}<div class="grow"><div class="sheettitle">${title}</div>${meta ? `<div class="kbmeta">${meta}</div>` : ""}</div></div>`;
+}
+function kbFoot(isList) {
+  return `<div class="timerrow" style="margin-top:18px">${isList ? "" : `<button class="btn ghost" data-kb="list">📖 Wissen</button>`}<button class="btn ghost" data-kbclose>Schliessen</button></div>`;
+}
+function kbVal(v, k) { return typeof v === "function" ? v(k || todayKey()) : v; }
+function kbFig(f) { if (!f) return ""; const p = String(f).split(":"); return FIG[p[0]] ? FIG[p[0]](p[1] === "1") : ""; }
+function kbLinks(videos, read, yt) {
+  const v = vidsHtml(videos, yt), r = read ? linkCard("📖", read) : "";
+  return v || r ? `<div class="kbsec">Ansehen & nachlesen</div>${v}${r}` : "";
+}
+function kbSee(ids) { return ids && ids.length ? `<div class="kbsec">Verwandt</div>${kbChips(ids.map(x => "g:" + x).filter(kbEntry))}` : ""; }
+
+/* Wo eine Übung im aktuellen Plan vorkommt */
+const KB_SESS = ["ua", "la", "ub", "lb", "px"];
+function kbUsage(id) {
+  const out = [], key = id.slice(2);
+  KB_SESS.forEach(sk => {
+    const s = SESSIONS[sk]; if (!s) return;
+    const d = s.day === "Sa oder So" ? "Pump-Session" : s.day.slice(0, 2);
+    if (kbIds(s.warmup, ["d", "e"]).indexOf(id) >= 0) out.push(d + " · Warm-up");
+    s.slots.forEach((sl, i) => {
+      if (id === "e:" + sl.ex) out.push(d + " · Slot " + (i + 1));
+      else if ((sl.alts || []).some(a => kbAltId(a) === id)) out.push(d + " · statt " + EXERCISES[sl.ex].name);
+    });
+  });
+  const mob = RECOVERY.cards.find(c => c.id === "mobility");
+  if (mob && mob.lines.some(l => kbIds(l, ["d"]).indexOf(id) >= 0)) out.push("10-Min-Reset · Erholung");
+  return out.filter((x, i) => out.indexOf(x) === i);
+}
+function kbUsageHtml(id) { const u = kbUsage(id); return u.length ? `<div class="kbsec">In deinem Plan</div><div class="kbtxt">${u.map(esc).join(" · ")}</div>` : ""; }
+
+function kbGuide(x, sk) {
+  return `${x.setup ? `<div class="kbsec">Einstellen</div><div class="kbtxt">${gx(x.setup, sk)}</div>` : ""}
+    ${Array.isArray(x.exec) ? `<div class="kbsec">So geht's</div><div class="kbtxt"><ol>${x.exec.map(s => `<li>${gx(s, sk)}</li>`).join("")}</ol></div>` : x.exec ? `<div class="kbsec">So geht's</div><div class="kbtxt">${gx(x.exec, sk)}</div>` : ""}
+    ${x.tall ? `<div class="kbsec">Für deine 2 m</div><div class="kbtxt"><div class="tallrow">📏 ${gx(x.tall, sk)}</div></div>` : ""}
+    ${x.shoulder ? `<div class="kbsec">Schulter-Schutz</div><div class="kbtxt"><div class="shldrow">🛡️ ${gx(x.shoulder, sk)}</div></div>` : ""}
+    ${x.feel ? `<div class="kbsec">Spüren</div><div class="kbtxt"><span class="ok">✓ ${gx(x.feel, sk)}</span><br><span class="no">✗ ${gx(x.notFeel || "", sk)}</span></div>` : ""}
+    ${x.mistakes ? `<div class="kbsec">Häufigste Fehler</div><div class="kbtxt">${gx(x.mistakes, sk)}</div>` : ""}
+    ${x.check ? `<div class="kbsec">Selbstcheck</div><div class="kbtxt">${gx(x.check, sk)}</div>` : ""}`;
+}
+function kbDrillHtml(id, d) {
+  const sk = new Set([id]), grp = (DRILL_GRP.find(g => g[0] === d.grp) || ["", ""])[1].replace(/ ·.*| \(.*/, "");
+  const forIds = (d.for || []).filter(k => EXERCISES[k]).map(k => "e:" + k);
+  return kbHead(esc(d.name), esc(grp + (d.muscles ? " · " + d.muscles : ""))) +
+    (d.dose ? `<div class="chip aqua" style="margin:2px 0 4px">${esc(d.dose)}</div>` : "") +
+    (d.cue ? `<div class="kbshort" style="color:var(--aqua);font-size:15px">★ ${gx(d.cue, sk)}</div>` : "") +
+    kbFig(d.fig) + (d.why ? `<div class="kbtxt" style="margin-top:8px">${gx(d.why, sk)}</div>` : "") +
+    kbLinks(d.videos, d.read, d.yt) + kbGuide(d, sk) +
+    (d.alt ? `<div class="kbplan">${gx(d.alt, sk)}</div>` : "") +
+    (forIds.length ? `<div class="kbsec">Ersetzt im Plan</div>${kbChips(forIds)}` : "") + kbUsageHtml(id);
+}
+function kbExHtml(id, ex) {
+  const sk = new Set([id]);
+  const alts = [];
+  KB_SESS.forEach(s => (SESSIONS[s] ? SESSIONS[s].slots : []).forEach(sl => { if ("e:" + sl.ex === id) (sl.alts || []).forEach(a => { const x = kbAltId(a); if (x && x !== id && alts.indexOf(x) < 0) alts.push(x); }); }));
+  return kbHead(esc(ex.name), esc("Hauptübung · " + ex.muscles)) +
+    (ex.cue ? `<div class="kbshort" style="color:var(--aqua);font-size:15px">★ ${gx(ex.cue, sk)}</div>` : "") +
+    kbLinks(ex.videos, ex.read) + kbGuide(ex, sk) +
+    (alts.length ? `<div class="kbsec">Alternativen, wenn das Gerät besetzt ist</div>${kbChips(alts)}` : "") + kbUsageHtml(id);
+}
+function kbTermHtml(id, g) {
+  const sk = new Set(["g:" + id]), cat = (GL_CAT.find(c => c[0] === g.cat) || ["", "Glossar"])[1];
+  const body = kbVal(g.body), plan = kbVal(g.plan);
+  return kbHead(esc(g.t), "Glossar · " + esc(cat)) +
+    `<div class="kbshort">${gx(g.short, sk)}</div>` + kbFig(g.fig) +
+    (body && body.length ? `<div class="kbtxt" style="margin-top:10px"><ul>${body.map(b => `<li>${gx(b, sk)}</li>`).join("")}</ul></div>` : "") +
+    (plan ? `<div class="kbplan"><b>In deinem Plan:</b> ${gx(plan, sk)}</div>` : "") +
+    kbLinks(g.videos, g.read) + kbSee(g.see);
+}
+
+/* Übersicht mit Suche */
+function kbNorm(s) { return String(s).toLowerCase().replace(/[äàá]/g, "a").replace(/[öó]/g, "o").replace(/[üú]/g, "u").replace(/[éèê]/g, "e").replace(/ß/g, "ss"); }
+function kbAll() {
+  const r = [];
+  Object.keys(DRILLS).forEach(k => { const d = DRILLS[k]; r.push({ id: "d:" + k, nm: d.name, ds: d.grp === "alt" ? "Alternative · " + d.muscles : d.dose || d.muscles, grp: d.grp, vid: !!(d.videos && d.videos.length), txt: [d.name].concat(d.alias || [], [d.muscles || ""]).join(" ") }); });
+  const exk = []; KB_SESS.forEach(s => SESSIONS[s].slots.forEach(sl => { if (exk.indexOf(sl.ex) < 0) exk.push(sl.ex); }));
+  Object.keys(EXERCISES).forEach(k => { if (exk.indexOf(k) < 0) exk.push(k); });
+  exk.forEach(k => { const e = EXERCISES[k]; if (!e) return; r.push({ id: "e:" + k, nm: e.name, ds: e.muscles, grp: k === "facepull" ? "warm" : "main", vid: !!(e.videos && e.videos.length), txt: [e.name].concat(EX_ALIAS[k] || [], [e.muscles]).join(" ") }); });
+  Object.keys(GLOSSAR).forEach(k => { const g = GLOSSAR[k]; r.push({ id: "g:" + k, nm: g.t, ds: g.short, grp: "g:" + g.cat, vid: !!(g.videos && g.videos.length), txt: [g.t].concat(g.alias || [], [g.short]).join(" ") }); });
+  return r;
+}
+function kbRow(x) { return `<button class="kbrow" data-kb="${x.id}"><span class="ic">${x.id.charAt(0) === "g" ? "Aa" : x.vid ? "▶︎" : "·"}</span><span class="grow"><span class="nm" style="display:block">${esc(x.nm)}</span><span class="ds" style="display:block">${esc(x.ds || "")}</span></span><span class="chev">›</span></button>`; }
+function kbListBody() {
+  const all = kbAll(), q = kbNorm(APP.kbQ || "").trim();
+  const sec = (t, rows) => rows.length ? `<h2 class="sec" style="margin-top:14px">${esc(t)}</h2><div class="card pad0">${rows.map(kbRow).join("")}</div>` : "";
+  if (q) {
+    const words = q.split(/\s+/), hit = all.filter(x => words.every(w => kbNorm(x.txt).indexOf(w) >= 0));
+    hit.sort((a, b) => (kbNorm(a.nm).indexOf(q) === 0 ? 0 : 1) - (kbNorm(b.nm).indexOf(q) === 0 ? 0 : 1) || a.nm.localeCompare(b.nm, "de"));
+    return hit.length ? sec(hit.length + " Treffer", hit) : `<div class="emptyhint">Nichts gefunden. Versuch es mit einem Teil des Wortes.</div>`;
+  }
+  if (APP.kbTab === "gl") return GL_CAT.map(c => sec(c[1], all.filter(x => x.grp === "g:" + c[0]).sort((a, b) => a.nm.localeCompare(b.nm, "de")))).join("");
+  const by = g => all.filter(x => x.grp === g);
+  return sec("Warm-up", by("warm")) + sec("Mobility · 10-Min-Reset", by("mob")) + sec("Hauptübungen", by("main")) + sec("Alternativen · Gerät besetzt", by("alt").sort((a, b) => a.nm.localeCompare(b.nm, "de")));
+}
+function kbListHtml() {
+  APP.kbTab = APP.kbTab || "ex";
+  const nD = Object.keys(DRILLS).length + Object.keys(EXERCISES).length, nG = Object.keys(GLOSSAR).length;
+  return kbHead("Wissen", nD + " Übungen mit Bild oder Video · " + nG + " Begriffe") +
+    `<input class="kbsearch" id="kbq" type="search" placeholder="Suchen: RIR, Lat, Couch-Stretch …" value="${esc(APP.kbQ || "")}" autocomplete="off" enterkeyhint="search">` +
+    `<div class="seg" style="margin-bottom:2px">${[["ex", "Übungen"], ["gl", "Glossar"]].map(t => `<button class="${APP.kbTab === t[0] ? "on" : ""}" data-kbtab="${t[0]}">${t[1]}</button>`).join("")}</div>` +
+    `<div id="kblist">${kbListBody()}</div>`;
+}
+function kbRender() {
+  const id = KBS[KBS.length - 1];
+  const e = id === "list" ? null : kbEntry(id);
+  const html = id === "list" ? kbListHtml() : !e ? kbHead("Nicht gefunden", "") : id.charAt(0) === "g" ? kbTermHtml(id.slice(2), e) : id.charAt(0) === "d" ? kbDrillHtml(id, e) : kbExHtml(id, e);
+  openSheet(html + kbFoot(id === "list"));
+  const q = document.getElementById("kbq");
+  if (q) q.addEventListener("input", () => { APP.kbQ = q.value; document.getElementById("kblist").innerHTML = kbListBody(); });
+  document.querySelectorAll("#sheet [data-kbtab]").forEach(b => b.addEventListener("click", () => { APP.kbTab = b.dataset.kbtab; APP.kbQ = ""; kbRender(); }));
+}
+function openKB(id, push) {
+  if (id !== "list" && !kbEntry(id)) return;
+  if (!push) KBS.length = 0;
+  if (KBS[KBS.length - 1] !== id) KBS.push(id);
+  kbRender();
+}
+/* Ein Klick-Handler für alle Begriffe und Wissen-Knöpfe, in der Capture-Phase vor allen anderen */
+function kbClick(e) {
+  const t = e.target && e.target.closest ? e.target : null;
+  if (!t) return;
+  const yt = t.closest("[data-yt]");
+  if (yt) { e.preventDefault(); e.stopPropagation(); vidPlay(yt); return; }
+  if (t.closest("[data-kbback]")) { e.preventDefault(); e.stopPropagation(); if (KBS.length > 1) { KBS.pop(); kbRender(); } return; }
+  if (t.closest("[data-kbclose]")) { e.preventDefault(); e.stopPropagation(); closeSheet(); return; }
+  const k = t.closest("[data-kb]");
+  if (!k) return;
+  e.preventDefault(); e.stopPropagation();
+  const inKB = !!k.closest("#sheet") && KBS.length > 0 && document.getElementById("sheet").classList.contains("open");
+  openKB(k.dataset.kb, inKB);
+}
+function kbKey(e) { if ((e.key === "Enter" || e.key === " ") && e.target && e.target.classList && e.target.classList.contains("kb")) kbClick(e); }
+
 /* ============ VIEWS ============ */
 "use strict";
 
 const APP = { tab: "home", session: null, menuFilter: { typ: "alle", cat: "alle" }, chartRange: 28, clockVar: 0 };
 
 function renderAll() {
+  vidReset(document.getElementById("app"));
   ["home", "train", "food", "rec", "prog"].forEach(t => {
     const s = document.getElementById("scr-" + t);
     s.classList.toggle("active", APP.tab === t);
@@ -1489,6 +2699,8 @@ function go(tab) { APP.tab = tab; if (tab !== "train") APP.session = null; rende
 /* ---------- Gemeinsame Bausteine ---------- */
 function bannersFor(k) {
   let h = "";
+  if (!APP.session && k >= "2026-10-28" && k <= "2026-11-08")
+    h += `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: Wissen.</b> Der Buch-Knopf oben rechts öffnet alle Übungen mit Erklärbild und Video, dazu ein Glossar von RIR bis Zone 2. Unterstrichene Begriffe lassen sich überall antippen.</div></div>`;
   if (!APP.session && k >= addDays(PLAN_SWITCH, -1) && k <= addDays(PLAN_SWITCH, 8))   // nicht in der Session-Ansicht
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
@@ -1501,7 +2713,7 @@ function bannersFor(k) {
   const cp = nextCheckpoint(k);
   if (cp && diffDays(k, cp.date) <= 6 && diffDays(k, cp.date) >= 0)
     h += `<div class="banner aqua"><span class="ic">📸</span><div><b>${esc(cp.label)}</b> am ${fmtDate(cp.date)} — ${esc(cp.detail)}</div></div>`;
-  return h;
+  return gl(h);
 }
 
 function numInput(id, val, step, unit, ph) {
@@ -3204,7 +4416,7 @@ function vHome() {
     if (id === "TRAIN" && !sess) {
       const r = restdayFor(k)[wd];
       const pxW = S.wo[k] && S.wo[k].sess === "px", pxBtn = pxW || (pxAllowed(k) && !pxDoneWeek(k));
-      return r ? `<div class="tlrow"><div class="d">Ruhetag</div><div class="l">${esc(r.title)}</div><div class="dt">${r.lines.map(esc).join(" · ")}</div>${pxBtn ? `<button class="minibtn blue" data-open-sess="px" style="margin-top:8px">${pxW && S.wo[k].done ? "Pump-Session ✓ ansehen ›" : isV4Week(k) ? "Pump-Session öffnen ›" : "Optional: Pump-Session öffnen ›"}</button>` : ""}</div>` : "";
+      return r ? `<div class="tlrow"><div class="d">Ruhetag</div><div class="l">${esc(r.title)}</div><div class="dt">${gx(r.lines.join(" · "))}</div>${pxBtn ? `<button class="minibtn blue" data-open-sess="px" style="margin-top:8px">${pxW && S.wo[k].done ? "Pump-Session ✓ ansehen ›" : isV4Week(k) ? "Pump-Session öffnen ›" : "Optional: Pump-Session öffnen ›"}</button>` : ""}</div>` : "";
     }
     const done = isDone(id), isNext = id === nextId, cls = done ? "past" : isNext ? "next" : "";
     if (id === "TRAIN") return `<div class="tlrow ${cls}">
@@ -3248,7 +4460,7 @@ function vHome() {
       <div style="margin-top:8px">${numInput("in-steps", S.steps[k], 500, "", "8000")}</div></div>`;
   const eveRows = RECOVERY.evening.steps.slice(0, 3).map(s0 => {
     const t = splitStep(s0[1]);
-    return `<div class="tlrow"><div class="d" style="font-variant-numeric:tabular-nums">${s0[0]}</div><div class="l">${esc(t[0])}</div><div class="dt">${esc(t[1])}</div>${/4-7-8/.test(s0[1]) ? `<button class="minibtn" data-timer="breath" style="margin-top:8px">🌬️ 4-7-8-Atmung starten</button>` : ""}</div>`;
+    return `<div class="tlrow"><div class="d" style="font-variant-numeric:tabular-nums">${s0[0]}</div><div class="l">${esc(t[0])}</div><div class="dt">${gx(t[1])}</div>${/4-7-8/.test(s0[1]) ? `<button class="minibtn" data-timer="breath" style="margin-top:8px">🌬️ 4-7-8-Atmung starten</button>` : ""}</div>`;
   }).join("");
 
   // Woche
@@ -3257,7 +4469,7 @@ function vHome() {
   if (rateFor(p)) rateTxt = "Ziel " + fmtRate(rateFor(p)) + " kg/Wo";
 
   root.innerHTML = `
-    <div class="ltitle">Heute</div>
+    ${ltitle("Heute")}
     <div class="lsub">${WD[wd]}, ${fmtDate(k)} · ${twn > 0 ? "Trainingswoche " + twn : "Phase 0"}</div>
     <div id="storagebadge">⚠️ Vorschau-Modus: Daten werden hier nicht dauerhaft gespeichert. Auf dem iPhone (Safari / Home-Bildschirm) speichert die App automatisch.</div>
     ${bannersFor(k)}
@@ -3305,7 +4517,7 @@ function vHome() {
     </div>
 
     <div class="card" style="background:var(--surface2)">
-      <div style="font-size:13.5px;color:var(--muted)"><b style="color:var(--ink2)">Chaos-Tag?</b> ${esc(PLAN.mvd)}</div>
+      <div style="font-size:13.5px;color:var(--muted)"><b style="color:var(--ink2)">Chaos-Tag?</b> ${gx(PLAN.mvd)}</div>
     </div>`;
 
   bindSteppers(root);
@@ -3382,12 +4594,12 @@ function vTrain() {
       <div class="day">+1</div>
       <div class="grow"><div class="nm"${pxOk || pxToday ? "" : ' style="color:var(--muted)"'}>${esc(pxS.name)}</div><div class="meta">${esc(pxMeta)}</div><div class="meta">${esc(pxNote)}</div></div>
       ${pxOk || pxToday ? `<div class="st ${pxToday && S.wo[k].done ? "ok" : ""}">${pxToday && S.wo[k].done ? "✓" : ""}</div><div class="chev">›</div>` : ""}</div></div>
-    <div class="note" style="padding:0 4px">Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5).</div>` : "";
+    <div class="note" style="padding:0 4px">${gx("Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5).")}</div>` : "";
 
   const pullLog = S.pull.slice(-3).reverse().map(t => `<div class="kv"><span class="k">${fmtDateY(t.d)}</span><span class="v">${esc(t.res)}</span></div>`).join("");
 
   root.innerHTML = `
-    <div class="ltitle">Training</div>
+    ${ltitle("Training")}
     <div class="lsub">${k < PLAN_SWITCH ? "5 Tage · KH, Maschinen & Kabel · verletzungsfrei zuerst" : "v4 · Oberkörper-Fokus · Di–Fr 07:15 + Pump-Session Sa oder So"}</div>
     ${bannersFor(k)}
     <div class="card pad0">${rows}</div>${preview}${pxCard}
@@ -3395,15 +4607,21 @@ function vTrain() {
     <h2 class="sec">Klimmzug-Projekt</h2>
     <div class="card">
       <div class="row"><span style="font-size:20px">🧗</span><div class="grow"><b>${esc(PULLUP_PROJECT.goal)}</b></div></div>
-      <ul style="margin:8px 0 0 18px;color:var(--ink2);font-size:14px">${PULLUP_PROJECT.lines.map(l => `<li style="margin-bottom:3px">${esc(l)}</li>`).join("")}</ul>
+      <ul style="margin:8px 0 0 18px;color:var(--ink2);font-size:14px">${PULLUP_PROJECT.lines.map(l => `<li style="margin-bottom:3px">${gx(l)}</li>`).join("")}</ul>
       ${pullLog ? `<div class="divider"></div>${pullLog}` : ""}
       <button class="btn ghost" id="pulladd">Monats-Test eintragen</button>
+    </div>
+
+    <h2 class="sec">Wissen</h2>
+    <div class="card pad0">
+      <button class="kbrow" data-kb="list" style="padding:13px 16px"><span class="ic">▶︎</span><span class="grow"><span class="nm" style="display:block">Übungen erklärt</span><span class="ds" style="display:block">Warm-up, Mobility, Hauptübungen und Alternativen · Bild und Video</span></span><span class="chev">›</span></button>
+      <button class="kbrow" data-kbgl style="padding:13px 16px"><span class="ic">Aa</span><span class="grow"><span class="nm" style="display:block">Glossar</span><span class="ds" style="display:block">RIR, Rampen-Sätze, Wechselsatz, Deload, Zone 2 …</span></span><span class="chev">›</span></button>
     </div>
 
     <h2 class="sec">Regeln</h2>
     ${TRAINING_RULES.map((r, i) => `<div class="card" style="padding:0"><button class="row" data-rule="${i}" style="width:100%;padding:13px 16px;text-align:left">
       <div class="grow" style="font-weight:650;font-size:15px">${esc(r[0])}</div><div class="chev" id="rc-${i}">›</div></button>
-      <div class="exdetail" id="rd-${i}" style="border-top:none;padding-top:0">${esc(r[1])}</div></div>`).join("")}`;
+      <div class="exdetail" id="rd-${i}" style="border-top:none;padding-top:0">${gx(r[1])}</div></div>`).join("")}`;
 
   root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; renderAll(); window.scrollTo(0, 0); }));
   root.querySelectorAll("[data-rule]").forEach(b => b.addEventListener("click", () => {
@@ -3412,6 +4630,7 @@ function vTrain() {
     document.getElementById("rc-" + b.dataset.rule).style.transform = d.classList.contains("open") ? "rotate(90deg)" : "";
   }));
   document.getElementById("pulladd").addEventListener("click", () => openPullTest());
+  root.querySelectorAll("[data-kbgl]").forEach(b => b.addEventListener("click", () => { APP.kbTab = "gl"; APP.kbQ = ""; openKB("list"); }));
 }
 
 /* ============ TRAINING: Session-Detail ============ */
@@ -3458,15 +4677,16 @@ function vSession() {
         <button class="setok ${st[2] ? "on" : ""}" data-setok="${slot.ex}|${i}">✓</button>
       </div>`;
     }).join("");
+    const sk = new Set(["e:" + slot.ex]), altIds = (slot.alts || []).map(kbAltId);
     return `<div class="excard">
       <div class="exhead">
-        <div class="nr">SLOT ${si + 1}${slot.pair ? " · Wechselsatz mit Slot " + slot.pair : ""}${slot.ss ? " · Superset mit Slot " + slot.ss : ""}</div>
+        <div class="nr">${gx("SLOT " + (si + 1) + (slot.pair ? " · Wechselsatz mit Slot " + slot.pair : "") + (slot.ss ? " · Superset mit Slot " + slot.ss : ""), sk)}</div>
         <div class="nm">${esc(ex.name)}</div>
-        <div class="target">${slot.sets} × ${slot.reps}${deload ? " · Deload: ½ Sätze, −10 %" : setup ? " · RIR 3, Gewicht finden" : " · RIR 1–2"}</div>
-        ${ex.cue ? `<div class="cue">★ ${esc(ex.cue)}</div>` : ""}
-        ${perf ? `<div class="last">Letztes Mal (${fmtDate(perf.date)}): ${fmtSets(perf.sets)}</div>` : `<div class="startw">Start: ${esc(slot.start)}</div>`}
+        <div class="target">${gx(slot.sets + " × " + slot.reps + (deload ? " · Deload: ½ Sätze, −10 %" : setup ? " · RIR 3, Gewicht finden" : " · RIR 1–2"), sk)}</div>
+        ${ex.cue ? `<div class="cue">★ ${gx(ex.cue, sk)}</div>` : ""}
+        ${perf ? `<div class="last">Letztes Mal (${fmtDate(perf.date)}): ${fmtSets(perf.sets)}</div>` : `<div class="startw">${gx("Start: " + slot.start, sk)}</div>`}
         ${progHint}
-        ${slot.note ? `<div class="startw">${esc(slot.note)}</div>` : ""}
+        ${slot.note ? `<div class="startw">${gx(slot.note, sk)}</div>` : ""}
       </div>
       ${setRows}
       <div class="exfoot">
@@ -3477,20 +4697,20 @@ function vSession() {
         <button class="minibtn" data-timer="pause180">3 Min</button>`}
         <button class="minibtn" data-addset="${slot.ex}">+ Satz</button>
         <button class="minibtn blue" data-tech="${slot.ex}">📖 Technik & Setup</button>
-        ${ex.videos && ex.videos[0] ? `<a class="minibtn blue" href="${esc(ex.videos[0][1])}" target="_blank" rel="noopener">▶︎ Video</a>` : ""}
+        ${ex.videos && ex.videos[0] ? `<button class="minibtn blue" data-vidfirst="${slot.ex}">▶︎ Video</button>` : ""}
       </div>
       <div class="exdetail" id="tech-${slot.ex}">
-        <h4>Ansehen & nachlesen</h4>${exLinks(ex)}
+        <h4>Ansehen & nachlesen</h4>${vidsHtml(ex.videos)}${ex.read ? linkCard("📖", ex.read) : ""}
         <h4 style="margin-top:14px">Maschinen-Setup / Notiz (bleibt gespeichert)</h4>
         <textarea class="setupnote" data-setup="${slot.ex}" placeholder="z.B. Stadelhofen, Sitz 7, Griff 3 …">${esc(S.setup[slot.ex] || "")}</textarea>
-        <h4>Setup</h4>${esc(ex.setup)}
-        ${ex.tall ? `<h4>Für deine 2 m</h4><div class="tallrow">📏 ${esc(ex.tall)}</div>` : ""}
-        ${ex.shoulder ? `<h4>Schulter-Schutz</h4><div class="shldrow">🛡️ ${esc(ex.shoulder)}</div>` : ""}
-        <h4>Ausführung — Schritt für Schritt</h4>${Array.isArray(ex.exec) ? `<ol class="steps">${ex.exec.map(s => `<li>${esc(s)}</li>`).join("")}</ol>` : esc(ex.exec)}
-        <h4>Spüren</h4><span class="ok">✓ ${esc(ex.feel)}</span><br><span class="no">✗ ${esc(ex.notFeel)}</span>
-        <h4>Häufigste Fehler</h4>${esc(ex.mistakes)}
-        <h4>Selbstcheck</h4>${esc(ex.check)}
-        ${slot.alts && slot.alts.length ? `<h4>Alternativen (gleicher Slot)</h4>${slot.alts.map(esc).join(" · ")}` : ""}
+        <h4>Setup</h4>${gx(ex.setup, sk)}
+        ${ex.tall ? `<h4>Für deine 2 m</h4><div class="tallrow">📏 ${gx(ex.tall, sk)}</div>` : ""}
+        ${ex.shoulder ? `<h4>Schulter-Schutz</h4><div class="shldrow">🛡️ ${gx(ex.shoulder, sk)}</div>` : ""}
+        <h4>Ausführung — Schritt für Schritt</h4>${Array.isArray(ex.exec) ? `<ol class="steps">${ex.exec.map(s => `<li>${gx(s, sk)}</li>`).join("")}</ol>` : gx(ex.exec, sk)}
+        <h4>Spüren</h4><span class="ok">✓ ${gx(ex.feel, sk)}</span><br><span class="no">✗ ${gx(ex.notFeel, sk)}</span>
+        <h4>Häufigste Fehler</h4>${gx(ex.mistakes, sk)}
+        <h4>Selbstcheck</h4>${gx(ex.check, sk)}
+        ${slot.alts && slot.alts.length ? `<h4>Alternativen (gleicher Slot) · antippen für Anleitung</h4><div class="kbchips">${slot.alts.map((a, i) => altIds[i] ? `<button class="kbchip" data-kb="${altIds[i]}">${esc(a)}</button>` : `<span class="kbchip term">${esc(a)}</span>`).join("")}</div>` : ""}
       </div>
     </div>`;
   }).join("");
@@ -3498,14 +4718,15 @@ function vSession() {
   root.innerHTML = `
     <div class="subhead">
       <button class="backbtn" id="back">‹</button>
-      <div class="grow"><div class="t">${sess.day} — ${esc(sess.name)}</div><div class="s">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${esc(sess.pauses || "Pausen: Verbund 2–3 Min, Isolation 60–90 s")}</div></div>
+      <div class="grow"><div class="t">${sess.day} — ${esc(sess.name)}</div><div class="s">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${gx(sess.pauses || "Pausen: Verbund 2–3 Min, Isolation 60–90 s")}</div></div>
     </div>
     ${bannersFor(k)}
-    ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: Übungs-Guides für deine 2 m.</b> «▶︎ Video» zeigt die Übung, «Technik & Setup» bringt Videos (Englisch und Deutsch), eine bebilderte Anleitung, Schritte, 2-m-Hinweise und Schulter-Schutz. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
+    ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: alles antippbar.</b> Die Knöpfe beim Warm-up und die Alternativen öffnen eine Anleitung mit Erklärbild und Video, unterstrichene Begriffe das Glossar. Videos laufen jetzt direkt in der App. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
     <div class="card" style="background:var(--surface2)">
       <div style="font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px">Warm-up · 8 Min</div>
-      <div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(sess.warmup)}</div>
-      ${sess.after ? `<div style="font-size:13.5px;color:var(--aqua);margin-top:6px">${sess.afterIcon || "♨️"} ${esc(sess.after)}</div>` : ""}
+      <div style="font-size:14px;color:var(--ink2);margin-top:3px">${gx(sess.warmup)}</div>
+      ${kbChips(kbIds(sess.warmup).filter(id => id.charAt(0) !== "g" || id === "g:ramp"))}
+      ${sess.after ? `<div style="font-size:13.5px;color:var(--aqua);margin-top:8px">${sess.afterIcon || "♨️"} ${gx(sess.after)}</div>` : ""}
     </div>
     ${slotHtml}
     <button class="btn ${wo.done ? "done" : ""}" id="finishbtn">${wo.done ? "✓ Session absolviert — stark!" : "Session abschliessen"}</button>
@@ -3548,7 +4769,15 @@ function vSession() {
     save(); vSession();
   }));
   root.querySelectorAll("[data-tech]").forEach(b => b.addEventListener("click", () => {
-    document.getElementById("tech-" + b.dataset.tech).classList.toggle("open");
+    const p = document.getElementById("tech-" + b.dataset.tech);
+    p.classList.toggle("open");
+    if (!p.classList.contains("open")) vidReset(p);
+  }));
+  root.querySelectorAll("[data-vidfirst]").forEach(b => b.addEventListener("click", () => {
+    const p = document.getElementById("tech-" + b.dataset.vidfirst);
+    p.classList.add("open");
+    const v = p.querySelector(".vthumb");
+    if (v) { vidPlay(v); const f = p.querySelector(".vid.playing"); if (f && f.scrollIntoView) f.scrollIntoView({ block: "center", behavior: "smooth" }); }
   }));
   root.querySelectorAll("[data-setup]").forEach(t => t.addEventListener("change", () => {
     S.setup[t.dataset.setup] = t.value.trim(); save();
@@ -3604,7 +4833,7 @@ function vFood() {
         <div class="grow"><b>${esc(c.title)}</b> <span style="color:var(--muted);font-size:13px">${esc(c.meta)}</span>
         ${c.phase ? `<div style="font-size:12px;color:var(--warn)">${esc(c.phase)}</div>` : ""}</div>
         <div class="chev" id="mc-${c.id}">›</div></button>
-      <div class="exdetail" id="md-${c.id}" style="border-top:none;padding-top:0;color:var(--ink2)">${c.body}</div></div>`).join("");
+      <div class="exdetail" id="md-${c.id}" style="border-top:none;padding-top:0;color:var(--ink2)">${gl(c.body, "g:modules")}</div></div>`).join("");
 
   const curRow = p.id === "bulk" ? "bulk" + st : p.id === "trans" ? "bulk1" : p.id === "p0" ? "cut1" : p.id;
   const stufenRows = STUFEN_TABLE.map(r => `<div class="kv" ${r[0] === curRow ? 'style="background:var(--blue-dim);margin:0 -16px;padding:9px 16px"' : ""}>
@@ -3614,7 +4843,7 @@ function vFood() {
   const setTxt = p.mods.map(m => m.replace(/[12]$/, "")).join(" + ");
 
   root.innerHTML = `
-    <div class="ltitle">Ernährung</div>
+    ${ltitle("Ernährung")}
     <div class="lsub">Baukasten v2.1 — jeden Tag gleich, alle Entscheidungen vorab getroffen</div>
     <div class="card">
       <div class="row"><span class="chip blue">${esc(phaseLabel(p))}</span><div class="grow"></div><b style="font-size:15px">${esc(phaseKcal(k))}</b></div>
@@ -3622,10 +4851,10 @@ function vFood() {
       ${isBulk ? `<div style="${LBL};margin-top:14px">Stufe</div>
       <div class="seg" style="margin:6px 0 0">${[1, 2, 3, 4].map(s => `<button class="${st === s ? "on" : ""}" data-stufe="${s}">${s}</button>`).join("")}</div>
       <div class="note">${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[1])}: ${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[2])}</div>
-      <div class="note">${esc(GOALS[goalMode()].rule || p.rule)}</div>
+      <div class="note">${gx(GOALS[goalMode()].rule || p.rule)}</div>
       <div style="${LBL};margin-top:16px">Ziel bis zum Polish-Cut</div>
       <div class="seg" style="margin:6px 0 0">${[["aufbau", "Aufbau · +0.3–0.35"], ["recomp", "Recomp · halten"]].map(g => `<button class="${goalMode() === g[0] ? "on" : ""}" data-goal="${g[0]}">${g[1]}</button>`).join("")}</div>
-      <div class="note">${esc(GOALS[goalMode()].note)}</div>` : ""}
+      <div class="note">${gx(GOALS[goalMode()].note)}</div>` : ""}
     </div>
 
     <h2 class="sec">Die Module</h2>
@@ -3648,14 +4877,14 @@ function vFood() {
       <ul style="margin:2px 0 4px 18px;color:var(--ink2);font-size:14.5px">${potList(n).map(x => `<li style="margin-bottom:3px">${esc(x)}</li>`).join("")}</ul>
       <div class="note">Ergibt 3 Portionen à ≈${fmtK(n.T.kcal)} kcal / ${n.T.p} g Protein. Im Aufbau bleibt der Reis bei 2 Tassen: mehr Kalorien kommen über den Abend-Shake.</div>
     </div>
-    ${POT.notes.map(x => `<div class="card"><b style="font-size:14.5px">${esc(x[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(x[1])}</div></div>`).join("")}
+    ${POT.notes.map(x => `<div class="card"><b style="font-size:14.5px">${esc(x[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${gx(x[1])}</div></div>`).join("")}
 
     <h2 class="sec">Phasen & Stufen</h2>
     <div class="card">${stufenRows}
-      <div class="note">Aufbau: jeder Tag gleich, auch der Ruhetag. Cut: am Ruhetag ohne Oats, ≈370 kcal weniger.</div></div>
+      <div class="note">${gx("Aufbau: jeder Tag gleich, auch der Ruhetag. Cut: am Ruhetag ohne Oats, ≈370 kcal weniger. Stufe wechseln nur nach Stufenregel.")}</div></div>
 
     <h2 class="sec">Timing</h2>
-    <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${esc(r[1])}</span></div>`).join("")}</div>
+    <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${gx(r[1])}</span></div>`).join("")}</div>
 
     <h2 class="sec">Abwechslungs-Pool · ${menus.length} Menüs</h2>
     <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Im Aufbau Carbs +40 g roh.</div>
@@ -3671,10 +4900,10 @@ function vFood() {
     <div class="note">Regel: Dressing immer separat, erst beim Essen mischen.</div></div>
 
     <h2 class="sec">Regeln & Logistik</h2>
-    ${FOOD_RULES.map(r => `<div class="card"><b style="font-size:14.5px">${esc(r[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${esc(r[1])}</div></div>`).join("")}
+    ${FOOD_RULES.map(r => `<div class="card"><b style="font-size:14.5px">${esc(r[0])}</b><div style="font-size:14px;color:var(--ink2);margin-top:3px">${gx(r[1])}</div></div>`).join("")}
 
     <h2 class="sec">Supplemente</h2>
-    <div class="card">${PLAN.supps.map(s => `<div class="kv"><span class="k">${esc(s[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:60%">${esc(s[1])}</span></div>`).join("")}</div>`;
+    <div class="card">${PLAN.supps.map(s => { const sk = new Set(); return `<div class="kv"><span class="k">${gx(s[0], sk)}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:60%">${gx(s[1], sk)}</span></div>`; }).join("")}</div>`;
 
   root.querySelectorAll("[data-stufe]").forEach(b => b.addEventListener("click", () => { S.stufe = +b.dataset.stufe; save(); vFood(); }));
   root.querySelectorAll("[data-goal]").forEach(b => b.addEventListener("click", () => { S.goal = b.dataset.goal; save(); vFood(); }));
@@ -3697,6 +4926,7 @@ function vFood() {
 }
 
 /* ============ ERHOLUNG ============ */
+const REC_SELF = { sauna: "g:sauna", nsdr: "g:nsdr", breath: "g:breath478", mobility: "g:reset" };   // Karte erklärt den Begriff schon selbst
 function vRec() {
   const root = document.getElementById("scr-rec");
   const k = todayKey();
@@ -3726,10 +4956,12 @@ function vRec() {
         <span class="chip aqua">Diese Woche: ${ws.sauna}× Sauna</span><div class="grow"></div>
         <button class="minibtn" data-sauna="1">Heute wars ${S.sauna[k] ? S.sauna[k] + " Gänge" : "— eintragen"}</button></div>`;
     }
+    const rk = new Set(REC_SELF[c.id] ? [REC_SELF[c.id]] : []), drills = c.id === "mobility" ? kbIds(c.lines.join(" · "), ["d"]) : [];
     return `<div class="card reccard">
       <div class="row"><span style="font-size:20px">${c.icon}</span><b style="font-size:16.5px">${esc(c.name)}</b></div>
-      <div class="fr">${esc(c.freq)}</div>
-      <ul>${c.lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+      <div class="fr">${gx(c.freq, rk)}</div>
+      <ul>${c.lines.map(l => `<li>${gx(l, rk)}</li>`).join("")}</ul>
+      ${drills.length ? `<div style="font-size:12.5px;color:var(--muted);font-weight:650;margin-top:8px">So geht's · Bild und Video</div>${kbChips(drills)}` : ""}
       ${c.link ? `<a href="${c.link[1]}" target="_blank" rel="noopener" style="font-size:14px">🔗 ${esc(c.link[0])}</a>` : ""}
       ${counter}
       ${c.timer ? `<button class="btn ghost" data-rectimer="${c.id}">⏱ ${esc(c.timer.label)}</button>` : ""}
@@ -3737,22 +4969,22 @@ function vRec() {
   }).join("");
 
   root.innerHTML = `
-    <div class="ltitle">Erholung</div>
+    ${ltitle("Erholung")}
     <div class="lsub">Schlaf und Stressmanagement sind Trainingsbestandteil — dein limitierender Faktor</div>${healthRecBlock(k)}
 
-    <div class="card pad0"><table class="weektable">${(k < PLAN_SWITCH ? RECOVERY.weekOld : RECOVERY.week).map((r, i) => `<tr ${((today().getDay() + 6) % 7) === i ? 'style="background:var(--blue-dim)"' : ""}><td class="wd">${r[0]}</td><td class="tr">${esc(r[1])}</td><td class="rec">${esc(r[2])}</td></tr>`).join("")}</table></div>
+    <div class="card pad0"><table class="weektable">${(k < PLAN_SWITCH ? RECOVERY.weekOld : RECOVERY.week).map((r, i) => `<tr ${((today().getDay() + 6) % 7) === i ? 'style="background:var(--blue-dim)"' : ""}><td class="wd">${r[0]}</td><td class="tr">${esc(r[1])}</td><td class="rec">${gx(r[2])}</td></tr>`).join("")}</table></div>
 
     ${cards}
 
     <h2 class="sec">${esc(RECOVERY.evening.title)}</h2>
     <div class="card">
-      ${RECOVERY.evening.steps.map(s => `<div class="kv"><span class="k" style="font-variant-numeric:tabular-nums">${s[0]}</span><span class="v" style="text-align:left;flex:1;font-weight:500;font-size:14px">${esc(s[1])}</span></div>`).join("")}
-      <div class="note">${esc(RECOVERY.evening.note)}</div>
+      ${RECOVERY.evening.steps.map(s => `<div class="kv"><span class="k" style="font-variant-numeric:tabular-nums">${s[0]}</span><span class="v" style="text-align:left;flex:1;font-weight:500;font-size:14px">${gx(s[1])}</span></div>`).join("")}
+      <div class="note">${gx(RECOVERY.evening.note)}</div>
       <button class="btn ghost" data-rectimer="breath-direct">🌬️ 4-7-8-Atmung starten</button>
     </div>
 
     <h2 class="sec">${esc(SUNDAY.title)}</h2>
-    <div class="card"><ul style="margin:2px 0 2px 18px;color:var(--ink2);font-size:14.5px">${SUNDAY.items.map(i => `<li style="margin-bottom:5px">${esc(i)}</li>`).join("")}</ul></div>`;
+    <div class="card"><ul style="margin:2px 0 2px 18px;color:var(--ink2);font-size:14.5px">${SUNDAY.items.map(i => `<li style="margin-bottom:5px">${gx(i, "g:topf")}</li>`).join("")}</ul></div>`;
 
   root.querySelectorAll("[data-nsdr]").forEach(b => b.addEventListener("click", () => { S.nsdr[k] = (S.nsdr[k] || 0) + 1; save(); vRec(); }));
   root.querySelectorAll("[data-sauna]").forEach(b => b.addEventListener("click", () => { S.sauna[k] = (S.sauna[k] || 0) + 1; save(); vRec(); }));
@@ -3809,17 +5041,17 @@ function vProg() {
     const past = c.date < k, next = nextCheckpoint(k) && nextCheckpoint(k).date === c.date;
     return `<div class="tlrow ${past ? "past" : next ? "next" : ""}">
       <div class="d">${fmtDateY(c.date)} · in ${diffDays(k, c.date) >= 0 ? diffDays(k, c.date) + " Tagen" : "vorbei"}</div>
-      <div class="l">${esc(c.label)}</div><div class="dt">${esc(c.detail)}</div></div>`;
+      <div class="l">${esc(c.label)}</div><div class="dt">${gx(c.detail)}</div></div>`;
   }).join("");
 
   root.innerHTML = `
-    <div class="ltitle">Fortschritt</div>
+    ${ltitle("Fortschritt")}
     <div class="lsub">${esc(PLAN.goal27)}</div>
     <div class="card hero">
-      <div class="lbl">7-Tage-Durchschnitt</div>
+      <div class="lbl">${gx("7-Tage-Durchschnitt")}</div>
       <div class="val">${a7 != null ? fmt1(a7) : "—"}<small> kg</small></div>
       ${deltaHtml}
-      ${rateHint ? `<div class="note">${esc(rateHint)}</div>` : ""}
+      ${rateHint ? `<div class="note">${gx(rateHint)}</div>` : ""}
     </div>
 
     <div class="card pad0" style="padding:12px 8px 4px">
@@ -3838,7 +5070,7 @@ function vProg() {
     <h2 class="sec">Umfänge eintragen <span style="text-transform:none;letter-spacing:0">· von Hand</span></h2>
     <div class="card">${measCard(k)}
       <button class="btn" id="waistsave">Speichern</button>
-      <div class="note">Taille jeden Sonntag, Schulter, Arm, Brust und Oberschenkel einmal im Monat mit den Fotos. Immer gleiche Stelle, gleiche Tageszeit. Schulter : Taille ist dein V-Form-Mass, Ziel ≥ ${fmt2(PH.ratio)}.</div>
+      <div class="note">Taille jeden Sonntag, Schulter, Arm, Brust und Oberschenkel einmal im Monat mit den Fotos. Immer gleiche Stelle, gleiche Tageszeit. ${gx("Schulter : Taille")} ist dein V-Form-Mass, Ziel ≥ ${fmt2(PH.ratio)}.</div>
     </div>
 
     <h2 class="sec">Wochen-Review & Check-in</h2>
@@ -3849,16 +5081,16 @@ function vProg() {
 
     <h2 class="sec">Meilensteine</h2>
     <div class="card"><div class="tl">${cpRows}</div>
-      <div class="note" style="margin-top:10px">${esc(PLAN.monthly)}</div>
-      <div class="note">${esc(PLAN.northstar)}</div></div>
+      <div class="note" style="margin-top:10px">${gx(PLAN.monthly)}</div>
+      <div class="note">${gx(PLAN.northstar)}</div></div>
 
     <h2 class="sec">Zielbild · Langfrist-Plan</h2>
     <div class="card">${phRows}
       <div class="divider"></div>
       <div class="kv"><span class="k">Schulter : Taille</span><span class="v">${shR ? fmt2(shR) : "—"} <span style="color:var(--muted);font-weight:500">· Ziel ≥ ${fmt2(PH.ratio)}</span></span></div>
       ${!shR ? `<div class="note">Schulter und Taille oben eintragen, dann erscheint dein Wert.</div>` : ""}
-      <ul style="margin:10px 0 0 18px;color:var(--ink2);font-size:14px">${PH.notes.map(x => `<li style="margin-bottom:4px">${esc(x)}</li>`).join("")}</ul>
-      <div class="note">Magermasse = Schätzung (Gewicht × (1 − KF)); die seca-Scans liefern die echten Werte.</div></div>
+      <ul style="margin:10px 0 0 18px;color:var(--ink2);font-size:14px">${PH.notes.map(x => `<li style="margin-bottom:4px">${gx(x)}</li>`).join("")}</ul>
+      <div class="note">${gx("Magermasse = Schätzung (Gewicht × (1 − KF)); die seca-Scans liefern die echten Werte.")}</div></div>
 
     <h2 class="sec">Daten</h2>
     <div class="card">
@@ -3977,6 +5209,8 @@ function openSheet(html) {
 }
 function closeSheet() {
   stopTimer();
+  KBS.length = 0;
+  vidReset(document.getElementById("sheet"));
   document.getElementById("sheet").classList.remove("open");
   document.getElementById("sheetbg").classList.remove("open");
 }
@@ -4437,6 +5671,8 @@ function bkUndo() {
 function init() {
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => go(b.dataset.tab)));
   document.getElementById("sheetbg").addEventListener("click", closeSheet);
+  document.addEventListener("click", kbClick, true);
+  document.addEventListener("keydown", kbKey);
   renderAll();
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { if (hpTake()) healthPasteSheet(); svAuto(); } });
   if (svCallback()) return;
