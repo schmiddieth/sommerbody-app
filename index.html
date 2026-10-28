@@ -798,6 +798,17 @@ const EXERCISES = {
     check: "Ellbogen-Position konstant über den Satz.",
     videos: [["How To: Flat Bench Dumbbell Triceps Extension (Skull Crusher)", "https://www.youtube.com/watch?v=UQuJu-gXQa0", "Live Lean TV Daily Exercises · Englisch"], ["Lying Dumbbell Tricep Extension", "https://www.youtube.com/watch?v=vZvvkx1qYt0", "Englisch"]],
     read: ["How to Do Dumbbell Lying Triceps Extension: Muscles Worked & Proper Form", "https://www.strengthlog.com/dumbbell-lying-triceps-extension/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
+  ohtri: { name: "Trizeps überkopf am Kabel", muscles: "Trizeps, vor allem der lange Kopf",
+    cue: "Ellbogen vor der Stirn fixiert, nur die Unterarme bewegen sich: hinten dehnen, vorne strecken.",
+    setup: "Seil an der hohen Rolle. Seil mit beiden Händen greifen, umdrehen, so dass es über die Schulter läuft, dann einen grossen Schritt vom Turm weg in die Schrittstellung. Aus der Hüfte ~30° vorlehnen, Rumpf fest, Rippen unten.",
+    tall: "Rolle ganz nach oben und so weit vortreten, dass das Seil in Verlängerung deiner Oberarme zieht. Deine langen Unterarme machen den Weg und die Dehnung riesig: Das ist genau der Wachstumsreiz, aber auch der Grund, leicht zu starten und über Wiederholungen zu steigern.",
+    shoulder: "Arm über dem Kopf plus Gewicht ist für deine Schulter die heikelste Position, darum vier Regeln: Ellbogen vor der Stirn statt neben den Ohren · Ellbogen schulterbreit, nicht nach aussen · erst vortreten, dann die Ellbogen hochnehmen, nie mit gestreckten Armen über den Kopf reissen · die Dehnung hinten nie erzwingen, kein Federn. Erster Arbeitssatz leicht als Test: Zwickt es vorn in der Schulter (Knacken ohne Schmerz ist okay), heute French Press liegend. Halbe Wiederholungen nur im normalen Bewegungsweg, nie tiefer.",
+    exec: ["Oberarme schräg nach vorne-oben, Ellbogen vor der Stirn und schulterbreit, das Seil hinter dem Kopf.", "Unterarme nach vorne strecken, bis die Arme fast gestreckt sind, Seilenden leicht auseinander, 1 s halten.", "In 2–3 s zurück in die Dehnung hinter dem Kopf, so tief, wie die Schulter ruhig bleibt. Die Ellbogen stehen still."],
+    feel: "Trizeps, deutliche Dehnung hinten am Oberarm", notFeel: "vorne in der Schulter (dann Ellbogen tiefer oder French Press) · Ellbogen-Schmerz (Gewicht runter) · unterer Rücken",
+    mistakes: "Ellbogen wandern nach aussen oder vor und zurück · Hohlkreuz statt fester Rumpf · unten aus der Dehnung federn",
+    check: "Ellbogen und Rumpf stehen den ganzen Satz still, nur die Unterarme bewegen sich.",
+    videos: [["How To Do A STANDING OVERHEAD CABLE TRICEPS EXTENSION (WITH ROPE)", "https://www.youtube.com/watch?v=jioCqlKKrJc", "Englisch"], ["Trizepsdrücken über Kopf Kabelzug - Anleitung durch Personal Trainer", "https://www.youtube.com/watch?v=P74OG4x5HOY", "Deutsch"]],
+    read: ["How to Do Overhead Cable Triceps Extension", "https://www.strengthlog.com/overhead-cable-triceps-extension-upper-position/", "StrengthLog · Animation, Fotos · Englisch"] },
   cablerow: { name: "Kabelrudern sitzend, eng", muscles: "mittlerer Rücken · Lat",
     cue: "±10° Pendel, mehr nicht — gezogen wird mit den Schulterblättern.",
     setup: "Füsse auf die Platten, Knie leicht gebeugt, aufrecht sitzen.",
@@ -1026,7 +1037,7 @@ const SESSIONS = {
       { ex: "latraise_c", sets: 4, reps: "12–20", start: "leicht", alts: ["KH-Seitheben", "Seitheben-Maschine"], ss: 3, note: "4. Seitheben-Frequenz der Woche: die seitliche Schulter macht den Rahmen breit." },
       { ex: "revfly", sets: 3, reps: "15–20", start: "EW", alts: ["Kabel Rear-Delt Fly"], ss: 2 },
       { ex: "inclinecurl", sets: 3, reps: "10–15", start: "2×8 kg", alts: ["Bayesian-Curl am Kabel", "KH-Curls"], ss: 5, note: "Arme hinter dem Körper: maximale Dehnung im Bizeps." },
-      { ex: "frenchpress", sets: 3, reps: "10–15", start: "2×10 kg", alts: ["Trizeps überkopf Kabel (nur wenn Schulter entspannt)", "Trizeps Pushdown"], ss: 4, note: "Langer Trizepskopf = der grösste Teil des Oberarms." }
+      { ex: "ohtri", sets: 3, reps: "10–15", start: "leicht, Gewicht finden (RIR 3)", alts: ["French Press liegend (wenn die Schulter überkopf zwickt)", "Trizeps Pushdown"], ss: 4, note: "Seit 28.10. statt French Press: Überkopf dehnt den langen Trizepskopf am stärksten, und er ist der grösste Teil des Oberarms. Erster Satz leicht als Schulter-Test. Zwickt es vorn in der Schulter: heute French Press liegend." }
     ] }
 };
 
@@ -1062,7 +1073,7 @@ const TRAINING_RULES = [
   ["Lange Hebel: Maschinen vor Langhantel", "Mit langen Armen und Beinen limitieren Rücken und Schultern bei Langhantel-Kniebeuge, Kreuzheben vom Boden und Bankdrücken, bevor der Zielmuskel ausgelastet ist. Hack Squat, Beinpresse, RDL, KH- und Maschinendrücken, brustgestütztes Rudern: mehr Reiz bei weniger Ermüdung, und es schont die Schultern."],
   ["Gedehnte Position zählt", "Volle Amplitude, besonders unten bei Schrägbank und Fliegenden, oben beim Latzug, hinter dem Kopf beim Trizeps, unten bei den Schrägbank-Curls. Lange Gliedmassen verleiten zu halben Wiederholungen. Lieber 1 Platte leichter und ganz. Letzter Satz jeder Isolationsübung bis ans Versagen, dann 3–5 halbe Wiederholungen im gedehnten Bereich anhängen. Nur so weit, wie es schmerzfrei geht."],
   ["Jeden Satz loggen", "Gewicht und Wiederholungen in jeder Session eintragen, auch an miesen Tagen. Ohne Log keine doppelte Progression, und ohne Progression kein Wachstum."],
-  ["5. Einheit: Pump-Session (fix)", "Sa oder So, ~45 Min: Schrägbank-Maschine, Seitheben + Reverse Fly, Schrägbank-Curls + French Press. Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5). Einmal pro Woche, nie am Montag. Fällt sie aus: nicht nachholen."],
+  ["5. Einheit: Pump-Session (fix)", "Sa oder So, ~45 Min: Schrägbank-Maschine, Seitheben + Reverse Fly, Schrägbank-Curls + Trizeps überkopf am Kabel. Der dritte Reiz der Woche für Brust, Schultern und Arme. Zählt ins Wochen-Soll (5). Einmal pro Woche, nie am Montag. Fällt sie aus: nicht nachholen."],
   ["60-Minuten-Fenster 07:15–08:15", "Um 08:15 ist Schluss. Die Slots stehen nach Wichtigkeit: was am Ende wegfällt, kostet am wenigsten. Wird es eng, den letzten Superset kürzen — nie die Pausen der Hauptübungen."],
   ["Wechselsatz", "Zwei Gegenspieler-Übungen abwechseln (Drücken ↔ Ziehen): Satz A, 60–75 Sek, Satz B, 60–75 Sek, wieder A. Jeder Muskel hat trotzdem ~3 Min Pause, der Block ist ~6 Min schneller. Gerät besetzt: nacheinander trainieren und den letzten Superset auf 2 Runden kürzen."],
   ["Doppelte Progression", "Alle Sätze am oberen Rand des Wiederholungsbereichs bei RIR 1–2 → nächste Einheit kleinste Steigerung (KH: nächstes Paar · Maschine: +1 Platte · sonst +1 Wdh). Nie Technik gegen Last tauschen."],
@@ -1821,15 +1832,6 @@ const DRILLS = {
     alias: ["Bayesian-Curl am Kabel", "Bayesian-Curl"],
     videos: [["How To: Standing Face Away Bayesian Cable Curl", "https://www.youtube.com/watch?v=paM4Yo8fo8g", "Englisch"], ["Bizeps Curls am Kabel hinter dem Körper erklärt", "https://www.youtube.com/shorts/GePLo6NDA0o", "Deutsch · Short"]],
     read: ["How to Do Bayesian Curl", "https://www.strengthlog.com/bayesian-curl/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
-  a_ohtri: { name: "Trizeps überkopf am Kabel", grp: "alt", for: ["frenchpress"], muscles: "Trizeps, vor allem der lange Kopf",
-    cue: "Oberarme neben den Ohren, nur die Ellbogen arbeiten.",
-    setup: "Seil an der hohen Rolle, Rücken zum Turm, Schrittstellung, aus der Hüfte leicht vorgelehnt.",
-    exec: ["Seil hinter dem Kopf, die Ellbogen zeigen nach vorne-oben.", "Arme strecken, bis sie fast gestreckt sind, die Seilenden leicht auseinander.", "Langsam zurück in die Dehnung hinter dem Kopf."],
-    mistakes: "Ellbogen weichen seitlich aus · Hohlkreuz",
-    shoulder: "Nur wenn die Schulter entspannt ist: Über dem Kopf ist die Position für empfindliche Schultern am heikelsten.",
-    alias: ["Trizeps überkopf Kabel", "Trizeps überkopf"],
-    videos: [["How To Do A STANDING OVERHEAD CABLE TRICEPS EXTENSION (WITH ROPE)", "https://www.youtube.com/watch?v=jioCqlKKrJc", "Englisch"], ["Trizepsdrücken über Kopf Kabelzug - Anleitung durch Personal Trainer", "https://www.youtube.com/watch?v=P74OG4x5HOY", "Deutsch"]],
-    read: ["How to Do Overhead Cable Triceps Extension", "https://www.strengthlog.com/overhead-cable-triceps-extension-upper-position/", "StrengthLog · Animation, Fotos · Englisch"] },
   a_pendulum: { name: "Pendulum Squat", grp: "alt", for: ["hacksquat", "legpress"], muscles: "Quads · Gesäss",
     cue: "Rücken fest am Polster, tief und kontrolliert: Die Maschine führt dich.",
     setup: "Schulterpolster so einstellen, dass die Schultern satt darunter liegen. Füsse hüftbreit, mittig bis vorn auf der Plattform.",
@@ -1909,7 +1911,7 @@ const EX_ALIAS = {
   legpress: ["Beinpresse enger/tiefer Stand", "Beinpresse-Sätze", "Beinpresse"], rdl: ["KH-RDL", "RDL"], legext: ["Beinstrecker"], calf_stand: ["Wadenheben stehend"],
   cablecrunch: ["Cable Crunch"], incline: ["KH-Schrägbankdrücken", "Schrägbankdrücken"], chestpress: ["Brustpresse Maschine", "Brustpresse"],
   cablefly: ["Kabel-Fliegende stehend", "Kabel-Fliegende", "Fliegende", "Fliegenden"], pushdown: ["Trizeps Pushdown", "Pushdowns", "Pushdown", "Trizepsdrücken"],
-  frenchpress: ["French Press liegend", "French Press"], cablerow: ["Kabelrudern sitzend, eng", "Kabelrudern sitzend"],
+  frenchpress: ["French Press liegend", "French Press"], ohtri: ["Trizeps überkopf am Kabel", "Trizeps überkopf Kabel", "Trizeps überkopf"], cablerow: ["Kabelrudern sitzend, eng", "Kabelrudern sitzend"],
   pullup_neg: ["Assisted-Maschine −25 → −10 kg", "Assisted Pull-up Maschine", "Assisted Pull-up", "Assisted-Maschine", "Klimmzug-Negative"],
   revfly: ["Reverse Fly Maschine", "Reverse Fly"], curls: ["KH-Curls"], hammer: ["Hammer-Curls", "Hammer-Curl"], hacksquat: ["Hack Squat"], legcurl: ["Beinbeuger liegend"],
   bss: ["Bulgarian Split Squats"], inclinemach: ["Schrägbank-Presse Maschine", "Schrägbank-Maschine"], inclinecurl: ["Schrägbank-Curls"], calf_seat: ["Wadenheben sitzend"]
@@ -2052,7 +2054,7 @@ const GLOSSAR = {
   trilong: { t: "Langer Trizepskopf", cat: "body", alias: ["Langer Trizepskopf", "langer Trizepskopf", "langen Trizepskopf", "Langen Trizepskopf"],
     short: "Der grösste der drei Trizeps-Köpfe. Er setzt am Schulterblatt an und wird gedehnt, wenn der Arm über dem Kopf ist.",
     body: ["Der Trizeps macht rund zwei Drittel des Oberarms aus. Für dicke Arme zählt er mehr als der Bizeps.", "Übungen mit dem Arm über oder hinter dem Kopf (French Press, Trizeps überkopf) dehnen den langen Kopf und lassen ihn am besten wachsen."],
-    plan: "French Press am Fr und in der Pump-Session. Überkopf am Kabel nur, wenn die Schulter entspannt ist.", see: ["stretch"] },
+    plan: "French Press am Fr, Trizeps überkopf am Kabel in der Pump-Session (seit 28.10.). Beide dehnen den langen Kopf, überkopf am stärksten. Zwickt die Schulter überkopf: auch in der Pump-Session French Press.", see: ["stretch"] },
   tall: { t: "Lange Hebel (2 m)", s: "Lange Hebel", cat: "body", alias: ["Lange Hebel", "lange Hebel", "langen Hebeln"],
     short: "Lange Arme und Beine sind lange Hebel: Dasselbe Gewicht wirkt schwerer, und der Bewegungsweg ist länger.",
     body: ["Bei Langhantel-Kniebeuge, Kreuzheben vom Boden und Bankdrücken limitieren dann oft Rücken und Schultern, bevor der Zielmuskel ausgelastet ist.", "Maschinen, Kurzhanteln und brustgestützte Übungen geben mehr Reiz bei weniger Ermüdung.", "Gleich viel Muskel wirkt auf langen Knochen flacher. Darum braucht es bei 2 m etwas mehr Masse für denselben Look."],
@@ -2494,7 +2496,7 @@ function kbIds(txt, kinds) {
   String(txt).replace(KB_RE, (m, pre, term) => { const id = KB_MAP[term]; if (id && out.indexOf(id) < 0 && (!kinds || kinds.indexOf(id.charAt(0)) >= 0) && kbEntry(id)) out.push(id); return m; });
   return out;
 }
-/* Übungs-Eintrag zu einer Alternative («Trizeps überkopf Kabel (nur wenn …)» → d:a_ohtri) */
+/* Übungs-Eintrag zu einer Alternative («Bayesian-Curl am Kabel» → d:a_bayesian, «Trizeps überkopf Kabel (nur wenn …)» → e:ohtri) */
 function kbAltId(a) { kbIndex(); const x = KB_MAP[a]; return x && x.charAt(0) !== "g" ? x : (kbIds(a, ["d", "e"])[0] || null); }
 function kbChips(ids) {
   return ids.length ? `<div class="kbchips">${ids.map(id => `<button class="kbchip${id.charAt(0) === "g" ? " term" : ""}" data-kb="${id}">${id.charAt(0) === "g" ? "" : "▶︎ "}${esc(kbName(id, true))}</button>`).join("")}</div>` : "";
