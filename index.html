@@ -1160,6 +1160,9 @@ const POT = {
    Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105. */
 const MEAL_SWITCH = "2026-10-27";
 const MEAL_IDS = ["topf", "quinoa", "pasta", "reis"];
+/* Wählbar beim Eintragen und als Standard (seit 29.10.2026; der Standard-Topf bleibt nur für alte Tage).
+   Neue Mahlzeit: Eintrag in MEALS (name, short = Knopf, full, portions, typ, time, kcal, p, kh, f, bs, keeps, ing, steps, tips) und die id hier anhängen. */
+const MEAL_PICK = ["quinoa", "reis", "pasta"];
 const MEALS = {
   topf: { name: "Standard-Topf", short: "Topf", full: "Standard-Topf mit Linsen, Bohnen, Reis & Hack", portions: 3, typ: "warm", time: "35 Min" },
   quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Schafskäse", portions: 4, typ: "kalt", time: "40 Min, davon 20 passiv",
@@ -1204,6 +1207,35 @@ function freezeMeals(slot) {
     if (!(S.mods[d] && Object.keys(S.mods[d]).some(m => S.mods[d][m]))) continue;
     S.meal[d] = S.meal[d] || {}; S.meal[d][slot] = mealFor(d, slot);
   }
+}
+/* Hauptmahlzeit mit einem Tipp eintragen (Slot T1 Mittag / T2 Abend). Gegessen = .on mit ✓, geplant = blau.
+   Tippen auf eine Mahlzeit wählt sie für diesen Tag und hakt den Slot ab; nochmals tippen nimmt es zurück. */
+function mealPickHtml(slot, k) {
+  const n = nutFor(k), ticked = !!(S.mods[k] && S.mods[k][slot]), cur = mealFor(k, slot);
+  return `<div class="seg" style="margin:8px 0 0">${MEAL_PICK.map(id => {
+    const M = MEALS[id], on = ticked && cur === id, plan = !ticked && cur === id;
+    return `<button class="${on ? "on" : ""}" data-mpk="${slot}|${id}" aria-pressed="${on}" style="white-space:normal;line-height:1.25;padding:7px 3px${on ? ";color:var(--good)" : plan ? ";color:var(--blue)" : ""}">
+        <span style="display:block">${esc(M.short)}</span>
+        <span style="display:block;font-size:11.5px;font-weight:500;color:var(--muted)">${fmtK(mealInfo(id, n).kcal)} kcal</span></button>`;
+  }).join("")}</div>`;
+}
+function mealPick(k, slot, id) {
+  S.mods[k] = S.mods[k] || {}; S.meal[k] = S.meal[k] || {};
+  if (S.mods[k][slot] && mealFor(k, slot) === id) { S.mods[k][slot] = false; delete S.meal[k][slot]; }
+  else { S.meal[k][slot] = id; S.mods[k][slot] = true; }
+  save();
+}
+function bindMealPick(root, k) {
+  root.querySelectorAll("[data-mpk]").forEach(b => b.addEventListener("click", () => {
+    const [sl, id] = b.dataset.mpk.split("|"); mealPick(k, sl, id); renderAll();
+  }));
+}
+/* Ein Standard, der nicht mehr wählbar ist (z. B. Standard-Topf), wird auf die Vorgabe gesetzt; abgehakte Tage behalten ihre Mahlzeit */
+function mealPickMigrate() {
+  ["T1", "T2"].forEach(sl => {
+    if (MEAL_PICK.indexOf(S.mealDef[sl]) >= 0) return;
+    freezeMeals(sl); S.mealDef[sl] = sl === "T1" ? "quinoa" : "pasta"; save();
+  });
 }
 function pinMeals(k) { ["T1", "T2"].forEach(sl => { S.meal[k] = S.meal[k] || {}; if (!S.meal[k][sl]) S.meal[k][sl] = mealFor(k, sl); }); }
 /* Energie-Snack S als Reserve: Decken die Hauptmahlzeiten (plus Abend-Shake) das Stufen-Ziel schon bis auf <175 kcal,
@@ -2708,7 +2740,7 @@ function bannersFor(k) {
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
     h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
   if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
-    h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Hauptmahlzeiten wählbar.</b> Mittags Quinoa-Box, abends Pasta oder Reis-Topf — pro Tag mit «Mahlzeit wechseln» oder als Standard im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
+    h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Essen mit einem Tipp eintragen.</b> Bei Mittag und Abend tippst du an, was du gegessen hast: Quinoa-Box, Reis-Topf oder Pasta, auf «Heute» oder oben im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
   else if (isDeloadWeek(k)) h += `<div class="banner warn"><span class="ic">🪫</span><div><b>Deload-Woche.</b> ${esc(PLAN.deloadRule)}</div></div>`;
@@ -4420,7 +4452,7 @@ function vHome() {
     next = `<div style="${LBL}">Als Nächstes · ${esc(r.time)}</div>
       <div style="font-size:21px;font-weight:750;letter-spacing:-0.3px;margin-top:4px">${esc(modTitle(r))}</div>
       <div style="font-size:14px;color:var(--ink2);margin-top:2px">${esc(modLine(r))}</div>
-      <button class="btn" data-mod="${nextId}">Abhaken</button>`;
+      ${nextId === "T1" || nextId === "T2" ? `<div style="font-size:13px;color:var(--muted);margin-top:14px">Was hast du gegessen? Antippen trägt es ein.</div>${mealPickHtml(nextId, k)}` : `<button class="btn" data-mod="${nextId}">Abhaken</button>`}`;
     if (trainLate) {
       const tTxt = sess ? `Training${sess.time ? " " + sess.time : ""} noch offen` : "Pump-Session noch offen";
       next += `<div class="divider"></div>
@@ -4457,7 +4489,7 @@ function vHome() {
         <span class="cbox"${done ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span>`;
     if (id === "T1" || id === "T2") return `<div class="tlrow ${cls}">
         <button data-mod="${id}" aria-pressed="${done}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">${inner}</button>
-        <button class="minibtn" data-meal="${id}" style="margin-top:7px">Mahlzeit wechseln ›</button>
+        ${mealPickHtml(id, k)}
       </div>`;
     return `<button class="tlrow ${cls}" data-mod="${id}" aria-pressed="${done}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left">
         ${inner}
@@ -4559,7 +4591,7 @@ function vHome() {
     if ((m === "T1" || m === "T2") && S.mods[k][m]) { S.meal[k] = S.meal[k] || {}; if (!S.meal[k][m]) S.meal[k][m] = mealFor(k, m); }
     save(); vHome();
   }));
-  root.querySelectorAll("[data-meal]").forEach(b => b.addEventListener("click", () => mealSheet(b.dataset.meal, k)));
+  bindMealPick(root, k);
   root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; APP.tab = "train"; renderAll(); window.scrollTo(0, 0); }));
   root.querySelectorAll("[data-timer]").forEach(b => b.addEventListener("click", () => openTimer(b.dataset.timer)));
   bindHealth(root);
@@ -4843,7 +4875,7 @@ function vFood() {
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
       body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
-      body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n).kcal) + " kcal). Den Standard wählst du unten bei «Hauptmahlzeiten», einzelne Tage auf «Heute» mit «Mahlzeit wechseln»." },
+      body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n).kcal) + " kcal). Was du gegessen hast, tippst du oben bei «Heute gegessen» oder auf «Heute» an. Den Plan wählst du unten bei «Hauptmahlzeiten»." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
       body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen.<br>Decken deine Hauptmahlzeiten den Snack schon ab (z. B. Quinoa-Box + Pasta), wird er zur Reserve: Du isst ihn, wenn die Energie-Karte «mehr essen» zeigt, und hakst ihn dann ab." },
     { id: "V", title: "V · Velo-Modul", meta: "an Velotagen", on: true, phase: n.eat === "full" ? "voll zurückessen" : "Cut: nur Untergrenze",
@@ -4865,12 +4897,34 @@ function vFood() {
 
   const setTxt = p.mods.map(m => m.replace(/[12]$/, "")).join(" + ");
 
+  // Heute gegessen: alles mit einem Tipp eintragen
+  const de = dayEat(k), eatOrd = dayOrder(k).filter(id => id !== "TRAIN" && de.mods.indexOf(id) >= 0).concat(de.resS ? ["S"] : []);
+  const eatRows = eatOrd.map(id => {
+    const r = modInfo(id, k), done = !!de.got[id];
+    if (id === "T1" || id === "T2") return `<div style="padding:11px 0 12px;border-top:1px solid var(--hairline)">
+        <div style="font-size:15px;font-weight:650">${id === "T1" ? "Mittag" : "Abend"} <span style="font-size:13px;font-weight:500;color:${done ? "var(--good)" : "var(--muted)"}">${done ? "✓ " + esc(r.name) + " · ≈" + fmtK(r.kcal) + " kcal · " + r.p + " g P" : "offen · Plan " + esc(r.name)}</span></div>
+        ${mealPickHtml(id, k)}</div>`;
+    return `<button class="row" data-fmod="${id}" aria-pressed="${done}" style="width:100%;text-align:left;padding:11px 0;border-top:1px solid var(--hairline)">
+        <div class="grow"><div style="font-size:15px;font-weight:650">${esc(id.replace(/[12]$/, "") + " · " + r.name)}${id === "S" && de.resS ? ' <span style="font-size:12px;font-weight:600;color:var(--warn)">Reserve</span>' : ""}</div>
+        <div style="font-size:13px;color:var(--muted)">${esc(r.desc)} · ≈${fmtK(r.kcal)} kcal · ${r.p} g P</div></div>
+        <span class="cbox"${done ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span></button>`;
+  }).join("");
+  const eatCard = `<div class="card">
+      <div style="${LBL}">Heute gegessen · ${WD[fromKey(k).getDay()]}</div>
+      <div style="font-size:24px;font-weight:750;letter-spacing:-0.3px;margin-top:4px;font-variant-numeric:tabular-nums">${fmtK(de.eatK)}<span style="font-size:15px;color:var(--muted);font-weight:600"> / ${fmtK(de.dayK)} kcal · ${de.eatP} / ${de.dayP} g Protein</span></div>
+      ${pbar(de.dayK ? 100 * de.eatK / de.dayK : 0, 8)}
+      <div style="margin-top:12px">${eatRows}</div>
+      <button class="minibtn" data-fextra style="width:100%;margin-top:4px">+ Extra gegessen${de.extra ? " · bisher " + fmtK(de.extra) + " kcal" : ""}</button>
+      <div class="note">Mittag und Abend: antippen, was du gegessen hast, nochmals tippen nimmt es zurück. Velo und Schwimmen trägst du auf «Heute» ein.</div>
+    </div>`;
+
   root.innerHTML = `
     ${ltitle("Ernährung")}
     <div class="lsub">Baukasten v2.1 — jeden Tag gleich, alle Entscheidungen vorab getroffen</div>
+    ${eatCard}
     <div class="card">
       <div class="row"><span class="chip blue">${esc(phaseLabel(p))}</span><div class="grow"></div><b style="font-size:15px">${esc(phaseKcal(k))}</b></div>
-      <div class="note">Tages-Set: ${setTxt}${isBulk && n.abend ? " + A" : ""} · ${n.eat === "full" ? "jeden Tag gleich" : "Ruhetag: Shake ohne Oats"} · ${esc(p.protein)} — abhaken auf «Heute».</div>
+      <div class="note">Tages-Set: ${setTxt}${isBulk && n.abend ? " + A" : ""} · ${n.eat === "full" ? "jeden Tag gleich" : "Ruhetag: Shake ohne Oats"} · ${esc(p.protein)} — abhaken oben oder auf «Heute».</div>
       ${isBulk ? `<div style="${LBL};margin-top:14px">Stufe</div>
       <div class="seg" style="margin:6px 0 0">${[1, 2, 3, 4].map(s => `<button class="${st === s ? "on" : ""}" data-stufe="${s}">${s}</button>`).join("")}</div>
       <div class="note">${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[1])}: ${esc(STUFEN_TABLE.find(r => r[0] === "bulk" + st)[2])}</div>
@@ -4886,10 +4940,10 @@ function vFood() {
     <h2 class="sec">Hauptmahlzeiten</h2>
     <div class="card">
       ${[["T1", "Mittag"], ["T2", "Abend"]].map(sl => `<div style="${LBL};margin-top:${sl[0] === "T1" ? 0 : 14}px">Standard ${sl[1]}</div>
-      <div class="seg" style="margin:6px 0 0">${MEAL_IDS.map(id => `<button class="${S.mealDef[sl[0]] === id ? "on" : ""}" data-mdef="${sl[0]}|${id}">${esc(MEALS[id].short)}</button>`).join("")}</div>`).join("")}
-      <div class="note">Gilt ab heute für jeden Tag. Einzelne Tage wechselst du auf «Heute» mit «Mahlzeit wechseln». Schon abgehakte Tage behalten ihre Mahlzeit.</div>
+      <div class="seg" style="margin:6px 0 0">${MEAL_PICK.map(id => `<button class="${S.mealDef[sl[0]] === id ? "on" : ""}" data-mdef="${sl[0]}|${id}">${esc(MEALS[id].short)}</button>`).join("")}</div>`).join("")}
+      <div class="note">Der Plan für jeden Tag ab heute. Was du wirklich gegessen hast, tippst du oben an. Schon eingetragene Tage behalten ihre Mahlzeit.</div>
     </div>
-    ${MEAL_IDS.map(id => { const mi = mealInfo(id, n), M = MEALS[id]; return `<button class="card" data-mrec="${id}" style="display:block;width:100%;text-align:left">
+    ${MEAL_PICK.map(id => { const mi = mealInfo(id, n), M = MEALS[id]; return `<button class="card" data-mrec="${id}" style="display:block;width:100%;text-align:left">
       <div class="row"><div class="grow"><b style="font-size:15px">${esc(M.full)}</b>
         <div style="font-size:13px;color:var(--muted);margin-top:2px">≈${fmtK(mi.kcal)} kcal · ${mi.p} g P${M.kh ? " · " + M.kh + " g KH · " + M.f + " g F · " + M.bs + " g Ballaststoffe" : ""}</div>
         <div style="font-size:13px;color:var(--muted)">${M.portions} ${M.portions === 1 ? "Portion" : "Portionen"} · ${esc(M.time)} · ${M.typ === "kalt" ? "❄️ kalt" : "🔥 warm"}</div></div>
@@ -4946,6 +5000,21 @@ function vFood() {
     save(); renderAll();
   }));
   root.querySelectorAll("[data-mrec]").forEach(b => b.addEventListener("click", () => openMeal(b.dataset.mrec)));
+  root.querySelectorAll("[data-fmod]").forEach(b => b.addEventListener("click", () => {
+    const m = b.dataset.fmod; S.mods[k] = S.mods[k] || {}; S.mods[k][m] = !S.mods[k][m]; save(); vFood();
+  }));
+  root.querySelectorAll("[data-fextra]").forEach(b => b.addEventListener("click", extraSheet));
+  bindMealPick(root, k);
+}
+/* Gegessen gegen Plan für einen Tag (wie der Hero auf «Heute»): abgehakte Module, Snack-Reserve, Extra */
+function dayEat(k) {
+  const mods = modsForDay(k), got = S.mods[k] || {};
+  let eatK = 0, dayK = 0, eatP = 0, dayP = 0, done = 0;
+  mods.forEach(m => { const i = modInfo(m, k); dayK += i.kcal; dayP += i.p; if (got[m]) { eatK += i.kcal; eatP += i.p; done++; } });
+  const resS = mods.indexOf("S") < 0 && sReserve(k);
+  if (resS && got.S) { const i = modInfo("S", k); eatK += i.kcal; eatP += i.p; }
+  const extra = Math.max(0, +S.extra[k] || 0);
+  return { mods: mods, got: got, resS: resS, eatK: eatK + extra, dayK: dayK, eatP: eatP, dayP: dayP, done: done, extra: extra };
 }
 
 /* ============ ERHOLUNG ============ */
@@ -5253,27 +5322,6 @@ function openMenu(n) {
 }
 
 /* ---------- Hauptmahlzeiten: wechseln und Rezept ---------- */
-function mealSheet(slot, k) {
-  k = k || todayKey();
-  const n = nutFor(k), cur = mealFor(k, slot), def = S.mealDef[slot], lbl = slot === "T1" ? "Mittag" : "Abend";
-  const ticked = !!(S.mods[k] && S.mods[k][slot]);
-  openSheet(`
-    <div class="sheettitle">${lbl}: Mahlzeit wählen</div>
-    <div style="color:var(--muted);font-size:14px;margin-bottom:10px">Heute: ${esc(mealInfo(cur, n).name)} · Standard: ${esc(MEALS[def] ? MEALS[def].name : MEALS.quinoa.name)}</div>
-    ${MEAL_IDS.map(id => { const mi = mealInfo(id, n); return `<div class="card" style="padding:12px 14px">
-      <b style="font-size:15px">${esc(mi.name)}${id === cur ? " ✓" : ""}</b>
-      <div style="font-size:13px;color:var(--muted)">≈${fmtK(mi.kcal)} kcal · ${mi.p} g Protein · ${esc(mi.sub)}</div>
-      <div class="row" style="gap:8px;margin-top:9px"><button class="minibtn${id === cur ? " blue" : ""}" data-mpick="day|${id}">Nur heute</button><button class="minibtn${id === def ? " blue" : ""}" data-mpick="def|${id}">Als Standard</button><div class="grow"></div><button class="minibtn" data-mrec2="${id}">Rezept</button></div></div>`; }).join("")}
-    <div class="note">«Als Standard» gilt ab heute für jeden ${lbl}. Schon abgehakte Tage behalten ihre Mahlzeit.${ticked ? " Heute ist schon abgehakt: «Nur heute» korrigiert die Kalorien von heute." : ""}</div>
-    <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
-  document.querySelectorAll("#sheet [data-mpick]").forEach(b => b.addEventListener("click", () => {
-    const [sc, id] = b.dataset.mpick.split("|");
-    if (sc === "def") { freezeMeals(slot); S.mealDef[slot] = id; }
-    S.meal[k] = S.meal[k] || {}; S.meal[k][slot] = id;
-    save(); renderAll(); mealSheet(slot, k);
-  }));
-  document.querySelectorAll("#sheet [data-mrec2]").forEach(b => b.addEventListener("click", () => openMeal(b.dataset.mrec2)));
-}
 function openMeal(id) {
   const n = nutFor(todayKey()), M = MEALS[id] || MEALS.topf, mi = mealInfo(id, n);
   const ing = id === "topf" ? potList(n) : M.ing, steps = id === "topf" ? null : M.steps, tips = id === "topf" ? POT.notes : M.tips;
@@ -5406,8 +5454,13 @@ function buildExport() {
   const waistK = Object.keys(S.waist).sort().filter(x => x >= ws.mon && x <= addDays(ws.mon, 6));
   lines.push("Taille: " + (waistK.length ? fmt1(S.waist[waistK[waistK.length - 1]]) + " cm" : "—"));
   lines.push("Trainings: " + ws.trainDone + "/" + ws.trainTarget + (ws.bonus ? " + " + ws.bonus + " Pump-Session" : "") + " · Module: " + (ws.modPct != null ? ws.modPct + " % (" + ws.modHit + "/" + ws.modTot + ")" : "—"));
-  const mealTxt = sl => { const c = {}; ws.days.filter(d0 => d0 <= k).forEach(d0 => { const m = mealFor(d0, sl); c[m] = (c[m] || 0) + 1; }); return Object.keys(c).map(m => MEALS[m].name + " " + c[m] + "×").join(", "); };
-  lines.push("Hauptmahlzeiten: Mittag " + mealTxt("T1") + " · Abend " + mealTxt("T2") + (p.id === "bulk" && sReserve(k) ? " · Snack S heute Reserve" : ""));
+  const mealTxt = sl => {
+    const c = {}; let open = 0;
+    ws.days.filter(d0 => d0 <= k).forEach(d0 => { if (!(S.mods[d0] && S.mods[d0][sl])) { open++; return; } const m = mealFor(d0, sl); c[m] = (c[m] || 0) + 1; });
+    const ks = Object.keys(c);
+    return (ks.length ? ks.map(m => MEALS[m].name + " " + c[m] + "×").join(", ") : "nichts eingetragen") + (open && ks.length ? " (" + open + "× nicht eingetragen)" : "");
+  };
+  lines.push("Hauptmahlzeiten gegessen: Mittag " + mealTxt("T1") + " · Abend " + mealTxt("T2") + (p.id === "bulk" && sReserve(k) ? " · Snack S heute Reserve" : ""));
   lines.push("Schlaf: Ø " + (ws.sleepH ? fmt1(ws.sleepH) + " h" : "—") + (ws.sleepQ ? " · Qualität Ø " + fmt1(ws.sleepQ) + "/5" : ""));
   lines.push("Schritte: Ø " + (ws.steps ? Math.round(ws.steps) : "—") + " · NSDR: " + ws.nsdr + " · Sauna: " + ws.sauna + "×");
   lines.push("Velo: " + ws.velo + "×" + (ws.veloLong ? " (davon " + ws.veloLong + " lang)" : "") + " · Schwimmen: " + ws.swim + "×");
@@ -5703,6 +5756,7 @@ function init() {
   document.getElementById("sheetbg").addEventListener("click", closeSheet);
   document.addEventListener("click", kbClick, true);
   document.addEventListener("keydown", kbKey);
+  mealPickMigrate();
   renderAll();
   APP.day = todayKey();
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { resumeRender(); if (hpTake()) healthPasteSheet(); svAuto(); } });
