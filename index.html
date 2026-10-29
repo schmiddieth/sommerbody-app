@@ -4336,6 +4336,12 @@ function splitStep(t) {
   return [t.slice(0, cut[0]), rest.charAt(0).toUpperCase() + rest.slice(1)];
 }
 const LBL = 'font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted)';
+/* Session-Fenster vorbei? Start (time, "07:15") plus Dauer (dur, "60 Min"); ohne Startzeit nie */
+function sessOver(sess, now) {
+  const t = /^(\d{1,2}):(\d{2})/.exec(sess.time || ""), m = /(\d+)/.exec(sess.dur || "");
+  if (!t) return false;
+  return now.getHours() * 60 + now.getMinutes() >= +t[1] * 60 + (+t[2]) + (m ? +m[1] : 60);
+}
 
 function vHome() {
   const k = todayKey(), d = today(), p = phaseFor(k);
@@ -4367,7 +4373,14 @@ function vHome() {
   eatK += extraK;
   const pxOpen = !sess && pxPending(k);
   const isDone = id => id === "TRAIN" ? (sess ? trainDone : !pxOpen) : !!got[id];
-  const nextId = order.find(id => !isDone(id)) || null;
+  /* Ein offenes Training blockiert «Als Nächstes» nicht: Ist das Zeitfenster der Session vorbei, ist schon etwas danach
+     abgehakt oder ist es die freie Pump-Session, kommt die nächste offene Mahlzeit mit «Abhaken» nach vorn,
+     das Training bleibt als Zeile darunter. */
+  const firstOpen = order.find(id => !isDone(id)) || null;
+  const openMeal = order.find(id => id !== "TRAIN" && !isDone(id)) || null;
+  const iT = order.indexOf("TRAIN");
+  const trainLate = firstOpen === "TRAIN" && !!openMeal && (!sess || sessOver(sess, d) || order.slice(iT + 1).some(id => isDone(id)));
+  const nextId = trainLate ? openMeal : firstOpen;
   const modTitle = r => `${r.id.replace(/[12]$/, "")} · ${r.name}`;
   const modLine = r => `${r.desc} · ≈${fmtK(r.kcal)} kcal · ${r.p} g Protein`;
 
@@ -4408,6 +4421,14 @@ function vHome() {
       <div style="font-size:21px;font-weight:750;letter-spacing:-0.3px;margin-top:4px">${esc(modTitle(r))}</div>
       <div style="font-size:14px;color:var(--ink2);margin-top:2px">${esc(modLine(r))}</div>
       <button class="btn" data-mod="${nextId}">Abhaken</button>`;
+    if (trainLate) {
+      const tTxt = sess ? `Training${sess.time ? " " + sess.time : ""} noch offen` : "Pump-Session noch offen";
+      next += `<div class="divider"></div>
+      <div class="row" style="gap:10px">
+        <div class="grow" style="font-size:13.5px;color:var(--muted)">${esc(tTxt)}</div>
+        <button class="minibtn blue" data-open-sess="${sess ? sessKey : "px"}" style="white-space:nowrap">Session öffnen ›</button>
+      </div>`;
+    }
   }
 
   // Tagesablauf
@@ -5670,13 +5691,21 @@ function bkUndo() {
 }
 
 /* ---------- Init ---------- */
+/* Bleibt die App über Nacht im Speicher, zeigte sie beim Zurückkommen noch den Vortag und hakte dort ab.
+   Neuer Tag: alles neu zeichnen. Gleicher Tag: «Heute» neu zeichnen (Uhrzeit für «Als Nächstes»), ausser ein Sheet ist offen. */
+function resumeRender() {
+  const tk = todayKey();
+  if (APP.day !== tk) { APP.day = tk; closeSheet(); renderAll(); return; }
+  if (APP.tab === "home" && !document.getElementById("sheet").classList.contains("open")) vHome();
+}
 function init() {
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => go(b.dataset.tab)));
   document.getElementById("sheetbg").addEventListener("click", closeSheet);
   document.addEventListener("click", kbClick, true);
   document.addEventListener("keydown", kbKey);
   renderAll();
-  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { if (hpTake()) healthPasteSheet(); svAuto(); } });
+  APP.day = todayKey();
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { resumeRender(); if (hpTake()) healthPasteSheet(); svAuto(); } });
   if (svCallback()) return;
   if (hpTake()) healthPasteSheet();
   svAuto();
