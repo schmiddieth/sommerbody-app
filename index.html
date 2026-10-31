@@ -459,7 +459,7 @@ const PLAN = {
       kcal: "2790 → 3150 → 3500 kcal", protein: "~250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       desc: "Deload + Kalorien-Ramp: Topf mit 2 Tassen Reis, Shake 40/100, ab Do Snack S. +1–1.5 kg = Glykogen und Wasser, kein Fett." },
     { id: "bulk", name: "Aufbau", short: "Aufbau", from: "2026-09-28", to: "2027-05-09",
-      kcal: "~3420 kcal pro Tag", protein: "~260–310 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
+      kcal: "~3420 kcal pro Tag", protein: "~220–240 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       rate: [0.3, 0.35], targetW: [97, 99],
       desc: "32 Wochen, +0.3–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
       rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.25 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
@@ -1126,7 +1126,7 @@ const QUARK = { kcal: 330, p: 60 };
    Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
    Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
 /* Ab 27.10.2026: Abend-Shake nur aus gemahlenen Oats und Vollmilch, ohne Whey, Honig oder Banane (Dimitris Wunsch).
-   Protein ist mit ~260–310 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
+   Protein ist mit ~220–240 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
 const STUFEN = {
   1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3420" },
   2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, kcal: "~3720" },
@@ -1157,8 +1157,17 @@ const POT = {
 /* Hauptmahlzeiten für die Slots T1 (Mittag) und T2 (Abend), gemeldet von Dimitri am 27.10.2026.
    Werte pro Portion, gerechnet mit Quinoa/Pasta/Reis roh und Hülsenfrüchten abgetropft:
    Quinoa 365 kcal/100 g · Pouletbrust 110 · Edamame 130 · Schafskäse 265 · Pasta 355 · Pesto Vemondo vegan Calabrese 200 ·
-   Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105. */
+   Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105.
+   v2 ab 01.11.2026 (Dimitris Wunsch: Protein auf ~220 g pro Tag, weniger Fleisch, gleich viele Kalorien):
+   Quinoa-Box 350 statt 700 g Poulet, 550 statt 450 g Quinoa · Pasta 300 g, ganzes Glas Pesto, ohne Poulet ·
+   Reis-Topf 350 statt 700 g Hack, 600 statt 400 g Linsen, 40 g Öl. Tage davor rechnen mit MEALS_V1. */
 const MEAL_SWITCH = "2026-10-27";
+const MEAL_V2 = "2026-11-01";
+const MEALS_V1 = {
+  quinoa: { name: "Quinoa-Box", kcal: 1040, p: 82 },
+  pasta: { name: "Pasta Poulet-Pesto", kcal: 1460, p: 116 },
+  reis: { name: "Reis-Topf", kcal: 1410, p: 71 }
+};
 const MEAL_IDS = ["topf", "quinoa", "pasta", "reis"];
 /* Wählbar beim Eintragen und als Standard (seit 29.10.2026; der Standard-Topf bleibt nur für alte Tage).
    Neue Mahlzeit: Eintrag in MEALS (name, short = Knopf, full, portions, typ, time, kcal, p, kh, f, bs, keeps, ing, steps, tips) und die id hier anhängen. */
@@ -1166,24 +1175,24 @@ const MEAL_PICK = ["quinoa", "reis", "pasta"];
 const MEALS = {
   topf: { name: "Standard-Topf", short: "Topf", full: "Standard-Topf mit Linsen, Bohnen, Reis & Hack", portions: 3, typ: "warm", time: "35 Min" },
   quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Schafskäse", portions: 4, typ: "kalt", time: "40 Min, davon 20 passiv",
-    kcal: 1040, p: 82, kh: 84, f: 37, bs: 17, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
-    ing: ["450 g Quinoa (roh) · 900 ml Wasser · 1 TL Bouillon-Pulver", "700 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne",
+    kcal: 1035, p: 65, kh: 99, f: 37, bs: 19, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
+    ing: ["550 g Quinoa (roh) · 1.1 L Wasser · 1 TL Bouillon-Pulver", "350 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne",
       "1 Gurke · 250 g Cherrytomaten · 2 Peperoni · 1 rote Zwiebel · 1 Bund Petersilie", "Dressing: 25 g Olivenöl · Saft von 1½ Zitronen · 1 TL Senf · 1 Knoblauchzehe · 1 TL Kreuzkümmel", "1 TL Paprika edelsüss · Salz · Pfeffer"],
     steps: ["Ofen auf 200 °C. Quinoa im feinen Sieb spülen, bis es nicht mehr schäumt (sonst bitter).", "Quinoa mit Wasser und Bouillon aufkochen, zugedeckt 15 Min köcheln, 5 Min ziehen lassen. Auf einem Blech auskühlen.",
       "Parallel: Poulet mit Paprika, ½ TL Kreuzkümmel, Salz und Pfeffer einreiben, 20–24 Min in den Ofen bis 74 °C Kerntemperatur. Lauwarm würfeln.", "Edamame 3 Min in Salzwasser blanchieren, kalt abschrecken.",
       "Gemüse würfeln, Petersilie hacken. Dressing verquirlen.", "Alles mischen und auf 4 Boxen verteilen. Schafskäse und Kürbiskerne separat, erst beim Essen drüber.", "Innert 1 h in den Kühlschrank."],
-    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 550 g gekochte Crevetten oder 3 Dosen Thon in Wasser ersetzen."]] },
-  pasta: { name: "Pasta Poulet-Pesto", short: "Pasta", full: "Pasta mit Poulet und Pesto alla Calabrese", portions: 1, typ: "warm", time: "20 Min",
-    kcal: 1460, p: 116, kh: 186, f: 25, bs: 9, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
-    ing: ["250 g Pasta (roh)", "350 g Pouletbrust (roh)", "½ Glas Pesto alla Calabrese vegan (Vemondo, Lidl) · ~95 g", "Salz · Pfeffer"],
-    steps: ["Pasta in reichlich Salzwasser kochen.", "Poulet in Streifen schneiden, in der beschichteten Pfanne 6–8 Min braten, salzen und pfeffern.", "Pasta abgiessen, eine Kelle Kochwasser aufheben.", "Pesto und Poulet unterheben, mit etwas Kochwasser cremig ziehen."],
-    tips: [["Mehr Kalorien, weniger satt", "200 g Poulet und das ganze Glas Pesto: gleich viele Kalorien (~1490), aber deutlich weniger Sättigung. Protein bleibt bei ~270 g pro Tag."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 200 g Lachs statt Poulet: etwa gleich viele Kalorien."]] },
+    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 280 g gekochte Crevetten oder 2 Dosen Thon in Wasser ersetzen."], ["Seit 01.11.", "Halb so viel Poulet, dafür 100 g mehr Quinoa: gleich viele Kalorien, 17 g weniger Protein pro Box."]] },
+  pasta: { name: "Pasta Pesto", short: "Pasta", full: "Pasta mit Pesto alla Calabrese", portions: 1, typ: "warm", time: "15 Min",
+    kcal: 1445, p: 42, kh: 230, f: 37, bs: 11, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
+    ing: ["300 g Pasta (roh)", "1 Glas Pesto alla Calabrese vegan mit Tofu (Vemondo, Lidl) · 190 g", "Salz · Pfeffer"],
+    steps: ["Pasta in reichlich Salzwasser kochen.", "Abgiessen, eine Kelle Kochwasser aufheben.", "Das ganze Glas Pesto unterheben, mit etwas Kochwasser cremig ziehen, pfeffern."],
+    tips: [["Seit 01.11. ohne Poulet", "Das Protein ist mit Quark, Shake und Quinoa-Box gedeckt. Ohne Poulet macht die Pasta weniger satt, und das ist im Aufbau ein Vorteil."], ["Mit Poulet", "100 g Poulet dazu: +110 kcal, +23 g Protein. Dein Tag liegt dann bei ~245 g Protein."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 150 g Lachs dazu: ~+300 kcal, +30 g Protein und dein Omega-3."]] },
   reis: { name: "Reis-Topf", short: "Reis", full: "Reis-Topf mit Hack, Linsen, Bohnen & Kichererbsen", portions: 4, typ: "warm", time: "35 Min",
-    kcal: 1410, p: 71, kh: 226, f: 20, bs: 18, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
-    ing: ["1 kg Parboiled-Reis (roh)", "700 g Bio-Hack <9 % (Aldi)", "400 g Beluga-Linsen, abgetropft", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
-    steps: ["Reis in einem grossen Topf in reichlich Salzwasser nach Packung kochen, abgiessen und auf einem Blech ausbreiten.", "Hack ohne Öl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
+    kcal: 1410, p: 58, kh: 233, f: 23, bs: 20, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
+    ing: ["1 kg Parboiled-Reis (roh)", "350 g Bio-Hack <9 % (Aldi)", "600 g Beluga-Linsen, abgetropft (ca. 2½ Dosen)", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "40 g Olivenöl (4 EL)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
+    steps: ["Reis in einem grossen Topf in reichlich Salzwasser nach Packung kochen, abgiessen und auf einem Blech ausbreiten.", "Hack im Olivenöl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
       "Hülsenfrüchte abspülen, dazugeben und mit einem Schluck Wasser 5 Min köcheln.", "Reis unterheben, abschmecken, auf 4 Boxen verteilen.", "Innert 1 h kühlen. Box 3 und 4 einfrieren und am Vorabend in den Kühlschrank legen."],
-    tips: [["Grosse Portion", "Eine Box wiegt gut 1 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1130 kcal verteilen."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
+    tips: [["Grosse Portion", "Eine Box wiegt gut 1 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1130 kcal / 46 g Protein verteilen."], ["Ganz ohne Hack", "800 g Linsen und 80 g Öl statt Hack: ~1410 kcal und 44 g Protein pro Box. Dein Tag liegt dann bei ~225 g Protein."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
 };
 function mealFor(k, slot) {
   const m = S.meal && S.meal[k] && S.meal[k][slot];
@@ -1192,9 +1201,10 @@ function mealFor(k, slot) {
   const d = S.mealDef && S.mealDef[slot];
   return d && MEALS[d] ? d : (slot === "T1" ? "quinoa" : "pasta");
 }
-/* Inhalt einer Hauptmahlzeit; der Standard-Topf folgt Phase und Stufe */
-function mealInfo(id, n) {
-  const M = MEALS[id] || MEALS.topf;
+/* Inhalt einer Hauptmahlzeit; der Standard-Topf folgt Phase und Stufe. Mit Datum k: Tage vor MEAL_V2 rechnen mit den alten Rezepten. */
+function mealInfo(id, n, k) {
+  let M = MEALS[id] || MEALS.topf;
+  if (k && k < MEAL_V2 && MEALS_V1[id]) M = Object.assign({}, M, MEALS_V1[id]);
   if (id === "topf" || !MEALS[id]) return { id: "topf", name: M.name, short: M.short, kcal: n.T.kcal, p: n.T.p,
     desc: "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")", sub: "⅓ von 3 Portionen" };
   return { id: id, name: M.name, short: M.short, kcal: M.kcal, p: M.p, desc: M.portions > 1 ? "¼ " + M.full : M.full, sub: M.portions > 1 ? "1 von " + M.portions + " Boxen" : "1 Portion frisch" };
@@ -1216,7 +1226,7 @@ function mealPickHtml(slot, k) {
     const M = MEALS[id], on = ticked && cur === id, plan = !ticked && cur === id;
     return `<button class="${on ? "on" : ""}" data-mpk="${slot}|${id}" aria-pressed="${on}" style="white-space:normal;line-height:1.25;padding:7px 3px${on ? ";color:var(--good)" : plan ? ";color:var(--blue)" : ""}">
         <span style="display:block">${esc(M.short)}</span>
-        <span style="display:block;font-size:11.5px;font-weight:500;color:var(--muted)">${fmtK(mealInfo(id, n).kcal)} kcal</span></button>`;
+        <span style="display:block;font-size:11.5px;font-weight:500;color:var(--muted)">${fmtK(mealInfo(id, n, k).kcal)} kcal</span></button>`;
   }).join("")}</div>`;
 }
 function mealPick(k, slot, id) {
@@ -1372,7 +1382,7 @@ const DRESSINGS = [
 ];
 
 const FOOD_RULES = [
-  ["Protein ist gedeckt — Kalorien über Carbs", "Muskel braucht ~1.8–2.2 g Protein pro kg, also 165–200 g. Der Baukasten liefert ~250 g. Mehr Protein baut nicht mehr Muskel, es sättigt nur. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Granola holen, nie über mehr Quark oder Hack."],
+  ["Protein ist gedeckt — Kalorien über Carbs", "Muskelaufbau braucht ~1.6–2.2 g Protein pro kg, bei dir also 150–210 g. Seit 01.11. liefern deine Mahlzeiten ~220–240 g, mit Puffer. Mehr Protein baut nicht mehr Muskel, es sättigt nur und braucht mehr Fleisch. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Öl holen, nie über mehr Quark, Poulet oder Hack."],
   ["Trinken statt Reis", "Bei knapp 2 m und fünf Trainings liegt dein Erhalt bei ~3250–3350 kcal. Der Reis bleibt bei 2 Tassen. Mehr Kalorien kommen über den Abend-Shake: halb (Stufe 2) → voll (Stufe 3) → mit Vollmilch (Stufe 4). Flüssig sättigt am wenigsten."],
   ["Die Waage entscheidet", "Watch-Kalorien sind eine Richtung, keine exakte Zahl. Gesteuert wird über den 7-Tage-Ø: Ziel +0.3–0.35 kg/Wo · 2 Wochen unter +0.25 → eine Stufe hoch · über +0.5 → eine Stufe zurück."],
   ["Restaurant-Regeln (max. 2×/Woche)", "Gericht mit klarem Protein-Anker + Reis/Kartoffeln · Sauce separat · kein Frittiertes · Wasser/Zero · ersetzt eine Topf-Portion, fertig. Einplanen statt bereuen."],
@@ -1532,7 +1542,7 @@ function modInfo(m, k) {
     }
   }
   if (m === "A" && n.abend) { r.desc = shakeTxt(n.abend) + (n.abend.milk ? "" : ", in Wasser") + " · ohne Kreatin"; r.kcal = shakeK(n.abend); r.p = shakeP(n.abend); }
-  if (m === "T1" || m === "T2") { const ml = mealInfo(mealFor(k, m), n); r.name = ml.name; r.meal = ml.id; r.desc = ml.desc; r.kcal = ml.kcal; r.p = ml.p; }
+  if (m === "T1" || m === "T2") { const ml = mealInfo(mealFor(k, m), n, k); r.name = ml.name; r.meal = ml.id; r.desc = ml.desc; r.kcal = ml.kcal; r.p = ml.p; }
   if (m === "S") { r.desc = "40 g Nüsse + 1 Banane"; r.kcal = 355; r.p = 8; }
   if (m === "V") {
     const lvl = veloLvl(k) || "kurz", v = veloMod(n, lvl);
@@ -2133,7 +2143,7 @@ const GLOSSAR = {
   whey: { t: "Whey (Molkenprotein)", s: "Whey", cat: "food", alias: ["Whey"],
     short: "Proteinpulver aus Milchmolke: schnell verdaulich, reich an Leucin.",
     body: ["Praktisch, aber kein Wundermittel: Es zählt einfach als Protein. 30 g Pulver liefern rund 24 g Protein.", "Nie kochen: Whey klumpt in heisser Flüssigkeit. Vom Herd nehmen und erst dann einrühren."],
-    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~260–310 g längst gedeckt.", see: ["creatine"] },
+    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~220–240 g gedeckt.", see: ["creatine"] },
   omega3: { t: "Omega-3 (EPA/DHA)", s: "Omega-3", cat: "food", alias: ["Omega-3", "EPA/DHA", "EPA+DHA"],
     short: "Langkettige Fettsäuren aus fettem Fisch und Algen.",
     body: ["EPA und DHA unterstützen Herz, Gefässe und Gehirn. Ohne regelmässig fetten Fisch kommt man kaum auf genug.", "Gezählt wird die Menge EPA + DHA, nicht das Fischöl insgesamt: Etikett lesen."],
@@ -2739,7 +2749,9 @@ function bannersFor(k) {
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
     h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
-  if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
+  if (!APP.session && k >= "2026-10-31" && k <= "2026-11-08")
+    h += `<div class="banner blue"><span class="ic">🥗</span><div><b>Neue Rezepte ab ${k < MEAL_V2 ? "morgen" : "01.11."}.</b> Quinoa-Box mit halb so viel Poulet, Pasta nur mit Pesto, Reis-Topf mit halb so viel Hack und mehr Linsen. Gleich viele Kalorien, aber ~220 statt ~310 g Protein pro Tag. Mengen und Zutaten: Ernährung → Hauptmahlzeiten.</div></div>`;
+  else if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
     h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Essen mit einem Tipp eintragen.</b> Bei Mittag und Abend tippst du an, was du gegessen hast: Quinoa-Box, Reis-Topf oder Pasta, auf «Heute» oder oben im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
@@ -4875,7 +4887,7 @@ function vFood() {
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
       body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
-      body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n).kcal) + " kcal). Was du gegessen hast, tippst du oben bei «Heute gegessen» oder auf «Heute» an. Den Plan wählst du unten bei «Hauptmahlzeiten»." },
+      body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n, k).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n, k).kcal) + " kcal). Was du gegessen hast, tippst du oben bei «Heute gegessen» oder auf «Heute» an. Den Plan wählst du unten bei «Hauptmahlzeiten»." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
       body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen.<br>Decken deine Hauptmahlzeiten den Snack schon ab (z. B. Quinoa-Box + Pasta), wird er zur Reserve: Du isst ihn, wenn die Energie-Karte «mehr essen» zeigt, und hakst ihn dann ab." },
     { id: "V", title: "V · Velo-Modul", meta: "an Velotagen", on: true, phase: n.eat === "full" ? "voll zurückessen" : "Cut: nur Untergrenze",
