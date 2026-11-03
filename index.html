@@ -459,7 +459,7 @@ const PLAN = {
       kcal: "2790 → 3150 → 3500 kcal", protein: "~250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       desc: "Deload + Kalorien-Ramp: Topf mit 2 Tassen Reis, Shake 40/100, ab Do Snack S. +1–1.5 kg = Glykogen und Wasser, kein Fett." },
     { id: "bulk", name: "Aufbau", short: "Aufbau", from: "2026-09-28", to: "2027-05-09",
-      kcal: "~3420 kcal pro Tag", protein: "~220–240 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
+      kcal: "~3680 kcal pro Tag", protein: "~220–250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       rate: [0.3, 0.35], targetW: [97, 99],
       desc: "32 Wochen, +0.3–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
       rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.25 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
@@ -473,7 +473,7 @@ const PLAN = {
       desc: "Halten & geniessen: Aufbau Stufe 1 ohne S. Viel Velo heisst mehr essen, sonst rutschst du ins Defizit." }
   ],
   // Montag der jeweiligen Deload-Woche
-  deloads: ["2026-09-21", "2026-11-09", "2026-12-28", "2027-02-15", "2027-04-05", "2027-05-03"],
+  deloads: ["2026-09-21", "2026-12-28", "2027-02-15", "2027-04-05", "2027-05-03"], // 2026-11-09 gestrichen am 01.11.: erst 1–2 Einheiten/Wo, keine Ermüdung aufgebaut
   deloadRule: "Deload: gleiche Sessions — Sätze halbieren, Last −10 %, RIR 3–4. Sauna, Schwimmen, Spaziergänge bleiben voll, Velo nur halbe Runde.",
   setupWeek: { from: "2026-08-17", to: "2026-08-23" },
   setupWeekRule: "Einstellwoche: pro Übung Gewicht finden für sauberes oberes Wiederholungsziel bei RIR 3. Jedes Maschinen-Setup notieren («Stadelhofen, Sitz 7, Griff 3»). Ab Woche 2 wird progressiert.",
@@ -870,6 +870,16 @@ const EXERCISES = {
     check: "Gesäss bleibt am Pad — über die ganze Range.",
     videos: [["Hack Squat Machine (Exercise Tutorial + Form Tips)", "https://www.youtube.com/watch?v=hglQExHCM9Q", "Vivian Ngo (Team Evolve) · Englisch"], ["Hackenschmidt-Kniebeugen in der Maschine - Fitnessübung für die Beine", "https://www.youtube.com/watch?v=TnsoJ68pcQw", "Thomas Bluhm · Deutsch"]],
     read: ["How to Do Hack Squats: Muscles Worked & Benefits", "https://www.strengthlog.com/hack-squat-machine/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
+  goblet: { name: "Goblet Squat fersenerhöht", muscles: "Quads · Gesäss",
+    cue: "Fersen satt auf der Erhöhung, KH als Kelch an der Brust — aufrecht bleiben, die Tiefe kommt von selbst.",
+    setup: "Fersen auf einen Keil oder zwei 5-kg-Scheiben, Stand schulterbreit, Zehen leicht nach aussen. KH senkrecht mit beiden Händen unter dem oberen Ende halten, Ellbogen unter der Hantel. Erhöhung und Stand notieren.",
+    tall: "Seit 01.11. statt Hack Squat/Pendulum — dein Gym hat die Maschine nicht. Die erhöhte Ferse gleicht deine langen Oberschenkel aus: Du kommst tief, ohne dass der Oberkörper nach vorn kippt. Tiefe = so weit, wie der Rücken lang bleibt und die Fersen satt stehen — nicht so tief wie die Nachbarn. Wird die schwerste KH zu leicht für 10 saubere Wiederholungen: melden, dann geht es auf Smith-Kniebeuge fersenerhöht oder 2 KH weiter.",
+    exec: ["In 2–3 s kontrolliert absenken, Knie in Fussrichtung — sie dürfen über die Zehen.", "Unten kurz stehen, nicht federn.", "Über die ganze Fusssohle hochdrücken, oben nicht einrasten."],
+    feel: "Quads, Gesäss", notFeel: "unterer Rücken · stechende Knie",
+    mistakes: "Fersen rollen von der Erhöhung · Ellbogen sinken und die KH zieht den Oberkörper rund · zu tief für die eigene Hebellänge",
+    check: "Oberkörper bleibt aufrecht, Fersen bleiben satt — über die ganze Range.",
+    videos: [["Heel Elevated Goblet Squat (Exercise Library)", "https://www.youtube.com/watch?v=lt9BKstdwdU", "Englisch"], ["How to PROPERLY Goblet Squat (FIX THIS NOW!)", "https://www.youtube.com/watch?v=gm4ln6PO4rc", "Englisch"]],
+    read: ["How to Do Goblet Squat: Muscles Worked & Proper Form", "https://www.strengthlog.com/goblet-squat/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
   legcurl: { name: "Beinbeuger liegend", muscles: "Beinrückseite",
     cue: "Hüfte aktiv ins Polster pressen — hebt sie ab, stiehlt der Rücken den Satz.",
     setup: "Drehpunkt der Maschine auf Höhe des Kniegelenks, Polster knapp über der Ferse.",
@@ -880,6 +890,16 @@ const EXERCISES = {
     check: "Hüfte bleibt unten — den ganzen Satz.",
     videos: [["How to Lying Leg Curl", "https://www.youtube.com/watch?v=vl5nUdE9mWM", "Physique Development · Englisch"], ["SO machst Du Beinbeugen im Liegen an der Maschine! [Lying Leg Curls]", "https://www.youtube.com/watch?v=Cp83sPJk6zg", "Deutsch"]],
     read: ["How to Do Lying Leg Curl: Muscles Worked & Proper Form", "https://www.strengthlog.com/lying-leg-curl/", "StrengthLog · Animation, Muskelkarte, Schritt für Schritt · Englisch"] },
+  seatcurl: { name: "Beinbeuger sitzend", muscles: "Beinrückseite",
+    cue: "Knie genau auf die Drehachse, Oberkörper leicht vor — dann arbeitet die Beinrückseite in voller Dehnung.",
+    setup: "Rückenlehne so einstellen, dass die Knie auf der Drehachse liegen — bei deiner Beinlänge meist ganz nach hinten. Oberschenkelpolster fest zu, Unterschenkelpolster knapp über die Ferse. Einstellung notieren.",
+    tall: "Seit 01.11. statt Beinbeuger liegend — die liegende Maschine ist für deine Beinlänge zu kurz. Sitzend stellt die Rückenlehne die Länge ein, und die gebeugte Hüfte bringt die Beinrückseite in mehr Dehnung: pro Satz eher wirksamer. Liegen die Knie trotz Lehne ganz hinten weit vor der Achse, passt auch diese Maschine nicht → einbeiniger Beinbeuger am Kabel.",
+    exec: ["Rumpf anspannen, leicht nach vorn lehnen und an den Griffen festhalten.", "Fersen in 1–2 s nach unten-hinten ziehen, unten 1 s halten.", "In 2–3 s zurück, bis die Beine fast gestreckt sind — die Dehnung gehört zum Satz."],
+    feel: "Beinrückseite — Krampfgefühl nahe dem Versagen ist normal", notFeel: "Kniekehle (stechend) · unterer Rücken",
+    mistakes: "Knie nicht auf der Achse · Polster zu locker, Hüfte rutscht · Schwung statt Tempo",
+    check: "Knie bleiben auf der Drehachse — Einstellung notiert?",
+    videos: [["Seated Leg Curl: How To", "https://www.youtube.com/watch?v=Z5pRnXaCjpM", "Hammer Fitness · Englisch"], ["Beinbeuger (sitzend): Richtig einstellen und ausführen", "https://www.youtube.com/watch?v=33FMqtH5zao", "Return Sport & Wellness · Deutsch"]],
+    read: ["How to Do Seated Leg Curl", "https://www.strengthlog.com/seated-leg-curl/", "StrengthLog · Animation, Fotos · Englisch"] },
   bss: { name: "Bulgarian Split Squats", muscles: "Quad + Gesäss (vorderes Bein)",
     cue: "Schrittlänge notieren — gleiche Länge, gleicher Reiz, jede Session.",
     setup: "Spann des Hinterfusses auf die Bank, Vorderfuss so weit vorn, dass das Knie unten über dem Mittelfuss steht. KH hängen seitlich.",
@@ -995,7 +1015,7 @@ const SESSIONS = {
     pauses: "Verbund 2–2½ Min · Superset ohne Pause",
     warmup: "5 Min Rad/Rudergerät + 2 leichte Beinpresse-Sätze — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze.",
     slots: [
-      { ex: "legpress", sets: 3, reps: "8–10", start: "EW (konservativ)", alts: ["Hack Squat", "Pendulum", "Smith-Kniebeuge fersenerhöht"], note: "v4: 3 statt 4 Sätze. Nah ans Versagen (RIR 1), dann halten die Beine ihre Masse." },
+      { ex: "legpress", sets: 3, reps: "8–10", start: "EW (konservativ)", alts: ["Smith-Kniebeuge fersenerhöht", "Goblet Squat fersenerhöht"], note: "v4: 3 statt 4 Sätze. Nah ans Versagen (RIR 1), dann halten die Beine ihre Masse." },
       { ex: "rdl", sets: 3, reps: "8–10", start: "2×22 kg", alts: ["45°-Rückenstrecker (gewichtet)", "Kabel-RDL"], note: "Morgens ist der Rücken steifer: 1 Vorsatz mit halber Last, dann die Arbeitssätze. Bleibt bei RIR 2+." },
       { ex: "curls", sets: 4, reps: "10–12", start: "2×12 kg", alts: ["SZ-Stange", "Kabel-Curls"], ss: 4, note: "v4: 4 Sätze. Arme hier, solange sie frisch sind. Kabel-Curls am gleichen Turm wie die Pushdowns sparen Wege." },
       { ex: "pushdown", sets: 4, reps: "12–15", start: "EW", alts: ["Dip-Maschine"], ss: 3 },
@@ -1019,8 +1039,8 @@ const SESSIONS = {
     warmup: "5 Min Rad/Rudergerät + 2 leichte Beinpresse-Sätze — morgens nie kürzen. Erste Verbundübung: 2 Rampen-Sätze.",
     after: "Danach Wochenende: Pump-Session Sa oder So, dazu Sauna und die lange Velo-Runde.",
     slots: [
-      { ex: "hacksquat", sets: 3, reps: "10–12", start: "EW", alts: ["Beinpresse enger/tiefer Stand"], note: "v4: 3 statt 4 Sätze, dafür nah ans Versagen." },
-      { ex: "legcurl", sets: 3, reps: "10–12", start: "EW", alts: ["Beinbeuger sitzend", "Nordic-Curl-Progression"] },
+      { ex: "goblet", sets: 3, reps: "10–12", start: "EW (~16–24 kg)", alts: ["Smith-Kniebeuge fersenerhöht", "Bulgarian Split Squats", "Beinpresse enger/tiefer Stand"], note: "Seit 01.11. statt Hack Squat/Pendulum — keine Maschine im Gym. 3 Sätze nah ans Versagen; wird die schwerste KH zu leicht, melden (dann Smith oder 2 KH)." },
+      { ex: "seatcurl", sets: 3, reps: "10–12", start: "EW", alts: ["Einbeiniger Beinbeuger am Kabel (Fussschlaufe)", "Nordic-Curl-Progression"], note: "Seit 01.11. sitzend statt liegend — die liegende Maschine ist für deine Beinlänge zu kurz. Rückenlehne ganz nach hinten, Knie auf die Drehachse." },
       { ex: "hammer", sets: 4, reps: "12–15", start: "2×10 kg", alts: ["Seil-Curls am Kabel"], ss: 4 },
       { ex: "frenchpress", sets: 4, reps: "10–15", start: "2×10 kg", alts: ["Trizeps Pushdown", "Trizeps überkopf Kabel (nur wenn Schulter entspannt)"], ss: 3, note: "Zwickt der Ellbogen: auf Pushdown wechseln." },
       { ex: "latraise_c", sets: 4, reps: "15–20", start: "leicht", alts: ["KH-Seitheben"], ss: 6, note: "3. Seitheben-Frequenz der Woche." },
@@ -1031,7 +1051,7 @@ const SESSIONS = {
   px: { key: "px", name: "Pump-Session · Oberkörper", day: "Sa oder So", dur: "45 Min",
     pauses: "Schrägbank 2 Min · Superset ohne Pause, 60 s zwischen den Runden",
     warmup: "5 Min Rad/Rudergerät + Face Pulls 2×15 leicht + Aussenrotation Kabel 2×12. Schrägbank: 2 Rampen-Sätze.",
-    after: "Fix als 5. Einheit: Sa oder So, einmal pro Woche, nie am Montag (am Dienstag ist Oberkörper schwer). Fällt sie aus: nicht nachholen. Bis zum Deload am 09.11. alle Sätze RIR 2.", afterIcon: "💪",
+    after: "Fix als 5. Einheit: Sa oder So, einmal pro Woche, nie am Montag (am Dienstag ist Oberkörper schwer). Fällt sie aus: nicht nachholen. Neue Sätze bis 08.11. mit RIR 2 — der Deload vom 09.11. ist gestrichen, nächster 28.12.", afterIcon: "💪",
     slots: [
       { ex: "inclinemach", sets: 3, reps: "8–12", start: "EW", alts: ["KH-Schrägbankdrücken", "Smith schräg"], note: "3. Brust-Tag der Woche: obere Brust. Unten 1 s in der Dehnung halten." },
       { ex: "latraise_c", sets: 4, reps: "12–20", start: "leicht", alts: ["KH-Seitheben", "Seitheben-Maschine"], ss: 3, note: "4. Seitheben-Frequenz der Woche: die seitliche Schulter macht den Rahmen breit." },
@@ -1069,7 +1089,7 @@ function pxPending(k) { return isV4Week(k) && pxAllowed(k) && !pxDoneWeek(k) && 
 
 const TRAINING_RULES = [
   ["Oberkörper-Fokus (Training v4)", "Bis Mai hat der Oberkörper Vorrang: Brust ~17, seitliche Schulter ~16, Rücken ~18, Bizeps und Trizeps je ~11 harte Sätze pro Woche, verteilt auf drei Tage (Di, Do, Pump-Session) plus die Arme am Mi und Fr. Bei 2 m wirkt dieselbe Muskelmasse flacher: Schultern, Brust und Arme machen den Look. Die Beine halten mit ~6 Sätzen pro Muskel ihre Masse, solange du nah ans Versagen gehst. Die frei werdende Erholung fliesst in den Oberkörper."],
-  ["Neue Sätze einschleichen", "Bis zum Deload am 09.11. laufen die neuen Sätze (Fliegende am Di, 4. Arm-Satz am Mi, die Pump-Session) mit RIR 2. Danach normal: Grundübungen RIR 1–2, Isolation im letzten Satz bis ans Versagen."],
+  ["Neue Sätze einschleichen", "Bis 08.11. laufen die neuen Sätze (Fliegende am Di, 4. Arm-Satz am Mi, die Pump-Session) mit RIR 2. Ab 09.11. normal: Grundübungen RIR 1–2, Isolation im letzten Satz bis ans Versagen. Der Deload vom 09.11. ist gestrichen (zu wenig Einheiten davor) — nächster 28.12."],
   ["Lange Hebel: Maschinen vor Langhantel", "Mit langen Armen und Beinen limitieren Rücken und Schultern bei Langhantel-Kniebeuge, Kreuzheben vom Boden und Bankdrücken, bevor der Zielmuskel ausgelastet ist. Hack Squat, Beinpresse, RDL, KH- und Maschinendrücken, brustgestütztes Rudern: mehr Reiz bei weniger Ermüdung, und es schont die Schultern."],
   ["Gedehnte Position zählt", "Volle Amplitude, besonders unten bei Schrägbank und Fliegenden, oben beim Latzug, hinter dem Kopf beim Trizeps, unten bei den Schrägbank-Curls. Lange Gliedmassen verleiten zu halben Wiederholungen. Lieber 1 Platte leichter und ganz. Letzter Satz jeder Isolationsübung bis ans Versagen, dann 3–5 halbe Wiederholungen im gedehnten Bereich anhängen. Nur so weit, wie es schmerzfrei geht."],
   ["Jeden Satz loggen", "Gewicht und Wiederholungen in jeder Session eintragen, auch an miesen Tagen. Ohne Log keine doppelte Progression, und ohne Progression kein Wachstum."],
@@ -1126,21 +1146,24 @@ const QUARK = { kcal: 330, p: 60 };
    Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
    Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
 /* Ab 27.10.2026: Abend-Shake nur aus gemahlenen Oats und Vollmilch, ohne Whey, Honig oder Banane (Dimitris Wunsch).
-   Protein ist mit ~220–240 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
+   Protein ist mit ~220–250 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
 const STUFEN = {
-  1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3420" },
-  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, kcal: "~3720" },
-  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, milk: 400, milkK: 0.65 }, kcal: "~3910" },
-  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 130, milk: 600, milkK: 0.65 }, kcal: "~4230" }
+  1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3680" },
+  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, kcal: "~4090" },
+  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, milk: 400, milkK: 0.65 }, kcal: "~4270" },
+  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 130, milk: 600, milkK: 0.65 }, kcal: "~4550" }
 };
+/* Tagesziele der Stufen ab 04.11.2026 (Rezepte v3) = Quark + Frühstücks-Shake + Quinoa-Box + Pasta (3675) + Abend-Shake.
+   Tage davor rechnen mit den alten Zielen (für die Snack-Reserve). */
+const STUFEN_KCAL_OLD = { 1: 3420, 2: 3720, 3: 3910, 4: 4230 };
 const STUFEN_ABEND_OLD = { 1: null, 2: { whey: 30, oats: 50 }, 3: { whey: 30, oats: 100 }, 4: { whey: 30, oats: 100, milk: 500, milkK: 0.65 } };
-function stufeKcal(st) { return +String(STUFEN[st || curStufe()].kcal).replace(/\D/g, ""); }
+function stufeKcal(st, k) { st = st || curStufe(); return k && k < MEAL_V3 ? STUFEN_KCAL_OLD[st] : +String(STUFEN[st].kcal).replace(/\D/g, ""); }
 const STUFEN_TABLE = [
   ["cut1", "Mini-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
-  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · 2 Hauptmahlzeiten · S, wo nötig", "~3420"],
-  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 60 g Oats + 300 ml Vollmilch", "~3720"],
-  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 90 g Oats + 400 ml Vollmilch", "~3910"],
-  ["bulk4", "Aufbau Stufe 4 · Abend-Shake XL", "+ Abend-Shake: 130 g Oats + 600 ml Vollmilch", "~4230"],
+  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · 2 Hauptmahlzeiten · S, wo nötig", "~3680"],
+  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 60 g Oats + 300 ml Vollmilch", "~4090"],
+  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 90 g Oats + 400 ml Vollmilch", "~4270"],
+  ["bulk4", "Aufbau Stufe 4 · Abend-Shake XL", "+ Abend-Shake: 130 g Oats + 600 ml Vollmilch", "~4550"],
   ["cut2", "Polish-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
   ["summer", "Sommer", "2 Tassen · Shake 30/100 · ohne S", "~3060"]
 ];
@@ -1160,14 +1183,24 @@ const POT = {
    Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105.
    v2 ab 01.11.2026 (Dimitris Wunsch: Protein auf ~220 g pro Tag, weniger Fleisch, gleich viele Kalorien):
    Quinoa-Box 350 statt 700 g Poulet, 550 statt 450 g Quinoa · Pasta 300 g, ganzes Glas Pesto, ohne Poulet ·
-   Reis-Topf 350 statt 700 g Hack, 600 statt 400 g Linsen, 40 g Öl. Tage davor rechnen mit MEALS_V1. */
+   Reis-Topf 350 statt 700 g Hack, 600 statt 400 g Linsen, 40 g Öl.
+   v3 ab 04.11.2026 (Dimitris Wunsch: mehr Kohlenhydrate für den Masseaufbau, je ~+200 kcal pro Portion):
+   Quinoa-Box 700 statt 550 g Quinoa + 80 g getrocknete Cranberries (325 kcal/100 g) · Pasta 350 statt 300 g ·
+   Reis-Topf 1.2 statt 1 kg Reis. Protein fast gleich. Schon eingetragene Tage rechnen mit der Version ihres Datums (MEAL_HIST). */
 const MEAL_SWITCH = "2026-10-27";
-const MEAL_V2 = "2026-11-01";
+const MEAL_V2 = "2026-11-01", MEAL_V3 = "2026-11-04";
 const MEALS_V1 = {
   quinoa: { name: "Quinoa-Box", kcal: 1040, p: 82 },
   pasta: { name: "Pasta Poulet-Pesto", kcal: 1460, p: 116 },
   reis: { name: "Reis-Topf", kcal: 1410, p: 71 }
 };
+const MEALS_V2 = {
+  quinoa: { kcal: 1035, p: 65 },
+  pasta: { kcal: 1445, p: 42 },
+  reis: { kcal: 1410, p: 58 }
+};
+/* Rezept-Versionen mit Stichtag, älteste zuerst: Ein Tag vor dem Stichtag rechnet mit diesen Werten. Neue Version = alte Werte mit dem neuen Stichtag anhängen. */
+const MEAL_HIST = [[MEAL_V2, MEALS_V1], [MEAL_V3, MEALS_V2]];
 const MEAL_IDS = ["topf", "quinoa", "pasta", "reis"];
 /* Wählbar beim Eintragen und als Standard (seit 29.10.2026; der Standard-Topf bleibt nur für alte Tage).
    Neue Mahlzeit: Eintrag in MEALS (name, short = Knopf, full, portions, typ, time, kcal, p, kh, f, bs, keeps, ing, steps, tips) und die id hier anhängen. */
@@ -1175,24 +1208,24 @@ const MEAL_PICK = ["quinoa", "reis", "pasta"];
 const MEALS = {
   topf: { name: "Standard-Topf", short: "Topf", full: "Standard-Topf mit Linsen, Bohnen, Reis & Hack", portions: 3, typ: "warm", time: "35 Min" },
   quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Schafskäse", portions: 4, typ: "kalt", time: "40 Min, davon 20 passiv",
-    kcal: 1035, p: 65, kh: 99, f: 37, bs: 19, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
-    ing: ["550 g Quinoa (roh) · 1.1 L Wasser · 1 TL Bouillon-Pulver", "350 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne",
+    kcal: 1235, p: 70, kh: 136, f: 40, bs: 23, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
+    ing: ["700 g Quinoa (roh) · 1.4 L Wasser · 1½ TL Bouillon-Pulver", "350 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne", "80 g getrocknete Cranberries",
       "1 Gurke · 250 g Cherrytomaten · 2 Peperoni · 1 rote Zwiebel · 1 Bund Petersilie", "Dressing: 25 g Olivenöl · Saft von 1½ Zitronen · 1 TL Senf · 1 Knoblauchzehe · 1 TL Kreuzkümmel", "1 TL Paprika edelsüss · Salz · Pfeffer"],
-    steps: ["Ofen auf 200 °C. Quinoa im feinen Sieb spülen, bis es nicht mehr schäumt (sonst bitter).", "Quinoa mit Wasser und Bouillon aufkochen, zugedeckt 15 Min köcheln, 5 Min ziehen lassen. Auf einem Blech auskühlen.",
+    steps: ["Ofen auf 200 °C. Quinoa im feinen Sieb spülen, bis es nicht mehr schäumt (sonst bitter).", "Quinoa mit Wasser und Bouillon im grössten Topf aufkochen, zugedeckt 15 Min köcheln, 5 Min ziehen lassen. Auf einem grossen Blech (oder zwei) auskühlen.",
       "Parallel: Poulet mit Paprika, ½ TL Kreuzkümmel, Salz und Pfeffer einreiben, 20–24 Min in den Ofen bis 74 °C Kerntemperatur. Lauwarm würfeln.", "Edamame 3 Min in Salzwasser blanchieren, kalt abschrecken.",
-      "Gemüse würfeln, Petersilie hacken. Dressing verquirlen.", "Alles mischen und auf 4 Boxen verteilen. Schafskäse und Kürbiskerne separat, erst beim Essen drüber.", "Innert 1 h in den Kühlschrank."],
-    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 280 g gekochte Crevetten oder 2 Dosen Thon in Wasser ersetzen."], ["Seit 01.11.", "Halb so viel Poulet, dafür 100 g mehr Quinoa: gleich viele Kalorien, 17 g weniger Protein pro Box."]] },
+      "Gemüse würfeln, Petersilie hacken. Dressing verquirlen.", "Alles samt Cranberries mischen und auf 4 Boxen verteilen. Schafskäse und Kürbiskerne separat, erst beim Essen drüber.", "Innert 1 h in den Kühlschrank."],
+    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 280 g gekochte Crevetten oder 2 Dosen Thon in Wasser ersetzen."], ["Seit 04.11. mehr Carbs", "150 g mehr Quinoa und 80 g Cranberries: +200 kcal und +37 g Kohlenhydrate pro Box, Protein fast gleich (+5 g)."], ["Statt Cranberries", "Rosinen oder gehackte getrocknete Aprikosen, gleich viel. Süss zum Zitronen-Dressing und Kalorien ohne viel Volumen."]] },
   pasta: { name: "Pasta Pesto", short: "Pasta", full: "Pasta mit Pesto alla Calabrese", portions: 1, typ: "warm", time: "15 Min",
-    kcal: 1445, p: 42, kh: 230, f: 37, bs: 11, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
-    ing: ["300 g Pasta (roh)", "1 Glas Pesto alla Calabrese vegan mit Tofu (Vemondo, Lidl) · 190 g", "Salz · Pfeffer"],
+    kcal: 1620, p: 48, kh: 266, f: 38, bs: 12, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
+    ing: ["350 g Pasta (roh)", "1 Glas Pesto alla Calabrese vegan mit Tofu (Vemondo, Lidl) · 190 g", "Salz · Pfeffer"],
     steps: ["Pasta in reichlich Salzwasser kochen.", "Abgiessen, eine Kelle Kochwasser aufheben.", "Das ganze Glas Pesto unterheben, mit etwas Kochwasser cremig ziehen, pfeffern."],
-    tips: [["Seit 01.11. ohne Poulet", "Das Protein ist mit Quark, Shake und Quinoa-Box gedeckt. Ohne Poulet macht die Pasta weniger satt, und das ist im Aufbau ein Vorteil."], ["Mit Poulet", "100 g Poulet dazu: +110 kcal, +23 g Protein. Dein Tag liegt dann bei ~245 g Protein."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 150 g Lachs dazu: ~+300 kcal, +30 g Protein und dein Omega-3."]] },
+    tips: [["Seit 04.11. 350 g Pasta", "50 g mehr Pasta: +180 kcal und +36 g Kohlenhydrate. Das ganze Glas Pesto reicht weiterhin."], ["Ohne Poulet", "Das Protein ist mit Quark, Shake und Quinoa-Box gedeckt. Ohne Poulet macht die Pasta weniger satt, und das ist im Aufbau ein Vorteil."], ["Mit Poulet", "100 g Poulet dazu: +110 kcal, +23 g Protein."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 150 g Lachs dazu: ~+300 kcal, +30 g Protein und dein Omega-3."]] },
   reis: { name: "Reis-Topf", short: "Reis", full: "Reis-Topf mit Hack, Linsen, Bohnen & Kichererbsen", portions: 4, typ: "warm", time: "35 Min",
-    kcal: 1410, p: 58, kh: 233, f: 23, bs: 20, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
-    ing: ["1 kg Parboiled-Reis (roh)", "350 g Bio-Hack <9 % (Aldi)", "600 g Beluga-Linsen, abgetropft (ca. 2½ Dosen)", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "40 g Olivenöl (4 EL)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
-    steps: ["Reis in einem grossen Topf in reichlich Salzwasser nach Packung kochen, abgiessen und auf einem Blech ausbreiten.", "Hack im Olivenöl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
+    kcal: 1585, p: 62, kh: 272, f: 23, bs: 21, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
+    ing: ["1.2 kg Parboiled-Reis (roh)", "350 g Bio-Hack <9 % (Aldi)", "600 g Beluga-Linsen, abgetropft (ca. 2½ Dosen)", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "40 g Olivenöl (4 EL)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
+    steps: ["Reis im grössten Topf in reichlich Salzwasser nach Packung kochen (passt er nicht: in zwei Durchgängen), abgiessen und auf einem Blech ausbreiten.", "Hack im Olivenöl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
       "Hülsenfrüchte abspülen, dazugeben und mit einem Schluck Wasser 5 Min köcheln.", "Reis unterheben, abschmecken, auf 4 Boxen verteilen.", "Innert 1 h kühlen. Box 3 und 4 einfrieren und am Vorabend in den Kühlschrank legen."],
-    tips: [["Grosse Portion", "Eine Box wiegt gut 1 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1130 kcal / 46 g Protein verteilen."], ["Ganz ohne Hack", "800 g Linsen und 80 g Öl statt Hack: ~1410 kcal und 44 g Protein pro Box. Dein Tag liegt dann bei ~225 g Protein."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
+    tips: [["Seit 04.11. 1.2 kg Reis", "200 g mehr Reis: +175 kcal und +39 g Kohlenhydrate pro Box, Protein fast gleich (+4 g)."], ["Grosse Portion", "Eine Box wiegt knapp 1.2 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1270 kcal / 50 g Protein verteilen."], ["Ganz ohne Hack", "800 g Linsen und 80 g Öl statt Hack: ~1590 kcal und 48 g Protein pro Box."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
 };
 function mealFor(k, slot) {
   const m = S.meal && S.meal[k] && S.meal[k][slot];
@@ -1201,10 +1234,11 @@ function mealFor(k, slot) {
   const d = S.mealDef && S.mealDef[slot];
   return d && MEALS[d] ? d : (slot === "T1" ? "quinoa" : "pasta");
 }
-/* Inhalt einer Hauptmahlzeit; der Standard-Topf folgt Phase und Stufe. Mit Datum k: Tage vor MEAL_V2 rechnen mit den alten Rezepten. */
+/* Inhalt einer Hauptmahlzeit; der Standard-Topf folgt Phase und Stufe. Mit Datum k: Tage vor einem Stichtag in MEAL_HIST rechnen mit dem damaligen Rezept. */
 function mealInfo(id, n, k) {
   let M = MEALS[id] || MEALS.topf;
-  if (k && k < MEAL_V2 && MEALS_V1[id]) M = Object.assign({}, M, MEALS_V1[id]);
+  const h = k && MEAL_HIST.find(x => k < x[0] && x[1][id]);
+  if (h) M = Object.assign({}, M, h[1][id]);
   if (id === "topf" || !MEALS[id]) return { id: "topf", name: M.name, short: M.short, kcal: n.T.kcal, p: n.T.p,
     desc: "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")", sub: "⅓ von 3 Portionen" };
   return { id: id, name: M.name, short: M.short, kcal: M.kcal, p: M.p, desc: M.portions > 1 ? "¼ " + M.full : M.full, sub: M.portions > 1 ? "1 von " + M.portions + " Boxen" : "1 Portion frisch" };
@@ -1256,7 +1290,7 @@ function sReserve(k) {
   if (p.id !== "bulk" || p.mods.indexOf("S") < 0 || k < MEAL_SWITCH) return false;
   const n = nutFor(k);
   const base = p.mods.filter(m => m !== "S").reduce((a, m) => a + modInfo(m, k).kcal, 0) + (n.abend ? shakeK(n.abend) : 0);
-  return stufeKcal() - base < S_RESERVE_GAP;
+  return stufeKcal(0, k) - base < S_RESERVE_GAP;
 }
 /* Topf-Zutaten der aktuellen Phase/Stufe: «Topf dicht» (Stufe 4) ohne Bohnen und mit 40 g Öl */
 function potList(n) {
@@ -1274,95 +1308,95 @@ const TIMING = [
 
 /* cat: fisch | fleisch | pflanzlich · typ: kalt | warm */
 const MENUS = [
-  { n: 1, name: "Caesar-Poulet-Salatbox", kcal: 770, p: 70, typ: "kalt", cat: "fleisch",
-    shop: "180 g Pouletbrust · 100 g Penne · 1 Römersalat · 125 g Cherrytomaten · 15 g Parmesan · 100 g Skyr · Senf (V), Zitrone, Olivenöl (V)",
+  { n: 1, name: "Caesar-Poulet-Salatbox", kcal: 1055, p: 80, typ: "kalt", cat: "fleisch",
+    shop: "180 g Pouletbrust · 180 g Penne · 1 Römersalat · 125 g Cherrytomaten · 15 g Parmesan · 100 g Skyr · Senf (V), Zitrone, Olivenöl (V)",
     steps: ["Poulet würzen, Ofen 200 °C 18 Min, auskühlen, aufschneiden.", "Penne kochen, kalt abspülen.", "Dressing verrühren: Skyr, 1 TL Senf, Zitronensaft, 5 g Öl.", "Alles in die Box, Salat + Dressing separat."], time: "25 Min" },
-  { n: 2, name: "Thon-Niçoise-Bowl", kcal: 800, p: 59, typ: "kalt", cat: "fisch",
-    shop: "1 gr. Dose Thon in Wasser (150 g) · 400 g Kartoffeln · 2 Eier · 150 g grüne Bohnen (TK, V) · 8 Oliven · Olivenöl, Essig, Senf (V)",
+  { n: 2, name: "Thon-Niçoise-Bowl", kcal: 1030, p: 65, typ: "kalt", cat: "fisch",
+    shop: "1 gr. Dose Thon in Wasser (150 g) · 700 g Kartoffeln · 2 Eier · 150 g grüne Bohnen (TK, V) · 8 Oliven · Olivenöl, Essig, Senf (V)",
     steps: ["Kartoffeln 20 Min kochen, Eier letzte 9 Min mit, Bohnen letzte 4 Min.", "Abkühlen, Kartoffeln in Scheiben.", "Vinaigrette (10 g Öl, Essig, Senf) separat.", "Thon abtropfen, einschichten."], time: "25 Min" },
-  { n: 3, name: "Linsen-Feta-Salat", kcal: 760, p: 58, typ: "kalt", cat: "pflanzlich",
-    shop: "120 g Linsen · 60 g Feta light · 1 Gurke · 2 Tomaten · 1 Peperoni · 1 rote Zwiebel · 150 g Skyr · Zitrone, Olivenöl (V), Minze",
-    steps: ["Linsen 20–25 Min kochen (nicht verkochen), abschrecken.", "Gemüse würfeln.", "Mit 10 g Öl, Zitrone, Salz/Pfeffer mischen, Feta drüber.", "Skyr als Dip separat."], time: "30 Min" },
-  { n: 4, name: "Asia-Crevetten-Nudelsalat", kcal: 760, p: 59, typ: "kalt", cat: "fisch",
-    shop: "180 g Crevetten (gekocht/TK) · 100 g Reisnudeln · 100 g Edamame (TK, V) · 2 Rüebli · ½ Gurke · Sojasauce (V), Limette, Sesamöl (V), Chili (V)",
+  { n: 3, name: "Linsen-Feta-Salat", kcal: 1085, p: 69, typ: "kalt", cat: "pflanzlich",
+    shop: "120 g Linsen · 90 g Couscous (V) · 60 g Feta light · 1 Gurke · 2 Tomaten · 1 Peperoni · 1 rote Zwiebel · 150 g Skyr · Zitrone, Olivenöl (V), Minze",
+    steps: ["Linsen 20–25 Min kochen (nicht verkochen), abschrecken.", "Couscous mit heisser Bouillon übergiessen, 10 Min ziehen, mit der Gabel auflockern.", "Gemüse würfeln.", "Linsen, Couscous und Gemüse mit 10 g Öl, Zitrone, Salz/Pfeffer mischen, Feta drüber.", "Skyr als Dip separat."], time: "30 Min" },
+  { n: 4, name: "Asia-Crevetten-Nudelsalat", kcal: 1050, p: 64, typ: "kalt", cat: "fisch",
+    shop: "180 g Crevetten (gekocht/TK) · 180 g Reisnudeln · 100 g Edamame (TK, V) · 2 Rüebli · ½ Gurke · Sojasauce (V), Limette, Sesamöl (V), Chili (V)",
     steps: ["Reisnudeln mit kochendem Wasser übergiessen, 5 Min, kalt spülen.", "Edamame 3 Min kochen.", "Crevetten auftauen/abspülen.", "Dressing (Sojasauce, Limette, 8 g Sesamöl, Chili) separat, Gemüse in Streifen."], time: "15 Min" },
-  { n: 5, name: "Planted-Couscous-Bowl", kcal: 770, p: 68, typ: "kalt", cat: "pflanzlich",
-    shop: "180 g Planted.chicken · 100 g Couscous (V) · 1 Zucchini · 1 Peperoni · 100 g Skyr · Harissa (V), Olivenöl (V)",
+  { n: 5, name: "Planted-Couscous-Bowl", kcal: 1060, p: 78, typ: "kalt", cat: "pflanzlich",
+    shop: "180 g Planted.chicken · 180 g Couscous (V) · 1 Zucchini · 1 Peperoni · 100 g Skyr · Harissa (V), Olivenöl (V)",
     steps: ["Couscous mit heisser Bouillon übergiessen, 10 Min ziehen.", "Gemüse + Planted in Pfanne 8 Min anbraten, auskühlen.", "Harissa-Dip (Skyr + 5 g Öl + Harissa) separat."], time: "20 Min" },
-  { n: 6, name: "Lachs-Brötli-Box", kcal: 730, p: 66, typ: "kalt", cat: "fisch", tag: "null Kochen · 5 Min",
-    shop: "120 g Räucherlachs · 2 dunkle Vollkornbrötchen · 200 g Hüttenkäse · ½ Gurke · Zitrone, Pfeffer",
+  { n: 6, name: "Lachs-Brötli-Box", kcal: 1040, p: 77, typ: "kalt", cat: "fisch", tag: "null Kochen · 5 Min",
+    shop: "120 g Räucherlachs · 4 dunkle Vollkornbrötchen · 200 g Hüttenkäse · ½ Gurke · Zitrone, Pfeffer",
     steps: ["Erst am Esstag: Brötchen aufschneiden, Hüttenkäse als Aufstrich, Lachs + Gurke drauf. Die Notfall-Prep."], time: "5 Min" },
-  { n: 7, name: "Tofu-Sesam-Nudelsalat", kcal: 835, p: 55, typ: "kalt", cat: "pflanzlich", tag: "+Booster",
-    shop: "250 g fester Tofu · 100 g Vollkornpasta · 1 Broccoli · Frühlingszwiebeln · Sesam, Sojasauce, Reisessig, Sesamöl (V), Knoblauch",
+  { n: 7, name: "Tofu-Sesam-Nudelsalat", kcal: 1115, p: 65, typ: "kalt", cat: "pflanzlich", tag: "+Booster",
+    shop: "250 g fester Tofu · 180 g Vollkornpasta · 1 Broccoli · Frühlingszwiebeln · Sesam, Sojasauce, Reisessig, Sesamöl (V), Knoblauch",
     steps: ["Tofu würfeln, in Sojasauce/Knoblauch 10 Min marinieren, Ofen 200 °C 25 Min.", "Pasta kochen, Broccoli letzte 3 Min mit, kalt abspülen.", "Dressing separat, Sesam drüber."], time: "35 Min" },
-  { n: 8, name: "Roastbeef-Kartoffelsalat", kcal: 745, p: 56, typ: "kalt", cat: "fleisch",
-    shop: "150 g Roastbeef-Aufschnitt · 450 g Kartoffeln · 2 Eier · Essiggurken · Radieschen · Senf, Essig, Bouillon (V)",
+  { n: 8, name: "Roastbeef-Kartoffelsalat", kcal: 975, p: 62, typ: "kalt", cat: "fleisch",
+    shop: "150 g Roastbeef-Aufschnitt · 750 g Kartoffeln · 2 Eier · Essiggurken · Radieschen · Senf, Essig, Bouillon (V)",
     steps: ["Kartoffeln kochen, Eier 9 Min mit, abkühlen.", "Dressing: Senf, Essig, 3 g Öl, warme Bouillon.", "Kartoffelscheiben im Dressing wenden, Roastbeef obenauf."], time: "25 Min" },
-  { n: 9, name: "Greek-Orzo-Poulet", kcal: 740, p: 60, typ: "kalt", cat: "fleisch",
-    shop: "180 g Pouletbrust · 100 g Orzo · 30 g Feta light · ½ Gurke · Cherrytomaten · 6 Oliven · Zitrone, Olivenöl (V), Oregano (V)",
+  { n: 9, name: "Greek-Orzo-Poulet", kcal: 1025, p: 70, typ: "kalt", cat: "fleisch",
+    shop: "180 g Pouletbrust · 180 g Orzo · 30 g Feta light · ½ Gurke · Cherrytomaten · 6 Oliven · Zitrone, Olivenöl (V), Oregano (V)",
     steps: ["Poulet mit Oregano/Zitrone Ofen 200 °C 18 Min, aufschneiden.", "Orzo kochen, kalt spülen.", "Mit 8 g Öl, Zitrone, Gemüse mischen, Feta drüber."], time: "25 Min" },
-  { n: 10, name: "Wrap-Duo Poulet", kcal: 660, p: 57, typ: "kalt", cat: "fleisch", tag: "Cut-freundlich · Aufbau: 3. Wrap",
-    shop: "2 Vollkorn-Wraps · 150 g Pouletbrust · 100 g Skyr · Salat, Tomate, ¼ Gurke · Paprikapulver (V)",
+  { n: 10, name: "Wrap-Box Poulet", kcal: 1020, p: 67, typ: "kalt", cat: "fleisch", tag: "Polish-Cut: 2 Wraps",
+    shop: "4 Vollkorn-Wraps · 150 g Pouletbrust · 100 g Skyr · Salat, Tomate, ¼ Gurke · Paprikapulver (V)",
     steps: ["Poulet in Streifen mit Paprika anbraten, auskühlen.", "Skyr mit Salz/Knoblauch als Aufstrich.", "Wraps erst am Esstag füllen (sonst durchgeweicht) — Zutaten getrennt boxen."], time: "20 Min" },
-  { n: 11, name: "Kichererbsen-Buddha-Bowl", kcal: 760, p: 32, typ: "kalt", cat: "pflanzlich", tag: "+Booster → ~56 g P",
-    shop: "1 Dose Kichererbsen (200 g) · 100 g Quinoa · 1 Süsskartoffel oder Peperoni/Zucchini · Tahini (V) · Zitrone · Kreuzkümmel (V)",
+  { n: 11, name: "Kichererbsen-Buddha-Bowl", kcal: 1050, p: 43, typ: "kalt", cat: "pflanzlich", tag: "+Booster → ~67 g P",
+    shop: "1 Dose Kichererbsen (200 g) · 180 g Quinoa · 1 Süsskartoffel oder Peperoni/Zucchini · Tahini (V) · Zitrone · Kreuzkümmel (V)",
     steps: ["Quinoa 15 Min kochen.", "Kichererbsen + Gemüse mit Gewürzen Ofen 200 °C 20 Min rösten.", "Tahini-Dressing (15 g Tahini, Zitrone, Wasser) separat.", "Booster (Skyr/Whey) einplanen."], time: "30 Min" },
-  { n: 12, name: "Forellen-Kartoffelsalat", kcal: 690, p: 56, typ: "kalt", cat: "fisch",
-    shop: "150 g geräucherte Forellenfilets · 400 g Kartoffeln · 1 Ei · 100 g Skyr · Meerrettich (Glas) · ½ Gurke · Dill",
+  { n: 12, name: "Forellen-Kartoffelsalat", kcal: 920, p: 62, typ: "kalt", cat: "fisch",
+    shop: "150 g geräucherte Forellenfilets · 700 g Kartoffeln · 1 Ei · 100 g Skyr · Meerrettich (Glas) · ½ Gurke · Dill",
     steps: ["Kartoffeln + Ei kochen, abkühlen.", "Meerrettich-Dressing: Skyr + 1–2 TL Meerrettich + Zitrone.", "Forelle zupfen, einschichten."], time: "25 Min" },
-  { n: 13, name: "Caprese-Bresaola-Pastasalat", kcal: 750, p: 52, typ: "kalt", cat: "fleisch",
-    shop: "100 g Penne · 125 g Mozzarella light · 50 g Bresaola · 250 g Cherrytomaten · Basilikum · Balsamico, Olivenöl (V)",
+  { n: 13, name: "Caprese-Bresaola-Pastasalat", kcal: 1035, p: 62, typ: "kalt", cat: "fleisch",
+    shop: "180 g Penne · 125 g Mozzarella light · 50 g Bresaola · 250 g Cherrytomaten · Basilikum · Balsamico, Olivenöl (V)",
     steps: ["Pasta kochen, kalt spülen.", "Mit 8 g Öl, Balsamico, halbierten Tomaten mischen.", "Mozzarella zupfen; Bresaola + Basilikum erst am Esstag drauf."], time: "15 Min" },
-  { n: 14, name: "Sushi-Style-Bowl", kcal: 760, p: 43, typ: "kalt", cat: "fisch",
-    shop: "100 g Reis · 100 g Räucherlachs · 100 g Edamame (TK, V) · ½ Avocado · ½ Gurke · Reisessig, Sojasauce, Sesam (V), Nori",
+  { n: 14, name: "Sushi-Style-Bowl", kcal: 1040, p: 49, typ: "kalt", cat: "fisch",
+    shop: "180 g Reis · 100 g Räucherlachs · 100 g Edamame (TK, V) · ½ Avocado · ½ Gurke · Reisessig, Sojasauce, Sesam (V), Nori",
     steps: ["Reis kochen, mit 1 EL Reisessig + Prise Zucker/Salz würzen, abkühlen.", "Edamame 3 Min kochen.", "Einschichten; Avocado erst am Esstag (Zitrone drauf), Sojasauce separat."], time: "20 Min" },
-  { n: 15, name: "Ofen-Poulet mediterran", kcal: 790, p: 51, typ: "warm", cat: "fleisch",
-    shop: "180 g Pouletbrust · 120 g Reis (V) · 1 Zucchini · 1 Peperoni · 125 g Cherrytomaten · Olivenöl (V), Kräuter der Provence (V), Zitrone",
+  { n: 15, name: "Ofen-Poulet mediterran", kcal: 1070, p: 57, typ: "warm", cat: "fleisch",
+    shop: "180 g Pouletbrust · 200 g Reis (V) · 1 Zucchini · 1 Peperoni · 125 g Cherrytomaten · Olivenöl (V), Kräuter der Provence (V), Zitrone",
     steps: ["Reis kochen.", "Poulet + Gemüse mit 10 g Öl und Kräutern aufs Blech, 200 °C 18–20 Min.", "Zitrone drüber, boxen."], time: "30 Min" },
-  { n: 16, name: "Chili-Bowl", kcal: 820, p: 60, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
-    shop: "200 g Rindshack 5 % · 100 g Reis (V) · Kidneybohnen (V) · Mais (V) · Dosentomaten (V) · Kreuzkümmel, Paprika (V), Zwiebel",
+  { n: 16, name: "Chili-Bowl", kcal: 1100, p: 66, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
+    shop: "200 g Rindshack 5 % · 180 g Reis (V) · Kidneybohnen (V) · Mais (V) · Dosentomaten (V) · Kreuzkümmel, Paprika (V), Zwiebel",
     steps: ["Reis kochen.", "Zwiebel + Hack scharf anbraten, Gewürze, Tomaten, Bohnen, Mais dazu, 10 Min köcheln.", "Boxen."], time: "25 Min" },
-  { n: 17, name: "Lachs-Teriyaki", kcal: 800, p: 46, typ: "warm", cat: "fisch", tag: "Omega-3-Anker · 1×/Woche",
-    shop: "160 g Lachsfilet · 100 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V) · 50 g Edamame (TK, V)",
+  { n: 17, name: "Lachs-Teriyaki", kcal: 1080, p: 52, typ: "warm", cat: "fisch", tag: "Omega-3-Anker · 1×/Woche",
+    shop: "160 g Lachsfilet · 180 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V) · 50 g Edamame (TK, V)",
     steps: ["Reis kochen, Broccoli 4 Min blanchieren.", "Lachs Ofen 200 °C 12–15 Min.", "Teriyaki drüber, Sesam. Kein Öl — der Lachs bringt das Fett."], time: "25 Min" },
-  { n: 18, name: "Rotes Linsen-Dal", kcal: 765, p: 35, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~58 g P · friert top",
-    shop: "100 g rote Linsen (V) · 80 g Reis (V) · 100 ml Kokosmilch light · 150 g Spinat (TK, V) · Dosentomaten (V) · Curry, Ingwer, Knoblauch",
+  { n: 18, name: "Rotes Linsen-Dal", kcal: 1045, p: 41, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~64 g P · friert top",
+    shop: "100 g rote Linsen (V) · 160 g Reis (V) · 100 ml Kokosmilch light · 150 g Spinat (TK, V) · Dosentomaten (V) · Curry, Ingwer, Knoblauch",
     steps: ["Zwiebel/Ingwer/Knoblauch andünsten, Curry mitrösten.", "Linsen + Tomaten + Wasser 15 Min köcheln, Kokosmilch + Spinat zum Schluss.", "Reis separat. Tag 2 schmeckt besser."], time: "25 Min" },
-  { n: 19, name: "Bolognese auf Vollkornpasta", kcal: 760, p: 62, typ: "warm", cat: "fleisch", tag: "×3 · 1 Portion einfrieren",
-    shop: "200 g Rindshack 5 % · 120 g Vollkornpasta · Dosentomaten (V) · 1 Rüebli · 1 Selleriestange · Zwiebel · ital. Kräuter (V)",
+  { n: 19, name: "Bolognese auf Vollkornpasta", kcal: 1040, p: 72, typ: "warm", cat: "fleisch", tag: "×3 · 1 Portion einfrieren",
+    shop: "200 g Rindshack 5 % · 200 g Vollkornpasta · Dosentomaten (V) · 1 Rüebli · 1 Selleriestange · Zwiebel · ital. Kräuter (V)",
     steps: ["Gemüse fein würfeln, mit Hack anbraten.", "Tomaten dazu, 15+ Min köcheln.", "Pasta al dente, boxen."], time: "30 Min" },
-  { n: 20, name: "Poulet-Stroganoff light", kcal: 740, p: 63, typ: "warm", cat: "fleisch",
-    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 120 g Reis (V) · Senf (V), Paprika (V), Zwiebel",
+  { n: 20, name: "Poulet-Stroganoff light", kcal: 1020, p: 69, typ: "warm", cat: "fleisch",
+    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 200 g Reis (V) · Senf (V), Paprika (V), Zwiebel",
     steps: ["Reis kochen.", "Poulet anbraten, rausnehmen; Pilze + Zwiebel rösten, ablöschen.", "Poulet zurück, vom Herd: Skyr + Senf + Paprika einrühren (nicht mehr kochen!). Aufwärmen: mittlere Stufe."], time: "25 Min" },
-  { n: 21, name: "Planted-Kebab-Bowl", kcal: 715, p: 68, typ: "warm", cat: "pflanzlich",
-    shop: "180 g Planted.chicken · 100 g Couscous (V) · 2 Tomaten · ½ Gurke · 1 rote Zwiebel · Petersilie · 100 g Skyr · Kebab-Gewürz (V), Knoblauch",
+  { n: 21, name: "Planted-Kebab-Bowl", kcal: 1005, p: 78, typ: "warm", cat: "pflanzlich",
+    shop: "180 g Planted.chicken · 180 g Couscous (V) · 2 Tomaten · ½ Gurke · 1 rote Zwiebel · Petersilie · 100 g Skyr · Kebab-Gewürz (V), Knoblauch",
     steps: ["Couscous mit Bouillon übergiessen.", "Planted mit Gewürz anbraten.", "Knoblauch-Sauce (Skyr + 5 g Öl + Knoblauch) separat, Gemüse würfeln."], time: "15 Min" },
-  { n: 22, name: "Crevetten-Wok", kcal: 805, p: 61, typ: "warm", cat: "fisch",
-    shop: "180 g Crevetten (TK) · 100 g Reisnudeln · 250 g Wokgemüse (TK, V) · 100 g Edamame (TK, V) · Sojasauce (V), Ingwer, Sesamöl (V)",
+  { n: 22, name: "Crevetten-Wok", kcal: 1095, p: 66, typ: "warm", cat: "fisch",
+    shop: "180 g Crevetten (TK) · 180 g Reisnudeln · 250 g Wokgemüse (TK, V) · 100 g Edamame (TK, V) · Sojasauce (V), Ingwer, Sesamöl (V)",
     steps: ["Reisnudeln brühen.", "Pfanne heiss: Gemüse 4 Min, Crevetten 3 Min, Edamame dazu.", "Sojasauce + 8 g Sesamöl, Nudeln unterheben."], time: "15 Min" },
-  { n: 23, name: "Züri-Geschnetzeltes light", kcal: 745, p: 63, typ: "warm", cat: "fleisch", tag: "Schweizer Klassiker",
-    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 120 g Reis (V) · Zwiebel · Bouillon (V) · Maizena (V) · Petersilie",
+  { n: 23, name: "Züri-Geschnetzeltes light", kcal: 1025, p: 69, typ: "warm", cat: "fleisch", tag: "Schweizer Klassiker",
+    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 200 g Reis (V) · Zwiebel · Bouillon (V) · Maizena (V) · Petersilie",
     steps: ["Reis kochen.", "Poulet anbraten, rausnehmen; Pilze rösten, mit Bouillon ablöschen, 1 TL Maizena binden.", "Vom Herd: Skyr einrühren, Poulet zurück."], time: "25 Min" },
-  { n: 24, name: "Ghackets mit Hörnli light", kcal: 740, p: 58, typ: "warm", cat: "fleisch", tag: "Comfort-Food im Plan",
-    shop: "200 g Rindshack 5 % · 110 g Hörnli · Zwiebel · Bouillon (V) · Tomatenpüree (V) · 1 kl. Apfelmus",
+  { n: 24, name: "Ghackets mit Hörnli light", kcal: 1025, p: 68, typ: "warm", cat: "fleisch", tag: "Comfort-Food im Plan",
+    shop: "200 g Rindshack 5 % · 190 g Hörnli · Zwiebel · Bouillon (V) · Tomatenpüree (V) · 1 kl. Apfelmus",
     steps: ["Hörnli kochen.", "Zwiebel + Hack anbraten, Tomatenpüree mitrösten, Schuss Bouillon, 5 Min.", "Apfelmus separat dazu."], time: "20 Min" },
-  { n: 25, name: "Ofen-Lachs mediterran", kcal: 690, p: 42, typ: "warm", cat: "fisch", tag: "2. Lachs-Option",
-    shop: "160 g Lachsfilet · 400 g Kartoffeln · 125 g Cherrytomaten · 1 Zucchini · Zitrone, Kräuter (V)",
+  { n: 25, name: "Ofen-Lachs mediterran", kcal: 920, p: 48, typ: "warm", cat: "fisch", tag: "2. Lachs-Option",
+    shop: "160 g Lachsfilet · 700 g Kartoffeln · 125 g Cherrytomaten · 1 Zucchini · Zitrone, Kräuter (V)",
     steps: ["Kartoffelspalten 200 °C 20 Min vorbacken (ohne Öl, mit Paprika).", "Lachs + Gemüse aufs Blech, weitere 12–15 Min.", "Zitrone drüber."], time: "35 Min" },
-  { n: 26, name: "Poulet-Curry", kcal: 695, p: 51, typ: "warm", cat: "fleisch", tag: "friert gut",
-    shop: "180 g Pouletbrust · 100 g Reis (V) · 100 ml Kokosmilch light · 200 g Gemüse (TK-Mix, V) · Currypaste (V)",
+  { n: 26, name: "Poulet-Curry", kcal: 975, p: 57, typ: "warm", cat: "fleisch", tag: "friert gut",
+    shop: "180 g Pouletbrust · 180 g Reis (V) · 100 ml Kokosmilch light · 200 g Gemüse (TK-Mix, V) · Currypaste (V)",
     steps: ["Reis kochen.", "Poulet anbraten, Currypaste mitrösten, Gemüse + Kokosmilch, 8 Min köcheln."], time: "25 Min" },
-  { n: 27, name: "Chili-Tofu-Reis", kcal: 835, p: 45, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~65 g P",
-    shop: "250 g fester Tofu · 100 g Reis (V) · 200 g Gemüse (Broccoli/Peperoni) · Sojasauce, Sriracha, Sesamöl (V), Knoblauch",
+  { n: 27, name: "Chili-Tofu-Reis", kcal: 1115, p: 51, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~71 g P",
+    shop: "250 g fester Tofu · 180 g Reis (V) · 200 g Gemüse (Broccoli/Peperoni) · Sojasauce, Sriracha, Sesamöl (V), Knoblauch",
     steps: ["Reis kochen.", "Tofu gewürfelt in 8 g Öl knusprig braten, Gemüse dazu.", "Sojasauce + Sriracha + Knoblauch, 2 Min schwenken."], time: "20 Min" },
-  { n: 28, name: "Hackbällchen in Tomatensauce", kcal: 690, p: 57, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
-    shop: "200 g Rindshack 5 % · 100 g Couscous (V) · Dosentomaten (V) · 1 Zucchini · Zwiebel, Knoblauch, ital. Kräuter (V)",
+  { n: 28, name: "Hackbällchen in Tomatensauce", kcal: 980, p: 67, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
+    shop: "200 g Rindshack 5 % · 180 g Couscous (V) · Dosentomaten (V) · 1 Zucchini · Zwiebel, Knoblauch, ital. Kräuter (V)",
     steps: ["Hack würzen, Bällchen formen, anbraten.", "Tomaten + Zucchini dazu, 10 Min köcheln.", "Couscous mit Bouillon übergiessen."], time: "25 Min" },
-  { n: 29, name: "Tempeh-Teriyaki", kcal: 825, p: 51, typ: "warm", cat: "pflanzlich", tag: "kein Booster nötig",
-    shop: "200 g Tempeh · 90 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V)",
+  { n: 29, name: "Tempeh-Teriyaki", kcal: 1105, p: 57, typ: "warm", cat: "pflanzlich", tag: "kein Booster nötig",
+    shop: "200 g Tempeh · 170 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V)",
     steps: ["Reis kochen, Broccoli blanchieren.", "Tempeh in Scheiben anbraten, mit Teriyaki glasieren.", "Sesam drüber."], time: "20 Min" },
-  { n: 30, name: "Frittata-Box", kcal: 685, p: 48, typ: "warm", cat: "pflanzlich", tag: "kalt UND warm essbar",
-    shop: "4 Eier · 100 g Hüttenkäse · 300 g Kartoffeln · 150 g Spinat (TK, V) · 125 g Cherrytomaten · Zwiebel",
+  { n: 30, name: "Frittata-Box", kcal: 915, p: 54, typ: "warm", cat: "pflanzlich", tag: "kalt UND warm essbar",
+    shop: "4 Eier · 100 g Hüttenkäse · 600 g Kartoffeln · 150 g Spinat (TK, V) · 125 g Cherrytomaten · Zwiebel",
     steps: ["Kartoffeln in dünnen Scheiben 8 Min vorkochen.", "Eier + Hüttenkäse verquirlen, alles in ofenfeste Form, 180 °C 20–25 Min.", "In Stücken boxen — hält 3 Tage, kalt wie warm."], time: "35 Min" }
 ];
 
@@ -1382,8 +1416,8 @@ const DRESSINGS = [
 ];
 
 const FOOD_RULES = [
-  ["Protein ist gedeckt — Kalorien über Carbs", "Muskelaufbau braucht ~1.6–2.2 g Protein pro kg, bei dir also 150–210 g. Seit 01.11. liefern deine Mahlzeiten ~220–240 g, mit Puffer. Mehr Protein baut nicht mehr Muskel, es sättigt nur und braucht mehr Fleisch. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Öl holen, nie über mehr Quark, Poulet oder Hack."],
-  ["Trinken statt Reis", "Bei knapp 2 m und fünf Trainings liegt dein Erhalt bei ~3250–3350 kcal. Der Reis bleibt bei 2 Tassen. Mehr Kalorien kommen über den Abend-Shake: halb (Stufe 2) → voll (Stufe 3) → mit Vollmilch (Stufe 4). Flüssig sättigt am wenigsten."],
+  ["Protein ist gedeckt — Kalorien über Carbs", "Muskelaufbau braucht ~1.6–2.2 g Protein pro kg, bei dir also 150–210 g. Deine Mahlzeiten liefern ~220–250 g, mit Puffer. Mehr Protein baut nicht mehr Muskel, es sättigt nur und braucht mehr Fleisch. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Öl holen, nie über mehr Quark, Poulet oder Hack."],
+  ["Carbs in den Mahlzeiten, der Rest flüssig", "Bei knapp 2 m, fünf Trainings und ~15'000 Schritten verbrauchst du laut Watch ~3700–4000 kcal. Seit 04.11. tragen die Hauptmahlzeiten mehr Kohlenhydrate (je ~+200 kcal pro Portion). Was darüber hinaus fehlt, kommt über den Abend-Shake: Stufe 2 → 3 → 4. Flüssig sättigt am wenigsten."],
   ["Die Waage entscheidet", "Watch-Kalorien sind eine Richtung, keine exakte Zahl. Gesteuert wird über den 7-Tage-Ø: Ziel +0.3–0.35 kg/Wo · 2 Wochen unter +0.25 → eine Stufe hoch · über +0.5 → eine Stufe zurück."],
   ["Restaurant-Regeln (max. 2×/Woche)", "Gericht mit klarem Protein-Anker + Reis/Kartoffeln · Sauce separat · kein Frittiertes · Wasser/Zero · ersetzt eine Topf-Portion, fertig. Einplanen statt bereuen."],
   ["Office-Notfall ohne Box (Migros/Coop)", "Skyr-Becher + Poulet-Sandwich · Sushi-Box + Edamame + Skyr · Hüttenkäse + Früchte + Proteinriegel. Regel: 1 Protein-Anker + 1 Carb-Quelle, kein Frittiertes."],
@@ -1874,7 +1908,7 @@ const DRILLS = {
     alias: ["Bayesian-Curl am Kabel", "Bayesian-Curl"],
     videos: [["How To: Standing Face Away Bayesian Cable Curl", "https://www.youtube.com/watch?v=paM4Yo8fo8g", "Englisch"], ["Bizeps Curls am Kabel hinter dem Körper erklärt", "https://www.youtube.com/shorts/GePLo6NDA0o", "Deutsch · Short"]],
     read: ["How to Do Bayesian Curl", "https://www.strengthlog.com/bayesian-curl/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
-  a_pendulum: { name: "Pendulum Squat", grp: "alt", for: ["hacksquat", "legpress"], muscles: "Quads · Gesäss",
+  a_pendulum: { name: "Pendulum Squat", grp: "alt", for: ["hacksquat"], muscles: "Quads · Gesäss",
     cue: "Rücken fest am Polster, tief und kontrolliert: Die Maschine führt dich.",
     setup: "Schulterpolster so einstellen, dass die Schultern satt darunter liegen. Füsse hüftbreit, mittig bis vorn auf der Plattform.",
     exec: ["Rumpf anspannen, Sicherung lösen.", "Kontrolliert absenken, mindestens bis die Oberschenkel parallel sind, so tief wie das Becken ruhig bleibt.", "Über die ganze Fusssohle hochdrücken."],
@@ -1883,7 +1917,7 @@ const DRILLS = {
     alias: ["Pendulum Squat", "Pendulum"],
     videos: [["How to Use the Pendulum Squat Machine (Complete Guide)", "https://www.youtube.com/watch?v=2l9TyVMh_XA", "Dr. Amanda Lifts · Englisch"], ["How To: Pendulum Squat Machine", "https://www.youtube.com/watch?v=Wz6EjnvifE4", "Live Lean TV · Englisch"]],
     read: ["How to Do Pendulum Squat", "https://www.strengthlog.com/pendulum-squat/", "StrengthLog · Animation, Muskelkarte · Englisch"] },
-  a_smithsquat: { name: "Smith-Kniebeuge fersenerhöht", grp: "alt", for: ["legpress", "hacksquat"], muscles: "Quads · Gesäss",
+  a_smithsquat: { name: "Smith-Kniebeuge fersenerhöht", grp: "alt", for: ["legpress", "goblet"], muscles: "Quads · Gesäss",
     cue: "Fersen hoch, Oberkörper aufrecht, die Knie dürfen weit nach vorn: Das trifft die Quads.",
     setup: "Fersen auf eine Hantelscheibe oder einen Keil, Füsse schulterbreit direkt unter der Stange. Stange auf dem oberen Rücken.",
     exec: ["Rumpf anspannen, Stange aushaken.", "In ~3 s absenken, so tief wie sauber möglich, unten kurz halten.", "Hochdrücken, oben nicht ganz einrasten."],
@@ -1901,15 +1935,15 @@ const DRILLS = {
     alias: ["Kabel-RDL"],
     videos: [["How To: Cable Romanian Deadlift With Dual Hook Straight Bar (RDL)", "https://www.youtube.com/watch?v=OCtb5fsb-Bo", "Live Lean TV · Englisch"], ["Kreuzheben am Kabel – effektiver als du denkst!", "https://www.youtube.com/watch?v=Po5WqEvClA0", "Stronger Than You · Deutsch"]],
     read: ["Cable Romanian Deadlift", "https://liftmanual.com/cable-romanian-deadlift/", "Lift Manual · Fotos · Englisch"] },
-  a_seatcurl: { name: "Beinbeuger sitzend", grp: "alt", for: ["legcurl"], muscles: "Beinrückseite",
-    cue: "Knie genau auf die Drehachse, dann trifft es die Beinrückseite auch in der Dehnung.",
-    setup: "Rückenlehne so, dass die Knie auf Höhe der Drehachse liegen. Oberschenkelpolster fest, Unterschenkelpolster knapp über der Ferse.",
-    exec: ["Rumpf anspannen, leicht nach vorn lehnen, das gibt mehr Dehnung.", "Fersen so weit wie möglich nach unten-hinten ziehen.", "Langsam zurück, bis die Beine fast gestreckt sind."],
-    mistakes: "Knie nicht auf der Achse · Schwung",
-    tall: "Rückenlehne meist ganz nach hinten, damit die Knie die Achse erreichen.",
-    alias: ["Beinbeuger sitzend"],
-    videos: [["Seated Leg Curl: How To", "https://www.youtube.com/watch?v=Z5pRnXaCjpM", "Hammer Fitness · Englisch"], ["Beinbeuger (sitzend): Richtig einstellen und ausführen", "https://www.youtube.com/watch?v=33FMqtH5zao", "Return Sport & Wellness · Deutsch"]],
-    read: ["How to Do Seated Leg Curl", "https://www.strengthlog.com/seated-leg-curl/", "StrengthLog · Animation, Fotos · Englisch"] },
+  a_cablelegcurl: { name: "Einbeiniger Beinbeuger am Kabel", grp: "alt", for: ["seatcurl"], muscles: "Beinrückseite",
+    cue: "Fussschlaufe an der tiefen Rolle, Ferse zum Gesäss — nur das Knie bewegt sich.",
+    setup: "Fussschlaufe ums Sprunggelenk, tiefe Rolle, Gesicht zum Turm, Hände am Rahmen. Standbein leicht gebeugt.",
+    exec: ["Oberschenkel senkrecht und still halten, nur das Knie beugen.", "Ferse in 1–2 s Richtung Gesäss ziehen, oben kurz halten.", "In 2–3 s zurück in die fast volle Streckung. Dann Seite wechseln."],
+    mistakes: "Hüfte knickt ein · Oberschenkel wandert nach vorn · Schwung",
+    tall: "Funktioniert bei jeder Beinlänge — hier muss keine Maschine passen. Dafür leichter: 3 × 12–15 je Bein statt Maximalgewicht.",
+    alt: "Plan B, falls die sitzende Maschine nicht passt oder besetzt ist.",
+    alias: ["Einbeiniger Beinbeuger am Kabel", "Beinbeuger am Kabel"],
+    yt: "standing cable leg curl ankle strap tutorial" },
   a_nordic: { name: "Nordic-Curl-Progression", grp: "alt", for: ["legcurl"], muscles: "Beinrückseite",
     cue: "So langsam wie möglich nach vorn fallen, Knie bis Kopf eine Linie.",
     setup: "Knien auf einem Polster, Fersen fixieren (Partner oder Polster unter einer beladenen Langhantel). Ein Band an einem hohen Punkt hilft am Anfang.",
@@ -1955,7 +1989,7 @@ const EX_ALIAS = {
   cablefly: ["Kabel-Fliegende stehend", "Kabel-Fliegende", "Fliegende", "Fliegenden"], pushdown: ["Trizeps Pushdown", "Pushdowns", "Pushdown", "Trizepsdrücken"],
   frenchpress: ["French Press liegend", "French Press"], ohtri: ["Trizeps überkopf am Kabel", "Trizeps überkopf Kabel", "Trizeps überkopf"], cablerow: ["Kabelrudern sitzend, eng", "Kabelrudern sitzend"],
   pullup_neg: ["Assisted-Maschine −25 → −10 kg", "Assisted Pull-up Maschine", "Assisted Pull-up", "Assisted-Maschine", "Klimmzug-Negative"],
-  revfly: ["Reverse Fly Maschine", "Reverse Fly"], curls: ["KH-Curls"], hammer: ["Hammer-Curls", "Hammer-Curl"], hacksquat: ["Hack Squat"], legcurl: ["Beinbeuger liegend"],
+  revfly: ["Reverse Fly Maschine", "Reverse Fly"], curls: ["KH-Curls"], hammer: ["Hammer-Curls", "Hammer-Curl"], hacksquat: ["Hack Squat"], legcurl: ["Beinbeuger liegend"], goblet: ["Goblet Squat fersenerhöht", "Goblet Squat"], seatcurl: ["Beinbeuger sitzend"],
   bss: ["Bulgarian Split Squats"], inclinemach: ["Schrägbank-Presse Maschine", "Schrägbank-Maschine"], inclinecurl: ["Schrägbank-Curls"], calf_seat: ["Wadenheben sitzend"]
 };
 
@@ -1966,7 +2000,7 @@ const GLOSSAR = {
   rir: { t: "RIR · Reps in Reserve", s: "RIR", cat: "train", fig: "rir", alias: ["RIR"],
     short: "Wie viele saubere Wiederholungen du am Satzende noch geschafft hättest.",
     body: ["RIR 2 heisst: Satz beenden, obwohl noch 2 saubere Wiederholungen drin wären. RIR 0 ist Muskelversagen.", "Wachstum braucht Sätze nah am Versagen, etwa RIR 0–3. Weiter weg bringt ein Satz wenig, ganz bis zum Versagen kostet er viel Erholung.", "Die meisten unterschätzen, was noch geht. Eichen: ab und zu im letzten Satz einer Isolationsübung bis zum Versagen gehen und vergleichen, wie viele es wirklich waren.", "Verwandt: RPE 8 entspricht etwa RIR 2."],
-    plan: "Einstellwoche RIR 3 · normale Wochen RIR 1–2 · letzte Woche vor dem Deload RIR 0–1 · Deload RIR 3–4 · KH-RDL nie unter RIR 2 · die neuen Sätze aus v4 bis 09.11. mit RIR 2. Das Ziel steht in jeder Übungskarte.",
+    plan: "Einstellwoche RIR 3 · normale Wochen RIR 1–2 · letzte Woche vor dem Deload RIR 0–1 · Deload RIR 3–4 · KH-RDL nie unter RIR 2 · die neuen Sätze aus v4 bis 08.11. mit RIR 2. Das Ziel steht in jeder Übungskarte.",
     videos: [["How To Tell If You're Training Hard Enough (Using Science)", "https://www.youtube.com/watch?v=deDlhPmT2SY", "Englisch"]],
     read: ["How To Perfect Your Ability To Predict Repetitions In Reserve", "https://www.strongerbyscience.com/reps-in-reserve", "Stronger By Science · Englisch"], see: ["failure", "dprog", "deload"] },
   failure: { t: "Muskelversagen", cat: "train", alias: ["Muskelversagen", "Versagen"],
@@ -2143,7 +2177,7 @@ const GLOSSAR = {
   whey: { t: "Whey (Molkenprotein)", s: "Whey", cat: "food", alias: ["Whey"],
     short: "Proteinpulver aus Milchmolke: schnell verdaulich, reich an Leucin.",
     body: ["Praktisch, aber kein Wundermittel: Es zählt einfach als Protein. 30 g Pulver liefern rund 24 g Protein.", "Nie kochen: Whey klumpt in heisser Flüssigkeit. Vom Herd nehmen und erst dann einrühren."],
-    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~220–240 g gedeckt.", see: ["creatine"] },
+    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~220–250 g gedeckt.", see: ["creatine"] },
   omega3: { t: "Omega-3 (EPA/DHA)", s: "Omega-3", cat: "food", alias: ["Omega-3", "EPA/DHA", "EPA+DHA"],
     short: "Langkettige Fettsäuren aus fettem Fisch und Algen.",
     body: ["EPA und DHA unterstützen Herz, Gefässe und Gehirn. Ohne regelmässig fetten Fisch kommt man kaum auf genug.", "Gezählt wird die Menge EPA + DHA, nicht das Fischöl insgesamt: Etikett lesen."],
@@ -2748,8 +2782,10 @@ function bannersFor(k) {
   if (!APP.session && k >= addDays(PLAN_SWITCH, -1) && k <= addDays(PLAN_SWITCH, 8))   // nicht in der Session-Ansicht
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
-    h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 09.11. mit RIR 2. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
-  if (!APP.session && k >= "2026-10-31" && k <= "2026-11-08")
+    h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 08.11. mit RIR 2 — kein Deload am 09.11. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
+  if (!APP.session && k >= "2026-11-03" && k <= "2026-11-11")
+    h += `<div class="banner blue"><span class="ic">🍚</span><div><b>Mehr Carbs in allen Rezepten ab ${k < MEAL_V3 ? "morgen." : "04.11."}</b> Quinoa-Box mit 700 g Quinoa und Cranberries, Pasta 350 g, Reis-Topf mit 1.2 kg Reis: je rund 200 kcal mehr pro Portion. Stufe ${curStufe()} liegt damit bei ${STUFEN[curStufe()].kcal} kcal. Die 30 Menüs im Abwechslungs-Pool haben mehr Reis, Pasta, Couscous oder Kartoffeln. Mengen: Ernährung → Hauptmahlzeiten.</div></div>`;
+  else if (!APP.session && k >= "2026-10-31" && k <= "2026-11-02")
     h += `<div class="banner blue"><span class="ic">🥗</span><div><b>Neue Rezepte ab ${k < MEAL_V2 ? "morgen" : "01.11."}.</b> Quinoa-Box mit halb so viel Poulet, Pasta nur mit Pesto, Reis-Topf mit halb so viel Hack und mehr Linsen. Gleich viele Kalorien, aber ~220 statt ~310 g Protein pro Tag. Mengen und Zutaten: Ernährung → Hauptmahlzeiten.</div></div>`;
   else if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
     h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Essen mit einem Tipp eintragen.</b> Bei Mittag und Abend tippst du an, was du gegessen hast: Quinoa-Box, Reis-Topf oder Pasta, auf «Heute» oder oben im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
@@ -4885,7 +4921,7 @@ function vFood() {
     { id: "PW", title: "PW · Frühstücks-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
       body: n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser. Zusammen mit dem Quark zum Frühstück, Di–Fr nach dem Training." + (n.eat === "full" ? "<br>Im Aufbau jeden Tag gleich, auch am Ruhetag." : "<br>Cut-Ruhetag: nur Whey, ohne Oats (≈" + shakeK(nRest) + " kcal).") },
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
-      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
+      body: "Dein Aufbau-Hebel über die Mahlzeiten hinaus: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
       body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n, k).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n, k).kcal) + " kcal). Was du gegessen hast, tippst du oben bei «Heute gegessen» oder auf «Heute» an. Den Plan wählst du unten bei «Hauptmahlzeiten»." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
@@ -4976,7 +5012,7 @@ function vFood() {
     <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${gx(r[1])}</span></div>`).join("")}</div>
 
     <h2 class="sec">Abwechslungs-Pool · ${menus.length} Menüs</h2>
-    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Im Aufbau Carbs +40 g roh.</div>
+    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Seit 04.11. mit Aufbau-Carbs (+80 g roh bzw. +300 g Kartoffeln). Im Polish-Cut wieder weglassen.</div>
     <div class="seg">${[["alle", "Alle"], ["kalt", "❄️ Kalt"], ["warm", "🔥 Warm"]].map(t => `<button class="${f.typ === t[0] ? "on" : ""}" data-ftyp="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="seg">${[["alle", "Alle"], ["fisch", "Fisch"], ["fleisch", "Fleisch"], ["pflanzlich", "Pflanzlich"]].map(t => `<button class="${f.cat === t[0] ? "on" : ""}" data-fcat="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="card pad0">${menuRows || `<div class="emptyhint">Keine Menüs in dieser Kombination.</div>`}</div>
@@ -5329,7 +5365,7 @@ function openMenu(n) {
     <div class="card" style="font-size:14px;color:var(--ink2)">${esc(m.shop)}</div>
     <h2 class="sec">Zubereitung</h2>
     <div class="card">${m.steps.map((s, i) => `<div class="kv"><span class="k" style="min-width:18px">${i + 1}</span><span class="v" style="text-align:left;flex:1;font-weight:500;font-size:14px">${esc(s)}</span></div>`).join("")}</div>
-    <div class="note">1 Menü = 1 Topf-Portion. Beim Prep ×2 oder ×3 rechnen. Aufbau: Carbs +40 g roh. «(V)» = Vorrats-Zutat.</div>
+    <div class="note">1 Menü = 1 Box, ersetzt 1 Hauptmahlzeit. Beim Prep ×2 oder ×3 rechnen. Carbs in Aufbau-Menge (seit 04.11.); im Polish-Cut 80 g roh bzw. 300 g Kartoffeln weniger. «(V)» = Vorrats-Zutat.</div>
     <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
 }
 
