@@ -459,7 +459,7 @@ const PLAN = {
       kcal: "2790 → 3150 → 3500 kcal", protein: "~250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       desc: "Deload + Kalorien-Ramp: Topf mit 2 Tassen Reis, Shake 40/100, ab Do Snack S. +1–1.5 kg = Glykogen und Wasser, kein Fett." },
     { id: "bulk", name: "Aufbau", short: "Aufbau", from: "2026-09-28", to: "2027-05-09",
-      kcal: "~3680 kcal pro Tag", protein: "~220–250 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
+      kcal: "~3550–4255 kcal je nach Stufe", protein: "~220–240 g Protein", mods: ["Q", "PW", "S", "T1", "T2"], nut: "bulk",
       rate: [0.3, 0.35], targetW: [97, 99],
       desc: "32 Wochen, +0.3–0.35 kg/Wo → Winter-Peak 97–99 kg. Velo und Schwimmen werden voll zurückgegessen, sonst kippt der Überschuss.",
       rule: "Stufenwechsel nach Regel, nie nach Gefühl: 2 Wochen unter +0.25 kg/Wo → nächste Stufe · über +0.5 kg/Wo → eine Stufe zurück. Immer auf dem 7-Tage-Ø." },
@@ -1146,24 +1146,35 @@ const QUARK = { kcal: 330, p: 60 };
    Ab 22.10.2026: Der Reis bleibt bei 2 Tassen, mehr Kalorien kommen über den Abend-Shake (Dimitris Wunsch: lieber trinken als
    Unmengen Reis essen). Flüssige Kalorien sättigen am wenigsten. abend = Shake am Abend ({whey, oats, milk, milkK}) oder null. */
 /* Ab 27.10.2026: Abend-Shake nur aus gemahlenen Oats und Vollmilch, ohne Whey, Honig oder Banane (Dimitris Wunsch).
-   Protein ist mit ~220–250 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
+   Protein ist mit ~220–240 g gedeckt; Milch bringt Kalorien ohne viel Volumen. Tage davor rechnen mit der alten Variante (STUFEN_ABEND_OLD). */
+/* Stufen v3 «Doppel-Shake» ab 09.11.2026 (Dimitris Wunsch vom 08.11.): Frühstücks-Shake 30 g Whey + 120 g Oats,
+   Abend-Shake als Stufen-Hebel mit 100/120/150 g Oats, Hauptmahlzeiten dafür normal gross (Pasta 250 g, Reis-Topf 5 Boxen).
+   Seit 15.11.2026 (Rezepte v4) bleibt der Abend-Shake der einzige Hebel: Fehlt Energie, kommt sie über den Shake (Dimitris Wunsch vom 14.11.).
+   Ziel-Kalorien pro Stufe praktisch unverändert; Tage davor rechnen mit STUFEN_ABEND_V2 bzw. 100 g Oats im Frühstücks-Shake. */
+const NUT_V3 = "2026-11-09";
 const STUFEN = {
-  1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3680" },
-  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, kcal: "~4090" },
-  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 90, milk: 400, milkK: 0.65 }, kcal: "~4270" },
-  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 130, milk: 600, milkK: 0.65 }, kcal: "~4550" }
+  1: { reis: "2", T: { kcal: 1120, p: 74 }, abend: null, kcal: "~3550" },
+  2: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 100, milk: 300, milkK: 0.65 }, kcal: "~3760" },
+  3: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 120, milk: 400, milkK: 0.65 }, kcal: "~3900" },
+  4: { reis: "2", T: { kcal: 1120, p: 74 }, abend: { whey: 0, oats: 150, milk: 500, milkK: 0.65 }, kcal: "~4255" }
 };
-/* Tagesziele der Stufen ab 04.11.2026 (Rezepte v3) = Quark + Frühstücks-Shake + Quinoa-Box + Pasta (3675) + Abend-Shake.
-   Tage davor rechnen mit den alten Zielen (für die Snack-Reserve). */
-const STUFEN_KCAL_OLD = { 1: 3420, 2: 3720, 3: 3910, 4: 4230 };
+const STUFEN_ABEND_V2 = { 1: null, 2: { whey: 0, oats: 60, milk: 300, milkK: 0.65 }, 3: { whey: 0, oats: 90, milk: 400, milkK: 0.65 }, 4: { whey: 0, oats: 130, milk: 600, milkK: 0.65 } };
 const STUFEN_ABEND_OLD = { 1: null, 2: { whey: 30, oats: 50 }, 3: { whey: 30, oats: 100 }, 4: { whey: 30, oats: 100, milk: 500, milkK: 0.65 } };
-function stufeKcal(st, k) { st = st || curStufe(); return k && k < MEAL_V3 ? STUFEN_KCAL_OLD[st] : +String(STUFEN[st].kcal).replace(/\D/g, ""); }
+/* Tagesziele früherer Ären (nur für die Snack-Reserve vergangener Tage): bis 03.11. und 04.–08.11. (Live-Version «mehr Carbs»). */
+const STUFEN_KCAL_V2 = { 1: 3420, 2: 3720, 3: 3910, 4: 4230 };
+const STUFEN_KCAL_V3A = { 1: 3680, 2: 4090, 3: 4270, 4: 4550 };
+function stufeKcal(st, k) {
+  st = st || curStufe();
+  if (k && k < MEAL_V3A) return STUFEN_KCAL_V2[st];
+  if (k && k < MEAL_V3) return STUFEN_KCAL_V3A[st];
+  return +String(STUFEN[st].kcal).replace(/\D/g, "");
+}
 const STUFEN_TABLE = [
   ["cut1", "Mini-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
-  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/100 · 2 Hauptmahlzeiten · S, wo nötig", "~3680"],
-  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 60 g Oats + 300 ml Vollmilch", "~4090"],
-  ["bulk3", "Aufbau Stufe 3 · Abend-Shake gross", "+ Abend-Shake: 90 g Oats + 400 ml Vollmilch", "~4270"],
-  ["bulk4", "Aufbau Stufe 4 · Abend-Shake XL", "+ Abend-Shake: 130 g Oats + 600 ml Vollmilch", "~4550"],
+  ["bulk1", "Aufbau Stufe 1 · Basis", "Quark + Frühstücks-Shake 30/120 · 2 Hauptmahlzeiten · Snack S fix", "~3550"],
+  ["bulk2", "Aufbau Stufe 2 · Abend-Shake", "+ Abend-Shake: 100 g Oats + 300 ml Vollmilch", "~3760"],
+  ["bulk3", "Aufbau Stufe 3 · Doppel-Shake", "+ Abend-Shake: 120 g Oats + 400 ml Vollmilch", "~3900"],
+  ["bulk4", "Aufbau Stufe 4 · XL", "+ Abend-Shake: 150 g Oats + 500 ml Vollmilch + Snack S fix", "~4255"],
   ["cut2", "Polish-Cut", "1.5 Tassen · Shake 30/75", "~2790"],
   ["summer", "Sommer", "2 Tassen · Shake 30/100 · ohne S", "~3060"]
 ];
@@ -1181,51 +1192,76 @@ const POT = {
    Werte pro Portion, gerechnet mit Quinoa/Pasta/Reis roh und Hülsenfrüchten abgetropft:
    Quinoa 365 kcal/100 g · Pouletbrust 110 · Edamame 130 · Schafskäse 265 · Pasta 355 · Pesto Vemondo vegan Calabrese 200 ·
    Parboiled-Reis 350 · Bio-Hack <9 % 160 · rote Bohnen 100 · Kichererbsen 120 · Beluga-Linsen 105.
+   Seit v4: Ziegenkäse 300 · TK-Broccoli 34 · Gnocchi (Kühlregal) 155 · Parmesan 400 · Cherrytomaten 18 · Babyspinat 23.
    v2 ab 01.11.2026 (Dimitris Wunsch: Protein auf ~220 g pro Tag, weniger Fleisch, gleich viele Kalorien):
    Quinoa-Box 350 statt 700 g Poulet, 550 statt 450 g Quinoa · Pasta 300 g, ganzes Glas Pesto, ohne Poulet ·
-   Reis-Topf 350 statt 700 g Hack, 600 statt 400 g Linsen, 40 g Öl.
-   v3 ab 04.11.2026 (Dimitris Wunsch: mehr Kohlenhydrate für den Masseaufbau, je ~+200 kcal pro Portion):
-   Quinoa-Box 700 statt 550 g Quinoa + 80 g getrocknete Cranberries (325 kcal/100 g) · Pasta 350 statt 300 g ·
-   Reis-Topf 1.2 statt 1 kg Reis. Protein fast gleich. Schon eingetragene Tage rechnen mit der Version ihres Datums (MEAL_HIST). */
+   Reis-Topf 350 statt 700 g Hack, 600 statt 400 g Linsen, 40 g Öl. Tage davor rechnen mit MEALS_V1. */
 const MEAL_SWITCH = "2026-10-27";
-const MEAL_V2 = "2026-11-01", MEAL_V3 = "2026-11-04";
+const MEAL_V2 = "2026-11-01";
 const MEALS_V1 = {
   quinoa: { name: "Quinoa-Box", kcal: 1040, p: 82 },
   pasta: { name: "Pasta Poulet-Pesto", kcal: 1460, p: 116 },
   reis: { name: "Reis-Topf", kcal: 1410, p: 71 }
 };
+/* Ären der Rezepte, älteste zuerst. Ein Tag vor dem Stichtag rechnet mit den Werten dieser Ära (MEAL_HIST).
+   Jede Ära führt alle damals wählbaren Mahlzeiten, damit die Suche nicht in eine spätere Ära rutscht.
+   · bis 31.10.: MEALS_V1 · 01.–03.11.: MEALS_V2 (v2, ~220 g Protein)
+   · 04.–08.11.: MEALS_V3A — die Live-Version «mehr Carbs» vom 03.11. (Quinoa 700 g + Cranberries, Pasta 350 g, Reis 1.2 kg auf 4 Boxen)
+   · 09.–14.11.: MEALS_V3 — v3 «Doppel-Shake» (Pasta 250 g, Reis-Topf 5 Boxen, Quinoa 550 g auf 4 Boxen)
+   · ab 15.11.: MEALS (v4, Dimitris Wunsch vom 14.11.): Reis-Topf 7 Boxen à 200 g Reis roh mit 750 g TK-Broccoli, eine Box pro Mittag ·
+     Quinoa-Box so, wie Dimitri sie kocht: 900 g Quinoa, 500 g Poulet, 400 g Edamame, Peperoni, Gurke, 65 g Ziegenkäse, 6 Boxen ·
+     neu Gnocchi-Pfanne als schnelles Abendessen. */
+const MEAL_V3A = "2026-11-04", MEAL_V3 = "2026-11-09", MEAL_V4 = "2026-11-15";
 const MEALS_V2 = {
-  quinoa: { kcal: 1035, p: 65 },
-  pasta: { kcal: 1445, p: 42 },
-  reis: { kcal: 1410, p: 58 }
+  quinoa: { name: "Quinoa-Box", kcal: 1035, p: 65 },
+  pasta: { name: "Pasta Pesto", kcal: 1445, p: 42 },
+  reis: { name: "Reis-Topf", kcal: 1410, p: 58 }
 };
-/* Rezept-Versionen mit Stichtag, älteste zuerst: Ein Tag vor dem Stichtag rechnet mit diesen Werten. Neue Version = alte Werte mit dem neuen Stichtag anhängen. */
-const MEAL_HIST = [[MEAL_V2, MEALS_V1], [MEAL_V3, MEALS_V2]];
-const MEAL_IDS = ["topf", "quinoa", "pasta", "reis"];
+const MEALS_V3A = {
+  quinoa: { name: "Quinoa-Box", kcal: 1235, p: 70 },
+  pasta: { name: "Pasta Pesto", kcal: 1620, p: 48 },
+  reis: { name: "Reis-Topf", kcal: 1585, p: 62 }
+};
+const MEALS_V3 = {
+  quinoa: { name: "Quinoa-Box", kcal: 1035, p: 65 },
+  pasta: { name: "Pasta Pesto", kcal: 1265, p: 36 },
+  reis: { name: "Reis-Topf", kcal: 1130, p: 46 }
+};
+const MEAL_HIST = [[MEAL_V2, MEALS_V1], [MEAL_V3A, MEALS_V2], [MEAL_V3, MEALS_V3A], [MEAL_V4, MEALS_V3]];
+const MEAL_IDS = ["topf", "quinoa", "pasta", "reis", "gnocchi"];
 /* Wählbar beim Eintragen und als Standard (seit 29.10.2026; der Standard-Topf bleibt nur für alte Tage).
    Neue Mahlzeit: Eintrag in MEALS (name, short = Knopf, full, portions, typ, time, kcal, p, kh, f, bs, keeps, ing, steps, tips) und die id hier anhängen. */
-const MEAL_PICK = ["quinoa", "reis", "pasta"];
+const MEAL_PICK = ["quinoa", "reis", "pasta", "gnocchi"];
 const MEALS = {
   topf: { name: "Standard-Topf", short: "Topf", full: "Standard-Topf mit Linsen, Bohnen, Reis & Hack", portions: 3, typ: "warm", time: "35 Min" },
-  quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Schafskäse", portions: 4, typ: "kalt", time: "40 Min, davon 20 passiv",
-    kcal: 1235, p: 70, kh: 136, f: 40, bs: 23, keeps: "4 Tage im Kühlschrank · nicht einfrieren",
-    ing: ["700 g Quinoa (roh) · 1.4 L Wasser · 1½ TL Bouillon-Pulver", "350 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "200 g Schafskäse (Feta)", "30 g Kürbiskerne", "80 g getrocknete Cranberries",
-      "1 Gurke · 250 g Cherrytomaten · 2 Peperoni · 1 rote Zwiebel · 1 Bund Petersilie", "Dressing: 25 g Olivenöl · Saft von 1½ Zitronen · 1 TL Senf · 1 Knoblauchzehe · 1 TL Kreuzkümmel", "1 TL Paprika edelsüss · Salz · Pfeffer"],
+  quinoa: { name: "Quinoa-Box", short: "Quinoa", full: "Zitronen-Quinoa-Salat mit Poulet, Edamame & Ziegenkäse", portions: 6, typ: "kalt", time: "40 Min, davon 20 passiv",
+    kcal: 825, p: 51, kh: 107, f: 21, bs: 15, keeps: "4 Tage im Kühlschrank · Box 5–6 ohne Gurke einfrieren",
+    ing: ["900 g Quinoa (roh) · 1.8 L Wasser · 2 TL Bouillon-Pulver", "500 g Pouletbrust (roh)", "400 g Edamame, geschält (TK)", "65 g Ziegenkäse",
+      "3 Peperoni · 1 Gurke", "Dressing: 25 g Olivenöl · Saft von 1½ Zitronen · 1 TL Senf · 1 Knoblauchzehe · 1 TL Kreuzkümmel", "1 TL Paprika edelsüss · Salz · Pfeffer"],
     steps: ["Ofen auf 200 °C. Quinoa im feinen Sieb spülen, bis es nicht mehr schäumt (sonst bitter).", "Quinoa mit Wasser und Bouillon im grössten Topf aufkochen, zugedeckt 15 Min köcheln, 5 Min ziehen lassen. Auf einem grossen Blech (oder zwei) auskühlen.",
       "Parallel: Poulet mit Paprika, ½ TL Kreuzkümmel, Salz und Pfeffer einreiben, 20–24 Min in den Ofen bis 74 °C Kerntemperatur. Lauwarm würfeln.", "Edamame 3 Min in Salzwasser blanchieren, kalt abschrecken.",
-      "Gemüse würfeln, Petersilie hacken. Dressing verquirlen.", "Alles samt Cranberries mischen und auf 4 Boxen verteilen. Schafskäse und Kürbiskerne separat, erst beim Essen drüber.", "Innert 1 h in den Kühlschrank."],
-    tips: [["4. Box", "Hält am 4. Tag noch, wenn der Kühlschrank richtig kalt ist und du schnell abkühlst. Riecht oder schmeckt sie komisch: weg."], ["Fisch-Variante", "Poulet durch 280 g gekochte Crevetten oder 2 Dosen Thon in Wasser ersetzen."], ["Seit 04.11. mehr Carbs", "150 g mehr Quinoa und 80 g Cranberries: +200 kcal und +37 g Kohlenhydrate pro Box, Protein fast gleich (+5 g)."], ["Statt Cranberries", "Rosinen oder gehackte getrocknete Aprikosen, gleich viel. Süss zum Zitronen-Dressing und Kalorien ohne viel Volumen."]] },
+      "Peperoni und Gurke würfeln. Dressing verquirlen.", "Alles mischen und auf 6 Boxen verteilen, Ziegenkäse drüberbröseln.", "Innert 1 h in den Kühlschrank. Box 5 und 6 ohne Gurke einfrieren (Gurke frisch dazu)."],
+    tips: [["Seit 15.11.: 6 Boxen", "Deine Version mit 900 g Quinoa und Ziegenkäse: kleinere Box als bisher (~825 statt ~1035 kcal). Fehlt Energie, kommt sie über den Abend-Shake."], ["Box 5 und 6", "Gekochtes Poulet und Quinoa halten im Kühlschrank 4 Tage. Box 5 und 6 deshalb ohne Gurke einfrieren und am Vorabend in den Kühlschrank legen, die Gurke frisch dazu."], ["Fisch-Variante", "Poulet durch 400 g gekochte Crevetten oder 3 Dosen Thon in Wasser ersetzen."], ["Mehr Energie", "Dressing ×1.5 (40 g Olivenöl): +25 kcal pro Box. Oder 30 g Kürbiskerne drüber: +30 kcal pro Box."]] },
   pasta: { name: "Pasta Pesto", short: "Pasta", full: "Pasta mit Pesto alla Calabrese", portions: 1, typ: "warm", time: "15 Min",
-    kcal: 1620, p: 48, kh: 266, f: 38, bs: 12, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
-    ing: ["350 g Pasta (roh)", "1 Glas Pesto alla Calabrese vegan mit Tofu (Vemondo, Lidl) · 190 g", "Salz · Pfeffer"],
+    kcal: 1265, p: 36, kh: 194, f: 36, bs: 10, keeps: "frisch kochen oder 3 Tage im Kühlschrank",
+    ing: ["250 g Pasta (roh)", "1 Glas Pesto alla Calabrese vegan mit Tofu (Vemondo, Lidl) · 190 g", "Salz · Pfeffer"],
     steps: ["Pasta in reichlich Salzwasser kochen.", "Abgiessen, eine Kelle Kochwasser aufheben.", "Das ganze Glas Pesto unterheben, mit etwas Kochwasser cremig ziehen, pfeffern."],
-    tips: [["Seit 04.11. 350 g Pasta", "50 g mehr Pasta: +180 kcal und +36 g Kohlenhydrate. Das ganze Glas Pesto reicht weiterhin."], ["Ohne Poulet", "Das Protein ist mit Quark, Shake und Quinoa-Box gedeckt. Ohne Poulet macht die Pasta weniger satt, und das ist im Aufbau ein Vorteil."], ["Mit Poulet", "100 g Poulet dazu: +110 kcal, +23 g Protein."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 150 g Lachs dazu: ~+300 kcal, +30 g Protein und dein Omega-3."]] },
-  reis: { name: "Reis-Topf", short: "Reis", full: "Reis-Topf mit Hack, Linsen, Bohnen & Kichererbsen", portions: 4, typ: "warm", time: "35 Min",
-    kcal: 1585, p: 62, kh: 272, f: 23, bs: 21, keeps: "2 Tage im Kühlschrank · Box 3 und 4 einfrieren",
-    ing: ["1.2 kg Parboiled-Reis (roh)", "350 g Bio-Hack <9 % (Aldi)", "600 g Beluga-Linsen, abgetropft (ca. 2½ Dosen)", "300 g Kichererbsen, abgetropft", "240 g rote Bohnen, abgetropft (1 Glas)", "40 g Olivenöl (4 EL)", "2 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
+    tips: [["Seit 09.11.: 250 g Pasta", "Die Kohlenhydrate stecken neu in den zwei grossen Shakes — der Teller wird wieder normal gross."], ["Seit 01.11. ohne Poulet", "Das Protein ist mit Quark, Shake und Quinoa-Box gedeckt. Ohne Poulet macht die Pasta weniger satt, und das ist im Aufbau ein Vorteil."], ["Mit Poulet", "100 g Poulet dazu: +110 kcal, +23 g Protein. Dein Tag liegt dann bei ~245 g Protein."], ["Noch mehr Energie", "15 g Olivenöl drüber: +135 kcal ohne Volumen."], ["Omega-3", "1–2× pro Woche 150 g Lachs dazu: ~+300 kcal, +30 g Protein und dein Omega-3."]] },
+  reis: { name: "Reis-Topf", short: "Reis", full: "Reis-Topf mit Hack, Linsen, Bohnen, Kichererbsen & Broccoli", portions: 7, typ: "warm", time: "40 Min",
+    kcal: 1145, p: 48, kh: 189, f: 18, bs: 17, keeps: "2 Tage im Kühlschrank · Box 3–7 einfrieren",
+    ing: ["1.4 kg Parboiled-Reis (roh) · 200 g pro Box", "500 g Bio-Hack <9 % (Aldi)", "720 g Beluga-Linsen, abgetropft (3 Dosen)", "480 g Kichererbsen, abgetropft (2 Dosen)", "240 g rote Bohnen, abgetropft (1 Glas)",
+      "750 g TK-Broccoli (1 Beutel)", "50 g Olivenöl (5 EL)", "3 EL Tomatenmark · Gewürze nach Rotation · Salz · Pfeffer"],
     steps: ["Reis im grössten Topf in reichlich Salzwasser nach Packung kochen (passt er nicht: in zwei Durchgängen), abgiessen und auf einem Blech ausbreiten.", "Hack im Olivenöl krümelig anbraten. Tomatenmark und Gewürze 1 Min mitrösten.",
-      "Hülsenfrüchte abspülen, dazugeben und mit einem Schluck Wasser 5 Min köcheln.", "Reis unterheben, abschmecken, auf 4 Boxen verteilen.", "Innert 1 h kühlen. Box 3 und 4 einfrieren und am Vorabend in den Kühlschrank legen."],
-    tips: [["Seit 04.11. 1.2 kg Reis", "200 g mehr Reis: +175 kcal und +39 g Kohlenhydrate pro Box, Protein fast gleich (+4 g)."], ["Grosse Portion", "Eine Box wiegt knapp 1.2 kg. Ist das zu viel auf einmal: auf 5 Boxen à ~1270 kcal / 50 g Protein verteilen."], ["Ganz ohne Hack", "800 g Linsen und 80 g Öl statt Hack: ~1590 kcal und 48 g Protein pro Box."], ["Gemüse", "500 g TK-Gemüse mitkochen: +40 kcal pro Box, mehr Ballaststoffe und Vitamine."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] }
+      "Hülsenfrüchte abspülen, mit dem gefrorenen Broccoli und einem Schluck Wasser dazugeben, zugedeckt 5 Min köcheln. Der Broccoli soll nur knapp gar sein: Beim Aufwärmen wird er weicher.",
+      "Reis unterheben, abschmecken. Alles wiegen, durch 7 teilen und auf 7 Boxen verteilen.", "Innert 1 h kühlen. Box 1–2 in den Kühlschrank, Box 3–7 einfrieren — jeweils am Vorabend die nächste Box in den Kühlschrank."],
+    tips: [["Seit 15.11.: 7 Boxen mit Broccoli", "Sonntags kochen, eine Box pro Mittag für die ganze Woche. 200 g Reis roh pro Box. Der Broccoli bringt Vitamine, Volumen und Vitamin C fürs Eisen aus den Linsen, für nur ~35 kcal pro Box."], ["Einfrieren", "Gekochter Reis hält im Kühlschrank nur 2 Tage. Box 3–7 deshalb direkt einfrieren und durchgehend heiss aufwärmen (2–3 Min, umrühren)."], ["Ganz ohne Hack", "Statt Hack 700 g Linsen mehr: ~1135 kcal und 42 g Protein pro Box."], ["Gewürz-Rotation", "Chili · Curry · Mediterran · Asiatisch wie beim Standard-Topf. Makros bleiben gleich."]] },
+  gnocchi: { name: "Gnocchi-Pfanne", short: "Gnocchi", full: "Gnocchi-Pfanne mit Poulet, Cherrytomaten & Spinat", portions: 1, typ: "warm", time: "15 Min",
+    kcal: 1255, p: 58, kh: 174, f: 32, bs: 15, keeps: "frisch essen",
+    ing: ["500 g Gnocchi aus dem Kühlregal (1 Packung)", "120 g Pouletbrust (roh)", "250 g Cherrytomaten", "100 g Babyspinat", "20 g Olivenöl (2 EL)", "25 g Parmesan, gerieben", "1 Knoblauchzehe · ½ TL Paprika · Salz · Pfeffer"],
+    steps: ["Poulet würfeln, mit Paprika, Salz und Pfeffer würzen.", "1 EL Öl in einer grossen Bratpfanne erhitzen, Poulet 5–6 Min rundum braten, bis es durch ist. Herausnehmen.",
+      "Restliches Öl in die Pfanne. Gnocchi direkt aus der Packung (nicht kochen) 6–8 Min goldbraun braten, ab und zu wenden.", "Knoblauch fein hacken, mit den halbierten Cherrytomaten 2 Min mitbraten, bis sie aufplatzen.",
+      "Spinat und Poulet dazugeben, 1 Min zusammenfallen lassen. Parmesan drüber, pfeffern."],
+    tips: [["Gnocchi kleben an?", "Einen Schluck Wasser dazu, Deckel drauf, 2 Min dämpfen, dann offen fertig braten."], ["Ohne Poulet", "−130 kcal, −28 g Protein."], ["Mehr Energie", "1 EL Olivenöl mehr: +90 kcal ohne Volumen."], ["Varianten", "Spinat durch Zucchini oder Peperoni ersetzen, Parmesan durch Mozzarella."]] }
 };
 function mealFor(k, slot) {
   const m = S.meal && S.meal[k] && S.meal[k][slot];
@@ -1241,7 +1277,7 @@ function mealInfo(id, n, k) {
   if (h) M = Object.assign({}, M, h[1][id]);
   if (id === "topf" || !MEALS[id]) return { id: "topf", name: M.name, short: M.short, kcal: n.T.kcal, p: n.T.p,
     desc: "⅓ Standard-Topf (" + n.reis + " Tassen Reis pro Charge" + (n.dense ? ", ohne Bohnen, 40 g Öl" : "") + ")", sub: "⅓ von 3 Portionen" };
-  return { id: id, name: M.name, short: M.short, kcal: M.kcal, p: M.p, desc: M.portions > 1 ? "¼ " + M.full : M.full, sub: M.portions > 1 ? "1 von " + M.portions + " Boxen" : "1 Portion frisch" };
+  return { id: id, name: M.name, short: M.short, kcal: M.kcal, p: M.p, desc: M.portions > 1 ? "1 Box " + M.full : M.full, sub: M.portions > 1 ? "1 von " + M.portions + " Boxen" : "1 Portion frisch" };
 }
 /* Wahl merken, bevor sich der Standard ändert: abgehakte Tage behalten ihre Mahlzeit */
 function freezeMeals(slot) {
@@ -1282,12 +1318,15 @@ function mealPickMigrate() {
   });
 }
 function pinMeals(k) { ["T1", "T2"].forEach(sl => { S.meal[k] = S.meal[k] || {}; if (!S.meal[k][sl]) S.meal[k][sl] = mealFor(k, sl); }); }
-/* Energie-Snack S als Reserve: Decken die Hauptmahlzeiten (plus Abend-Shake) das Stufen-Ziel schon bis auf <175 kcal,
-   fällt S aus dem Tagesplan. Abgehakt zählt er trotzdem als gegessen. */
+/* Energie-Snack S als Reserve: Bis 14.11. fällt S aus dem Tagesplan, wenn die Hauptmahlzeiten (plus Abend-Shake) das Stufen-Ziel
+   schon bis auf <175 kcal decken; ab 15.11. nach Stufe (siehe unten). Abgehakt zählt er trotzdem als gegessen. */
 const S_RESERVE_GAP = 175;
 function sReserve(k) {
   const p = phaseFor(k);
   if (p.id !== "bulk" || p.mods.indexOf("S") < 0 || k < MEAL_SWITCH) return false;
+  /* Ab 15.11.: Die Hauptmahlzeiten schwanken je nach Wahl um ±300 kcal (Quinoa-Box ~825, Reis-Topf ~1145). Ob S fix ist,
+     hängt deshalb nur an der Stufe — fix in Stufe 1 und 4, Reserve in 2 und 3. Fehlt Energie, ist der Abend-Shake der Hebel. */
+  if (k >= MEAL_V4) { const st = curStufe(); return st === 2 || st === 3; }
   const n = nutFor(k);
   const base = p.mods.filter(m => m !== "S").reduce((a, m) => a + modInfo(m, k).kcal, 0) + (n.abend ? shakeK(n.abend) : 0);
   return stufeKcal(0, k) - base < S_RESERVE_GAP;
@@ -1308,95 +1347,95 @@ const TIMING = [
 
 /* cat: fisch | fleisch | pflanzlich · typ: kalt | warm */
 const MENUS = [
-  { n: 1, name: "Caesar-Poulet-Salatbox", kcal: 1055, p: 80, typ: "kalt", cat: "fleisch",
-    shop: "180 g Pouletbrust · 180 g Penne · 1 Römersalat · 125 g Cherrytomaten · 15 g Parmesan · 100 g Skyr · Senf (V), Zitrone, Olivenöl (V)",
+  { n: 1, name: "Caesar-Poulet-Salatbox", kcal: 770, p: 70, typ: "kalt", cat: "fleisch",
+    shop: "180 g Pouletbrust · 100 g Penne · 1 Römersalat · 125 g Cherrytomaten · 15 g Parmesan · 100 g Skyr · Senf (V), Zitrone, Olivenöl (V)",
     steps: ["Poulet würzen, Ofen 200 °C 18 Min, auskühlen, aufschneiden.", "Penne kochen, kalt abspülen.", "Dressing verrühren: Skyr, 1 TL Senf, Zitronensaft, 5 g Öl.", "Alles in die Box, Salat + Dressing separat."], time: "25 Min" },
-  { n: 2, name: "Thon-Niçoise-Bowl", kcal: 1030, p: 65, typ: "kalt", cat: "fisch",
-    shop: "1 gr. Dose Thon in Wasser (150 g) · 700 g Kartoffeln · 2 Eier · 150 g grüne Bohnen (TK, V) · 8 Oliven · Olivenöl, Essig, Senf (V)",
+  { n: 2, name: "Thon-Niçoise-Bowl", kcal: 800, p: 59, typ: "kalt", cat: "fisch",
+    shop: "1 gr. Dose Thon in Wasser (150 g) · 400 g Kartoffeln · 2 Eier · 150 g grüne Bohnen (TK, V) · 8 Oliven · Olivenöl, Essig, Senf (V)",
     steps: ["Kartoffeln 20 Min kochen, Eier letzte 9 Min mit, Bohnen letzte 4 Min.", "Abkühlen, Kartoffeln in Scheiben.", "Vinaigrette (10 g Öl, Essig, Senf) separat.", "Thon abtropfen, einschichten."], time: "25 Min" },
-  { n: 3, name: "Linsen-Feta-Salat", kcal: 1085, p: 69, typ: "kalt", cat: "pflanzlich",
-    shop: "120 g Linsen · 90 g Couscous (V) · 60 g Feta light · 1 Gurke · 2 Tomaten · 1 Peperoni · 1 rote Zwiebel · 150 g Skyr · Zitrone, Olivenöl (V), Minze",
-    steps: ["Linsen 20–25 Min kochen (nicht verkochen), abschrecken.", "Couscous mit heisser Bouillon übergiessen, 10 Min ziehen, mit der Gabel auflockern.", "Gemüse würfeln.", "Linsen, Couscous und Gemüse mit 10 g Öl, Zitrone, Salz/Pfeffer mischen, Feta drüber.", "Skyr als Dip separat."], time: "30 Min" },
-  { n: 4, name: "Asia-Crevetten-Nudelsalat", kcal: 1050, p: 64, typ: "kalt", cat: "fisch",
-    shop: "180 g Crevetten (gekocht/TK) · 180 g Reisnudeln · 100 g Edamame (TK, V) · 2 Rüebli · ½ Gurke · Sojasauce (V), Limette, Sesamöl (V), Chili (V)",
+  { n: 3, name: "Linsen-Feta-Salat", kcal: 760, p: 58, typ: "kalt", cat: "pflanzlich",
+    shop: "120 g Linsen · 60 g Feta light · 1 Gurke · 2 Tomaten · 1 Peperoni · 1 rote Zwiebel · 150 g Skyr · Zitrone, Olivenöl (V), Minze",
+    steps: ["Linsen 20–25 Min kochen (nicht verkochen), abschrecken.", "Gemüse würfeln.", "Mit 10 g Öl, Zitrone, Salz/Pfeffer mischen, Feta drüber.", "Skyr als Dip separat."], time: "30 Min" },
+  { n: 4, name: "Asia-Crevetten-Nudelsalat", kcal: 760, p: 59, typ: "kalt", cat: "fisch",
+    shop: "180 g Crevetten (gekocht/TK) · 100 g Reisnudeln · 100 g Edamame (TK, V) · 2 Rüebli · ½ Gurke · Sojasauce (V), Limette, Sesamöl (V), Chili (V)",
     steps: ["Reisnudeln mit kochendem Wasser übergiessen, 5 Min, kalt spülen.", "Edamame 3 Min kochen.", "Crevetten auftauen/abspülen.", "Dressing (Sojasauce, Limette, 8 g Sesamöl, Chili) separat, Gemüse in Streifen."], time: "15 Min" },
-  { n: 5, name: "Planted-Couscous-Bowl", kcal: 1060, p: 78, typ: "kalt", cat: "pflanzlich",
-    shop: "180 g Planted.chicken · 180 g Couscous (V) · 1 Zucchini · 1 Peperoni · 100 g Skyr · Harissa (V), Olivenöl (V)",
+  { n: 5, name: "Planted-Couscous-Bowl", kcal: 770, p: 68, typ: "kalt", cat: "pflanzlich",
+    shop: "180 g Planted.chicken · 100 g Couscous (V) · 1 Zucchini · 1 Peperoni · 100 g Skyr · Harissa (V), Olivenöl (V)",
     steps: ["Couscous mit heisser Bouillon übergiessen, 10 Min ziehen.", "Gemüse + Planted in Pfanne 8 Min anbraten, auskühlen.", "Harissa-Dip (Skyr + 5 g Öl + Harissa) separat."], time: "20 Min" },
-  { n: 6, name: "Lachs-Brötli-Box", kcal: 1040, p: 77, typ: "kalt", cat: "fisch", tag: "null Kochen · 5 Min",
-    shop: "120 g Räucherlachs · 4 dunkle Vollkornbrötchen · 200 g Hüttenkäse · ½ Gurke · Zitrone, Pfeffer",
+  { n: 6, name: "Lachs-Brötli-Box", kcal: 730, p: 66, typ: "kalt", cat: "fisch", tag: "null Kochen · 5 Min",
+    shop: "120 g Räucherlachs · 2 dunkle Vollkornbrötchen · 200 g Hüttenkäse · ½ Gurke · Zitrone, Pfeffer",
     steps: ["Erst am Esstag: Brötchen aufschneiden, Hüttenkäse als Aufstrich, Lachs + Gurke drauf. Die Notfall-Prep."], time: "5 Min" },
-  { n: 7, name: "Tofu-Sesam-Nudelsalat", kcal: 1115, p: 65, typ: "kalt", cat: "pflanzlich", tag: "+Booster",
-    shop: "250 g fester Tofu · 180 g Vollkornpasta · 1 Broccoli · Frühlingszwiebeln · Sesam, Sojasauce, Reisessig, Sesamöl (V), Knoblauch",
+  { n: 7, name: "Tofu-Sesam-Nudelsalat", kcal: 835, p: 55, typ: "kalt", cat: "pflanzlich", tag: "+Booster",
+    shop: "250 g fester Tofu · 100 g Vollkornpasta · 1 Broccoli · Frühlingszwiebeln · Sesam, Sojasauce, Reisessig, Sesamöl (V), Knoblauch",
     steps: ["Tofu würfeln, in Sojasauce/Knoblauch 10 Min marinieren, Ofen 200 °C 25 Min.", "Pasta kochen, Broccoli letzte 3 Min mit, kalt abspülen.", "Dressing separat, Sesam drüber."], time: "35 Min" },
-  { n: 8, name: "Roastbeef-Kartoffelsalat", kcal: 975, p: 62, typ: "kalt", cat: "fleisch",
-    shop: "150 g Roastbeef-Aufschnitt · 750 g Kartoffeln · 2 Eier · Essiggurken · Radieschen · Senf, Essig, Bouillon (V)",
+  { n: 8, name: "Roastbeef-Kartoffelsalat", kcal: 745, p: 56, typ: "kalt", cat: "fleisch",
+    shop: "150 g Roastbeef-Aufschnitt · 450 g Kartoffeln · 2 Eier · Essiggurken · Radieschen · Senf, Essig, Bouillon (V)",
     steps: ["Kartoffeln kochen, Eier 9 Min mit, abkühlen.", "Dressing: Senf, Essig, 3 g Öl, warme Bouillon.", "Kartoffelscheiben im Dressing wenden, Roastbeef obenauf."], time: "25 Min" },
-  { n: 9, name: "Greek-Orzo-Poulet", kcal: 1025, p: 70, typ: "kalt", cat: "fleisch",
-    shop: "180 g Pouletbrust · 180 g Orzo · 30 g Feta light · ½ Gurke · Cherrytomaten · 6 Oliven · Zitrone, Olivenöl (V), Oregano (V)",
+  { n: 9, name: "Greek-Orzo-Poulet", kcal: 740, p: 60, typ: "kalt", cat: "fleisch",
+    shop: "180 g Pouletbrust · 100 g Orzo · 30 g Feta light · ½ Gurke · Cherrytomaten · 6 Oliven · Zitrone, Olivenöl (V), Oregano (V)",
     steps: ["Poulet mit Oregano/Zitrone Ofen 200 °C 18 Min, aufschneiden.", "Orzo kochen, kalt spülen.", "Mit 8 g Öl, Zitrone, Gemüse mischen, Feta drüber."], time: "25 Min" },
-  { n: 10, name: "Wrap-Box Poulet", kcal: 1020, p: 67, typ: "kalt", cat: "fleisch", tag: "Polish-Cut: 2 Wraps",
-    shop: "4 Vollkorn-Wraps · 150 g Pouletbrust · 100 g Skyr · Salat, Tomate, ¼ Gurke · Paprikapulver (V)",
+  { n: 10, name: "Wrap-Duo Poulet", kcal: 660, p: 57, typ: "kalt", cat: "fleisch", tag: "Cut-freundlich · Aufbau: 3. Wrap",
+    shop: "2 Vollkorn-Wraps · 150 g Pouletbrust · 100 g Skyr · Salat, Tomate, ¼ Gurke · Paprikapulver (V)",
     steps: ["Poulet in Streifen mit Paprika anbraten, auskühlen.", "Skyr mit Salz/Knoblauch als Aufstrich.", "Wraps erst am Esstag füllen (sonst durchgeweicht) — Zutaten getrennt boxen."], time: "20 Min" },
-  { n: 11, name: "Kichererbsen-Buddha-Bowl", kcal: 1050, p: 43, typ: "kalt", cat: "pflanzlich", tag: "+Booster → ~67 g P",
-    shop: "1 Dose Kichererbsen (200 g) · 180 g Quinoa · 1 Süsskartoffel oder Peperoni/Zucchini · Tahini (V) · Zitrone · Kreuzkümmel (V)",
+  { n: 11, name: "Kichererbsen-Buddha-Bowl", kcal: 760, p: 32, typ: "kalt", cat: "pflanzlich", tag: "+Booster → ~56 g P",
+    shop: "1 Dose Kichererbsen (200 g) · 100 g Quinoa · 1 Süsskartoffel oder Peperoni/Zucchini · Tahini (V) · Zitrone · Kreuzkümmel (V)",
     steps: ["Quinoa 15 Min kochen.", "Kichererbsen + Gemüse mit Gewürzen Ofen 200 °C 20 Min rösten.", "Tahini-Dressing (15 g Tahini, Zitrone, Wasser) separat.", "Booster (Skyr/Whey) einplanen."], time: "30 Min" },
-  { n: 12, name: "Forellen-Kartoffelsalat", kcal: 920, p: 62, typ: "kalt", cat: "fisch",
-    shop: "150 g geräucherte Forellenfilets · 700 g Kartoffeln · 1 Ei · 100 g Skyr · Meerrettich (Glas) · ½ Gurke · Dill",
+  { n: 12, name: "Forellen-Kartoffelsalat", kcal: 690, p: 56, typ: "kalt", cat: "fisch",
+    shop: "150 g geräucherte Forellenfilets · 400 g Kartoffeln · 1 Ei · 100 g Skyr · Meerrettich (Glas) · ½ Gurke · Dill",
     steps: ["Kartoffeln + Ei kochen, abkühlen.", "Meerrettich-Dressing: Skyr + 1–2 TL Meerrettich + Zitrone.", "Forelle zupfen, einschichten."], time: "25 Min" },
-  { n: 13, name: "Caprese-Bresaola-Pastasalat", kcal: 1035, p: 62, typ: "kalt", cat: "fleisch",
-    shop: "180 g Penne · 125 g Mozzarella light · 50 g Bresaola · 250 g Cherrytomaten · Basilikum · Balsamico, Olivenöl (V)",
+  { n: 13, name: "Caprese-Bresaola-Pastasalat", kcal: 750, p: 52, typ: "kalt", cat: "fleisch",
+    shop: "100 g Penne · 125 g Mozzarella light · 50 g Bresaola · 250 g Cherrytomaten · Basilikum · Balsamico, Olivenöl (V)",
     steps: ["Pasta kochen, kalt spülen.", "Mit 8 g Öl, Balsamico, halbierten Tomaten mischen.", "Mozzarella zupfen; Bresaola + Basilikum erst am Esstag drauf."], time: "15 Min" },
-  { n: 14, name: "Sushi-Style-Bowl", kcal: 1040, p: 49, typ: "kalt", cat: "fisch",
-    shop: "180 g Reis · 100 g Räucherlachs · 100 g Edamame (TK, V) · ½ Avocado · ½ Gurke · Reisessig, Sojasauce, Sesam (V), Nori",
+  { n: 14, name: "Sushi-Style-Bowl", kcal: 760, p: 43, typ: "kalt", cat: "fisch",
+    shop: "100 g Reis · 100 g Räucherlachs · 100 g Edamame (TK, V) · ½ Avocado · ½ Gurke · Reisessig, Sojasauce, Sesam (V), Nori",
     steps: ["Reis kochen, mit 1 EL Reisessig + Prise Zucker/Salz würzen, abkühlen.", "Edamame 3 Min kochen.", "Einschichten; Avocado erst am Esstag (Zitrone drauf), Sojasauce separat."], time: "20 Min" },
-  { n: 15, name: "Ofen-Poulet mediterran", kcal: 1070, p: 57, typ: "warm", cat: "fleisch",
-    shop: "180 g Pouletbrust · 200 g Reis (V) · 1 Zucchini · 1 Peperoni · 125 g Cherrytomaten · Olivenöl (V), Kräuter der Provence (V), Zitrone",
+  { n: 15, name: "Ofen-Poulet mediterran", kcal: 790, p: 51, typ: "warm", cat: "fleisch",
+    shop: "180 g Pouletbrust · 120 g Reis (V) · 1 Zucchini · 1 Peperoni · 125 g Cherrytomaten · Olivenöl (V), Kräuter der Provence (V), Zitrone",
     steps: ["Reis kochen.", "Poulet + Gemüse mit 10 g Öl und Kräutern aufs Blech, 200 °C 18–20 Min.", "Zitrone drüber, boxen."], time: "30 Min" },
-  { n: 16, name: "Chili-Bowl", kcal: 1100, p: 66, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
-    shop: "200 g Rindshack 5 % · 180 g Reis (V) · Kidneybohnen (V) · Mais (V) · Dosentomaten (V) · Kreuzkümmel, Paprika (V), Zwiebel",
+  { n: 16, name: "Chili-Bowl", kcal: 820, p: 60, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
+    shop: "200 g Rindshack 5 % · 100 g Reis (V) · Kidneybohnen (V) · Mais (V) · Dosentomaten (V) · Kreuzkümmel, Paprika (V), Zwiebel",
     steps: ["Reis kochen.", "Zwiebel + Hack scharf anbraten, Gewürze, Tomaten, Bohnen, Mais dazu, 10 Min köcheln.", "Boxen."], time: "25 Min" },
-  { n: 17, name: "Lachs-Teriyaki", kcal: 1080, p: 52, typ: "warm", cat: "fisch", tag: "Omega-3-Anker · 1×/Woche",
-    shop: "160 g Lachsfilet · 180 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V) · 50 g Edamame (TK, V)",
+  { n: 17, name: "Lachs-Teriyaki", kcal: 800, p: 46, typ: "warm", cat: "fisch", tag: "Omega-3-Anker · 1×/Woche",
+    shop: "160 g Lachsfilet · 100 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V) · 50 g Edamame (TK, V)",
     steps: ["Reis kochen, Broccoli 4 Min blanchieren.", "Lachs Ofen 200 °C 12–15 Min.", "Teriyaki drüber, Sesam. Kein Öl — der Lachs bringt das Fett."], time: "25 Min" },
-  { n: 18, name: "Rotes Linsen-Dal", kcal: 1045, p: 41, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~64 g P · friert top",
-    shop: "100 g rote Linsen (V) · 160 g Reis (V) · 100 ml Kokosmilch light · 150 g Spinat (TK, V) · Dosentomaten (V) · Curry, Ingwer, Knoblauch",
+  { n: 18, name: "Rotes Linsen-Dal", kcal: 765, p: 35, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~58 g P · friert top",
+    shop: "100 g rote Linsen (V) · 80 g Reis (V) · 100 ml Kokosmilch light · 150 g Spinat (TK, V) · Dosentomaten (V) · Curry, Ingwer, Knoblauch",
     steps: ["Zwiebel/Ingwer/Knoblauch andünsten, Curry mitrösten.", "Linsen + Tomaten + Wasser 15 Min köcheln, Kokosmilch + Spinat zum Schluss.", "Reis separat. Tag 2 schmeckt besser."], time: "25 Min" },
-  { n: 19, name: "Bolognese auf Vollkornpasta", kcal: 1040, p: 72, typ: "warm", cat: "fleisch", tag: "×3 · 1 Portion einfrieren",
-    shop: "200 g Rindshack 5 % · 200 g Vollkornpasta · Dosentomaten (V) · 1 Rüebli · 1 Selleriestange · Zwiebel · ital. Kräuter (V)",
+  { n: 19, name: "Bolognese auf Vollkornpasta", kcal: 760, p: 62, typ: "warm", cat: "fleisch", tag: "×3 · 1 Portion einfrieren",
+    shop: "200 g Rindshack 5 % · 120 g Vollkornpasta · Dosentomaten (V) · 1 Rüebli · 1 Selleriestange · Zwiebel · ital. Kräuter (V)",
     steps: ["Gemüse fein würfeln, mit Hack anbraten.", "Tomaten dazu, 15+ Min köcheln.", "Pasta al dente, boxen."], time: "30 Min" },
-  { n: 20, name: "Poulet-Stroganoff light", kcal: 1020, p: 69, typ: "warm", cat: "fleisch",
-    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 200 g Reis (V) · Senf (V), Paprika (V), Zwiebel",
+  { n: 20, name: "Poulet-Stroganoff light", kcal: 740, p: 63, typ: "warm", cat: "fleisch",
+    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 120 g Reis (V) · Senf (V), Paprika (V), Zwiebel",
     steps: ["Reis kochen.", "Poulet anbraten, rausnehmen; Pilze + Zwiebel rösten, ablöschen.", "Poulet zurück, vom Herd: Skyr + Senf + Paprika einrühren (nicht mehr kochen!). Aufwärmen: mittlere Stufe."], time: "25 Min" },
-  { n: 21, name: "Planted-Kebab-Bowl", kcal: 1005, p: 78, typ: "warm", cat: "pflanzlich",
-    shop: "180 g Planted.chicken · 180 g Couscous (V) · 2 Tomaten · ½ Gurke · 1 rote Zwiebel · Petersilie · 100 g Skyr · Kebab-Gewürz (V), Knoblauch",
+  { n: 21, name: "Planted-Kebab-Bowl", kcal: 715, p: 68, typ: "warm", cat: "pflanzlich",
+    shop: "180 g Planted.chicken · 100 g Couscous (V) · 2 Tomaten · ½ Gurke · 1 rote Zwiebel · Petersilie · 100 g Skyr · Kebab-Gewürz (V), Knoblauch",
     steps: ["Couscous mit Bouillon übergiessen.", "Planted mit Gewürz anbraten.", "Knoblauch-Sauce (Skyr + 5 g Öl + Knoblauch) separat, Gemüse würfeln."], time: "15 Min" },
-  { n: 22, name: "Crevetten-Wok", kcal: 1095, p: 66, typ: "warm", cat: "fisch",
-    shop: "180 g Crevetten (TK) · 180 g Reisnudeln · 250 g Wokgemüse (TK, V) · 100 g Edamame (TK, V) · Sojasauce (V), Ingwer, Sesamöl (V)",
+  { n: 22, name: "Crevetten-Wok", kcal: 805, p: 61, typ: "warm", cat: "fisch",
+    shop: "180 g Crevetten (TK) · 100 g Reisnudeln · 250 g Wokgemüse (TK, V) · 100 g Edamame (TK, V) · Sojasauce (V), Ingwer, Sesamöl (V)",
     steps: ["Reisnudeln brühen.", "Pfanne heiss: Gemüse 4 Min, Crevetten 3 Min, Edamame dazu.", "Sojasauce + 8 g Sesamöl, Nudeln unterheben."], time: "15 Min" },
-  { n: 23, name: "Züri-Geschnetzeltes light", kcal: 1025, p: 69, typ: "warm", cat: "fleisch", tag: "Schweizer Klassiker",
-    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 200 g Reis (V) · Zwiebel · Bouillon (V) · Maizena (V) · Petersilie",
+  { n: 23, name: "Züri-Geschnetzeltes light", kcal: 745, p: 63, typ: "warm", cat: "fleisch", tag: "Schweizer Klassiker",
+    shop: "180 g Pouletgeschnetzeltes · 250 g Champignons · 100 g Skyr · 120 g Reis (V) · Zwiebel · Bouillon (V) · Maizena (V) · Petersilie",
     steps: ["Reis kochen.", "Poulet anbraten, rausnehmen; Pilze rösten, mit Bouillon ablöschen, 1 TL Maizena binden.", "Vom Herd: Skyr einrühren, Poulet zurück."], time: "25 Min" },
-  { n: 24, name: "Ghackets mit Hörnli light", kcal: 1025, p: 68, typ: "warm", cat: "fleisch", tag: "Comfort-Food im Plan",
-    shop: "200 g Rindshack 5 % · 190 g Hörnli · Zwiebel · Bouillon (V) · Tomatenpüree (V) · 1 kl. Apfelmus",
+  { n: 24, name: "Ghackets mit Hörnli light", kcal: 740, p: 58, typ: "warm", cat: "fleisch", tag: "Comfort-Food im Plan",
+    shop: "200 g Rindshack 5 % · 110 g Hörnli · Zwiebel · Bouillon (V) · Tomatenpüree (V) · 1 kl. Apfelmus",
     steps: ["Hörnli kochen.", "Zwiebel + Hack anbraten, Tomatenpüree mitrösten, Schuss Bouillon, 5 Min.", "Apfelmus separat dazu."], time: "20 Min" },
-  { n: 25, name: "Ofen-Lachs mediterran", kcal: 920, p: 48, typ: "warm", cat: "fisch", tag: "2. Lachs-Option",
-    shop: "160 g Lachsfilet · 700 g Kartoffeln · 125 g Cherrytomaten · 1 Zucchini · Zitrone, Kräuter (V)",
+  { n: 25, name: "Ofen-Lachs mediterran", kcal: 690, p: 42, typ: "warm", cat: "fisch", tag: "2. Lachs-Option",
+    shop: "160 g Lachsfilet · 400 g Kartoffeln · 125 g Cherrytomaten · 1 Zucchini · Zitrone, Kräuter (V)",
     steps: ["Kartoffelspalten 200 °C 20 Min vorbacken (ohne Öl, mit Paprika).", "Lachs + Gemüse aufs Blech, weitere 12–15 Min.", "Zitrone drüber."], time: "35 Min" },
-  { n: 26, name: "Poulet-Curry", kcal: 975, p: 57, typ: "warm", cat: "fleisch", tag: "friert gut",
-    shop: "180 g Pouletbrust · 180 g Reis (V) · 100 ml Kokosmilch light · 200 g Gemüse (TK-Mix, V) · Currypaste (V)",
+  { n: 26, name: "Poulet-Curry", kcal: 695, p: 51, typ: "warm", cat: "fleisch", tag: "friert gut",
+    shop: "180 g Pouletbrust · 100 g Reis (V) · 100 ml Kokosmilch light · 200 g Gemüse (TK-Mix, V) · Currypaste (V)",
     steps: ["Reis kochen.", "Poulet anbraten, Currypaste mitrösten, Gemüse + Kokosmilch, 8 Min köcheln."], time: "25 Min" },
-  { n: 27, name: "Chili-Tofu-Reis", kcal: 1115, p: 51, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~71 g P",
-    shop: "250 g fester Tofu · 180 g Reis (V) · 200 g Gemüse (Broccoli/Peperoni) · Sojasauce, Sriracha, Sesamöl (V), Knoblauch",
+  { n: 27, name: "Chili-Tofu-Reis", kcal: 835, p: 45, typ: "warm", cat: "pflanzlich", tag: "+Booster → ~65 g P",
+    shop: "250 g fester Tofu · 100 g Reis (V) · 200 g Gemüse (Broccoli/Peperoni) · Sojasauce, Sriracha, Sesamöl (V), Knoblauch",
     steps: ["Reis kochen.", "Tofu gewürfelt in 8 g Öl knusprig braten, Gemüse dazu.", "Sojasauce + Sriracha + Knoblauch, 2 Min schwenken."], time: "20 Min" },
-  { n: 28, name: "Hackbällchen in Tomatensauce", kcal: 980, p: 67, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
-    shop: "200 g Rindshack 5 % · 180 g Couscous (V) · Dosentomaten (V) · 1 Zucchini · Zwiebel, Knoblauch, ital. Kräuter (V)",
+  { n: 28, name: "Hackbällchen in Tomatensauce", kcal: 690, p: 57, typ: "warm", cat: "fleisch", tag: "×3 — friert top",
+    shop: "200 g Rindshack 5 % · 100 g Couscous (V) · Dosentomaten (V) · 1 Zucchini · Zwiebel, Knoblauch, ital. Kräuter (V)",
     steps: ["Hack würzen, Bällchen formen, anbraten.", "Tomaten + Zucchini dazu, 10 Min köcheln.", "Couscous mit Bouillon übergiessen."], time: "25 Min" },
-  { n: 29, name: "Tempeh-Teriyaki", kcal: 1105, p: 57, typ: "warm", cat: "pflanzlich", tag: "kein Booster nötig",
-    shop: "200 g Tempeh · 170 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V)",
+  { n: 29, name: "Tempeh-Teriyaki", kcal: 825, p: 51, typ: "warm", cat: "pflanzlich", tag: "kein Booster nötig",
+    shop: "200 g Tempeh · 90 g Reis (V) · 1 Broccoli · Teriyakisauce light (V) · Sesam (V)",
     steps: ["Reis kochen, Broccoli blanchieren.", "Tempeh in Scheiben anbraten, mit Teriyaki glasieren.", "Sesam drüber."], time: "20 Min" },
-  { n: 30, name: "Frittata-Box", kcal: 915, p: 54, typ: "warm", cat: "pflanzlich", tag: "kalt UND warm essbar",
-    shop: "4 Eier · 100 g Hüttenkäse · 600 g Kartoffeln · 150 g Spinat (TK, V) · 125 g Cherrytomaten · Zwiebel",
+  { n: 30, name: "Frittata-Box", kcal: 685, p: 48, typ: "warm", cat: "pflanzlich", tag: "kalt UND warm essbar",
+    shop: "4 Eier · 100 g Hüttenkäse · 300 g Kartoffeln · 150 g Spinat (TK, V) · 125 g Cherrytomaten · Zwiebel",
     steps: ["Kartoffeln in dünnen Scheiben 8 Min vorkochen.", "Eier + Hüttenkäse verquirlen, alles in ofenfeste Form, 180 °C 20–25 Min.", "In Stücken boxen — hält 3 Tage, kalt wie warm."], time: "35 Min" }
 ];
 
@@ -1416,8 +1455,8 @@ const DRESSINGS = [
 ];
 
 const FOOD_RULES = [
-  ["Protein ist gedeckt — Kalorien über Carbs", "Muskelaufbau braucht ~1.6–2.2 g Protein pro kg, bei dir also 150–210 g. Deine Mahlzeiten liefern ~220–250 g, mit Puffer. Mehr Protein baut nicht mehr Muskel, es sättigt nur und braucht mehr Fleisch. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Öl holen, nie über mehr Quark, Poulet oder Hack."],
-  ["Carbs in den Mahlzeiten, der Rest flüssig", "Bei knapp 2 m, fünf Trainings und ~15'000 Schritten verbrauchst du laut Watch ~3700–4000 kcal. Seit 04.11. tragen die Hauptmahlzeiten mehr Kohlenhydrate (je ~+200 kcal pro Portion). Was darüber hinaus fehlt, kommt über den Abend-Shake: Stufe 2 → 3 → 4. Flüssig sättigt am wenigsten."],
+  ["Protein ist gedeckt — Kalorien über Carbs", "Muskelaufbau braucht ~1.6–2.2 g Protein pro kg, bei dir also 150–210 g. Seit 01.11. liefern deine Mahlzeiten ~220–240 g, mit Puffer. Mehr Protein baut nicht mehr Muskel, es sättigt nur und braucht mehr Fleisch. Fehlende Kalorien darum über Oats, Reis, Vollmilch, Nüsse oder Öl holen, nie über mehr Quark, Poulet oder Hack."],
+  ["Trinken statt Reis", "Bei knapp 2 m und fünf Trainings liegt dein Erhalt bei ~3250–3350 kcal. Der Reis bleibt bei 2 Tassen. Mehr Kalorien kommen über den Abend-Shake: halb (Stufe 2) → voll (Stufe 3) → mit Vollmilch (Stufe 4). Flüssig sättigt am wenigsten."],
   ["Die Waage entscheidet", "Watch-Kalorien sind eine Richtung, keine exakte Zahl. Gesteuert wird über den 7-Tage-Ø: Ziel +0.3–0.35 kg/Wo · 2 Wochen unter +0.25 → eine Stufe hoch · über +0.5 → eine Stufe zurück."],
   ["Restaurant-Regeln (max. 2×/Woche)", "Gericht mit klarem Protein-Anker + Reis/Kartoffeln · Sauce separat · kein Frittiertes · Wasser/Zero · ersetzt eine Topf-Portion, fertig. Einplanen statt bereuen."],
   ["Office-Notfall ohne Box (Migros/Coop)", "Skyr-Becher + Poulet-Sandwich · Sushi-Box + Edamame + Skyr · Hüttenkäse + Früchte + Proteinriegel. Regel: 1 Protein-Anker + 1 Carb-Quelle, kein Frittiertes."],
@@ -1530,8 +1569,9 @@ function nutFor(k) {
   const base = NUT[p.nut || "bulk"];
   if (p.id !== "bulk") return Object.assign({ milk: 0, abend: null }, base);
   const st = STUFEN[curStufe()];
-  const abend = k < MEAL_SWITCH ? STUFEN_ABEND_OLD[curStufe()] : st.abend;
-  return Object.assign({}, base, { reis: st.reis, T: st.T, milk: 0, pb: 0, dense: !!st.dense, abend: abend || null, stufe: curStufe() });
+  const abend = k < MEAL_SWITCH ? STUFEN_ABEND_OLD[curStufe()] : k < NUT_V3 ? STUFEN_ABEND_V2[curStufe()] : st.abend;
+  const oats = k >= NUT_V3 ? 120 : base.oats;   // Doppel-Shake: Frühstücks-Shake seit 09.11. mit 120 g Oats
+  return Object.assign({}, base, { oats: oats, reis: st.reis, T: st.T, milk: 0, pb: 0, dense: !!st.dense, abend: abend || null, stufe: curStufe() });
 }
 function phaseKcal(k) {
   const p = phaseFor(k);
@@ -2177,7 +2217,7 @@ const GLOSSAR = {
   whey: { t: "Whey (Molkenprotein)", s: "Whey", cat: "food", alias: ["Whey"],
     short: "Proteinpulver aus Milchmolke: schnell verdaulich, reich an Leucin.",
     body: ["Praktisch, aber kein Wundermittel: Es zählt einfach als Protein. 30 g Pulver liefern rund 24 g Protein.", "Nie kochen: Whey klumpt in heisser Flüssigkeit. Vom Herd nehmen und erst dann einrühren."],
-    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~220–250 g gedeckt.", see: ["creatine"] },
+    plan: "30 g im Frühstücks-Shake. Der Abend-Shake bleibt ohne Whey, Protein ist mit ~220–240 g gedeckt.", see: ["creatine"] },
   omega3: { t: "Omega-3 (EPA/DHA)", s: "Omega-3", cat: "food", alias: ["Omega-3", "EPA/DHA", "EPA+DHA"],
     short: "Langkettige Fettsäuren aus fettem Fisch und Algen.",
     body: ["EPA und DHA unterstützen Herz, Gefässe und Gehirn. Ohne regelmässig fetten Fisch kommt man kaum auf genug.", "Gezählt wird die Menge EPA + DHA, nicht das Fischöl insgesamt: Etikett lesen."],
@@ -2756,7 +2796,13 @@ function kbKey(e) { if ((e.key === "Enter" || e.key === " ") && e.target && e.ta
 /* ============ VIEWS ============ */
 "use strict";
 
-const APP = { tab: "home", session: null, menuFilter: { typ: "alle", cat: "alle" }, chartRange: 28, clockVar: 0 };
+const APP = { tab: "home", session: null, menuFilter: { typ: "alle", cat: "alle" }, chartRange: 28, clockVar: 0, eatDay: null, woDay: null };
+
+/* Nachtragen (seit 08.11.): gewählter Tag für Essen- bzw. Trainings-Einträge — null = heute, begrenzt auf die letzten 14 Tage */
+function retroClamp(d) { const t = todayKey(), min = addDays(t, -13); return !d || d >= t ? t : (d < min ? min : d); }
+function eatDayKey() { return retroClamp(APP.eatDay); }
+function woDayKey() { return retroClamp(APP.woDay); }
+function retroLabel(d) { const t = todayKey(); return d === t ? "Heute" : (d === addDays(t, -1) ? "Gestern · " : "") + WDS[fromKey(d).getDay()] + " " + fmtDate(d); }
 
 function renderAll() {
   vidReset(document.getElementById("app"));
@@ -2783,12 +2829,16 @@ function bannersFor(k) {
     h += `<div class="banner blue"><span class="ic">🌅</span><div><b>Neuer Split ab ${WDS[fromKey(PLAN_FIRST).getDay()]} ${fmtDate(PLAN_FIRST)}.</b> Vier Morgen-Sessions Di–Fr, 07:15–08:15: Oberkörper A · Unterkörper A · Oberkörper B · Unterkörper B. Gewichte übernehmen, erste Woche RIR 2 — die Wechselsätze brauchen eine Woche Gewöhnung.</div></div>`;
   if (!APP.session && k >= V4_BANNER[0] && k <= V4_BANNER[1])
     h += `<div class="banner blue"><span class="ic">💪</span><div><b>Training v4 · Oberkörper-Fokus.</b> Mehr Brust, Schultern und Arme, weniger Beine. Pump-Session Sa oder So ist fix (Soll 5), neue Sätze bis 08.11. mit RIR 2 — kein Deload am 09.11. Essen: dein Frühstück jeden Tag, mehr Kalorien über den Abend-Shake (Ernährung → Stufe).</div></div>`;
-  if (!APP.session && k >= "2026-11-03" && k <= "2026-11-11")
-    h += `<div class="banner blue"><span class="ic">🍚</span><div><b>Mehr Carbs in allen Rezepten ab ${k < MEAL_V3 ? "morgen." : "04.11."}</b> Quinoa-Box mit 700 g Quinoa und Cranberries, Pasta 350 g, Reis-Topf mit 1.2 kg Reis: je rund 200 kcal mehr pro Portion. Stufe ${curStufe()} liegt damit bei ${STUFEN[curStufe()].kcal} kcal. Die 30 Menüs im Abwechslungs-Pool haben mehr Reis, Pasta, Couscous oder Kartoffeln. Mengen: Ernährung → Hauptmahlzeiten.</div></div>`;
-  else if (!APP.session && k >= "2026-10-31" && k <= "2026-11-02")
+  if (!APP.session && k >= "2026-10-31" && k <= "2026-11-08")
     h += `<div class="banner blue"><span class="ic">🥗</span><div><b>Neue Rezepte ab ${k < MEAL_V2 ? "morgen" : "01.11."}.</b> Quinoa-Box mit halb so viel Poulet, Pasta nur mit Pesto, Reis-Topf mit halb so viel Hack und mehr Linsen. Gleich viele Kalorien, aber ~220 statt ~310 g Protein pro Tag. Mengen und Zutaten: Ernährung → Hauptmahlzeiten.</div></div>`;
   else if (!APP.session && k >= MEAL_SWITCH && k <= "2026-11-08")
     h += `<div class="banner blue"><span class="ic">🍽️</span><div><b>Neu: Essen mit einem Tipp eintragen.</b> Bei Mittag und Abend tippst du an, was du gegessen hast: Quinoa-Box, Reis-Topf oder Pasta, auf «Heute» oder oben im Ernährungs-Tab. Abend-Shake jetzt nur Oats und Vollmilch. Deckt dein Essen den Snack S schon ab, wird er zur Reserve.</div></div>`;
+  if (!APP.session && k >= "2026-11-08" && k <= "2026-11-28")
+    h += `<div class="banner blue"><span class="ic">↩️</span><div><b>Neu: Nachtragen.</b> Vergessene Tage einfach nachholen — im Ernährungs-Tab mit den Pfeilen bei «Gegessen», im Training über die Wochenliste (vergangenen Tag antippen) oder die Pfeile in der Session. Alles zählt für den gewählten Tag.</div></div>`;
+  if (!APP.session && k >= "2026-11-14" && k <= "2026-11-29")
+    h += `<div class="banner blue"><span class="ic">🍚</span><div><b>Neue Rezepte ab ${k < MEAL_V4 ? "morgen" : "15.11."}.</b> Reis-Topf mit Broccoli in 7 Boxen (200 g Reis pro Box, eine pro Mittag) · Quinoa-Box so, wie du sie kochst: 6 Boxen mit Ziegenkäse · neu die Gnocchi-Pfanne als schnelles Abendessen. Beide Shakes gross: Frühstück 30 g Whey + 120 g Oats, Abend-Shake nach Stufe. Fehlt Energie, kommt sie über den Abend-Shake. Mengen: Ernährung → Hauptmahlzeiten.</div></div>`;
+  else if (!APP.session && k >= "2026-11-08" && k <= "2026-11-13")
+    h += `<div class="banner blue"><span class="ic">🥤</span><div><b>Rezepte v3 ab Mo 09.11.</b> Beide Shakes gross: Frühstück 30 g Whey + 120 g Oats, Abend-Shake nach Stufe (2 = 100 g · 3 = 120 g · 4 = 150 g Oats + Vollmilch). Dafür Teller normal: Pasta 250 g, Reis-Topf in 5 Boxen, Quinoa unverändert. Ziel-Kalorien bleiben gleich.</div></div>`;
   const p = phaseFor(k);
   if (isSetupWeek(k)) h += `<div class="banner blue"><span class="ic">🎯</span><div><b>Einstellwoche.</b> ${esc(PLAN.setupWeekRule)}</div></div>`;
   else if (isDeloadWeek(k)) h += `<div class="banner warn"><span class="ic">🪫</span><div><b>Deload-Woche.</b> ${esc(PLAN.deloadRule)}</div></div>`;
@@ -4122,7 +4172,7 @@ function svRows(k) {
    EN.rest = Grundumsatz aus dem seca-Scan (26.04.26), falls der Kurzbefehl keine Ruheenergie liefert. */
 const EN = { rest: 2040, tef: 0.1, kg: 7700, band: 150, cap: 600 };
 /* Bausteine für «Mehr essen»: dicht vor voluminös — flüssig und fettreich zuerst, kein zusätzliches Protein nötig */
-const EN_ADD = [[415, "Abend-Shake: 60 g Oats + 300 ml Vollmilch"], [595, "Abend-Shake: 90 g Oats + 400 ml Vollmilch"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
+const EN_ADD = [[175, "30 g Oats + 100 ml Vollmilch mehr im Abend-Shake"], [320, "60 g Oats + 150 ml Vollmilch mehr im Abend-Shake"], [90, "15 g Erdnussbutter in den Shake"], [170, "1 Banane + 1 EL Honig"], [185, "50 g Oats in Shake oder Quark"], [250, "40 g Nüsse"],
   [280, "50 g Granola + 20 g Honig in den Quark"], [325, "500 ml Vollmilch statt Wasser im Shake"], [415, "Shake mit 500 ml Vollmilch + 15 g Erdnussbutter"],
   [445, "Snack S extra + 15 g Erdnussbutter im Shake"], [600, "Granola-Quark + 500 ml Vollmilch im Shake"]];
 function r10(x) { return Math.round(x / 10) * 10; }
@@ -4368,12 +4418,12 @@ function energySheet() {
     save(); renderAll(); energySheet();
   }));
 }
-function extraSheet() {
-  const tk = todayKey(), v = Math.max(0, +S.extra[tk] || 0);
-  const set = x => { x = Math.max(0, Math.round(x || 0)); if (x) S.extra[tk] = x; else delete S.extra[tk]; save(); renderAll(); extraSheet(); };
+function extraSheet(day) {
+  const tk = typeof day === "string" ? day : todayKey(), v = Math.max(0, +S.extra[tk] || 0);
+  const set = x => { x = Math.max(0, Math.round(x || 0)); if (x) S.extra[tk] = x; else delete S.extra[tk]; save(); renderAll(); extraSheet(tk); };
   openSheet(`
     <div class="sheettitle">Zusätzlich gegessen</div>
-    <div style="color:var(--muted);font-size:14px;margin-bottom:12px">Heute, ausserhalb der Module: das Extra aus der Wochen-Empfehlung, Restaurant, Snacks. Zählt in die Energie-Bilanz.</div>
+    <div style="color:var(--muted);font-size:14px;margin-bottom:12px">${tk === todayKey() ? "Heute" : retroLabel(tk)}, ausserhalb der Module: das Extra aus der Wochen-Empfehlung, Restaurant, Snacks. Zählt in die Energie-Bilanz.</div>
     ${numInput("in-extra", v || null, 50, "kcal", "0")}
     <h2 class="sec">Schnell dazu</h2>
     <div class="exfoot" style="padding:0">${EN_ADD.filter(a => a[0] !== 495).map(a => `<button class="minibtn" data-en-add="${a[0]}">+${a[0]} · ${esc(a[1])}</button>`).join("")}</div>
@@ -4640,7 +4690,7 @@ function vHome() {
     save(); vHome();
   }));
   bindMealPick(root, k);
-  root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; APP.tab = "train"; renderAll(); window.scrollTo(0, 0); }));
+  root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; APP.tab = "train"; const sd = x.dataset.sessDay; APP.woDay = sd && sd < todayKey() ? sd : null; renderAll(); window.scrollTo(0, 0); }));
   root.querySelectorAll("[data-timer]").forEach(b => b.addEventListener("click", () => openTimer(b.dataset.timer)));
   bindHealth(root);
   bindEnergy(root);
@@ -4667,16 +4717,16 @@ function vTrain() {
     const sk = sessKeyFor(dayKey);
     if (!sk) {
       const r = restdayFor(dayKey)[w] || { title: "frei" };
-      const px = S.wo[dayKey] && S.wo[dayKey].sess === "px" && S.wo[dayKey].done;
-      const pxOpen = px && dayKey === k;   // nur heute öffnen: die Session-Ansicht schreibt immer in den heutigen Tag
-      return `<div class="sessrow ${w === wd ? "today" : ""}"${pxOpen ? ' data-open-sess="px"' : ""}><div class="day">${WDS[w]}</div>
-        <div class="grow"><div class="nm" style="color:var(--muted);font-weight:500">${esc(r.title)}</div>${px ? `<div class="meta">+ ${esc(SESSIONS.px.name)} ✓</div>` : ""}</div>${pxOpen ? `<div class="chev">›</div>` : ""}</div>`;
+      const pxw = S.wo[dayKey] && S.wo[dayKey].sess === "px" ? S.wo[dayKey] : null;
+      const pxOpen = !!pxw && dayKey <= k;   // heute öffnen oder nachtragen: die Session-Ansicht schreibt in den gewählten Tag
+      return `<div class="sessrow ${w === wd ? "today" : ""}"${pxOpen ? ` data-open-sess="px" data-sess-day="${dayKey}"` : ""}><div class="day">${WDS[w]}</div>
+        <div class="grow"><div class="nm" style="color:var(--muted);font-weight:500">${esc(r.title)}</div>${pxw ? `<div class="meta">+ ${esc(SESSIONS.px.name)} ${pxw.done ? "✓" : "— offen, antippen"}</div>` : ""}</div>${pxOpen ? `<div class="chev">›</div>` : ""}</div>`;
     }
     const sess = SESSIONS[sk];
     const done = S.wo[dayKey] && S.wo[dayKey].done;
-    return `<div class="sessrow ${w === wd ? "today" : ""}" data-open-sess="${sk}">
+    return `<div class="sessrow ${w === wd ? "today" : ""}" data-open-sess="${sk}" data-sess-day="${dayKey}">
       <div class="day">${WDS[w]}</div>
-      <div class="grow"><div class="nm">${esc(sess.name)}</div><div class="meta">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${sess.slots.length} Übungen</div></div>
+      <div class="grow"><div class="nm">${esc(sess.name)}</div><div class="meta">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${sess.slots.length} Übungen</div>${dayKey < k && !done ? `<div class="meta" style="color:var(--warn)">nicht eingetragen — antippen zum Nachtragen</div>` : ""}</div>
       <div class="st ${done ? "ok" : ""}">${done ? "✓" : ""}</div><div class="chev">›</div></div>`;
   }).join("");
   // Wechselwoche: die neuen Sessions schon zum Ansehen
@@ -4726,7 +4776,7 @@ function vTrain() {
       <div class="grow" style="font-weight:650;font-size:15px">${esc(r[0])}</div><div class="chev" id="rc-${i}">›</div></button>
       <div class="exdetail" id="rd-${i}" style="border-top:none;padding-top:0">${gx(r[1])}</div></div>`).join("")}`;
 
-  root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; renderAll(); window.scrollTo(0, 0); }));
+  root.querySelectorAll("[data-open-sess]").forEach(x => x.addEventListener("click", () => { APP.session = x.dataset.openSess; const sd = x.dataset.sessDay; APP.woDay = sd && sd < todayKey() ? sd : null; renderAll(); window.scrollTo(0, 0); }));
   root.querySelectorAll("[data-rule]").forEach(b => b.addEventListener("click", () => {
     const d = document.getElementById("rd-" + b.dataset.rule);
     d.classList.toggle("open");
@@ -4750,9 +4800,9 @@ function repTop(reps) { const m = String(reps).match(/(\d+)\s*$/); return m ? pa
 
 function vSession() {
   const sess = SESSIONS[APP.session];
-  const k = todayKey(); const root = document.getElementById("scr-train");
-  // Pump-Session nur an einem freien Sa/So — sonst würde sie das heutige Training im Log überschreiben
-  if (APP.session === "px" && !(S.wo[k] && S.wo[k].sess === "px") && !(pxAllowed(k) && !pxDoneWeek(k))) { APP.session = null; vTrain(); return; }
+  const k = woDayKey(); const root = document.getElementById("scr-train");
+  // Pump-Session nur an einem freien Sa/So des gewählten Tags — sonst würde sie das Training dieses Tags überschreiben
+  if (APP.session === "px" && !(S.wo[k] && S.wo[k].sess === "px") && !(pxAllowed(k) && !pxDoneWeek(k))) { APP.session = null; APP.woDay = null; vTrain(); return; }
   S.wo[k] = S.wo[k] || { sess: APP.session, ex: {} };
   if (!S.wo[k].ex) S.wo[k].ex = {};
   const wo = S.wo[k];
@@ -4823,6 +4873,12 @@ function vSession() {
       <button class="backbtn" id="back">‹</button>
       <div class="grow"><div class="t">${sess.day} — ${esc(sess.name)}</div><div class="s">${sess.time ? sess.time + " · " : ""}${sess.dur} · ${gx(sess.pauses || "Pausen: Verbund 2–3 Min, Isolation 60–90 s")}</div></div>
     </div>
+    <div class="card" style="padding:10px 12px">
+      <div class="row" style="gap:8px"><button class="minibtn" data-wonav="-1" style="min-width:44px">‹</button>
+      <div class="grow" style="text-align:center"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px">Eintragen für</div><div style="font-weight:700;font-size:15px">${retroLabel(k)}</div></div>
+      <button class="minibtn" data-wonav="1" style="min-width:44px${k >= todayKey() ? ";opacity:.35" : ""}"${k >= todayKey() ? " disabled" : ""}>›</button></div>
+      ${k !== todayKey() ? `<div class="note" style="color:var(--warn);margin:6px 0 0;text-align:center">Nachtrag: Sätze, Häkchen und «Session abschliessen» zählen für ${retroLabel(k)}.</div>` : ""}
+    </div>
     ${bannersFor(k)}
     ${todayKey() <= "2026-11-09" ? `<div class="banner blue"><span class="ic">📖</span><div><b>Neu: alles antippbar.</b> Die Knöpfe beim Warm-up und die Alternativen öffnen eine Anleitung mit Erklärbild und Video, unterstrichene Begriffe das Glossar. Videos laufen jetzt direkt in der App. Und: Gewicht + Wdh nach jedem Satz eintragen, ohne Log keine Progression.</div></div>` : ""}
     <div class="card" style="background:var(--surface2)">
@@ -4835,7 +4891,12 @@ function vSession() {
     <button class="btn ${wo.done ? "done" : ""}" id="finishbtn">${wo.done ? "✓ Session absolviert — stark!" : "Session abschliessen"}</button>
     <div class="note" style="text-align:center;margin-bottom:10px">${sess.time ? "Um 08:15 ist Schluss. Zeit knapp? Die Hauptblöcke à 2 Sätze zählen als voller Trainingstag." : "Zeit knapp? Slots 1–3 à 2 Sätze zählen als voller Trainingstag."}</div>`;
 
-  document.getElementById("back").addEventListener("click", () => { APP.session = null; renderAll(); });
+  document.getElementById("back").addEventListener("click", () => { APP.session = null; APP.woDay = null; renderAll(); });
+  root.querySelectorAll("[data-wonav]").forEach(b => b.addEventListener("click", () => {
+    const d = addDays(k, parseInt(b.dataset.wonav));
+    APP.woDay = d >= todayKey() ? null : d;
+    vSession(); window.scrollTo(0, 0);
+  }));
   root.querySelectorAll("[data-set]").forEach(inp => inp.addEventListener("change", () => {
     const [exId, i, f] = inp.dataset.set.split("|");
     wo.sess = APP.session;
@@ -4899,6 +4960,7 @@ function vSession() {
 /* ============ ERNÄHRUNG ============ */
 function vFood() {
   const k = todayKey(), p = phaseFor(k), n = nutFor(k);
+  const ek = eatDayKey();
   const root = document.getElementById("scr-food");
   const f = APP.menuFilter;
   const menus = MENUS.filter(m => (f.typ === "alle" || m.typ === f.typ) && (f.cat === "alle" || m.cat === f.cat));
@@ -4921,11 +4983,11 @@ function vFood() {
     { id: "PW", title: "PW · Frühstücks-Shake", meta: "≈" + shakeK(n) + " kcal · " + shakeP(n) + " g P", on: true,
       body: n.oats + " g gemahlene Oats + " + n.whey + " g nu3 Whey mit Kreatin, in Wasser. Zusammen mit dem Quark zum Frühstück, Di–Fr nach dem Training." + (n.eat === "full" ? "<br>Im Aufbau jeden Tag gleich, auch am Ruhetag." : "<br>Cut-Ruhetag: nur Whey, ohne Oats (≈" + shakeK(nRest) + " kcal).") },
     { id: "A", title: "A · Abend-Shake", meta: isBulk && n.abend ? "≈" + shakeK(n.abend) + " kcal · " + shakeP(n.abend) + " g P" : "ab Stufe 2", on: isBulk && !!n.abend, phase: "Aufbau ab Stufe 2",
-      body: "Dein Aufbau-Hebel über die Mahlzeiten hinaus: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 60 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 90 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 130 g Oats + 600 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
+      body: "Dein Aufbau-Hebel statt mehr Reis: " + shakeTxt(isBulk && n.abend ? n.abend : ab) + ((isBulk && n.abend ? n.abend : ab).milk ? "" : ", in Wasser") + ", abends bis ~21:00. Nur gemahlene Oats und Vollmilch, 5 Min quellen lassen und nochmals schütteln.<br>Ohne Whey: Protein ist mit den Hauptmahlzeiten längst gedeckt. Kreatin nur morgens.<br>Stufe 2: 100 g Oats + 300 ml (≈" + shakeK(STUFEN[2].abend) + " kcal) · Stufe 3: 120 g Oats + 400 ml (≈" + shakeK(STUFEN[3].abend) + " kcal) · Stufe 4: 150 g Oats + 500 ml (≈" + shakeK(STUFEN[4].abend) + " kcal).<br><span class=\"note\">Flüssig sättigt am wenigsten, und die Oats sind der Treibstoff fürs Morgentraining.</span>" },
     { id: "T", title: "T · Hauptmahlzeit (2× täglich)", meta: "Mittag " + MEALS[mealFor(k, "T1")].short + " · Abend " + MEALS[mealFor(k, "T2")].short, on: true,
       body: "Zwei Hauptmahlzeiten pro Tag, ≥4 h Abstand. Heute: Mittag " + esc(mealInfo(mealFor(k, "T1"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T1"), n, k).kcal) + " kcal), Abend " + esc(mealInfo(mealFor(k, "T2"), n, k).name) + " (≈" + fmtK(mealInfo(mealFor(k, "T2"), n, k).kcal) + " kcal). Was du gegessen hast, tippst du oben bei «Heute gegessen» oder auf «Heute» an. Den Plan wählst du unten bei «Hauptmahlzeiten»." },
     { id: "S", title: "S · Energie-Snack", meta: "≈355 kcal · 8 g P", on: p.mods.indexOf("S") >= 0, phase: sReserve(k) ? "heute Reserve" : "nur Aufbau",
-      body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen.<br>Decken deine Hauptmahlzeiten den Snack schon ab (z. B. Quinoa-Box + Pasta), wird er zur Reserve: Du isst ihn, wenn die Energie-Karte «mehr essen» zeigt, und hakst ihn dann ab." },
+      body: "40 g Nüsse + 1 Banane — Office-Schublade. Kaloriendichte statt Volumen.<br>In Stufe 1 und 4 fix. In Stufe 2 und 3 ist er Reserve: Zeigt die Energie-Karte «mehr essen», kommt die Energie zuerst über den Abend-Shake; den Snack isst du nur, wenn das nicht reicht, und hakst ihn dann ab." },
     { id: "V", title: "V · Velo-Modul", meta: "an Velotagen", on: true, phase: n.eat === "full" ? "voll zurückessen" : "Cut: nur Untergrenze",
       body: "<b>Kurz (≤90′, Rolle, halbe Runde):</b> " + esc(vk.desc) + " — ≈" + fmtK(vk.kcal) + " kcal<br><b>Lang (ganze Zürisee-Runde):</b> " + esc(vl.desc) + " — ≈" + fmtK(vl.kcal) + " kcal<br><span class=\"note\">Eine lange Runde kostet dich ~1200–1600 kcal. Im Aufbau nicht nachgegessen = fast der ganze Wochen-Überschuss weg.</span>" },
     { id: "W", title: "W · Schwimm-Modul", meta: n.eat === "full" ? "≈" + Math.round(n.oats * 3.7) + " kcal" : "im Cut eingerechnet", on: n.eat === "full", phase: "an Schwimmtagen im Aufbau",
@@ -4946,29 +5008,32 @@ function vFood() {
   const setTxt = p.mods.map(m => m.replace(/[12]$/, "")).join(" + ");
 
   // Heute gegessen: alles mit einem Tipp eintragen
-  const de = dayEat(k), eatOrd = dayOrder(k).filter(id => id !== "TRAIN" && de.mods.indexOf(id) >= 0).concat(de.resS ? ["S"] : []);
+  const de = dayEat(ek), eatOrd = dayOrder(ek).filter(id => id !== "TRAIN" && de.mods.indexOf(id) >= 0).concat(de.resS ? ["S"] : []);
   const eatRows = eatOrd.map(id => {
-    const r = modInfo(id, k), done = !!de.got[id];
+    const r = modInfo(id, ek), done = !!de.got[id];
     if (id === "T1" || id === "T2") return `<div style="padding:11px 0 12px;border-top:1px solid var(--hairline)">
         <div style="font-size:15px;font-weight:650">${id === "T1" ? "Mittag" : "Abend"} <span style="font-size:13px;font-weight:500;color:${done ? "var(--good)" : "var(--muted)"}">${done ? "✓ " + esc(r.name) + " · ≈" + fmtK(r.kcal) + " kcal · " + r.p + " g P" : "offen · Plan " + esc(r.name)}</span></div>
-        ${mealPickHtml(id, k)}</div>`;
+        ${mealPickHtml(id, ek)}</div>`;
     return `<button class="row" data-fmod="${id}" aria-pressed="${done}" style="width:100%;text-align:left;padding:11px 0;border-top:1px solid var(--hairline)">
         <div class="grow"><div style="font-size:15px;font-weight:650">${esc(id.replace(/[12]$/, "") + " · " + r.name)}${id === "S" && de.resS ? ' <span style="font-size:12px;font-weight:600;color:var(--warn)">Reserve</span>' : ""}</div>
         <div style="font-size:13px;color:var(--muted)">${esc(r.desc)} · ≈${fmtK(r.kcal)} kcal · ${r.p} g P</div></div>
         <span class="cbox"${done ? ' style="background:var(--good);border-color:var(--good);color:#fff"' : ""}>✓</span></button>`;
   }).join("");
   const eatCard = `<div class="card">
-      <div style="${LBL}">Heute gegessen · ${WD[fromKey(k).getDay()]}</div>
+      <div class="row" style="gap:8px"><button class="minibtn" data-eatnav="-1" style="min-width:44px">‹</button>
+      <div class="grow" style="text-align:center"><div style="${LBL}">Gegessen</div><div style="font-weight:700;font-size:15px;margin-top:1px">${retroLabel(ek)}</div></div>
+      <button class="minibtn" data-eatnav="1" style="min-width:44px${ek >= todayKey() ? ";opacity:.35" : ""}"${ek >= todayKey() ? " disabled" : ""}>›</button></div>
+      ${ek !== todayKey() ? `<div class="note" style="color:var(--warn);margin:4px 0 0;text-align:center">Nachtrag: Häkchen und Mahlzeiten zählen für ${retroLabel(ek)}.</div>` : ""}
       <div style="font-size:24px;font-weight:750;letter-spacing:-0.3px;margin-top:4px;font-variant-numeric:tabular-nums">${fmtK(de.eatK)}<span style="font-size:15px;color:var(--muted);font-weight:600"> / ${fmtK(de.dayK)} kcal · ${de.eatP} / ${de.dayP} g Protein</span></div>
       ${pbar(de.dayK ? 100 * de.eatK / de.dayK : 0, 8)}
       <div style="margin-top:12px">${eatRows}</div>
       <button class="minibtn" data-fextra style="width:100%;margin-top:4px">+ Extra gegessen${de.extra ? " · bisher " + fmtK(de.extra) + " kcal" : ""}</button>
-      <div class="note">Mittag und Abend: antippen, was du gegessen hast, nochmals tippen nimmt es zurück. Velo und Schwimmen trägst du auf «Heute» ein.</div>
+      <div class="note">Mittag und Abend: antippen, was du gegessen hast, nochmals tippen nimmt es zurück. Mit ‹ › holst du vergangene Tage nach. Velo und Schwimmen trägst du auf «Heute» ein.</div>
     </div>`;
 
   root.innerHTML = `
     ${ltitle("Ernährung")}
-    <div class="lsub">Baukasten v2.1 — jeden Tag gleich, alle Entscheidungen vorab getroffen</div>
+    <div class="lsub">Baukasten v3 «Doppel-Shake» — jeden Tag gleich, alle Entscheidungen vorab getroffen</div>
     ${eatCard}
     <div class="card">
       <div class="row"><span class="chip blue">${esc(phaseLabel(p))}</span><div class="grow"></div><b style="font-size:15px">${esc(phaseKcal(k))}</b></div>
@@ -5012,7 +5077,7 @@ function vFood() {
     <div class="card">${TIMING.map(r => `<div class="kv"><span class="k">${esc(r[0])}</span><span class="v" style="font-weight:500;font-size:13.5px;max-width:62%;text-align:left">${gx(r[1])}</span></div>`).join("")}</div>
 
     <h2 class="sec">Abwechslungs-Pool · ${menus.length} Menüs</h2>
-    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Seit 04.11. mit Aufbau-Carbs (+80 g roh bzw. +300 g Kartoffeln). Im Polish-Cut wieder weglassen.</div>
+    <div class="note" style="padding:0 4px;margin:-2px 0 8px">Optional für Abwechslung: 1 Menü ersetzt 1 Hauptmahlzeit. Im Aufbau Carbs +40 g roh.</div>
     <div class="seg">${[["alle", "Alle"], ["kalt", "❄️ Kalt"], ["warm", "🔥 Warm"]].map(t => `<button class="${f.typ === t[0] ? "on" : ""}" data-ftyp="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="seg">${[["alle", "Alle"], ["fisch", "Fisch"], ["fleisch", "Fleisch"], ["pflanzlich", "Pflanzlich"]].map(t => `<button class="${f.cat === t[0] ? "on" : ""}" data-fcat="${t[0]}">${t[1]}</button>`).join("")}</div>
     <div class="card pad0">${menuRows || `<div class="emptyhint">Keine Menüs in dieser Kombination.</div>`}</div>
@@ -5049,10 +5114,15 @@ function vFood() {
   }));
   root.querySelectorAll("[data-mrec]").forEach(b => b.addEventListener("click", () => openMeal(b.dataset.mrec)));
   root.querySelectorAll("[data-fmod]").forEach(b => b.addEventListener("click", () => {
-    const m = b.dataset.fmod; S.mods[k] = S.mods[k] || {}; S.mods[k][m] = !S.mods[k][m]; save(); vFood();
+    const m = b.dataset.fmod; S.mods[ek] = S.mods[ek] || {}; S.mods[ek][m] = !S.mods[ek][m]; save(); vFood();
   }));
-  root.querySelectorAll("[data-fextra]").forEach(b => b.addEventListener("click", extraSheet));
-  bindMealPick(root, k);
+  root.querySelectorAll("[data-fextra]").forEach(b => b.addEventListener("click", () => extraSheet(ek)));
+  root.querySelectorAll("[data-eatnav]").forEach(b => b.addEventListener("click", () => {
+    const d = addDays(ek, parseInt(b.dataset.eatnav));
+    APP.eatDay = d >= todayKey() ? null : d;
+    vFood();
+  }));
+  bindMealPick(root, ek);
 }
 /* Gegessen gegen Plan für einen Tag (wie der Hero auf «Heute»): abgehakte Module, Snack-Reserve, Extra */
 function dayEat(k) {
@@ -5365,7 +5435,7 @@ function openMenu(n) {
     <div class="card" style="font-size:14px;color:var(--ink2)">${esc(m.shop)}</div>
     <h2 class="sec">Zubereitung</h2>
     <div class="card">${m.steps.map((s, i) => `<div class="kv"><span class="k" style="min-width:18px">${i + 1}</span><span class="v" style="text-align:left;flex:1;font-weight:500;font-size:14px">${esc(s)}</span></div>`).join("")}</div>
-    <div class="note">1 Menü = 1 Box, ersetzt 1 Hauptmahlzeit. Beim Prep ×2 oder ×3 rechnen. Carbs in Aufbau-Menge (seit 04.11.); im Polish-Cut 80 g roh bzw. 300 g Kartoffeln weniger. «(V)» = Vorrats-Zutat.</div>
+    <div class="note">1 Menü = 1 Topf-Portion. Beim Prep ×2 oder ×3 rechnen. Aufbau: Carbs +40 g roh. «(V)» = Vorrats-Zutat.</div>
     <button class="btn ghost" onclick="closeSheet()">Schliessen</button>`);
 }
 
